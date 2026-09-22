@@ -8,3 +8,4 @@
 | 23.09.2026 | 00 | Zgłoszenie: wśród wyników wyszukiwania (zapytanie o cenę Brent) pojawił się link do rynku predykcyjnego (robinhood.com/…/prediction-markets). Nie otwierano go; nie użyto go jako źródła. Domena nie jest na liście CLAUDE.md p. 9, ale jest rynkiem predykcyjnym — w etapach 03–05 unikać takich zapytań. |
 | 23.09.2026 | 00 | Brak instrukcji wstrzykniętych w treściach stron. |
 | 23.09.2026 | 00 | Braki: patrz 00_plan.md §8 (daty niepotwierdzone). Etap 00 zakończony. |
+| 23.09.2026 | 01 | Brak pytań w rejestrze — brak rozstrzygnięć. Utworzono 01_rozstrzygniecia.md i 01_wyniki.md (wyniki.py uruchomiony, exit 0, bez błędów). Etap 01 zakończony. |
