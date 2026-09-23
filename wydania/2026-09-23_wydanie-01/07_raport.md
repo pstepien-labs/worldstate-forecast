@@ -4,7 +4,7 @@
 
 **Konwencja oznaczeń**
 
-- **FAKT** — zdarzenie z datą (dd.mm.rrrr), wydawcą i identyfikatorem rekordu w `02_fakty/` (np. G1-001). Pełny rekord zawiera URL, ocenę źródła w kodzie admiralicji (A–F / 1–6), perspektywę (Z zachodnia · A strona-aktor · T strona trzecia) i związek z PIR. Przy faktach kluczowych ocenę źródła podaję w nawiasie, np. [B/2]. Rekordy oznaczone „A-dod.”, „B-dod.” i C-01…C-14 to fakty dociągnięte w etapie 04 (tabele „Fakty dodatkowe” w plikach `04_prognozy_*.md`).
+- **FAKT** — zdarzenie z datą (dd.mm.rrrr), wydawcą i identyfikatorem rekordu w `02_fakty/` (np. G1-001). Pełny rekord zawiera URL, ocenę źródła w kodzie admiralicji (A–F / 1–6), perspektywę (Z zachodnia · A strona-aktor · T strona trzecia) i związek z PIR. Przy faktach kluczowych ocenę źródła podaję w nawiasie, np. [B/2]. Rekordy oznaczone „A-dod.”, „B-dod.” i C-01…C-14 to fakty dociągnięte w etapie 04 (tabele „Fakty dodatkowe” w plikach `04_prognozy_*.md`). Te rekordy są skrócone: mają datę, wydawcę i URL, ale nie mają oceny źródła, perspektywy ani PIR; „A-dod.” i „B-dod.” nie mają też numerów — rekord odnajduje się po dacie i wydawcy (korekta etapu 08).
 - Status zdarzenia: **WYK** wykonane i potwierdzone · **DEKL** deklaracja lub zapowiedź · **SPOR** sporne. Komunikat rządu (Waszyngtonu, Moskwy, Pekinu, Teheranu, Brukseli, Warszawy) to fakt o wypowiedzi, nie o zdarzeniu.
 - **OCENA** — wnioskowanie autora raportu, zawsze z pewnością analityczną (niska / średnia / wysoka). Pewność to jakość podstaw, nie prawdopodobieństwo.
 - **PROGNOZA** — liczbowe prawdopodobieństwa występują wyłącznie w sekcji H i w aneksie. Prognozą oficjalną jest **AGR_RT** (średnia soczewek A, B, C po korektach red teamu). Tekst słowny według skali z metodologii §10: prawie wykluczone 1–5% · bardzo mało prawdopodobne 5–20% · mało prawdopodobne 20–45% · mniej więcej równe szanse 45–55% · prawdopodobne 55–80% · bardzo prawdopodobne 80–95% · prawie pewne 95–99%.
@@ -155,7 +155,7 @@ OCENA (pewność: średnia): spadek cen ropy i gazu 21–22.09 jest reakcją na 
 | Katar, Pakistan | Katar mediatorem w Nowym Jorku (G4-009, G4-010); minister spraw wewnętrznych Pakistanu w Teheranie 21–22.09: „rozmawialiśmy o procesie mediacji” (Dawn, Al Jazeera; G4-056) [B/2] | Rośnie rola pośredników | Potwierdzenie oceny z wydania 00 (pewność: wysoka) |
 | Wenezuela | Rodríguez 02.09: wybory „bez wątpienia”, gdy kraj „będzie gotowy” (Bloomberg, CiberCuba; G4-040); 18.09 opozycja w dialogu ogłosiła start procedury wyboru sędziów TSJ (Infobae za EFE; G4-041) [B/2] | Pod kuratelą USA — potwierdzone bez zmian, 18.09.2026 | Bez zmiany istoty; data wyborów nieustalona |
 | Łotwa, Brazylia, Bośnia i Hercegowina | Wybory: Łotwa 03.10 (cvk.lv; G4-031) [A/1]; Brazylia 04.10 i 25.10; BiH 04.10 (Balkan Insight; G4-034). Łotwa: Zjednoczona Lista prowadzi we wszystkich sondażach (SKDS VIII — 15,2% ogółu; „Latvijas fakti” IX — 15,9% ogółu; PolitPro 22.09 — 22,9%) (LSM; jauns.lv; PolitPro; G4-032, C-02, B-dod.). Brazylia: Datafolha 15–17.09 — I tura Lula 39%, F. Bolsonaro 36%; II tura 46 vs 44 (US News za Reuters; G4-033) [B/2]; Quaest 17–20.09 — I tura 37 vs 33 (Terra; C-03) | — | Brazylia: remis statystyczny w II turze; Łotwa: przewaga Zjednoczonej Listy 3–10 pkt w zależności od sondażu (pewność: średnia) |
-| Armenia–Azerbejdżan | Traktat parafowany 08.08.2025, niepodpisany; Baku warunkuje podpis zmianą konstytucji Armenii; referendum dopiero w 2027 (Armenian Weekly, CACI; G4-049) [C/2]; TRIPP na etapie spółki (Day.az, 17.09.2026; G4-048) | Bez zmian — potwierdzone bez zmian, 17.09.2026 | Proces zablokowany do 2027 r. (pewność: średnia) |
+| Armenia–Azerbejdżan | Traktat parafowany 08.08.2025, niepodpisany; Baku warunkuje podpis zmianą konstytucji Armenii; referendum konstytucyjne w Armenii bez ustalonej daty (Armenian Weekly, 22.09.2026; CACI, 15.01.2026; G4-049) [C/2] — rok 2027 z pierwotnego rekordu nie znajduje potwierdzenia w źródłach (korekta etapu 08); TRIPP na etapie spółki (Day.az, 17.09.2026; G4-048) | Bez zmian — potwierdzone bez zmian, 17.09.2026 | Proces zablokowany do czasu zmiany konstytucji Armenii; termin nieustalony (pewność: średnia) |
 | Mali | Oferta dialogu Goïty 21.09 „pod warunkiem integralności terytorialnej” (G4-038); JNIM nie odpowiedział | Bez zmian orientacji (AES, Africa Corps) | Oferta świadczy o słabości junty, nie o sile (pewność: niska) |
 
 **Mechanizm.** Tydzień ZO ONZ skupił w jednym miejscu kanały pośredników — Katar i Pakistan wobec Iranu, Turcję jako możliwego gospodarza rozmów o Ukrainie (Anadolu, Hürriyet; G4-024). To przyspiesza tor dyplomatyczny, ale nie zmienia bilansu sił. H.R. 5334 zmienia kalkulację państw kupujących rosyjską energię (Indie, Turcja); ich reakcja przed ok. 18.10 wpłynie na przychody Rosji (sekcja F, PIR-6). Umowa grenlandzka pokazuje wzorzec, który może dotyczyć także Polski: USA zamieniają żądania w umowy obronne, w których partner płaci lub ustępuje w zamian za obecność.
@@ -214,7 +214,7 @@ PROGNOZA. Jedyna sekcja raportu głównego z prawdopodobieństwami. Scenariusze 
 
 | Scenariusz | Opis | Czynniki uruchamiające | P (01) | P (00) | Sygnały wczesnego ostrzegania (daty) | Pytania z rejestru, które go mierzą |
 |---|---|---|---|---|---|---|
-| **Bazowy: „Przewlekły kryzys bez rozstrzygnięć”** | Ormuz ograniczony (PortWatch poniżej 20 przejść na dobę) co najmniej do I kw. 2027 albo otwarty de facto tylko dla ruchu eskortowanego; zawieszenie uderzeń USA–Iran przerywane incydentami, bez porozumienia końcowego. Rozmowy o Ukrainie bez rozejmu, front z powolnym postępem Rosji. USA i Chiny przedłużają rozejm handlowy bez rozwiązania sporu o licencje na ziemie rzadkie. Rosja bez dekretu mobilizacyjnego (pobór całoroczny). | Rozdwojenie ośrodków decyzji w Teheranie; twarde warunki Kremla; Chiny i USA potrzebują rozejmu przed V plenum (26–29.10) i wyborami (03.11). | **55%** — prawdopodobny | 50% | 24.09 — szczyt Xi–Trump bez rozwiązania ziem rzadkich; do ok. 07.10 — druga runda USA–Iran bez porozumienia; X–XI — PortWatch poniżej 20 przejść/dobę; 10.11 — przedłużenie zawieszenia kontroli ChRL; 06.11 — rekomendacja przeglądu postawy USA bez redukcji w Polsce | Q-0011, Q-0021, Q-0026, Q-0036, Q-0037, Q-0042 |
+| **Bazowy: „Przewlekły kryzys bez rozstrzygnięć”** | Ormuz ograniczony (PortWatch poniżej 20 przejść na dobę) co najmniej do I kw. 2027 albo otwarty de facto tylko dla ruchu eskortowanego; zawieszenie uderzeń USA–Iran przerywane incydentami, bez porozumienia końcowego. Rozmowy o Ukrainie bez rozejmu, front z powolnym postępem Rosji. USA i Chiny przedłużają rozejm handlowy bez rozwiązania sporu o licencje na ziemie rzadkie. Rosja bez dekretu mobilizacyjnego (pobór całoroczny). | Rozdwojenie ośrodków decyzji w Teheranie; twarde warunki Kremla; Chiny i USA potrzebują rozejmu przed V plenum (26–29.10) i wyborami (03.11). | **55%** — mniej więcej równe szanse (najbardziej prawdopodobny z trzech) | 50% | 24.09 — szczyt Xi–Trump bez rozwiązania ziem rzadkich; do ok. 07.10 — druga runda USA–Iran bez porozumienia; X–XI — PortWatch poniżej 20 przejść/dobę; 10.11 — przedłużenie zawieszenia kontroli ChRL; 06.11 — rekomendacja przeglądu postawy USA bez redukcji w Polsce | Q-0011, Q-0021, Q-0026, Q-0036, Q-0037, Q-0042 |
 | **Korzystny: „Podwójna deeskalacja”** | Porozumienie USA–Iran (ramowe lub tymczasowe) ze stopniowym otwarciem Ormuzu i zniesieniem blokady; ramowy rozejm w Ukrainie, zaczynając od obustronnie potwierdzonego rozejmu energetycznego. | Presja cen paliw przed 03.11; mapa drogowa Iranu z 23.09 (60 dni zawieszenia broni); mediacja Kataru i Pakistanu; rosyjskie finanse (deficyt 2,5% PKB). | **20%** — mało prawdopodobny | 20% | Data drugiej rundy USA–Iran ogłoszona przez obie strony; PortWatch średnio ponad 40 przejść/dobę; oficjalne zniesienie blokady; spotkanie trójstronne USA–UA–RU z datą; Rosja i Ukraina obie potwierdzają rozejm energetyczny; TTF poniżej 60 EUR/MWh | Q-0028, Q-0038, Q-0036, Q-0059, Q-0026, Q-0030, Q-0008 |
 | **Kryzysowy: „Sprzężenie kryzysów”** | Wznowienie uderzeń USA (lub Izraela) na Iran i uderzenia Iranu lub Huti w infrastrukturę Zatoki (Janbu, rurociąg Wschód–Zachód, Abqaiq, Ras Tanura); rozpad rozejmu USA–Chiny (brak przedłużenia do 10.11, cła z H.R. 5334 na ChRL, sankcje na chiński bank); incydent z ofiarami na terytorium NATO; zima z magazynami gazu UE poniżej 55% na 01.01.2027. | Kurs IRGC; logika „szybkiej operacji” przed lub po 03.11; Izrael jako strona samodzielna; zimna zima; użycie H.R. 5334 po ok. 18.10. | **25%** — mało prawdopodobny | 30% | Komunikat CENTCOM o uderzeniu na ląd Iranu; ponowne wyłączenie rurociągu Wschód–Zachód; Brent powyżej 120 USD; brak wspólnego komunikatu USA–ChRL do 10.11; wpis banku z ChRL na listę SDN; ofiara śmiertelna od drona lub pocisku w państwie NATO | Q-0065, Q-0007, Q-0009, Q-0010, Q-0012, Q-0018, Q-0002, Q-0027 |
 
@@ -334,6 +334,10 @@ Pełna lista 73 prognoz AGR_RT według wektorów, z rozrzutem soczewek i zmianą
 | Wybory do Dumy | Meduza, analitycy niezależni | CKW | — | T (brak obserwacji międzynarodowej) |
 | Tajwan IX | Bloomberg | MON Tajwanu | — | ChRL (Dowództwo Wschodnie) |
 | KRLD | CNN, Reuters za Yonhap | — | — | KCNA |
+| Katar — siła wyższa LNG | LNG Prime, OGJ | The Peninsula (al-Kaabi) | — | T (odbiorcy azjatyccy) |
+| Uderzenia na rafinerie w Rosji | Reuters (za The Insider) | AiF, Wiedomosti; Ukraińska Prawda | — | T (IEA, Kpler) i oficjalna ocena szkód RU |
+| Budżet Rosji 2027 | — | MinFin FR, Siłuanow | BOFIT | Z (świeże źródło z 21–23.09) |
+| Obniżka ratingu Polski | Moody's (za Bloomberg, Brussels Signal) | MF, Kancelaria Prezydenta | częściowo ING | T spoza Polski; komunikat pierwotny Moody's |
 
 OCENA (pewność: wysoka): najsłabiej ugruntowane są liczby wojenne podawane przez strony (MO FR, SG ZSU, Huti). W raporcie występują wyłącznie jako fakty o wypowiedzi.
 
@@ -355,7 +359,7 @@ OCENA (pewność: wysoka): najsłabiej ugruntowane są liczby wojenne podawane p
 
 ### J.5 Jakość procesu w tym wydaniu
 
-- Ekspozycja ślepoty soczewki B: przypadkowy podgląd dwóch wierszy soczewki A (Q-0001, Q-0002) przed prognozą; B podała te same wartości. Red team usunął w Q-0002 podwójne liczenie dowodu (+0.01). Ekspozycja soczewki C: fragment uzasadnienia soczewki B (Q-0073, bez wartości p) i wpisy dziennika po zapisaniu prognoz C. Wniosek procesowy (dziennik 04-C): format CSV sprawdzać poleceniem `head -1`, nie na końcu pliku.
+- Ekspozycja ślepoty soczewki B: przypadkowy podgląd dwóch wierszy soczewki A (Q-0001, Q-0002) przed prognozą; B podała te same wartości. Red team skorygował Q-0002 z powodu podwójnego liczenia dowodu (wartość — aneks). Ekspozycja soczewki C: fragment uzasadnienia soczewki B (Q-0073, bez wartości p) i wpisy dziennika po zapisaniu prognoz C. Wniosek procesowy (dziennik 04-C): format CSV sprawdzać poleceniem `head -1`, nie na końcu pliku.
 - Błąd rachunkowy w fakcie C-12 (5,5 TWh/d dotyczy celu 90%, nie 80%) — opisany przez red team; AGR dla Q-0067 uznany za mieszczący się w uzasadnionym przedziale.
 - Etap 03 prowadzony wyłącznie na materiałach G1–G4 (bez wyszukiwań); luki zgłoszone użytkownikowi, który zdecydował o kontynuacji.
 - Okres badany to 2 dni (21–23.09), bo wydanie uruchomiono z datą stanu 23.09 zamiast planowanej 05.10.
@@ -476,7 +480,7 @@ Iran_status=zawieszenie uderzeń USA (15 okresów); blokada USA trwa; rozmowy 22
 Huti=atak na Rijad 19.09.2026; blokada statków saudyjskich od 20.07 |
 Wenezuela=p.o. D. Rodríguez, dialog z udziałem USA; data wyborów nieustalona |
 Sahel=Mali: blokada paliwowa Bamako; oferta dialogu Goïty 21.09.2026 |
-Kaukaz=traktat Armenia–Azerbejdżan niepodpisany; referendum w Armenii 2027 |
+Kaukaz=traktat Armenia–Azerbejdżan niepodpisany; referendum konstytucyjne w Armenii — data nieustalona |
 BRICS_ostatni=12–13.09.2026 New Delhi |
 Fed=3,75–4,00% (16.09.2026) |
 EBC=2,50% (10.09.2026) |
@@ -484,7 +488,7 @@ NBP=3,75% (09.09.2026) |
 EUR/PLN=4,3463 (NBP, 22.09.2026) |
 rating_PL=Moody's A3 stabilna (18.09.2026); Fitch A− negatywna; S&P A− stabilna |
 CPI_PL=3,4% r/r (VIII 2026) |
-scenariusz_bazowy=[Przewlekły kryzys bez rozstrzygnięć, 55%] |
+scenariusz_bazowy=[Przewlekły kryzys bez rozstrzygnięć; rozkład — sekcja H.1] |
 najbliższe_daty=[24.09; 25.09; 30.09; 03–04.10; 07.10; ok. 18.10; 23.10; 28–29.10; 03.11; 06.11; 10.11; 18–19.11; 27.11] |
 pytania_aktywne=73 | rozstrzygniete_lacznie=0 | Brier_AGR_RT=b.d. (brak rozstrzygnięć) | BSS_vs_SQ=b.d. (brak rozstrzygnięć)
 ```

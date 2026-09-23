@@ -37,7 +37,7 @@ Iran_status=zawieszenie uderzeń USA (15 okresów); blokada USA trwa; rozmowy 22
 Huti=atak na Rijad 19.09.2026; blokada statków saudyjskich od 20.07 |
 Wenezuela=p.o. D. Rodríguez, dialog z udziałem USA; data wyborów nieustalona |
 Sahel=Mali: blokada paliwowa Bamako; oferta dialogu Goïty 21.09.2026 |
-Kaukaz=traktat Armenia–Azerbejdżan niepodpisany; referendum w Armenii 2027 |
+Kaukaz=traktat Armenia–Azerbejdżan niepodpisany; referendum konstytucyjne w Armenii — data nieustalona |
 BRICS_ostatni=12–13.09.2026 New Delhi |
 Fed=3,75–4,00% (16.09.2026) |
 EBC=2,50% (10.09.2026) |
@@ -45,7 +45,7 @@ NBP=3,75% (09.09.2026) |
 EUR/PLN=4,3463 (NBP, 22.09.2026) |
 rating_PL=Moody's A3 stabilna (18.09.2026); Fitch A− negatywna; S&P A− stabilna |
 CPI_PL=3,4% r/r (VIII 2026) |
-scenariusz_bazowy=[Przewlekły kryzys bez rozstrzygnięć, 55%] |
+scenariusz_bazowy=[Przewlekły kryzys bez rozstrzygnięć; rozkład — sekcja H.1 raportu] |
 najbliższe_daty=[24.09; 25.09; 30.09; 03–04.10; 07.10; ok. 18.10; 23.10; 28–29.10; 03.11; 06.11; 10.11; 18–19.11; 27.11] |
 pytania_aktywne=73 | rozstrzygniete_lacznie=0 | Brier_AGR_RT=b.d. (brak rozstrzygnięć) | BSS_vs_SQ=b.d. (brak rozstrzygnięć)
 ```
