@@ -17,6 +17,8 @@
 
 `00_plan.md`: parametry wydania; lista pytań do rozstrzygnięcia; kalendarz; PIR (bez zmian, z metodologii); priorytety zbierania dla grup G1–G4; problemy z rejestrem.
 
+**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+
 Commit: `wydanie-NN etap-00`.
 
 **Kryterium ukończenia:** istnieje `00_plan.md`, `AKTUALNE.md` jest zaktualizowany, commit wykonany.

@@ -17,4 +17,6 @@ Poprawiać wolno wyłącznie raport i jego załączniki. **Prognoz i rejestru ni
 
 `08_kontrola.md` — wynik każdego punktu (OK / niezgodność), lista niezgodności z opisem, poprawki wprowadzone w raporcie.
 
+**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+
 Commit: `wydanie-NN etap-08`, a następnie tag git `wydanie-NN`.

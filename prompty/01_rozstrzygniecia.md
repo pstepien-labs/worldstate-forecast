@@ -30,6 +30,8 @@ W wydaniu 01 zwykle nie ma nic do rozstrzygnięcia. Wtedy utwórz `01_rozstrzygn
 - `01_rozstrzygniecia.md` — lista rozstrzygnięć z dowodami, wyraźnie wydzielona sekcja „DO WERYFIKACJI PRZEZ UŻYTKOWNIKA”.
 - `01_wyniki.md` — tabele wyników z liczbą rozstrzygniętych pytań i adnotacją, jeśli jest ich mniej niż 30 („wyniki orientacyjne”).
 
+**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+
 Commit: `wydanie-NN etap-01`.
 
 **Po etapie użytkownik** przegląda flagi WERYFIKUJ. Korekty dopisuje jako nowy wiersz w `rozstrzygniecia.csv` z wyższą `wersja` i `zatwierdzone_przez_uzytkownika = T`.

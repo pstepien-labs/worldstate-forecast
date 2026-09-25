@@ -28,4 +28,6 @@ Uruchamiaj w nowej sesji. Twoja rola: obalić, a nie potwierdzić.
 
 `05_red_team.md` z tabelą korekt: ID | AGR | proponowana korekta | AGR_RT | uzasadnienie | typ (dowód / logika / spójność).
 
+**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+
 Commit: `wydanie-NN etap-05`.

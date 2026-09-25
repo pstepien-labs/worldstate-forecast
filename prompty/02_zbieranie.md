@@ -37,4 +37,6 @@ Zapisuj plik `02_fakty/<GRUPA>.md` po każdym obszarze. Gdy kończy się budżet
 
 Żadnych prawdopodobieństw liczbowych. Żadnych wejść na domeny z listy w CLAUDE.md p. 9.
 
+**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+
 Commit: `wydanie-NN etap-02-<GRUPA>`.

@@ -23,4 +23,6 @@
 - Długość: tekst główny 15–25 stron A4; lista prognoz jako aneks.
 - Bez waty i powtórzeń. Tytuły sekcji dokładnie jak w metodologii, żeby wydania były porównywalne.
 
+**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+
 Commit: `wydanie-NN etap-07`.

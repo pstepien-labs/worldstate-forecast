@@ -30,4 +30,6 @@ Jeśli którakolwiek grupa w `dziennik.md` jest oznaczona jako niepełna — naj
 
 Żadnych prawdopodobieństw poza mechanicznym `p_status_quo`. Żadnych benchmarków ani domen z CLAUDE.md p. 9.
 
+**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+
 Commit: `wydanie-NN etap-03`.

@@ -13,7 +13,8 @@ Parametr: `SOCZEWKA` = A, B albo C (z argumentu komendy). Każdą soczewkę uruc
 
 - pliki `04_prognozy_*` innych soczewek, `05_*`, `06_*`, `07_zalacznik_benchmarki.md` dowolnego wydania,
 - `rejestr/benchmarki.csv`, wiersze AGR i AGR_RT w `prognozy.csv`,
-- domeny z CLAUDE.md p. 9 i wyszukiwania fraz typu „odds”, „prediction market”, „szanse według rynku”.
+- domeny z CLAUDE.md p. 9 i wyszukiwania fraz typu „odds”, „prediction market”, „szanse według rynku”,
+- wpisy etapu 04 innych soczewek w `dziennik.md` — swój wpis dopisuj na końcu pliku bez wyświetlania jego treści.
 
 ## Instrukcja soczewki
 
@@ -48,9 +49,11 @@ Nie mieszaj soczewek. Jeśli Twoja soczewka nic nie mówi o danym pytaniu, zazna
    - kluczowy wskaźnik,
    - pewność analityczną,
    - zmianę względem własnej poprzedniej prognozy i jej powód.
-2. Możesz dociągnąć brakujące fakty (najwyżej 20 wyszukiwań). Zapisz je w pliku w sekcji „Fakty dodatkowe” z URL.
+2. Możesz dociągnąć brakujące fakty (najwyżej 20 wyszukiwań). Zapisz je w pliku w sekcji „Fakty dodatkowe” pełnym rekordem według CLAUDE.md p. 2 (data, aktor, działanie, adresat, wektor, region, status, wydawca, URL, ocena źródła, perspektywa, PIR), z numerem `<SOCZEWKA>-01`, `<SOCZEWKA>-02`…
 3. Zapisuj `04_prognozy_<SOCZEWKA>.md` (tabela) co 10 pytań.
 4. Na końcu dopisz wiersze do `rejestr/prognozy.csv` z przebiegiem `<SOCZEWKA>`.
+
+**Dziennik:** wpis etapu podaje godzinę rozpoczęcia i zakończenia (dd.mm.rrrr gg:mm), liczbę prognoz, liczbę wyszukiwań, zgłoszenia i braki. Bez zakresów p i bez tematów wyszukiwań.
 
 Commit: `wydanie-NN etap-04<SOCZEWKA>`.
 

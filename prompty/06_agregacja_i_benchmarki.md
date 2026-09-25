@@ -24,4 +24,6 @@ Commit z komunikatem `wydanie-NN prognozy zamrożone`. Hash commita zapisz w `dz
 - `06_agregacja.md` — tabela AGR i AGR_RT, odrzucone korekty, wynik testu trywialności.
 - `06_benchmarki.md` — lista dopasowań i rozbieżności |AGR_RT − tłum| ≥ 0.20, z krótką hipotezą o przyczynie każdej. To materiał do przeglądu, **nie** podstawa zmiany prognoz.
 
+**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+
 Commit: `wydanie-NN etap-06`.
