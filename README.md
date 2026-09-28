@@ -2,6 +2,8 @@
 
 **Misja:** przewidywać ruchy mocarstw trafniej niż proste punkty odniesienia — i udowadniać to pomiarem.
 
+> **English summary.** *Calibrated Balance-of-Power Forecast* is an open, auditable process for forecasting great-power moves (USA, EU, Russia, China, Iran, Ukraine) with an AI agent (Claude Code) and **measuring** whether it beats simple baselines. Each biweekly issue runs 9 stages: fact collection with three-perspective sourcing (Western / actor / third-party), analysis, three blind forecasting "lenses", a red team, aggregation, freezing forecasts in an append-only CSV registry, benchmarking, and a report. Accuracy is scored with Brier score, Brier skill score, calibration and bootstrap intervals (`narzedzia/wyniki.py`, Python stdlib only). Git history of the registry is the evidence that forecasts were not edited after the fact. The working language of all files is **Polish**. Nothing here is investment advice. Licenses: code MIT, content CC BY 4.0.
+
 Pakiet to zestaw plików dla Claude Code (model Claude Opus 5, z dostępem do sieci). To nie jest oprogramowanie: jedyny skrypt (`narzedzia/wyniki.py`) liczy wyniki trafności. Wszystko inne to instrukcje w Markdown i rejestr w CSV.
 
 ## Wymagania
@@ -75,3 +77,16 @@ Dalej: wydania 04–06 (16.11, 30.11, 14.12) bez zmian metody i przegląd kwarta
 1. **Rejestr tylko do dopisywania.** Historia prognoz jest dowodem; git to potwierdza.
 2. **Ślepota prognoz.** Soczewki i red team nie widzą benchmarków ani siebie nawzajem.
 3. **Metoda zamrożona na kwartał.** Inaczej nie da się stwierdzić, co pomogło.
+
+## Zastrzeżenie
+
+Prognozy są probabilistyczne i mają charakter badawczy. To nie jest porada inwestycyjna, finansowa ani polityczna. Fakty pochodzą z publicznych źródeł wskazanych w rekordach; ich treść należy do wydawców.
+
+## Współpraca
+
+Zgłoszenia (issues) i propozycje zmian są mile widziane — szczegóły w [CONTRIBUTING.md](CONTRIBUTING.md). Dwie rzeczy nie są negocjowalne: nie edytujemy istniejących wierszy rejestru i nie zmieniamy metodologii v1.0 poza przeglądem kwartalnym.
+
+## Licencja
+
+- Kod (`narzedzia/wyniki.py`): [MIT](LICENSE).
+- Metodologia, prompty, rejestr, wydania i pozostałe treści: [CC BY 4.0](LICENSE-CONTENT.md).
