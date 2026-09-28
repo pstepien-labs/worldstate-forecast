@@ -1,43 +1,43 @@
-# Mapa źródeł
+# Source map
 
-Zasada trzech perspektyw: dla każdego zdarzenia kluczowego — źródło zachodnie (Z), źródło strony-aktora (A), źródło trzecie (T). Źródła państwowe to fakt o wypowiedzi i perspektywa, nigdy jedyne potwierdzenie zdarzenia spornego. Ta sama skala oceny (A–F, 1–6) obowiązuje źródła zachodnie i niezachodnie.
+Three-perspective rule: for every key event — a Western source (W), a source from the actor's side (A), a third-party source (T). State sources are a fact about a statement and a perspective, never the only confirmation of a disputed event. The same rating scale (A–F, 1–6) applies to Western and non-Western sources.
 
-## Źródła według aktorów
+## Sources by actor
 
-| Aktor | Oficjalne i dane | Media państwowe lub lojalne (intencje) | Niezależne, emigracyjne, eksperckie |
+| Actor | Official and data | State or loyal media (intentions) | Independent, exile, expert |
 |---|---|---|---|
-| Rosja | kremlin.ru, mid.ru, minfin.gov.ru, cbr.ru, Rosstat, publication.pravo.gov.ru | TASS, RIA Nowosti, Interfax, Kommersant, RBC; kanały milblogerów (Telegram) | Meduza, The Bell, Re:Russia, Mediazona; CMAKP, RIAC, Klub Wałdajski, CAST, IMEMO |
-| Chiny | MSZ (konferencje prasowe), MOFCOM, Główny Urząd Celny, PBoC, NBS | Xinhua, Dziennik Ludowy, Global Times, Qiushi, Dziennik PLA | Caixin, Yicai, SCMP; CICIR, CASS, Tsinghua CISS, Renmin Chongyang |
-| Iran | Biuro Przywódcy, IRNA, komunikaty urzędu ds. cieśniny | Tasnim i Fars (IRGC), Press TV, Tehran Times, Mehr | Iran International, BBC Persian (opozycyjne, stronnicze) |
-| Zatoka | SPA, WAM, QNA, Oman News Agency; Aramco, QatarEnergy | Al Arabiya, Asharq Al-Awsat, Sky News Arabia, The National; Al Jazeera (wersja arabska ≠ angielska) | Al-Monitor, Middle East Eye; Emirates Policy Center, King Faisal Center |
-| „Oś oporu” | — | Al-Masirah (Huti), Al Mayadeen, Al-Akhbar | — |
-| Indie | MSZ, PIB, ministerstwo ropy, RBI | The Hindu, Indian Express, Economic Times | ThePrint, The Wire; ORF, Carnegie India, Gateway House |
-| Turcja | MSZ, Anadolu | TRT, Daily Sabah | Medyascope; SETA (prorządowy), EDAM |
-| Ukraina | Sztab Generalny, Ministerstwo Obrony, Ukrinform | — | Kyiv Independent, Ukraińska Prawda, NV |
-| Kaukaz, Azja Centralna | Kazinform, agencje rządowe | — | Kawkazskij Uzieł, Kun.uz, 24.kg, Eurasianet |
-| Pozostałe | — | Telesur (głos Caracas) | Dawn (Pakistan), Haaretz i INSS (Izrael), Folha (Brazylia), Jeune Afrique (Afryka frankofońska) |
-| Zachód | NATO, Rada UE, OFAC, IEA, CRS, banki centralne | — | Reuters, AP, AFP, Bloomberg, FT; ISW, CSIS, RUSI, Chatham House, PISM, OSW |
+| Russia | kremlin.ru, mid.ru, minfin.gov.ru, cbr.ru, Rosstat, publication.pravo.gov.ru | TASS, RIA Novosti, Interfax, Kommersant, RBC; milblogger channels (Telegram) | Meduza, The Bell, Re:Russia, Mediazona; CMAKP, RIAC, Valdai Club, CAST, IMEMO |
+| China | Ministry of Foreign Affairs (press conferences), MOFCOM, General Administration of Customs, PBoC, NBS | Xinhua, People's Daily, Global Times, Qiushi, PLA Daily | Caixin, Yicai, SCMP; CICIR, CASS, Tsinghua CISS, Renmin Chongyang |
+| Iran | Office of the Leader, IRNA, statements of the strait authority | Tasnim and Fars (IRGC), Press TV, Tehran Times, Mehr | Iran International, BBC Persian (opposition, partisan) |
+| Gulf | SPA, WAM, QNA, Oman News Agency; Aramco, QatarEnergy | Al Arabiya, Asharq Al-Awsat, Sky News Arabia, The National; Al Jazeera (Arabic version ≠ English) | Al-Monitor, Middle East Eye; Emirates Policy Center, King Faisal Center |
+| "Axis of resistance" | — | Al-Masirah (Houthis), Al Mayadeen, Al-Akhbar | — |
+| India | Ministry of External Affairs, PIB, Ministry of Petroleum, RBI | The Hindu, Indian Express, Economic Times | ThePrint, The Wire; ORF, Carnegie India, Gateway House |
+| Turkey | Ministry of Foreign Affairs, Anadolu | TRT, Daily Sabah | Medyascope; SETA (pro-government), EDAM |
+| Ukraine | General Staff, Ministry of Defence, Ukrinform | — | Kyiv Independent, Ukrainska Pravda, NV |
+| Caucasus, Central Asia | Kazinform, government agencies | — | Kavkazsky Uzel, Kun.uz, 24.kg, Eurasianet |
+| Others | — | Telesur (voice of Caracas) | Dawn (Pakistan), Haaretz and INSS (Israel), Folha (Brazil), Jeune Afrique (francophone Africa) |
+| West | NATO, EU Council, OFAC, IEA, CRS, central banks | — | Reuters, AP, AFP, Bloomberg, FT; ISW, CSIS, RUSI, Chatham House, PISM, OSW |
 
-## Dane ilościowe (bez interpretacji)
+## Quantitative data (without interpretation)
 
-- IMF PortWatch — przepływy przez przesmyki.
-- GIE AGSI — magazyny gazu UE i państw członkowskich.
-- IEA Oil Market Report (miesięcznie) — podaż, popyt, zapasy ropy.
-- ISW — dzienne oceny frontu w Ukrainie (perspektywa Z; uzupełniaj perspektywą A i T).
-- MinFin Rosji — miesięczne wykonanie budżetu.
-- OFAC Recent Actions, Rada UE — sankcje.
-- Kalendarze i komunikaty banków centralnych (Fed, EBC, NBP, Bank Rosji, PBoC).
-- VIEWS (PRIO/Uppsala) i ACLED CAST — ilościowe prognozy konfliktów (tylko jako dane w etapach 02–03, bez przenoszenia ich prawdopodobieństw do soczewek; w razie wątpliwości traktuj jak benchmark i używaj w etapie 06).
-- GDELT — surowe dane o zdarzeniach (świadomość skrzywienia doboru mediów).
-- Lowy Asia Power Index, Correlates of War (CINC) — stan sił; wagi Lowy można zmieniać.
+- IMF PortWatch — transits through chokepoints.
+- GIE AGSI — gas storage in the EU and member states.
+- IEA Oil Market Report (monthly) — oil supply, demand, stocks.
+- ISW — daily assessments of the front in Ukraine (W perspective; complement with A and T perspectives).
+- Russian Ministry of Finance — monthly budget execution.
+- OFAC Recent Actions, EU Council — sanctions.
+- Central-bank calendars and statements (Fed, ECB, NBP, Bank of Russia, PBoC).
+- VIEWS (PRIO/Uppsala) and ACLED CAST — quantitative conflict forecasts (only as data in stages 02–03, without carrying their probabilities into the lenses; if in doubt, treat them as a benchmark and use them in stage 06).
+- GDELT — raw event data (be aware of media selection bias).
+- Lowy Asia Power Index, Correlates of War (CINC) — balance of power; the Lowy weights can be changed.
 
-## Benchmarki prognostyczne (wyłącznie etap 06)
+## Forecasting benchmarks (stage 06 only)
 
-Metaculus · Good Judgment Open · Polymarket · Kalshi · Manifold · RAND Forecasting Initiative. Dostępności prawnej rynków predykcyjnych w Polsce nie oceniano — przed ewentualnym korzystaniem z nich jako uczestnik sprawdź ją samodzielnie. Samo odczytanie publicznej ceny do rejestru nie wymaga konta.
+Metaculus · Good Judgment Open · Polymarket · Kalshi · Manifold · RAND Forecasting Initiative. The legal availability of prediction markets in Poland has not been assessed — check it yourself before using them as a participant. Merely reading a public price into the registry requires no account.
 
-## Zasady praktyczne
+## Practical rules
 
-- Zapytania o zdarzenia kluczowe formułuj także w języku aktora (RU, ZH, AR, FA, TR). Kluczowe cytaty sprawdzaj w oryginale — tłumaczenie maszynowe spłaszcza odcienie sformułowań dyplomatycznych.
-- Chińskie MSZ ma względnie stałą drabinę sformułowań (od „zaniepokojenia” po „stanowczy sprzeciw” i zapowiedź „środków”). Zmiana szczebla jest sygnałem — zapisz ją jako fakt.
-- Porównuj wersję obcojęzyczną i rodzimą tego samego medium (RT vs RIA, Global Times vs Dziennik Ludowy, Al Jazeera English vs arabska). Różnica jest informacją.
-- Część rosyjskich stron rządowych bywa niedostępna z zagranicy, a część chińskich treści jest za rejestracją. Brak dostępu zapisz jako lukę; nie próbuj go obchodzić.
+- Formulate queries about key events also in the actor's language (RU, ZH, AR, FA, TR). Check key quotes in the original — machine translation flattens the nuances of diplomatic wording.
+- The Chinese MFA has a relatively fixed ladder of formulations (from "concern" to "firm opposition" and an announcement of "measures"). A change of rung is a signal — record it as a fact.
+- Compare the foreign-language and domestic versions of the same outlet (RT vs RIA, Global Times vs People's Daily, Al Jazeera English vs Arabic). The difference is information.
+- Some Russian government sites are sometimes unavailable from abroad, and some Chinese content is behind registration. Record lack of access as a gap; do not try to circumvent it.

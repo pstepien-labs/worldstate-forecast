@@ -1,24 +1,24 @@
-# Mini-retrospektywa procesu (po wydaniu 03)
+# Process mini-retrospective (after edition 03)
 
-**Cel:** naprawić proces, a nie metodę. Metodologia v1.0 pozostaje zamrożona do przeglądu kwartalnego.
+**Goal:** fix the process, not the method. Methodology v1.0 stays frozen until the quarterly review.
 
-## Zadania
+## Tasks
 
-1. Przeczytaj `dziennik.md`, `08_kontrola.md` i `03_bank_pytan_zmiany.md` z wydań 01–03.
-2. Wypisz problemy procesu:
-   - etapy przerwane lub powtarzane i ich przyczyny,
-   - pytania anulowane lub niejednoznaczne,
-   - powtarzające się luki źródłowe (np. brak perspektywy A dla Chin),
-   - naruszenia reguł z CLAUDE.md,
-   - czasochłonność etapów.
-3. Pokaż wyniki orientacyjne z `01_wyniki.md` wydania 03. **Nie wyciągaj wniosków o soczewkach ani o metodzie** — próba jest za mała.
-4. Dla każdego problemu zaproponuj poprawkę procesu: co zmienić w którym pliku promptu, jaki ma być efekt.
-5. Przedstaw propozycje użytkownikowi do akceptacji. Zaakceptowane wpisz do `metodologia/zmiany_metodologii.md` (data, opis, uzasadnienie) i wprowadź w plikach promptów.
+1. Read `log.md`, `08_quality_control.md` and `03_question_bank_changes.md` from editions 01–03.
+2. List process problems:
+   - stages interrupted or repeated and their causes,
+   - voided or ambiguous questions,
+   - recurring source gaps (e.g. no A perspective for China),
+   - violations of the rules in CLAUDE.md,
+   - time taken by the stages.
+3. Show the indicative scores from `01_scores.md` of edition 03. **Draw no conclusions about the lenses or the method** — the sample is too small.
+4. For each problem propose a process fix: what to change in which prompt file, and what effect it should have.
+5. Present the proposals to the user for approval. Record the approved ones in `methodology/methodology_changes.md` (date, description, rationale) and apply them in the prompt files.
 
-## Zakazy
+## Prohibitions
 
-Nie zmieniaj soczewek, reguł agregacji i red teamu, panelu stałego, skal ani definicji wyników.
+Do not change the lenses, aggregation and red-team rules, the standing panel, the scales or the score definitions.
 
-## Wyjście
+## Output
 
-`przeglady/mini_retro_po_wydaniu_03.md`. Commit: `mini-retro po wydaniu 03`.
+`reviews/mini_retro_after_edition_03.md`. Commit: `mini-retro after edition 03`.

@@ -1,9 +1,11 @@
-# Bieżące wydanie
+# Current edition
 
-Plik aktualizuje etap 00. Nie edytuj ręcznie w trakcie wydania.
+This file is updated by stage 00. Do not edit it by hand during an edition.
 
 NR=01
-DATA_STANU=2026-09-23
-OKRES_OD=2026-09-21
-KATALOG=wydania/2026-09-23_wydanie-01
-POPRZEDNIE=wydania/2026-09-21_wydanie-00
+STATE_DATE=2026-09-23
+PERIOD_FROM=2026-09-21
+DIRECTORY=editions/2026-09-23_edition-01
+PREVIOUS=editions/2026-09-21_edition-00
+PREV_TAG=wydanie-01
+REGISTRY_BASELINE=PENDING

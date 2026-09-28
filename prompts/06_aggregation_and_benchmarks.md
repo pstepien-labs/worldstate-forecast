@@ -1,29 +1,29 @@
-# Etap 06 — Agregacja, zamrożenie, benchmarki
+# Stage 06 — Aggregation, freezing, benchmarks
 
-Kolejność kroków jest obowiązkowa.
+The order of the steps is mandatory.
 
-## Krok 1: Agregacja
+## Step 1: Aggregation
 
-1. Dla każdego aktywnego pytania policz AGR = średnia A, B, C z tego wydania. Jeśli brakuje którejś soczewki — przerwij i zgłoś (nie licz z dwóch).
-2. Zastosuj korekty z `05_red_team.md`. Odrzuć korekty przekraczające ±0.15 albo bez dowodu i wypisz je z powodem. AGR_RT = AGR + zaakceptowana korekta; bez korekty AGR_RT = AGR. Przytnij do zakresu 0.01–0.99.
-3. Dopisz do `rejestr/prognozy.csv` wiersze z przebiegami AGR i AGR_RT.
-4. Sprawdź regułę trywialności (§3.8) i zapisz wynik.
+1. For every active question compute AGG = mean of A, B, C from this edition. If a lens is missing — stop and report it (do not compute from two).
+2. Apply the adjustments from `05_red_team.md`. Reject adjustments exceeding ±0.15 or lacking evidence and list them with the reason. AGG_RT = AGG + accepted adjustment; without an adjustment AGG_RT = AGG. Clip to the range 0.01–0.99.
+3. Append rows with runs AGG and AGG_RT to `registry/forecasts.csv`.
+4. Check the triviality rule (§3.8) and record the result.
 
-## Krok 2: Zamrożenie
+## Step 2: Freezing
 
-Commit z komunikatem `wydanie-NN prognozy zamrożone`. Hash commita zapisz w `dziennik.md`. Od tej chwili prognozy tego wydania są niezmienne.
+Commit with the message `edition-NN forecasts frozen`. Record the commit hash in `log.md`. From this moment the forecasts of this edition are immutable.
 
-## Krok 3: Benchmarki (dopiero teraz)
+## Step 3: Benchmarks (only now)
 
-1. Dla aktywnych pytań wyszukaj odpowiedniki na: Metaculus, Good Judgment Open, Polymarket, Kalshi, Manifold, RAND Forecasting Initiative.
-2. Zapisz do `rejestr/benchmarki.csv`: ID pytania, wydanie, datę, źródło, p, URL, dopasowanie (DOKLADNE / PRZYBLIZONE), uwagi. Dla rynków — wolumen lub płynność, jeśli widoczne.
-3. Nie zmieniaj żadnej prognozy.
+1. For active questions look for counterparts on: Metaculus, Good Judgment Open, Polymarket, Kalshi, Manifold, RAND Forecasting Initiative.
+2. Record in `registry/benchmarks.csv`: question ID, edition, date, source, p, URL, match (EXACT / APPROX), notes. For markets — volume or liquidity, if visible.
+3. Do not change any forecast.
 
-## Wyjście
+## Output
 
-- `06_agregacja.md` — tabela AGR i AGR_RT, odrzucone korekty, wynik testu trywialności.
-- `06_benchmarki.md` — lista dopasowań i rozbieżności |AGR_RT − tłum| ≥ 0.20, z krótką hipotezą o przyczynie każdej. To materiał do przeglądu, **nie** podstawa zmiany prognoz.
+- `06_aggregation.md` — table of AGG and AGG_RT, rejected adjustments, result of the triviality test.
+- `06_benchmarks.md` — list of matches and discrepancies |AGG_RT − crowd| ≥ 0.20, with a short hypothesis about the cause of each. This is material for review, **not** grounds for changing forecasts.
 
-**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+**Log:** the stage entry in `log.md` gives the start and end time of the stage (dd.mm.yyyy hh:mm).
 
-Commit: `wydanie-NN etap-06`.
+Commit: `edition-NN stage-06`.

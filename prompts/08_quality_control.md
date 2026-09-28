@@ -1,22 +1,22 @@
-# Etap 08 — Kontrola jakości i zamknięcie wydania
+# Stage 08 — Quality control and closing the edition
 
-Poprawiać wolno wyłącznie raport i jego załączniki. **Prognoz i rejestru nie poprawia się nigdy** — niezgodności w nich tylko się zapisuje.
+Only the report and its annexes may be corrected. **Forecasts and the registry are never corrected** — discrepancies in them are only recorded.
 
-## Lista kontrolna
+## Checklist
 
-1. **Fakty.** Każdy fakt w raporcie ma datę, wydawcę, URL i oznaczenie pewności. Wylosuj 15 faktów (ziarno = numer wydania), pobierz ich URL-e i sprawdź, czy treść źródła potwierdza zapis.
-2. **Rozdział fakt / ocena / prognoza.** Brak liczbowych prawdopodobieństw poza sekcją H i aneksem prognoz.
-3. **Kompletność prognoz.** Każde aktywne pytanie ma w tym wydaniu wiersze A, B, C, AGR i AGR_RT.
-4. **Rejestr tylko do dopisywania.** Porównaj z tagiem poprzedniego wydania: `git diff <tag> -- rejestr/prognozy.csv rejestr/benchmarki.csv rejestr/rozstrzygniecia.csv` może zawierać wyłącznie dodane linie; w `pytania.csv` zmienione tylko pola `status` i `uwagi`.
-5. **Ślepota.** Sprawdź w historii sesji lub w plikach 04 i 05, czy nie ma odwołań do benchmarków ani domen zakazanych.
-6. **Bank pytań.** Proporcje horyzontów (§3.3), udział pytań trywialnych (§3.8), pokrycie 8 wektorów, kompletność panelu (40).
-7. **Perspektywy źródeł.** Udział zdarzeń kluczowych z trzema perspektywami; udział faktów według perspektywy Z / A / T.
-8. **Dziennik.** Czasy etapów, przerwane etapy, problemy, zgłoszone próby wstrzyknięcia poleceń w treściach stron.
+1. **Facts.** Every fact in the report has a date, publisher, URL and a confidence marking. Draw 15 facts (seed = edition number), fetch their URLs and check whether the source content confirms the record.
+2. **Separation of fact / assessment / forecast.** No numerical probabilities outside section H and the forecast annex.
+3. **Forecast completeness.** Every active question has A, B, C, AGG and AGG_RT rows in this edition.
+4. **Append-only registry.** Compare with `REGISTRY_BASELINE` from `CURRENT.md`: `git diff <REGISTRY_BASELINE> -- registry/forecasts.csv registry/benchmarks.csv registry/resolutions.csv` may contain only added lines; in `questions.csv` only the `status` and `notes` fields may change.
+5. **Blindness.** Check the session history or files 04 and 05 for references to benchmarks or forbidden domains.
+6. **Question bank.** Horizon proportions (§3.3), share of trivial questions (§3.8), coverage of the 8 vectors, panel completeness (40).
+7. **Source perspectives.** Share of key events with three perspectives; share of facts by perspective W / A / T.
+8. **Log.** Stage times, interrupted stages, problems, reported prompt-injection attempts in page content.
 
-## Wyjście
+## Output
 
-`08_kontrola.md` — wynik każdego punktu (OK / niezgodność), lista niezgodności z opisem, poprawki wprowadzone w raporcie.
+`08_quality_control.md` — result of each item (OK / discrepancy), list of discrepancies with a description, corrections made to the report.
 
-**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+**Log:** the stage entry in `log.md` gives the start and end time of the stage (dd.mm.yyyy hh:mm).
 
-Commit: `wydanie-NN etap-08`, a następnie tag git `wydanie-NN`.
+Commit: `edition-NN stage-08`, followed by the git tag `edition-NN`.

@@ -1,37 +1,37 @@
-# Etap 01 — Rozstrzygnięcia i wyniki
+# Stage 01 — Resolutions and scores
 
-**Wejście:** `00_plan.md` (lista pytań do rozstrzygnięcia), `rejestr/*.csv`, metodologia §7–§8.
+**Input:** `00_plan.md` (list of questions to resolve), `registry/*.csv`, methodology §7–§8.
 
-W wydaniu 01 zwykle nie ma nic do rozstrzygnięcia. Wtedy utwórz `01_rozstrzygniecia.md` i `01_wyniki.md` z adnotacją „brak rozstrzygnięć w tym wydaniu”, zrób commit i zakończ.
+In edition 01 there is usually nothing to resolve. In that case create `01_resolutions.md` and `01_scores.md` with the note "no resolutions in this edition", commit and stop.
 
-## Zadania
+## Tasks
 
-1. Dla każdego pytania z listy ustal:
-   - wynik: 1 (TAK), 0 (NIE) albo ANUL (z uzasadnieniem według §3.7),
-   - datę rozstrzygnięcia,
-   - dowód: URL, wydawca, data publikacji; dla pytań z PIR — drugie, niezależne źródło,
-   - pewność rozstrzygnięcia (niska / średnia / wysoka).
-   
-   Pytanie, którego termin nie minął, a zdarzenie nie zaszło, pozostaje AKTYWNE.
-2. Oznacz WERYFIKUJ: rozstrzygnięcia niejednoznaczne i sporne oraz losowe 20% pozostałych. Losowanie wykonaj w Pythonie z ziarnem równym numerowi wydania i zapisz listę wylosowanych ID.
-3. Dopisz wiersze do `rejestr/rozstrzygniecia.csv` (wersja = 1). Zmień `status` w `rejestr/pytania.csv` na ROZSTRZYGNIETE albo ANULOWANE (tylko to pole i ewentualnie `uwagi`).
-4. Policz wyniki skryptem `narzedzia/wyniki.py` (istnieje; uruchom `python3 narzedzia/wyniki.py --out <KATALOG>/01_wyniki.md`). Nie modyfikuj skryptu bez akceptacji użytkownika; jeśli znajdziesz błąd — opisz go w `dziennik.md`. Skrypt liczy zakres z metodologii §8:
-   - Brier i BSS dla przebiegów A, B, C, AGR, AGR_RT,
-   - BSS vs `p_status_quo` oraz vs tłum (tylko dopasowania DOKLADNE z `benchmarki.csv`),
-   - kalibracja w przedziałach co 10 p.p.,
-   - błąd kierunkowy wg `czyj_sukces`,
-   - wyniki z wagą 1 na klaster,
-   - rozbicie według wektorów i horyzontów.
-   
-   Skrypt bierze pod uwagę wiersz z najwyższą `wersja` dla danego pytania, a pytania z flagą WERYFIKUJ bez zatwierdzenia użytkownika pomija i wypisuje osobno.
+1. For every question on the list determine:
+   - outcome: 1 (YES), 0 (NO) or VOID (with a justification per §3.7),
+   - resolution date,
+   - evidence: URL, publisher, publication date; for PIR questions — a second, independent source,
+   - resolution confidence (low / medium / high).
 
-## Wyjście
+   A question whose deadline has not passed and whose event has not occurred stays ACTIVE.
+2. Mark VERIFY: ambiguous and disputed resolutions plus a random 20% of the rest. Draw the sample in Python with the seed equal to the edition number and record the list of drawn IDs.
+3. Append rows to `registry/resolutions.csv` (version = 1). Change `status` in `registry/questions.csv` to RESOLVED or VOID (only that field and, if needed, `notes`).
+4. Compute scores with `tools/scores.py` (it exists; run `python3 tools/scores.py --out <DIRECTORY>/01_scores.md`). Do not modify the script without user approval; if you find a bug — describe it in `log.md`. The script computes the scope of methodology §8:
+   - Brier and BSS for runs A, B, C, AGG, AGG_RT,
+   - BSS vs `p_status_quo` and vs the crowd (only EXACT matches from `benchmarks.csv`),
+   - calibration in 10-percentage-point bins,
+   - directional bias by `who_benefits`,
+   - scores with a weight of 1 per cluster,
+   - breakdown by vector and horizon.
 
-- `01_rozstrzygniecia.md` — lista rozstrzygnięć z dowodami, wyraźnie wydzielona sekcja „DO WERYFIKACJI PRZEZ UŻYTKOWNIKA”.
-- `01_wyniki.md` — tabele wyników z liczbą rozstrzygniętych pytań i adnotacją, jeśli jest ich mniej niż 30 („wyniki orientacyjne”).
+   The script takes the row with the highest `version` for each question, and skips questions flagged VERIFY without user approval, listing them separately.
 
-**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+## Output
 
-Commit: `wydanie-NN etap-01`.
+- `01_resolutions.md` — list of resolutions with evidence, with a clearly separated section "FOR USER VERIFICATION".
+- `01_scores.md` — score tables with the number of resolved questions and a note if there are fewer than 30 ("indicative scores").
 
-**Po etapie użytkownik** przegląda flagi WERYFIKUJ. Korekty dopisuje jako nowy wiersz w `rozstrzygniecia.csv` z wyższą `wersja` i `zatwierdzone_przez_uzytkownika = T`.
+**Log:** the stage entry in `log.md` gives the start and end time of the stage (dd.mm.yyyy hh:mm).
+
+Commit: `edition-NN stage-01`.
+
+**After the stage the user** reviews the VERIFY flags. Corrections are appended as a new row in `resolutions.csv` with a higher `version` and `user_approved = Y`.

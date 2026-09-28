@@ -1,33 +1,33 @@
-# Etap 05 — Red team
+# Stage 05 — Red team
 
-Uruchamiaj w nowej sesji. Twoja rola: obalić, a nie potwierdzić.
+Run in a new session. Your role: to refute, not to confirm.
 
-**Wejście:** `03_analiza.md`, `04_prognozy_A.md`, `04_prognozy_B.md`, `04_prognozy_C.md`, `02_fakty/*.md`, `rejestr/pytania.csv`.
+**Input:** `03_analysis.md`, `04_forecasts_A.md`, `04_forecasts_B.md`, `04_forecasts_C.md`, `02_facts/*.md`, `registry/questions.csv`.
 
-**Zabronione:** pliki `06_*`, `07_zalacznik_benchmarki.md`, `rejestr/benchmarki.csv`, domeny z CLAUDE.md p. 9.
+**Forbidden:** `06_*` files, `07_annex_benchmarks.md`, `registry/benchmarks.csv`, domains from CLAUDE.md item 9.
 
-## Zadania
+## Tasks
 
-1. **Dziesięć najsłabszych punktów analizy.** Szukaj w szczególności:
-   - założeń bez dowodu,
-   - źródeł tylko jednej strony,
-   - zachodniego skrzywienia i błędu lustrzanego odbicia,
-   - przereagowania na nagłówki,
-   - pominiętych aktorów.
-   
-   Dla każdego punktu: dowód albo argument oraz wpływ na konkretne pytania.
-2. **Przegląd prognoz.** Policz AGR (średnia A, B, C) dla każdego pytania i wskaż pytania, w których:
-   - AGR jest niespójny z faktami z `02_fakty`,
-   - występuje niespójność logiczna między pytaniami (np. P(A i B) > P(A), sprzeczne pytania z sumą > 1),
-   - soczewki różnią się o więcej niż 0.30 — wyjaśnij, która ma lepsze podstawy.
-3. **Propozycje korekt AGR.** Każda korekta musi mieć konkretny dowód albo wskazany błąd logiczny. Limit: ±0.15 na pytanie. Zakaz korekt „dla bezpieczeństwa” i ciągnięcia w stronę 0.5 bez powodu.
-4. **Test skrzywienia kierunkowego.** Porównaj średnie AGR z `p_status_quo` w grupach `czyj_sukces`. Czy prognozy systematycznie faworyzują którąś stronę? Wskaż pytania, które to powodują.
-5. **Spójność ze scenariuszami.** Czy prognozy pytań są zgodne z prawdopodobieństwami scenariuszy, które zapowiada analiza?
+1. **Ten weakest points of the analysis.** Look in particular for:
+   - assumptions without evidence,
+   - sources from only one side,
+   - Western bias and mirror-imaging,
+   - overreaction to headlines,
+   - omitted actors.
 
-## Wyjście
+   For each point: evidence or argument and the impact on specific questions.
+2. **Forecast review.** Compute AGG (mean of A, B, C) for every question and identify questions where:
+   - AGG is inconsistent with the facts in `02_facts`,
+   - there is a logical inconsistency between questions (e.g. P(A and B) > P(A), mutually exclusive questions summing to > 1),
+   - lenses differ by more than 0.30 — explain which has the better basis.
+3. **Proposed AGG adjustments.** Every adjustment must rest on specific evidence or an identified logical error. Limit: ±0.15 per question. No adjustments "to be safe" and no pulling towards 0.5 without a reason.
+4. **Directional bias test.** Compare mean AGG with `p_status_quo` within `who_benefits` groups. Do the forecasts systematically favour one side? Identify the questions responsible.
+5. **Consistency with scenarios.** Are the question forecasts consistent with the scenario probabilities the analysis anticipates?
 
-`05_red_team.md` z tabelą korekt: ID | AGR | proponowana korekta | AGR_RT | uzasadnienie | typ (dowód / logika / spójność).
+## Output
 
-**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+`05_red_team.md` with an adjustments table: ID | AGG | proposed adjustment | AGG_RT | rationale | type (evidence / logic / consistency).
 
-Commit: `wydanie-NN etap-05`.
+**Log:** the stage entry in `log.md` gives the start and end time of the stage (dd.mm.yyyy hh:mm).
+
+Commit: `edition-NN stage-05`.

@@ -1,24 +1,24 @@
-# Etap 00 — Start wydania
+# Stage 00 — Start of edition
 
-**Parametry (z argumentów komendy):** `DATA_STANU` (RRRR-MM-DD) i `NR` (dwie cyfry, np. 01).
+**Parameters (from the command arguments):** `STATE_DATE` (YYYY-MM-DD) and `NR` (two digits, e.g. 01).
 
-## Zadania
+## Tasks
 
-1. Jeśli katalog nie jest repozytorium git: `git init` i commit „stan początkowy”.
-2. Utwórz katalog `wydania/<DATA_STANU>_wydanie-<NR>/` z podkatalogiem `02_fakty/` oraz plik `dziennik.md` (godzina startu etapu 00).
-3. Zaktualizuj `wydania/AKTUALNE.md`: NR, DATA_STANU, OKRES_OD (data stanu poprzedniego wydania), KATALOG bieżący, KATALOG poprzedni.
-4. Wczytaj poprzednie wydanie: blok stanu i raport. Dla wydania 01 punktem wyjścia jest `wydania/2026-09-21_wydanie-00/stan_00.md` (oraz PDF w tym samym katalogu, jeśli potrafisz go odczytać).
-5. Sprawdź integralność rejestru: nagłówki CSV zgodne z szablonem, unikalne ID pytań, brak prognoz do nieistniejących pytań, brak zmian w historii (porównaj z poprzednim tagiem git, jeśli istnieje). Problemy zapisz — historii nie naprawiaj.
-6. Wypisz pytania do rozstrzygnięcia w etapie 01: status AKTYWNE i termin ≤ DATA_STANU, albo zdarzenie mogło już zajść.
-7. Zbierz kalendarz na 6 tygodni naprzód (szczyty, posiedzenia banków centralnych, wybory, terminy traktatowe i sankcyjne, wygasające zawieszenia). Każdą datę potwierdź w sieci.
-8. Szybki przegląd nagłówków (najwyżej 15 wyszukiwań): które wektory i regiony zmieniły się najbardziej od poprzedniego wydania. Na tej podstawie ustal priorytety dla etapu 02.
+1. If the directory is not a git repository: `git init` and a commit "initial state".
+2. Create the directory `editions/<STATE_DATE>_edition-<NR>/` with a subdirectory `02_facts/` and a file `log.md` (start time of stage 00).
+3. Update `editions/CURRENT.md`: NR, STATE_DATE, PERIOD_FROM (state date of the previous edition), current DIRECTORY, PREVIOUS directory, PREV_TAG (tag of the previous edition), REGISTRY_BASELINE (git ref the registry is compared against — the previous edition's tag, unless `methodology_changes.md` names a different baseline).
+4. Load the previous edition: its state block and report. For edition 01 the starting point was `editions/2026-09-21_edition-00/state_00.md` and `report_00.md`.
+5. Check registry integrity: CSV headers match the template, question IDs are unique, no forecasts for non-existent questions, no changes to history (compare with REGISTRY_BASELINE). Record problems — do not repair history.
+6. List the questions to resolve in stage 01: status ACTIVE and deadline ≤ STATE_DATE, or the event may already have occurred.
+7. Build a calendar for 6 weeks ahead (summits, central-bank meetings, elections, treaty and sanctions deadlines, expiring suspensions). Confirm every date on the web.
+8. Quick headline scan (at most 15 searches): which vectors and regions have changed most since the previous edition. Use it to set priorities for stage 02.
 
-## Wyjście
+## Output
 
-`00_plan.md`: parametry wydania; lista pytań do rozstrzygnięcia; kalendarz; PIR (bez zmian, z metodologii); priorytety zbierania dla grup G1–G4; problemy z rejestrem.
+`00_plan.md`: edition parameters; list of questions to resolve; calendar; PIRs (unchanged, from the methodology); collection priorities for groups G1–G4; registry problems.
 
-**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+**Log:** the stage entry in `log.md` gives the start and end time of the stage (dd.mm.yyyy hh:mm).
 
-Commit: `wydanie-NN etap-00`.
+Commit: `edition-NN stage-00`.
 
-**Kryterium ukończenia:** istnieje `00_plan.md`, `AKTUALNE.md` jest zaktualizowany, commit wykonany.
+**Completion criterion:** `00_plan.md` exists, `CURRENT.md` is updated, commit done.

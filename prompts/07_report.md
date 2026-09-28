@@ -1,28 +1,28 @@
-# Etap 07 — Raport wydania
+# Stage 07 — Edition report
 
-**Wejście:** wszystkie pliki bieżącego wydania, poprzedni raport, `01_wyniki.md`.
+**Input:** all files of the current edition, the previous report, `01_scores.md`.
 
-## Produkty
+## Outputs
 
-1. **`07_raport.md`** — raport według struktury z metodologii §11.
-   - Sekcja **0 (Wyniki trafności)**, od wydania 02: najważniejsze liczby z `01_wyniki.md` — liczba rozstrzygniętych pytań, Brier i BSS dla AGR_RT vs status quo, najlepsza i najgorsza soczewka (z adnotacją „orientacyjnie” poniżej 30 pytań), błąd kierunkowy.
-   - Sekcja **H**:
-     - scenariusze w trzech horyzontach z prawdopodobieństwami, czynnikami uruchamiającymi i sygnałami z datami;
-     - pełna lista prognoz AGR_RT pogrupowana według wektorów: ID, pytanie, termin, AGR_RT, rozrzut soczewek (min–max), zmiana względem poprzedniego wydania.
-   - **Nie umieszczaj w raporcie głównym prognoz tłumu ani rynków.**
-   - Sekcja **K** w formacie K.1–K.7, gotowym do wklejenia do raportu krajowego.
-2. **`07_zalacznik_benchmarki.md`** — porównanie z tłumem i rozbieżności (z `06_benchmarki.md`). Ten plik jest zakazany dla etapów 03–05 we wszystkich przyszłych wydaniach.
-3. **`07_blok_stanu.md`** — blok L w formacie jednej linii na wskaźnik. Rozszerzenie względem wydania 00: `pytania_aktywne=… | rozstrzygniete_lacznie=… | Brier_AGR_RT=… | BSS_vs_SQ=…`.
-4. **`07_raport.pdf`** — jeśli w systemie jest `pandoc` albo inny konwerter; w przeciwnym razie tylko Markdown i adnotacja w `dziennik.md`.
+1. **`07_report.md`** — report following the structure in methodology §11.
+   - Section **0 (Accuracy scores)**, from edition 02: the key numbers from `01_scores.md` — number of resolved questions, Brier and BSS for AGG_RT vs status quo, best and worst lens (marked "indicative" below 30 questions), directional bias.
+   - Section **H**:
+     - scenarios in three horizons with probabilities, triggers and dated signals;
+     - full list of AGG_RT forecasts grouped by vector: ID, question, deadline, AGG_RT, lens spread (min–max), change vs the previous edition.
+   - **Do not put crowd or market forecasts in the main report.**
+   - Section **K** in the format K.1–K.7, ready to paste into a national report.
+2. **`07_annex_benchmarks.md`** — comparison with the crowd and discrepancies (from `06_benchmarks.md`). This file is forbidden to stages 03–05 in all future editions.
+3. **`07_state_block.md`** — block L in a one-line-per-indicator format. Extension relative to edition 00: `active_questions=… | resolved_total=… | Brier_AGG_RT=… | BSS_vs_SQ=…`.
+4. **`07_report.pdf`** — if `pandoc` or another converter is available; otherwise Markdown only, with a note in `log.md`.
 
-## Zasady redakcyjne
+## Editorial rules
 
-- Fakty z poprzedniego wydania przenoś tylko wtedy, gdy etap 02 je potwierdził; oznacz je „potwierdzone bez zmian, dd.mm.rrrr”. Fakty usunięte wypisz w sekcji J z powodem.
-- Wszystkie reguły z CLAUDE.md p. 3: rozróżnienie fakt / ocena / prognoza, wydawca i data przy każdym fakcie, dwie interpretacje przy sporach, liczby zamiast przymiotników.
-- Tekst słowny o prawdopodobieństwach — według skali z metodologii §10.
-- Długość: tekst główny 15–25 stron A4; lista prognoz jako aneks.
-- Bez waty i powtórzeń. Tytuły sekcji dokładnie jak w metodologii, żeby wydania były porównywalne.
+- Carry facts over from the previous edition only if stage 02 confirmed them; mark them "confirmed unchanged, dd.mm.yyyy". List removed facts in section J with the reason.
+- All rules of CLAUDE.md item 3: distinction between fact / assessment / forecast, publisher and date with every fact, two interpretations for disputes, numbers instead of adjectives.
+- Verbal text about probabilities — according to the scale in methodology §10.
+- Length: main text 15–25 A4 pages; the forecast list as an annex.
+- No padding or repetition. Section titles exactly as in the methodology, so that editions are comparable.
 
-**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+**Log:** the stage entry in `log.md` gives the start and end time of the stage (dd.mm.yyyy hh:mm).
 
-Commit: `wydanie-NN etap-07`.
+Commit: `edition-NN stage-07`.

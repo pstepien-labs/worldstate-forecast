@@ -1,4 +1,4 @@
 ---
-description: Przegląd kwartalny metodologii
+description: Quarterly methodology review
 ---
-Przeczytaj CLAUDE.md, wydania/AKTUALNE.md i metodologia/metodologia_v1.0.md, a następnie prompty/Q_przeglad_kwartalny.md i wykonaj przegląd kwartalny.
+Read CLAUDE.md, editions/CURRENT.md and methodology/methodology_v1.0.md, then prompts/Q_quarterly_review.md and carry out the quarterly review.

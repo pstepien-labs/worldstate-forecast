@@ -1,1 +1,1 @@
-﻿id_pytania;wersja;data_rozstrzygniecia;wynik;dowod_url;dowod_wydawca;drugie_zrodlo_url;pewnosc_rozstrzygniecia;weryfikuj;zatwierdzone_przez_uzytkownika;uwagi
+﻿question_id;version;resolution_date;outcome;evidence_url;evidence_publisher;second_source_url;resolution_confidence;verify;user_approved;notes

@@ -1,60 +1,60 @@
-# Etap 04 — Prognozy (trzy niezależne sesje: A, B, C)
+# Stage 04 — Forecasts (three independent sessions: A, B, C)
 
-Parametr: `SOCZEWKA` = A, B albo C (z argumentu komendy). Każdą soczewkę uruchamiaj w **nowej sesji** (po `/clear`), żeby nie przenosić kontekstu między soczewkami.
+Parameter: `LENS` = A, B or C (from the command argument). Run each lens in a **new session** (after `/clear`) so that no context carries over between lenses.
 
-## Dozwolone wejście
+## Permitted input
 
-- `CLAUDE.md`, `metodologia/metodologia_v1.0.md` (zwłaszcza §4),
-- `02_fakty/*.md`, `03_analiza.md` bieżącego wydania,
-- `rejestr/pytania.csv` (pytania AKTYWNE),
-- `rejestr/prognozy.csv` — **wyłącznie wiersze z przebiegiem równym Twojej soczewce** (dla ciągłości własnych prognoz).
+- `CLAUDE.md`, `methodology/methodology_v1.0.md` (especially §4),
+- `02_facts/*.md`, `03_analysis.md` of the current edition,
+- `registry/questions.csv` (ACTIVE questions),
+- `registry/forecasts.csv` — **only rows whose run equals your lens** (for continuity of your own forecasts).
 
-## Zabronione
+## Forbidden
 
-- pliki `04_prognozy_*` innych soczewek, `05_*`, `06_*`, `07_zalacznik_benchmarki.md` dowolnego wydania,
-- `rejestr/benchmarki.csv`, wiersze AGR i AGR_RT w `prognozy.csv`,
-- domeny z CLAUDE.md p. 9 i wyszukiwania fraz typu „odds”, „prediction market”, „szanse według rynku”,
-- wpisy etapu 04 innych soczewek w `dziennik.md` — swój wpis dopisuj na końcu pliku bez wyświetlania jego treści.
+- other lenses' `04_forecasts_*` files, `05_*`, `06_*`, `07_annex_benchmarks.md` of any edition,
+- `registry/benchmarks.csv`, AGG and AGG_RT rows in `forecasts.csv`,
+- domains from CLAUDE.md item 9 and searches for phrases like "odds", "prediction market", "market-implied probability",
+- other lenses' stage 04 entries in `log.md` — append your own entry at the end of the file without displaying its contents.
 
-## Instrukcja soczewki
+## Lens instructions
 
-**A — „Rozgrywka mocarstw”.** Dla każdego pytania:
-1. kto decyduje o wyniku;
-2. interesy i wypłaty każdej strony;
-3. zdolności i ograniczenia;
-4. alternatywy;
-5. który ruch jest dla kogo opłacalny i jaka równowaga z tego wynika do terminu;
-6. co musiałoby się zmienić, żeby równowaga się przesunęła.
+**A — "Great-power game".** For every question:
+1. who decides the outcome;
+2. interests and payoffs of each side;
+3. capabilities and constraints;
+4. alternatives;
+5. which move pays off for whom and what equilibrium follows by the deadline;
+6. what would have to change for the equilibrium to shift.
 
-**B — „Widok z zewnątrz”.** Dla każdego pytania:
-1. wskaż klasę odniesienia i częstość bazową (jawnie);
-2. uwzględnij trwałość status quo i czas pozostały do terminu (przy stałym tempie: p ≈ 1 − (1 − r)^t);
-3. dopiero na końcu, ostrożnie, skoryguj o specyfikę przypadku.
+**B — "Outside view".** For every question:
+1. name the reference class and base rate (explicitly);
+2. account for the persistence of the status quo and the time remaining to the deadline (at a constant rate: p ≈ 1 − (1 − r)^t);
+3. only at the end, cautiously, adjust for the specifics of the case.
 
-Unikaj narracji; jeśli nie ma sensownej klasy odniesienia, powiedz to.
+Avoid narrative; if there is no sensible reference class, say so.
 
-**C — „Ograniczenia wewnętrzne i ekonomiczne”.** Dla każdego pytania:
-1. polityka wewnętrzna i kalendarze wyborcze;
-2. bodźce osobiste przywódców (legitymizacja, relacje personalne);
-3. budżety, rynki, logistyka;
-4. procedury i terminy instytucjonalne (np. notyfikacja w Kongresie, kalendarz budżetowy, posiedzenia rad).
+**C — "Domestic and economic constraints".** For every question:
+1. domestic politics and electoral calendars;
+2. personal incentives of leaders (legitimacy, personal relationships);
+3. budgets, markets, logistics;
+4. institutional procedures and deadlines (e.g. notification to Congress, budget calendar, council meetings).
 
-Nie mieszaj soczewek. Jeśli Twoja soczewka nic nie mówi o danym pytaniu, zaznacz to i daj prognozę z pewnością analityczną „niska”.
+Do not mix lenses. If your lens says nothing about a question, note that and give a forecast with analytic confidence "low".
 
-## Zadania
+## Tasks
 
-1. Dla **każdego** aktywnego pytania podaj:
+1. For **every** active question give:
    - p (0.01–0.99),
-   - uzasadnienie w 1–2 zdaniach w logice soczewki,
-   - kluczowy wskaźnik,
-   - pewność analityczną,
-   - zmianę względem własnej poprzedniej prognozy i jej powód.
-2. Możesz dociągnąć brakujące fakty (najwyżej 20 wyszukiwań). Zapisz je w pliku w sekcji „Fakty dodatkowe” pełnym rekordem według CLAUDE.md p. 2 (data, aktor, działanie, adresat, wektor, region, status, wydawca, URL, ocena źródła, perspektywa, PIR), z numerem `<SOCZEWKA>-01`, `<SOCZEWKA>-02`…
-3. Zapisuj `04_prognozy_<SOCZEWKA>.md` (tabela) co 10 pytań.
-4. Na końcu dopisz wiersze do `rejestr/prognozy.csv` z przebiegiem `<SOCZEWKA>`.
+   - a 1–2 sentence rationale in the lens's logic,
+   - a key indicator,
+   - analytic confidence,
+   - the change relative to your own previous forecast and its reason.
+2. You may fetch missing facts (at most 20 searches). Record them in the file in a section "Additional facts" as full records per CLAUDE.md item 2 (date, actor, action, target, vector, region, status, publisher, URL, source rating, perspective, PIR), numbered `<LENS>-01`, `<LENS>-02`…
+3. Save `04_forecasts_<LENS>.md` (table) every 10 questions.
+4. At the end append rows to `registry/forecasts.csv` with run `<LENS>`.
 
-**Dziennik:** wpis etapu podaje godzinę rozpoczęcia i zakończenia (dd.mm.rrrr gg:mm), liczbę prognoz, liczbę wyszukiwań, zgłoszenia i braki. Bez zakresów p i bez tematów wyszukiwań.
+**Log:** the stage entry gives the start and end time (dd.mm.yyyy hh:mm), number of forecasts, number of searches, incidents and gaps. No p ranges and no search topics.
 
-Commit: `wydanie-NN etap-04<SOCZEWKA>`.
+Commit: `edition-NN stage-04<LENS>`.
 
-**Kryterium ukończenia:** każde aktywne pytanie ma prognozę tej soczewki w tym wydaniu.
+**Completion criterion:** every active question has a forecast from this lens in this edition.

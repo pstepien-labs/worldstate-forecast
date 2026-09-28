@@ -1,35 +1,35 @@
-# Etap 03 — Analiza i bank pytań
+# Stage 03 — Analysis and question bank
 
-**Wejście:** `02_fakty/G1–G4.md`, `00_plan.md`, poprzedni raport i blok stanu, metodologia.
+**Input:** `02_facts/G1–G4.md`, `00_plan.md`, the previous report and state block, the methodology.
 
-Jeśli którakolwiek grupa w `dziennik.md` jest oznaczona jako niepełna — najpierw to zgłoś i zapytaj użytkownika, czy kontynuować.
+If any group is marked incomplete in `log.md` — report it first and ask the user whether to continue.
 
-## Część 1: Analiza
+## Part 1: Analysis
 
-1. **Szkic sekcji A–G** według metodologii §11. Wnioski oznaczone słowem OCENA, z pewnością analityczną. Każda z sekcji B–F kończy się akapitem „Mechanizm” (jak zdarzenia wpływają na inne sekcje) i linią „Dla Polski”.
-2. **Porównanie z poprzednim wydaniem.** Dla każdej oceny poprzedniego wydania: potwierdzona / obalona / nierozstrzygnięta — z dowodem.
-3. **Sprawdzenie kluczowych założeń.** 5–8 założeń obecnego obrazu świata. Dla każdego: na czym się opiera, co by je obaliło, aktualny stan.
-4. **Analiza konkurencyjnych hipotez** dla trzech najważniejszych pytań otwartych: 3–4 hipotezy, macierz dowodów, które dowody hipotezy wykluczają (nie tylko które je wspierają).
-5. **Matryca wskaźników i ostrzeżeń:** wskaźnik → próg → scenariusz, który wspiera. Zaktualizuj względem poprzedniego wydania.
-6. **Test lustra:** wskaż miejsca, gdzie analiza może zakładać, że inny aktor liczy koszty i zyski tak jak Zachód, oraz miejsca, gdzie opiera się tylko na źródłach jednej strony.
+1. **Draft sections A–G** according to methodology §11. Conclusions marked with the word ASSESSMENT, with analytic confidence. Each of sections B–F ends with a "Mechanism" paragraph (how events affect other sections) and a "For Poland" line.
+2. **Comparison with the previous edition.** For every assessment of the previous edition: confirmed / refuted / unresolved — with evidence.
+3. **Key assumptions check.** 5–8 assumptions of the current picture of the world. For each: what it rests on, what would refute it, current state.
+4. **Analysis of competing hypotheses** for the three most important open questions: 3–4 hypotheses, an evidence matrix, which evidence rules hypotheses out (not only which supports them).
+5. **Indicators and warnings matrix:** indicator → threshold → scenario it supports. Update relative to the previous edition.
+6. **Mirror test:** identify places where the analysis may assume that another actor weighs costs and benefits the way the West does, and places where it relies on sources from only one side.
 
-## Część 2: Bank pytań
+## Part 2: Question bank
 
-- **Wydanie 01:** ustal panel stały — 40 pytań, po 5 na każdy z 8 wektorów. Punkt wyjścia: `rejestr/pytania_propozycje_z_wydania_00.csv`. Każdą propozycję zweryfikuj (czy nie jest już rozstrzygnięta, czy kryterium jest jednoznaczne, czy źródło rozstrzygnięcia istnieje), popraw albo odrzuć, uzupełnij brakujące wektory.
-- **Każde wydanie:** dodaj 20–40 pytań swobodnych, głównie z „Kandydatów na pytania” z etapu 02. Zastąp rozstrzygnięte pytania panelu nowymi z tego samego wektora i klastra.
-- Dla każdego nowego pytania wypełnij: `p_status_quo` (reguła mechaniczna z §3.5), `czyj_sukces`, `pir`, `klaster`, `kluczowy_wskaznik`. **Bez prognozy.**
-- Sprawdź proporcje horyzontów (§3.3) i pokrycie wektorów.
-- Dopisz pytania do `rejestr/pytania.csv` (status AKTYWNE; ID kolejne: Q-0001, Q-0002…).
+- **Edition 01:** set the standing panel — 40 questions, 5 for each of the 8 vectors. Starting point: `registry/question_proposals_edition_00.csv`. Verify each proposal (is it already resolved, is the criterion unambiguous, does the resolution source exist), fix or reject it, fill in missing vectors.
+- **Every edition:** add 20–40 open questions, mainly from the "Question candidates" of stage 02. Replace resolved panel questions with new ones from the same vector and cluster.
+- For every new question fill in: `p_status_quo` (mechanical rule from §3.5), `who_benefits`, `pir`, `cluster`, `key_indicator`. **No forecast.**
+- Check the horizon proportions (§3.3) and vector coverage.
+- Append the questions to `registry/questions.csv` (status ACTIVE; sequential IDs: Q-0001, Q-0002…).
 
-## Wyjście
+## Output
 
-- `03_analiza.md` — części 1.1–1.6.
-- `03_bank_pytan_zmiany.md` — nowe pytania, zastąpienia, odrzucone propozycje z powodem, statystyka horyzontów i wektorów.
+- `03_analysis.md` — parts 1.1–1.6.
+- `03_question_bank_changes.md` — new questions, replacements, rejected proposals with reasons, horizon and vector statistics.
 
-## Zakazy
+## Prohibitions
 
-Żadnych prawdopodobieństw poza mechanicznym `p_status_quo`. Żadnych benchmarków ani domen z CLAUDE.md p. 9.
+No probabilities other than the mechanical `p_status_quo`. No benchmarks and no domains from CLAUDE.md item 9.
 
-**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+**Log:** the stage entry in `log.md` gives the start and end time of the stage (dd.mm.yyyy hh:mm).
 
-Commit: `wydanie-NN etap-03`.
+Commit: `edition-NN stage-03`.

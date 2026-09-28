@@ -1,92 +1,96 @@
-# Skalibrowana prognoza układu sił — pakiet startowy
+# Calibrated Balance-of-Power Forecast — starter kit
 
-**Misja:** przewidywać ruchy mocarstw trafniej niż proste punkty odniesienia — i udowadniać to pomiarem.
+**Mission:** forecast the moves of the great powers more accurately than simple baselines — and prove it by measurement.
 
-> **English summary.** *Calibrated Balance-of-Power Forecast* is an open, auditable process for forecasting great-power moves (USA, EU, Russia, China, Iran, Ukraine) with an AI agent (Claude Code) and **measuring** whether it beats simple baselines. Each biweekly issue runs 9 stages: fact collection with three-perspective sourcing (Western / actor / third-party), analysis, three blind forecasting "lenses", a red team, aggregation, freezing forecasts in an append-only CSV registry, benchmarking, and a report. Accuracy is scored with Brier score, Brier skill score, calibration and bootstrap intervals (`narzedzia/wyniki.py`, Python stdlib only). Git history of the registry is the evidence that forecasts were not edited after the fact. The working language of all files is **Polish**. Nothing here is investment advice. Licenses: code MIT, content CC BY 4.0.
+*Calibrated Balance-of-Power Forecast* is an open, auditable process for forecasting great-power moves (USA, EU, Russia, China, Iran, Ukraine) with an AI agent (Claude Code) and **measuring** whether it beats simple baselines. Each two-weekly edition runs 9 stages: fact collection with three-perspective sourcing (Western / actor / third party), analysis, three blind forecasting "lenses", a red team, aggregation, freezing forecasts in an append-only CSV registry, benchmarking, and a report. Accuracy is scored with the Brier score, Brier skill score, calibration and bootstrap intervals (`tools/scores.py`, Python standard library only). The git history of the registry is the evidence that forecasts were not edited after the fact. Nothing here is investment advice.
 
-Pakiet to zestaw plików dla Claude Code (model Claude Opus 5, z dostępem do sieci). To nie jest oprogramowanie: jedyny skrypt (`narzedzia/wyniki.py`) liczy wyniki trafności. Wszystko inne to instrukcje w Markdown i rejestr w CSV.
+The kit is a set of files for Claude Code (with web access). It is not software: the only script (`tools/scores.py`) computes accuracy scores. Everything else is instructions in Markdown and a registry in CSV.
 
-## Wymagania
+> **Language note.** The project was run in Polish until 28.09.2026 and then translated into English in full (files, prompts, registry, editions 00–01). The method and all numbers are unchanged; the Polish originals remain at git tag `wydanie-01`. Details and the code mapping: `methodology/methodology_changes.md`.
 
-- Claude Code z modelem Claude Opus 5 i dostępem do wyszukiwania i pobierania stron.
-- `git` i `python3` (bez dodatkowych bibliotek).
-- Opcjonalnie `pandoc` — do generowania PDF raportu.
+## Requirements
 
-## Zawartość
+- Claude Code with web search and fetch.
+- `git` and `python3` (no extra libraries).
+- Optionally `pandoc` — to generate a PDF of the report.
 
-| Ścieżka | Co to jest |
+## Contents
+
+| Path | What it is |
 |---|---|
-| `CLAUDE.md` | Reguły stałe; Claude Code wczytuje je automatycznie w każdej sesji w tym katalogu |
-| `metodologia/metodologia_v1.0.md` | Metoda zamrożona do przeglądu kwartalnego |
-| `prompty/00–08, M, Q` | Instrukcje etapów, mini-retrospektywy i przeglądu kwartalnego |
-| `.claude/commands/` | Skróty `/g00` … `/g08`, `/gM`, `/gQ` uruchamiające etapy |
-| `rejestr/*.csv` | Pytania, prognozy, benchmarki, rozstrzygnięcia, źródła (tylko do dopisywania) |
-| `rejestr/pytania_propozycje_z_wydania_00.csv` | 28 propozycji pytań do panelu, do weryfikacji w wydaniu 01 |
-| `zrodla/mapa_zrodel.md` | Źródła według aktorów i perspektyw |
-| `wydania/2026-09-21_wydanie-00/` | Punkt wyjścia: raport PDF i blok stanu |
-| `narzedzia/wyniki.py` | Liczenie Briera, BSS, kalibracji, błędu kierunkowego, bootstrapu |
+| `CLAUDE.md` | Standing rules; Claude Code loads them automatically in every session in this directory |
+| `methodology/methodology_v1.0.md` | The method, frozen until the quarterly review |
+| `prompts/00–08, M, Q` | Instructions for the stages, the mini-retrospective and the quarterly review |
+| `.claude/commands/` | Shortcuts `/g00` … `/g08`, `/gM`, `/gQ` that start the stages |
+| `registry/*.csv` | Questions, forecasts, benchmarks, resolutions, sources (append-only) |
+| `registry/question_proposals_edition_00.csv` | 28 proposed panel questions, verified in edition 01 |
+| `sources/source_map.md` | Sources by actor and perspective |
+| `editions/2026-09-21_edition-00/` | Starting point: report and state block |
+| `editions/2026-09-23_edition-01/` | First full edition |
+| `tools/scores.py` | Brier, BSS, calibration, directional bias, bootstrap |
 
-## Jak uruchomić jedno wydanie
+## How to run one edition
 
-W terminalu, w katalogu pakietu: `claude`, potem `/model`, wybierz Opus 5. Każdy etap uruchamiaj w **nowej sesji** (`/clear` między etapami). Etapy przekazują sobie wyniki przez pliki.
+In a terminal, in the kit directory: `claude`, then `/model` to choose the model. Run each stage in a **new session** (`/clear` between stages). Stages pass results to each other through files.
 
-| Krok | Komenda | Czas orientacyjny | Uwagi |
+| Step | Command | Indicative time | Notes |
 |---|---|---|---|
-| 1 | `/g00 2026-10-05 01` | 15–30 min | data stanu i numer wydania |
-| 2 | `/g01` | 0–60 min | w wydaniu 01 zwykle pusty |
-| — | **Ty** | 10–20 min | przejrzyj sekcję „DO WERYFIKACJI” w `01_rozstrzygniecia.md` |
-| 3–6 | `/g02 G1`, `/g02 G2`, `/g02 G3`, `/g02 G4` | 1–3 h każda | najcięższy etap; przerwaną grupę uruchom ponownie tą samą komendą |
-| 7 | `/g03` | 1–2 h | analiza i bank pytań |
-| 8–10 | `/g04 A`, `/g04 B`, `/g04 C` | ~1 h każda | trzy osobne sesje, koniecznie po `/clear` |
+| 1 | `/g00 2026-10-07 02` | 15–30 min | state date and edition number |
+| 2 | `/g01` | 0–60 min | resolutions and scores |
+| — | **You** | 10–20 min | review the "FOR USER VERIFICATION" section in `01_resolutions.md` |
+| 3–6 | `/g02 G1`, `/g02 G2`, `/g02 G3`, `/g02 G4` | 1–3 h each | the heaviest stage; re-run an interrupted group with the same command |
+| 7 | `/g03` | 1–2 h | analysis and question bank |
+| 8–10 | `/g04 A`, `/g04 B`, `/g04 C` | ~1 h each | three separate sessions, always after `/clear` |
 | 11 | `/g05` | ~1 h | red team |
-| 12 | `/g06` | ~1 h | zamrożenie prognoz, potem benchmarki |
-| 13 | `/g07` | 1–2 h | raport |
-| 14 | `/g08` | 30–60 min | kontrola jakości, tag git |
+| 12 | `/g06` | ~1 h | freeze forecasts, then benchmarks |
+| 13 | `/g07` | 1–2 h | report |
+| 14 | `/g08` | 30–60 min | quality control, git tag |
 
-Łącznie ok. 12–20 godzin pracy agenta na wydanie. Rozłóż etapy na 2–3 dni. Jeśli skróty nie działają w Twojej wersji Claude Code, wpisz ręcznie: „Przeczytaj CLAUDE.md, wydania/AKTUALNE.md i prompty/0X_….md, wykonaj etap. Parametry: …”.
+In total about 12–20 hours of agent work per edition; edition 01 took about 24 hours of wall-clock time. If the shortcuts do not work in your version of Claude Code, type manually: "Read CLAUDE.md, editions/CURRENT.md and prompts/0X_….md, carry out the stage. Parameters: …".
 
-Uprawnienia: Claude Code będzie prosić o zgodę na wyszukiwanie, pobieranie stron, `git` i `python3`. Możesz je zezwolić na stałe dla tego projektu przez `/permissions`. Nie wyłączaj pytań o uprawnienia globalnie.
+Permissions: Claude Code will ask for permission for search, page fetches, `git` and `python3`. You can allow them permanently for this project via `/permissions`. Do not switch off permission prompts globally.
 
-## Plan pierwszych trzech iteracji
+## Schedule
 
-**Wydanie 01 — stan 05.10.2026: „Rozruch z pomiarem”.**
-- Pełne zbieranie w czterech grupach wektorów.
-- Ustalenie panelu 40 pytań z propozycji z wydania 00 plus 20–40 pytań swobodnych.
-- Ok. 40% pytań z terminem do 19.10, żeby wydanie 02 miało pierwsze rozstrzygnięcia.
-- Pierwsze ślepe prognozy trzech soczewek, red team, zamrożenie, benchmarki, raport.
+**Edition 01 — state 23.09.2026: "Start-up with measurement"** (done).
+- Full collection in four vector groups.
+- Standing panel of 40 questions from the edition 00 proposals plus 33 open questions.
+- About 40% of questions with a deadline around 06–07.10, so that edition 02 has its first resolutions.
+- First blind forecasts of the three lenses, red team, freezing, benchmarks, report.
 
-**Wydanie 02 — stan 19.10.2026: „Pierwsza pętla zwrotna”.**
-- Pierwsze rozstrzygnięcia i wyniki orientacyjne.
-- Zbieranie w trybie „zmiany i weryfikacja”: fakty z 01 potwierdzone albo usunięte z uzasadnieniem.
-- Większy udział źródeł strony-aktora przy zdarzeniach kluczowych.
+**Edition 02 — state on or after 07.10.2026: "First feedback loop".**
+- Run it no earlier than 07.10: 23 questions have deadlines on 06–07.10.
+- First resolutions and indicative scores.
+- Collection in "changes and verification" mode: facts from 01 confirmed or removed with a reason.
+- A larger share of actor-side sources for key events.
 
-**Wydanie 03 — stan 02.11.2026: „Przed skupiskiem dat”.**
-- Tuż przed 03.11 (wybory w USA), 10.11 (ziemie rzadkie) i 18–19.11 (APEC). Wiele pytań rozstrzygnie się w ciągu trzech tygodni — dobry test.
-- Po wydaniu: `/gM` — mini-retrospektywa **procesu** (bez zmian metody).
+**Edition 03 — around 02.11.2026: "Before the cluster of dates".**
+- Just before 03.11 (US elections), 10.11 (rare earths) and 18–19.11 (APEC). Many questions will resolve within three weeks — a good test.
+- After the edition: `/gM` — mini-retrospective of the **process** (no change of method).
 
-Dalej: wydania 04–06 (16.11, 30.11, 14.12) bez zmian metody i przegląd kwartalny `/gQ` ok. 21.12.2026.
+Then editions 04–06 (every two weeks) without changes to the method and the quarterly review `/gQ` around 21.12.2026.
 
-## Co robisz Ty
+## What you do
 
-1. Zatwierdzasz rozstrzygnięcia z flagą WERYFIKUJ (nowy wiersz z wyższą `wersja` w `rejestr/rozstrzygniecia.csv`).
-2. Akceptujesz albo odrzucasz propozycje z mini-retrospektywy i przeglądu kwartalnego.
-3. Raz na wydanie czytasz `08_kontrola.md`: czy nie było naruszeń ślepoty prognoz i edycji historii rejestru.
+1. Approve resolutions flagged VERIFY (a new row with a higher `version` in `registry/resolutions.csv`).
+2. Accept or reject proposals from the mini-retrospective and the quarterly review.
+3. Once per edition, read `08_quality_control.md`: were there any blindness violations or edits to the registry history.
 
-## Trzy reguły, których nie wolno łamać
+## Three rules that must not be broken
 
-1. **Rejestr tylko do dopisywania.** Historia prognoz jest dowodem; git to potwierdza.
-2. **Ślepota prognoz.** Soczewki i red team nie widzą benchmarków ani siebie nawzajem.
-3. **Metoda zamrożona na kwartał.** Inaczej nie da się stwierdzić, co pomogło.
+1. **Append-only registry.** The forecast history is the evidence; git confirms it.
+2. **Forecast blindness.** The lenses and the red team see neither the benchmarks nor each other.
+3. **Method frozen for a quarter.** Otherwise it is impossible to tell what helped.
 
-## Zastrzeżenie
+## Disclaimer
 
-Prognozy są probabilistyczne i mają charakter badawczy. To nie jest porada inwestycyjna, finansowa ani polityczna. Fakty pochodzą z publicznych źródeł wskazanych w rekordach; ich treść należy do wydawców.
+The forecasts are probabilistic and for research purposes. This is not investment, financial or political advice. Facts come from the public sources given in the records; their content belongs to the publishers.
 
-## Współpraca
+## Contributing
 
-Zgłoszenia (issues) i propozycje zmian są mile widziane — szczegóły w [CONTRIBUTING.md](CONTRIBUTING.md). Dwie rzeczy nie są negocjowalne: nie edytujemy istniejących wierszy rejestru i nie zmieniamy metodologii v1.0 poza przeglądem kwartalnym.
+Issues and change proposals are welcome — details in [CONTRIBUTING.md](CONTRIBUTING.md). Two things are not negotiable: we do not edit existing registry rows and we do not change methodology v1.0 outside the quarterly review.
 
-## Licencja
+## License
 
-- Kod (`narzedzia/wyniki.py`): [MIT](LICENSE).
-- Metodologia, prompty, rejestr, wydania i pozostałe treści: [CC BY 4.0](LICENSE-CONTENT.md).
+- Code (`tools/scores.py`): [MIT](LICENSE).
+- Methodology, prompts, registry, editions and other content: [CC BY 4.0](LICENSE-CONTENT.md).

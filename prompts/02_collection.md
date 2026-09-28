@@ -1,42 +1,42 @@
-# Etap 02 — Zbieranie faktów
+# Stage 02 — Fact collection
 
-Uruchamiany **cztery razy**, w osobnych sesjach: `G1`, `G2`, `G3`, `G4` (parametr z argumentu komendy). Grupy można uruchamiać w dowolnej kolejności.
+Run **four times**, in separate sessions: `G1`, `G2`, `G3`, `G4` (parameter from the command argument). Groups can be run in any order.
 
-## Zakres grup
+## Group scope
 
-- **G1 — MIL + INF:** Ukraina i wschodnia flanka NATO; Bałtyk; Morze Czarne; Bliski Wschód (działania zbrojne, Huti, Liban, Irak); Tajwan i Morze Płd.-chińskie; Półwysep Koreański; przesmyki: Ormuz, Bab al-Mandab i Morze Czerwone, Suez, Malakka, Bosfor i Dardanele, Panama, szlaki arktyczne, Cieśniny Duńskie. Obecność wojsk USA w Europie i w Polsce.
-- **G2 — ENE + TEC:** ropa (ceny, podaż, zapasy, OPEC+, raport IEA), gaz i LNG (TTF, magazyny UE i PL, Katar, Norwegia, Jamał), paliwa w Polsce, nawozy i żywność, ziemie rzadkie, półprzewodniki i kontrola eksportu technologii, uran, metale krytyczne, komponenty wojskowe.
-- **G3 — GOS + FIN:** cła, sankcje i kontrsankcje (OFAC, UE, Chiny), budżety mocarstw (Rosja, USA, Chiny), banki centralne (Fed, EBC, NBP, Bank Rosji, PBoC), waluty i płatności (dolar, juan, BRICS, SPFS), PLN i finanse publiczne Polski, programy SAFE i finansowanie Ukrainy.
-- **G4 — DYP + WEW:** szczyty i rozmowy, sojusze i umowy, wybory i zmiany władzy, polityka wewnętrzna USA, Rosji, Chin i Iranu; Afryka (Sahel, Sudan, Róg Afryki); Ameryka Łacińska (Wenezuela, Kuba); Kaukaz; Azja Centralna; Arktyka polityczna (Grenlandia).
+- **G1 — MIL + INF:** Ukraine and NATO's eastern flank; the Baltic; the Black Sea; the Middle East (military operations, Houthis, Lebanon, Iraq); Taiwan and the South China Sea; the Korean Peninsula; chokepoints: Hormuz, Bab el-Mandeb and the Red Sea, Suez, Malacca, the Bosporus and Dardanelles, Panama, Arctic routes, the Danish Straits. US troop presence in Europe and in Poland.
+- **G2 — ENE + TEC:** oil (prices, supply, stocks, OPEC+, IEA report), gas and LNG (TTF, EU and Polish storage, Qatar, Norway, Yamal), fuels in Poland, fertilisers and food, rare earths, semiconductors and technology export controls, uranium, critical metals, military components.
+- **G3 — ECO + FIN:** tariffs, sanctions and counter-sanctions (OFAC, EU, China), budgets of the great powers (Russia, USA, China), central banks (Fed, ECB, NBP, Bank of Russia, PBoC), currencies and payments (dollar, yuan, BRICS, SPFS), PLN and Polish public finances, the SAFE programme and Ukraine funding.
+- **G4 — DIP + DOM:** summits and talks, alliances and agreements, elections and changes of government, domestic politics of the USA, Russia, China and Iran; Africa (Sahel, Sudan, Horn of Africa); Latin America (Venezuela, Cuba); the Caucasus; Central Asia; the political Arctic (Greenland).
 
-**Okres:** od `OKRES_OD` do `DATA_STANU` z `AKTUALNE.md`. Dla wydania 01: od 21.09.2026.
+**Period:** from `PERIOD_FROM` to `STATE_DATE` in `CURRENT.md`.
 
-## Zadania
+## Tasks
 
-1. Przeczytaj z poprzedniego wydania fakty i blok stanu dla tej grupy — to punkt wyjścia. Szukaj zmian, nie przepisuj starego obrazu.
-2. Priorytet mają obszary z `00_plan.md` i zdarzenia związane z PIR. Dla każdego obszaru — co najmniej dwa niezależne źródła.
-3. Zdarzenia kluczowe: trzy perspektywy (Z, A, T). Szukaj w języku aktora (RU, ZH, AR, FA, TR), korzystając z `zrodla/mapa_zrodel.md`. Brak perspektywy zapisz jako lukę.
-4. Zapisuj rekordy faktów w tabeli według metodologii §9. Deklaracje (DEKL) oddzielaj od wykonanych działań (WYK).
-5. Wartości wskaźników bloku L należących do grupy — każda z datą i źródłem:
-   - G1: przepływy przez Ormuz (IMF PortWatch), status Bab al-Mandab i Suezu, linia frontu, lotniskowce USA w Indo-Pacyfiku, wojska USA w PL, ostatni art. 4;
-   - G2: Brent, TTF, magazyny UE i PL, cena diesla w PL, status zawieszenia kontroli ziem rzadkich;
-   - G3: deficyt Rosji, stopy EBC, NBP i Fed, cła USA na Chiny i UE, kurs EUR/PLN;
-   - G4: status rozmów pokojowych, status Iranu, Wenezueli, Sahelu i Kaukazu, ostatni szczyt BRICS.
-6. Sekcja **„Zmiany od poprzedniego wydania”**: co nowego, co się potwierdziło bez zmian (z datą potwierdzenia), co przestało być aktualne i dlaczego.
-7. Sekcja **„Luki i sprzeczności”** (materiał do sekcji J raportu).
-8. Sekcja **„Kandydaci na pytania”**: 5–15 propozycji pytań swobodnych z kryterium rozstrzygnięcia, źródłem i terminem. Bez prawdopodobieństw.
-9. Nowe źródła dopisz do `rejestr/zrodla.csv`.
+1. Read the previous edition's facts and state block for this group — that is the starting point. Look for changes; do not copy the old picture.
+2. Areas in `00_plan.md` and PIR-linked events have priority. For each area — at least two independent sources.
+3. Key events: three perspectives (W, A, T). Search in the actor's language (RU, ZH, AR, FA, TR), using `sources/source_map.md`. Record a missing perspective as a gap. Write the records in English.
+4. Record facts in a table according to methodology §9. Separate declarations (DECL) from actions carried out (DONE).
+5. Values of the section L indicators that belong to the group — each with a date and source:
+   - G1: transits through Hormuz (IMF PortWatch), status of Bab el-Mandeb and Suez, front line, US carriers in the Indo-Pacific, US troops in Poland, most recent Article 4;
+   - G2: Brent, TTF, EU and Polish storage, diesel price in Poland, status of the rare-earth control suspension;
+   - G3: Russia's deficit, ECB, NBP and Fed rates, US tariffs on China and the EU, EUR/PLN rate;
+   - G4: status of peace talks, status of Iran, Venezuela, the Sahel and the Caucasus, most recent BRICS summit.
+6. Section **"Changes since the previous edition"**: what is new, what has been confirmed unchanged (with the confirmation date), what is no longer current and why.
+7. Section **"Gaps and contradictions"** (material for section J of the report).
+8. Section **"Question candidates"**: 5–15 proposals for open questions with a resolution criterion, source and deadline. No probabilities.
+9. Append new sources to `registry/sources.csv`.
 
-## Punkty kontrolne
+## Checkpoints
 
-Zapisuj plik `02_fakty/<GRUPA>.md` po każdym obszarze. Gdy kończy się budżet: zapisz stan, dopisz do `dziennik.md` wiersz „<GRUPA> niepełne: brakuje …” i zakończ. Ponowne uruchomienie tej samej grupy kontynuuje od braków.
+Save the file `02_facts/<GROUP>.md` after each area. When the budget runs out: save state, append to `log.md` the line "<GROUP> incomplete: missing …" and stop. Re-running the same group continues from the gaps.
 
-**Budżet orientacyjny:** 40–80 wyszukiwań i pobrań na grupę.
+**Indicative budget:** 40–80 searches and fetches per group.
 
-## Zakazy
+## Prohibitions
 
-Żadnych prawdopodobieństw liczbowych. Żadnych wejść na domeny z listy w CLAUDE.md p. 9.
+No numerical probabilities. No visits to the domains listed in CLAUDE.md item 9.
 
-**Dziennik:** wpis etapu w `dziennik.md` podaje godzinę rozpoczęcia i zakończenia etapu (dd.mm.rrrr gg:mm).
+**Log:** the stage entry in `log.md` gives the start and end time of the stage (dd.mm.yyyy hh:mm).
 
-Commit: `wydanie-NN etap-02-<GRUPA>`.
+Commit: `edition-NN stage-02-<GROUP>`.
