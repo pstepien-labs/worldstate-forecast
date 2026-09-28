@@ -82,7 +82,7 @@ No counterparts for 47 questions, including the whole ENE panel apart from Brent
 Working hypotheses from stage 06; they do not decide who is right. The outcome will decide.
 
 **EXACT**
-1. **Q-0066 FOMC 28.10** (0.333 vs 0.62–0.67; three markets agree, Kalshi approx. 770k contracts). Lenses A and C assumed the hike would be postponed to XII because of the 03.11 elections. Hypothesis: no fed funds futures pricing in the lenses' material and an overweighting of the electoral argument — the same "electoral brake" mechanism (A1) that the red team flagged as a risk of correlated error.
+1. **Q-0066 FOMC 28.10** (0.333 vs 0.62–0.67; three markets agree, Kalshi approx. 770k contracts). Lenses A and C assumed the hike would be postponed to XII because of the 03.11 elections. Hypothesis: no fed funds futures pricing in the lenses' material and an overweighting of the electoral argument — the same "electoral brake" mechanism (KA1) that the red team flagged as a risk of correlated error.
 2. **Q-0027 NATO Art. 4** (0.113 vs 0.47; low liquidity, spread 0.41/0.53). The base rate from 2022–2025 (approx. 0.65/year) gives approx. 0.16 for 3.3 months, not 0.47. Hypothesis: a shallow market or information about incidents that the lenses did not have. Check in stage 01 of edition 02.
 3. **Q-0001 Russian mobilisation** (0.03 vs 0.27 Manifold, 17 traders; Polymarket 0.26 with a broader criterion). Hypothesis: (a) the Polymarket market counts an extension of categories under the IX 2022 decree — a cheaper event for the Kremlin than a new decree; (b) a tail premium on war markets.
 
@@ -90,7 +90,7 @@ Working hypotheses from stage 06; they do not decide who is right. The outcome w
 4. **Q-0030 Putin–Trump** (0.267 vs 0.765 by 31.12). The market assumes a meeting at APEC in Shenzhen (18–19.11), where a handshake suffices; the lenses treated the meeting as a separate summit and did not consider joint presence at APEC. **The most serious discrepancy of the edition — an omitted scenario, not a difference in judgement.** For review: consistency with Q-0029 (Trump at APEC, 0.533).
 5. **Q-0026 trilateral meeting** (0.45 vs 0.035 Kalshi — leader level; 0.645 Polymarket — RU–UA contact). A discrepancy of criteria.
 6. **Q-0058 and Q-0011 US–PRC truce** — the markets differ from each other by 0.40; shallow and distant in their criteria.
-7. **Q-0065 US strike on Iran by 31.12** (0.26 vs 0.545 for a "ceasefire breakdown") — the market is an upper bound for our question, but the discrepancy is large; in line with the risks of A1 and the omission of Israel.
+7. **Q-0065 US strike on Iran by 31.12** (0.26 vs 0.545 for a "ceasefire breakdown") — the market is an upper bound for our question, but the discrepancy is large; in line with the risks of KA1 and the omission of Israel.
 8. **Q-0017 ECB** (0.433 vs 0.64 for XII, liquidity approx. 4k USD; X market: 0.48) — the lenses weighted the economists' consensus above futures pricing.
 9. **Q-0018 PRC bank on the SDN** (0.087 vs 0.315) — the market's criterion is broader; an uninformative discrepancy.
 
