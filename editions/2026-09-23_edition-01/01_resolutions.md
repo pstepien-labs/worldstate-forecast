@@ -1,13 +1,13 @@
-# Wydanie 01 — rozstrzygnięcia (etap 01)
+# Edition 01 — resolutions (stage 01)
 
-**Brak rozstrzygnięć w tym wydaniu.**
+**No resolutions in this edition.**
 
-`rejestr/pytania.csv` nie zawiera żadnych pytań (tylko nagłówek) — zgodnie z `00_plan.md` §2 lista pytań do rozstrzygnięcia jest pusta. Propozycje z wydania 00 (`rejestr/pytania_propozycje_z_wydania_00.csv`) nie są pytaniami rejestru i nie podlegają rozstrzyganiu.
+`registry/questions.csv` contained no questions (header only) — in line with `00_plan.md` §2 the list of questions to resolve is empty. The proposals from edition 00 (`registry/question_proposals_edition_00.csv`) are not registry questions and are not subject to resolution.
 
-- Dopisane wiersze do `rejestr/rozstrzygniecia.csv`: 0.
-- Zmiany statusów w `rejestr/pytania.csv`: 0.
-- Losowanie 20% do flagi WERYFIKUJ (ziarno = 1): nie przeprowadzono — pula pusta; wylosowane ID: brak.
+- Rows appended to `registry/resolutions.csv`: 0.
+- Status changes in `registry/questions.csv`: 0.
+- Draw of 20% for the VERIFY flag (seed = 1): not carried out — empty pool; drawn IDs: none.
 
-## DO WERYFIKACJI PRZEZ UŻYTKOWNIKA
+## FOR USER VERIFICATION
 
-Brak pozycji.
+No items.
