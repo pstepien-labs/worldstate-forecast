@@ -1,613 +1,613 @@
-# Obraz świata i zmiany w globalnym układzie sił
+# The world picture and changes in the global balance of power
 
-**Wydanie 01** · Data stanu faktów: **23.09.2026** · Okres badany: 21.09–23.09.2026 (od daty stanu wydania 00) oraz weryfikacja całego obrazu wydania 00 · Metodologia v1.0 · Następne wydanie: ok. 07.10.2026 (termin do potwierdzenia przez użytkownika)
+**Edition 01** · State date of facts: **23.09.2026** · Period covered: 21.09–23.09.2026 (from the state date of edition 00) plus verification of the whole picture of edition 00 · Methodology v1.0 · Next edition: approx. 07.10.2026 (date to be confirmed by the user)
 
-**Konwencja oznaczeń**
+**Notation conventions**
 
-- **FAKT** — zdarzenie z datą (dd.mm.rrrr), wydawcą i identyfikatorem rekordu w `02_fakty/` (np. G1-001). Pełny rekord zawiera URL, ocenę źródła w kodzie admiralicji (A–F / 1–6), perspektywę (Z zachodnia · A strona-aktor · T strona trzecia) i związek z PIR. Przy faktach kluczowych ocenę źródła podaję w nawiasie, np. [B/2]. Rekordy oznaczone „A-dod.”, „B-dod.” i C-01…C-14 to fakty dociągnięte w etapie 04 (tabele „Fakty dodatkowe” w plikach `04_prognozy_*.md`). Te rekordy są skrócone: mają datę, wydawcę i URL, ale nie mają oceny źródła, perspektywy ani PIR; „A-dod.” i „B-dod.” nie mają też numerów — rekord odnajduje się po dacie i wydawcy (korekta etapu 08).
-- Status zdarzenia: **WYK** wykonane i potwierdzone · **DEKL** deklaracja lub zapowiedź · **SPOR** sporne. Komunikat rządu (Waszyngtonu, Moskwy, Pekinu, Teheranu, Brukseli, Warszawy) to fakt o wypowiedzi, nie o zdarzeniu.
-- **OCENA** — wnioskowanie autora raportu, zawsze z pewnością analityczną (niska / średnia / wysoka). Pewność to jakość podstaw, nie prawdopodobieństwo.
-- **PROGNOZA** — liczbowe prawdopodobieństwa występują wyłącznie w sekcji H i w aneksie. Prognozą oficjalną jest **AGR_RT** (średnia soczewek A, B, C po korektach red teamu). Tekst słowny według skali z metodologii §10: prawie wykluczone 1–5% · bardzo mało prawdopodobne 5–20% · mało prawdopodobne 20–45% · mniej więcej równe szanse 45–55% · prawdopodobne 55–80% · bardzo prawdopodobne 80–95% · prawie pewne 95–99%.
-- Zdarzenia sporne: dwie interpretacje, oznaczone (1) i (2), bez rozstrzygania bez dowodu.
-- Fakty z wydania 00 przeniesione po potwierdzeniu w etapie 02 mają dopisek „potwierdzone bez zmian, dd.mm.rrrr”.
-- Uwaga porządkowa: raport PDF wydania 00 (stan 21.09.2026) ma w nagłówku „Wydanie nr 1”. W rejestrze projektu to wydanie **00** — punkt wyjścia sprzed metodologii v1.0, nierozliczane wynikiem.
-- Porównania z tłumem i rynkami prognostycznymi nie wchodzą do tego raportu (metodologia §6) — są w osobnym pliku `07_zalacznik_benchmarki.md`.
-
----
-
-## Streszczenie wykonawcze
-
-**Iran: z wojny ograniczonej w zawieszenie uderzeń, bez porozumienia.** FAKT: od 15 kolejnych okresów raportowych USA nie ogłosiły uderzenia na lądowe cele w Iranie (GlobalSecurity, 21–22.09.2026; G1-005) [C/3], a blokada portów irańskich trwa — 109 statków zawróconych do 20.09 (GlobalSecurity za CENTCOM; G1-006). 22.09.2026 w siedzibie ONZ Witkoff i Kushner rozmawiali ok. 3 h z Araghczim przy udziale premiera Kataru — pierwszy strukturalny kontakt od porozumienia tymczasowego z VI 2026 (Al Jazeera, Middle East Eye, 22.09.2026; G4-002) [B/2]. 23.09 Iran przedstawił mapę drogową: do 60 dni zawieszenia broni w regionie, stopniowe otwarcie Ormuzu, koniec blokady USA; Trump: blokada nie zostanie zniesiona przed wykazaniem „wystarczającej dobrej woli” (The National, 23.09.2026; A-dod.). Warunki Teheranu wzrosły: wypłata całości zamrożonych aktywów (wg MEE ok. 24 mld USD z góry) i zniesienie saudyjskiej blokady obszarów Huti (Tasnim za IRIB, MEE, 22.09.2026; G4-003). IRGC odmawia wszelkiego kontaktu z USA (Middle East Eye, 22.09.2026; G4-011). OCENA (pewność: niska): najlepiej opisuje stan hipoteza „zamrożenia” — bez uderzeń i bez porozumienia; kolejny krok zależy od tego, kto w Teheranie decyduje o cieśninie.
-
-**Ormuz pozostaje zamknięty w danych AIS, a ropa tanieje.** FAKT: IMF PortWatch odnotował 1 przejście 20.09 wobec ok. 85/dobę przed kryzysem; 434 statki czekają (Straits Daily Brief za PortWatch, 22.09.2026; G1-001) [C/2]. Równolegle CENTCOM podaje ok. 32 statki/dobę 17–19.09 „z pomocą USA” (Rigzone, NBC News; G2-006) [B/3], a Reuters — eksport saudyjski przez Ormuz 2,9 mln b/d przez 6 dni (Investing.com za Reuters, 20.09.2026; G2-005). Brent zamknął 22.09 na 99,25 USD — pierwszy raz poniżej 100 USD od 08.09 (Seoul Economic Daily, NBC News; G2-002) [B/2]; TTF 71–74 EUR/MWh (Trading Economics, EnergyRiskIQ, 22.09.2026; G2-015). Rurociąg Wschód–Zachód wznowiono 22.09 na obniżonym przepływie (Al Arabiya, Al Jazeera Arabic, NBC za 3 źródłami Reutersa; G2-008). OCENA (pewność: średnia): rynek wycenia deeskalację, zanim ją potwierdzono — spadek cen opiera się na obejściach (Janbu, eskorta), które Huti i Iran mogą szybko wyłączyć; 19.09 Huti po raz pierwszy w tej eskalacji zaatakowali Rijad (Al Jazeera, NBC, NPR; G1-015).
-
-**USA–Chiny: dźwignia zgromadzona, użycie odroczone.** FAKT: 18.09.2026 Trump podpisał H.R. 5334 „Sanctioning Russia and Iran Act” (whitehouse.gov; G3-002) [A/1]. Ustawa **upoważnia** do ceł do 100% na towary z pięciu największych importerów rosyjskiej ropy lub gazu i do 500% na towary z Rosji; ceł nie nałożono, najwcześniej ok. 18.10 (Baker McKenzie, RFE/RL; G3-003). Tego samego tygodnia administracja odłożyła raport o „nadmiernych mocach” (cło 7,5%) na po szczycie (Bloomberg, 17.09.2026; G3-012), a runda Bessent–He Lifeng 20.09 nie przyniosła postępu w sprawie ziem rzadkich (CNBC, AP; G3-013). Eksport chińskich magnesów do USA spadł w VIII do 512 t (−21% m/m) (SMM, SCMP, 21.09.2026; G2-035). Szczyt Xi–Trump 24.09 wypada po dacie stanu. OCENA (pewność: średnia): obie strony wchodzą w okres do 10.11 z nienaruszonymi instrumentami nacisku.
-
-**Obecność USA w Europie: więcej w Polsce na papierze, mniej w Europie w opcjach.** FAKT: Pentagon rozważa wycofanie 25–40 tys. z ok. 80 tys. żołnierzy USA w Europie, rekomendacja do 06.11 (NBC News, Stars and Stripes, 18.09.2026; G1-030) [B/3]. Trump zapowiedział „znaczny postęp” ku nowej bazie armii USA w Polsce, bez informacji, czy stacjonowanie będzie stałe (Stars and Stripes, 18.09.2026; G1-025) [B/2]; prezydent Nawrocki: baza „Fort Trump” to „kwestia czasu” (Bloomberg, 22.09.2026; G1-026); MON: udział Polski 15–17 mld zł (Defence24, TVN24; G1-027). Zapowiedziane 21.05 dodatkowe 5 tys. żołnierzy nie przybyło (Stars and Stripes, 18.09.2026; G1-029). 22.09 USA, Dania i Grenlandia podpisały umowę obronną: dwa nowe obszary obronne i zakaz baz państw spoza NATO (whitehouse.gov, stm.dk; G4-025, G4-026) [A/1].
-
-**Rosja: konsolidacja w kraju, twarda linia w rozmowach, kosztowna wojna na zapleczu.** FAKT: Jedna Rosja 57,83% i ok. 355 z 450 mandatów (CKW za Wiedomosti, 22.09.2026; G4-028) [B/2]; frekwencja sporna — CKW 59%, niezależni analitycy ok. 40% (Meduza, 22.09.2026; G4-029). Pieskow: „brak postępów w procesie negocjacyjnym” (Fontanka za TASS, 21.09.2026; G4-017); spotkanie Rubio–Ławrow 23.09 bez przełomu (US News za Reuters, 23.09.2026; A-dod.). Deficyt budżetu I–VIII 2,5% PKB wobec planu 1,6% (MinFin FR, 09.09.2026; G3-017) [A/2]; na 2027 Siłuanow zapowiada „około 2% PKB” (Wiedomosti, 21.09.2026; G3-019). Front: ok. 150 km² netto dla Rosji w 4 tygodnie do 14.09 (DeepState za Russia Matters; G1-044) [C/3]. Ukraina trafiła rafinerie w Moskwie (19/20.09), Ufie (21.09) i Samarze (22.09) (The Insider za Reuters; AiF Kazań; Ukraińska Prawda; G2-026…028). Na flance: Ił-20 przechwycony 40 km od polskiego wybrzeża 22.09 (Rzeczpospolita, TVN24; G1-033) [A/2]; w 2026 r. nie złożono wniosku z art. 4 (nato.int; G1-041) [B/3].
-
-**Energia i pieniądz w Polsce.** FAKT: magazyny gazu UE 70,3% wobec 88,0% średniej 5-letniej (EnergyRiskIQ za AGSI+, 22.09.2026; G2-017) [C/2]; w Polsce 98% (netTG.pl za GSP, 15.09.2026; G2-019). Olej napędowy 8,99 zł/l (e-petrol, 23.09.2026; C-04) po zakończeniu programu CPN 31.08 i powrocie VAT 23% (Biznesinfo; G2-022). Moody's obniżył rating Polski z A2 do A3 (Brussels Signal, Interia, 18.09.2026; G3-030) [B/1]; EUR/PLN 4,3463 (NBP, 22.09.2026; G3-029) [A/1] — złoty nie zareagował. Fed podniósł stopy o 25 pb do 3,75–4,00% (federalreserve.gov, 16.09.2026; G3-024) [A/1], EBC do 2,50% (10.09; G3-025), NBP bez zmian 3,75% (09.09; G3-027), CPI VIII 3,4% r/r.
-
-**Dla Polski.** OCENA (pewność: średnia): w dwóch dniach od wydania 00 nie zmienił się żaden stan faktyczny, który rozstrzyga scenariusze — Ormuz zamknięty w danych AIS, brak porozumień z Iranem, Rosją i Chinami. Zmieniły się sygnały: tor dyplomatyczny USA–Iran ruszył, a ceny energii spadły: Brent o ok. 4–5% (z ok. 104 do 99,25 USD/bbl), TTF o ok. 8–10% (z 78–82 do 71–74 EUR/MWh). Najważniejszą zmienną dla Polski do 06.11 jest decyzja Pentagonu o postawie sił, nie kolejny incydent poniżej progu art. 4. Scenariusz bazowy „Przewlekły kryzys bez rozstrzygnięć” pozostaje najbardziej prawdopodobny; rozkład scenariuszy i 73 prognozy — sekcja H i aneks.
+- **FACT** — an event with a date (dd.mm.yyyy), a publisher and a record identifier in `02_facts/` (e.g. G1-001). The full record contains the URL, the source rating in the Admiralty code (A–F / 1–6), the perspective (W Western · A actor's side · T third party) and the link to a PIR. For key facts I give the source rating in brackets, e.g. [B/2]. Records marked "A-add.", "B-add." and C-01…C-14 are facts fetched in stage 04 (the "Additional facts" tables in the `04_forecasts_*.md` files). These records are shortened: they have a date, publisher and URL, but no source rating, perspective or PIR; "A-add." and "B-add." also have no numbers — the record is found by date and publisher (stage 08 correction).
+- Event status: **DONE** carried out and confirmed · **DECL** declaration or announcement · **DISP** disputed. A government statement (Washington, Moscow, Beijing, Tehran, Brussels, Warsaw) is a fact about a statement, not about an event.
+- **ASSESSMENT** — inference by the author of the report, always with analytic confidence (low / medium / high). Confidence is the quality of the evidence, not a probability.
+- **FORECAST** — numerical probabilities appear only in section H and in the annex. The official forecast is **AGG_RT** (the mean of lenses A, B, C after red-team adjustments). Verbal text follows the scale in methodology §10: almost ruled out 1–5% · very unlikely 5–20% · unlikely 20–45% · roughly even chances 45–55% · likely 55–80% · very likely 80–95% · almost certain 95–99%.
+- Disputed events: two interpretations, marked (1) and (2), without deciding without evidence.
+- Facts from edition 00 carried over after confirmation in stage 02 carry the note "confirmed unchanged, dd.mm.yyyy".
+- Housekeeping note: the PDF report of edition 00 (state 21.09.2026) has "Issue no. 1" in its header. In the project registry this is edition **00** — a starting point from before methodology v1.0, not scored.
+- Comparisons with the crowd and prediction markets are not part of this report (methodology §6) — they are in the separate file `07_annex_benchmarks.md`.
 
 ---
 
-## 0. Wyniki trafności
+## Executive summary
 
-Sekcja obowiązuje od wydania 02. W wydaniu 01 rozstrzygniętych pytań: **0** (rejestr pytań był pusty przed tym wydaniem; `01_wyniki.md`). Pierwsze rozstrzygnięcia: 28 pytań z terminem do ok. 07.10.2026 (aneks).
+**Iran: from limited war to a suspension of strikes, without an agreement.** FACT: for 15 consecutive reporting periods the USA has not announced a strike on land targets in Iran (GlobalSecurity, 21–22.09.2026; G1-005) [C/3], and the blockade of Iranian ports continues — 109 ships turned back by 20.09 (GlobalSecurity via CENTCOM; G1-006). On 22.09.2026 at UN headquarters Witkoff and Kushner talked for approx. 3 h with Araghchi with the Qatari prime minister taking part — the first structured contact since the interim agreement of VI 2026 (Al Jazeera, Middle East Eye, 22.09.2026; G4-002) [B/2]. On 23.09 Iran presented a roadmap: up to 60 days of ceasefire in the region, gradual opening of Hormuz, an end to the US blockade; Trump: the blockade will not be lifted before "sufficient good will" is shown (The National, 23.09.2026; A-add.). Tehran's conditions have grown: payment of all frozen assets (according to MEE approx. 24 bn USD up front) and lifting of the Saudi blockade of Houthi areas (Tasnim via IRIB, MEE, 22.09.2026; G4-003). The IRGC refuses all contact with the USA (Middle East Eye, 22.09.2026; G4-011). ASSESSMENT (confidence: low): the "freeze" hypothesis best describes the state — no strikes and no agreement; the next step depends on who in Tehran decides on the strait.
+
+**Hormuz remains closed in AIS data, and oil is getting cheaper.** FACT: IMF PortWatch recorded 1 transit on 20.09 against approx. 85/day before the crisis; 434 ships are waiting (Straits Daily Brief via PortWatch, 22.09.2026; G1-001) [C/2]. In parallel CENTCOM reports approx. 32 ships/day on 17–19.09 "with US assistance" (Rigzone, NBC News; G2-006) [B/3], and Reuters — Saudi exports through Hormuz of 2.9 mn b/d for 6 days (Investing.com via Reuters, 20.09.2026; G2-005). Brent closed on 22.09 at 99.25 USD — the first time below 100 USD since 08.09 (Seoul Economic Daily, NBC News; G2-002) [B/2]; TTF 71–74 EUR/MWh (Trading Economics, EnergyRiskIQ, 22.09.2026; G2-015). The East–West pipeline was restarted on 22.09 at reduced flow (Al Arabiya, Al Jazeera Arabic, NBC via 3 Reuters sources; G2-008). ASSESSMENT (confidence: medium): the market is pricing de-escalation before it has been confirmed — the price fall rests on workarounds (Yanbu, escort) that the Houthis and Iran can quickly disable; on 19.09 the Houthis attacked Riyadh for the first time in this escalation (Al Jazeera, NBC, NPR; G1-015).
+
+**USA–China: leverage accumulated, use deferred.** FACT: on 18.09.2026 Trump signed H.R. 5334, the "Sanctioning Russia and Iran Act" (whitehouse.gov; G3-002) [A/1]. The law **authorises** tariffs of up to 100% on goods from the five largest importers of Russian oil or gas and up to 500% on goods from Russia; no tariffs have been imposed, approx. 18.10 at the earliest (Baker McKenzie, RFE/RL; G3-003). In the same week the administration postponed the "overcapacity" report (a 7.5% tariff) until after the summit (Bloomberg, 17.09.2026; G3-012), and the Bessent–He Lifeng round of 20.09 brought no progress on rare earths (CNBC, AP; G3-013). Chinese magnet exports to the USA fell in VIII to 512 t (−21% m/m) (SMM, SCMP, 21.09.2026; G2-035). The Xi–Trump summit on 24.09 falls after the state date. ASSESSMENT (confidence: medium): both sides enter the period to 10.11 with their instruments of pressure intact.
+
+**US presence in Europe: more in Poland on paper, less in Europe in the options.** FACT: the Pentagon is considering withdrawing 25–40k of approx. 80k US troops in Europe, recommendation by 06.11 (NBC News, Stars and Stripes, 18.09.2026; G1-030) [B/3]. Trump announced "significant progress" towards a new US Army base in Poland, without saying whether stationing will be permanent (Stars and Stripes, 18.09.2026; G1-025) [B/2]; President Nawrocki: the "Fort Trump" base is "a matter of time" (Bloomberg, 22.09.2026; G1-026); the Polish MoD: Poland's contribution 15–17 bn PLN (Defence24, TVN24; G1-027). The additional 5k soldiers announced on 21.05 have not arrived (Stars and Stripes, 18.09.2026; G1-029). On 22.09 the USA, Denmark and Greenland signed a defence agreement: two new defence areas and a ban on bases of non-NATO states (whitehouse.gov, stm.dk; G4-025, G4-026) [A/1].
+
+**Russia: consolidation at home, a hard line in the talks, a costly war in the rear.** FACT: United Russia 57.83% and approx. 355 of 450 seats (CEC via Vedomosti, 22.09.2026; G4-028) [B/2]; turnout disputed — CEC 59%, independent analysts approx. 40% (Meduza, 22.09.2026; G4-029). Peskov: "no progress in the negotiating process" (Fontanka via TASS, 21.09.2026; G4-017); the Rubio–Lavrov meeting on 23.09 without a breakthrough (US News via Reuters, 23.09.2026; A-add.). Budget deficit I–VIII 2.5% of GDP against a plan of 1.6% (Russian MinFin, 09.09.2026; G3-017) [A/2]; for 2027 Siluanov announces "about 2% of GDP" (Vedomosti, 21.09.2026; G3-019). Front: approx. 150 km² net for Russia in 4 weeks to 14.09 (DeepState via Russia Matters; G1-044) [C/3]. Ukraine hit refineries in Moscow (19/20.09), Ufa (21.09) and Samara (22.09) (The Insider via Reuters; AiF Kazan; Ukrainska Pravda; G2-026…028). On the flank: an Il-20 intercepted 40 km from the Polish coast on 22.09 (Rzeczpospolita, TVN24; G1-033) [A/2]; no Art. 4 request has been submitted in 2026 (nato.int; G1-041) [B/3].
+
+**Energy and money in Poland.** FACT: EU gas storage 70.3% against the 88.0% 5-year average (EnergyRiskIQ via AGSI+, 22.09.2026; G2-017) [C/2]; in Poland 98% (netTG.pl via GSP, 15.09.2026; G2-019). Diesel 8.99 PLN/l (e-petrol, 23.09.2026; C-04) after the end of the CPN programme on 31.08 and the return of 23% VAT (Biznesinfo; G2-022). Moody's downgraded Poland from A2 to A3 (Brussels Signal, Interia, 18.09.2026; G3-030) [B/1]; EUR/PLN 4.3463 (NBP, 22.09.2026; G3-029) [A/1] — the zloty did not react. The Fed raised rates by 25 bp to 3.75–4.00% (federalreserve.gov, 16.09.2026; G3-024) [A/1], the ECB to 2.50% (10.09; G3-025), the NBP unchanged at 3.75% (09.09; G3-027), CPI VIII 3.4% y/y.
+
+**For Poland.** ASSESSMENT (confidence: medium): in the two days since edition 00 no factual state that decides between the scenarios has changed — Hormuz closed in AIS data, no agreements with Iran, Russia or China. The signals have changed: the US–Iran diplomatic track has started, and energy prices have fallen: Brent by approx. 4–5% (from approx. 104 to 99.25 USD/bbl), TTF by approx. 8–10% (from 78–82 to 71–74 EUR/MWh). The most important variable for Poland until 06.11 is the Pentagon's decision on force posture, not another incident below the Art. 4 threshold. The base scenario "Protracted crisis without resolution" remains the most likely; the distribution of scenarios and the 73 forecasts — section H and the annex.
 
 ---
 
-## A. Cele strategiczne mocarstw
+## 0. Accuracy scores
+
+This section applies from edition 02. In edition 01 resolved questions: **0** (the question registry was empty before this edition; `01_scores.md`). First resolutions: 28 questions with a deadline of approx. 07.10.2026 (annex).
+
+---
+
+## A. Strategic goals of the great powers
 
 ### USA
 
-FAKT: Waszyngton prowadzi wobec Iranu dwa tory naraz. Presja: blokada portów (109 statków zawróconych do 20.09; GlobalSecurity za CENTCOM; G1-006), sankcje odcinające irańskie linie lotnicze od paliwa i obsługi od 23.09 (Iran International, GlobalSecurity; G1-013, DEKL), wezwanie do izolacji Iranu w przemówieniu na ZO ONZ 22.09 (Interia, NBC News; G4-055). Rozmowy: runda 22.09 w Nowym Jorku (G4-002); Trump: „albo porozumienie, albo wszystko skończy się bardzo szybko” (Al Jazeera, Euronews Persian, 22–23.09.2026; G4-005). Wobec Jemenu: odmowa uderzenia na Huti mimo prośby następcy tronu Arabii Saudyjskiej (GlobalSecurity; CNN 21.09.2026; G1-018) [C/3].
+FACT: Washington is pursuing two tracks at once towards Iran. Pressure: the port blockade (109 ships turned back by 20.09; GlobalSecurity via CENTCOM; G1-006), sanctions cutting Iranian airlines off from fuel and handling from 23.09 (Iran International, GlobalSecurity; G1-013, DECL), a call to isolate Iran in the speech at the UN General Assembly on 22.09 (Interia, NBC News; G4-055). Talks: the round of 22.09 in New York (G4-002); Trump: "either a deal, or it will all end very quickly" (Al Jazeera, Euronews Persian, 22–23.09.2026; G4-005). Towards Yemen: refusal to strike the Houthis despite a request from the Saudi crown prince (GlobalSecurity; CNN 21.09.2026; G1-018) [C/3].
 
-FAKT: Wobec Chin — upoważnienie H.R. 5334 (G3-003) przy jednoczesnym odłożeniu ceł „nadmierne moce” (G3-012) i propozycji dialogu o AI z mechanizmem powiadamiania o incydentach (CNBC, 20.09.2026; G3-013). Wobec Europy — opcje redukcji 25–40 tys. (G1-030) i zapowiedź bazy w Polsce (G1-025). W Arktyce — umowa grenlandzka z 22.09 (G4-025). Wewnętrznie: średnia sondaży „generic ballot” D +7–8 pkt, poparcie Trumpa 39% (Yahoo News za RCP i Silver Bulletin, 21.09.2026; G4-035) [B/2]; wybory połówkowe 03.11.2026.
+FACT: Towards China — the H.R. 5334 authorisation (G3-003) alongside the postponement of "overcapacity" tariffs (G3-012) and a proposal for a dialogue on AI with an incident notification mechanism (CNBC, 20.09.2026; G3-013). Towards Europe — options of a 25–40k reduction (G1-030) and the announcement of a base in Poland (G1-025). In the Arctic — the Greenland agreement of 22.09 (G4-025). Domestically: generic ballot polling average D +7–8 pts, Trump's approval 39% (Yahoo News via RCP and Silver Bulletin, 21.09.2026; G4-035) [B/2]; midterm elections on 03.11.2026.
 
-OCENA (pewność: średnia): administracja gromadzi dźwignię (H.R. 5334, blokada Iranu, opcje redukcji w Europie) i odracza jej użycie do czasu szczytów i rozmów. Cel wewnętrzny — ceny paliw przed 03.11 — sprzyja deeskalacji z Iranem i przedłużeniu rozejmu z Chinami. OCENA (pewność: niska): logika odwrotna — szybka operacja wobec Iranu jako czynnik mobilizujący wyborców — nie jest wykluczona (03 §1.6 p. 6); red team wskazał, że ok. 10 prognoz opiera się na tym samym założeniu „hamulca wyborczego” (05 §1 p. 1).
+ASSESSMENT (confidence: medium): the administration is accumulating leverage (H.R. 5334, the blockade of Iran, reduction options in Europe) and deferring its use until the summits and talks. The domestic goal — fuel prices before 03.11 — favours de-escalation with Iran and an extension of the truce with China. ASSESSMENT (confidence: low): the reverse logic — a quick operation against Iran as a factor mobilising voters — is not ruled out (03 §1.6 item 6); the red team pointed out that approx. 10 forecasts rest on the same "electoral brake" assumption (05 §1 item 1).
 
-### Chiny
+### China
 
-FAKT: komunikat MSZ ChRL z 21.09 o wizycie Xi (23–25.09) mówi o „konstruktywnych, strategicznie stabilnych stosunkach” i nie wspomina ziem rzadkich, kontroli eksportu ani Tajwanu (Chinanews, 21.09.2026; G2-036) [A/1]. Wobec H.R. 5334: MSZ — sprzeciw wobec „jurysdykcji długiego ramienia” (Sina za MSZ ChRL, 17.09.2026; G3-004); MOFCOM — „prawo do podjęcia wszelkich niezbędnych środków” (Ifeng za MOFCOM, 19.09.2026; G3-005) [B/1]. Na Morzu Południowochińskim: kolizja jednostki straży przybrzeżnej ChRL ze statkiem filipińskiego BFAR 18.09 (G1-053, SPOR — niżej) i rezerwat przyrody 3524 ha obejmujący Scarborough 11.09 (China Global South Project; G1-054). V plenum KC KPCh 26–29.10.2026 z projektem decyzji o „surowym rządzeniu Partią” (Xinhua, 21.09.2026; G4-051) [A/1]. Gospodarka: inwestycje w środki trwałe I–VIII −7,2% r/r, sprzedaż detaliczna VIII +0,4% r/r (Euronews za NBS; G3-016) [C/2].
+FACT: the PRC MFA statement of 21.09 on Xi's visit (23–25.09) speaks of "constructive, strategically stable relations" and does not mention rare earths, export controls or Taiwan (Chinanews, 21.09.2026; G2-036) [A/1]. On H.R. 5334: the MFA — opposition to "long-arm jurisdiction" (Sina via the PRC MFA, 17.09.2026; G3-004); MOFCOM — "the right to take all necessary measures" (Ifeng via MOFCOM, 19.09.2026; G3-005) [B/1]. In the South China Sea: a collision between a PRC coast guard vessel and a Philippine BFAR vessel on 18.09 (G1-053, DISP — below) and a 3524 ha nature reserve covering Scarborough on 11.09 (China Global South Project; G1-054). The Fifth Plenum of the CPC Central Committee on 26–29.10.2026 with a draft decision on "strict governance of the Party" (Xinhua, 21.09.2026; G4-051) [A/1]. Economy: fixed-asset investment I–VIII −7.2% y/y, retail sales VIII +0.4% y/y (Euronews via NBS; G3-016) [C/2].
 
-OCENA (pewność: średnia): Pekin wchodzi w szczyt z utrzymaną dźwignią surowcową i bez widocznych ustępstw. Spadek eksportu magnesów do USA w VIII może być sygnałem przed szczytem albo powrotem do średniej (I–VIII +23% r/r) — pewność co do intencji niska.
+ASSESSMENT (confidence: medium): Beijing enters the summit with its raw-materials leverage intact and without visible concessions. The fall in magnet exports to the USA in VIII may be a signal before the summit or a reversion to the mean (I–VIII +23% y/y) — confidence as to intent is low.
 
-### Rosja
+### Russia
 
-FAKT: Kreml: „brak postępów w procesie negocjacyjnym” (Pieskow; Fontanka za TASS, 21.09.2026; G4-017); Rosja chce „trwałego pokoju”, nie rozejmu (Fontanka, AiF, 22.09.2026; G4-021) [B/1]. Uszakow 13.09: jest „porozumienie co do przeprowadzenia” kolejnego spotkania trójstronnego, bez daty (Kommersant, Wiedomosti; G4-016). Rubio–Ławrow 23.09: bez przełomu; Kreml przed spotkaniem — stanowisko bez zmian (US News za Reuters, 23.09.2026; A-dod.). Budżet: obrona „najważniejszym zadaniem”, cena odcięcia 50 USD/bbl (Wiedomosti, 21.09.2026; G3-019). Wobec H.R. 5334: „działanie nieprzyjazne”, utrudni uregulowanie w Ukrainie (Pieskow; Lenta.ru, 19.09.2026; G3-007). Wobec bazy USA w Polsce: MSZ (Zacharowa) — „adekwatne środki wojskowo-techniczne”; data wypowiedzi niepotwierdzona (Izwiestia, 17.09.2026; G1-032) [C/3].
+FACT: the Kremlin: "no progress in the negotiating process" (Peskov; Fontanka via TASS, 21.09.2026; G4-017); Russia wants "a lasting peace", not a ceasefire (Fontanka, AiF, 22.09.2026; G4-021) [B/1]. Ushakov on 13.09: there is "agreement on holding" another trilateral meeting, without a date (Kommersant, Vedomosti; G4-016). Rubio–Lavrov on 23.09: no breakthrough; the Kremlin before the meeting — position unchanged (US News via Reuters, 23.09.2026; A-add.). Budget: defence "the most important task", cut-off price 50 USD/bbl (Vedomosti, 21.09.2026; G3-019). On H.R. 5334: "an unfriendly act", it will hamper a settlement in Ukraine (Peskov; Lenta.ru, 19.09.2026; G3-007). On the US base in Poland: the MFA (Zakharova) — "adequate military-technical measures"; date of the statement unconfirmed (Izvestia, 17.09.2026; G1-032) [C/3].
 
-OCENA (pewność: średnia): Moskwa gra na czas w rozmowach, utrzymując twarde warunki, i chroni budżet wojenny. Większość konstytucyjna w Dumie usuwa wewnętrzne hamulce polityczne na najbliższy rok.
+ASSESSMENT (confidence: medium): Moscow is playing for time in the talks while keeping hard conditions, and is protecting the war budget. The constitutional majority in the Duma removes domestic political brakes for the coming year.
 
-### Iran (aktor regionalny o skali mocarstwowej w PIR-5)
+### Iran (a regional actor of great-power scale in PIR-5)
 
-FAKT: rozdwojenie przekazu. MSZ rozmawia i stawia warunki (G4-003, G4-008); Najwyższa Rada Bezpieczeństwa Narodowego (Rezaei) — 7 warunków wznowienia negocjacji (CBS News, 19.09.2026; G1-012). IRGC: „odmawiamy wszelkiego kontaktu”, w razie nowego ataku zmieni „geografię wojny, broń i cele” (Tasnim, Euronews Persian, Middle East Eye, 21–22.09.2026; G1-008, G4-011). Kwatera Chatam al-Anbija: cieśnina „nadal zamknięta”; jeśli groźby USA się ziszczą — „ani kropli ropy” z regionu (Jamaran, ok. 23.09.2026; G1-009) [C/2]. Najwyższy Przywódca Modżtaba Chamenei — nadal wyłącznie komunikaty pisemne (Hamshahri Online, 22.09.2026; G4-012). Pezeszkian na ZO ONZ 23.09: „bronimy się”, „bez broni jądrowej i bez ograniczeń pokojowej technologii jądrowej” (CNBC, AP za KSAT, 23.09.2026; A-dod.).
+FACT: a split message. The MFA talks and sets conditions (G4-003, G4-008); the Supreme National Security Council (Rezaei) — 7 conditions for resuming negotiations (CBS News, 19.09.2026; G1-012). The IRGC: "we refuse all contact", in the event of a new attack it will change "the geography of the war, weapons and targets" (Tasnim, Euronews Persian, Middle East Eye, 21–22.09.2026; G1-008, G4-011). Khatam al-Anbiya headquarters: the strait is "still closed"; if US threats materialise — "not a drop of oil" from the region (Jamaran, approx. 23.09.2026; G1-009) [C/2]. Supreme Leader Mojtaba Khamenei — still written statements only (Hamshahri Online, 22.09.2026; G4-012). Pezeshkian at the UN General Assembly on 23.09: "we are defending ourselves", "no nuclear weapons and no restrictions on peaceful nuclear technology" (CNBC, AP via KSAT, 23.09.2026; A-add.).
 
-OCENA (pewność: średnia): warunki Teheranu wzrosły względem porozumienia z VI, co wskazuje, że Iran ocenia swoją pozycję jako silniejszą niż latem — główny atut to cieśnina. Rozdwojenie może być podziałem ośrodków władzy albo podziałem ról w ramach jednej decyzji (03 §1.6 p. 2) — tego nie da się dziś rozstrzygnąć.
+ASSESSMENT (confidence: medium): Tehran's conditions have grown relative to the VI agreement, which indicates that Iran judges its position to be stronger than in the summer — the main asset is the strait. The split may be a division of power centres or a division of roles within a single decision (03 §1.6 item 2) — this cannot be decided today.
 
-### UE
+### EU
 
-FAKT: Rada UE przedłużyła sankcje indywidualne za naruszenie integralności Ukrainy o 36 miesięcy, do 22.09.2029 (pierwszy raz zamiast 6 miesięcy), jednocześnie usuwając z listy m.in. Usmanowa i Fridmana (Euronews, EU Today, Agence Europe, 22.09.2026; G3-035) [B/2]. MSZ Ukrainy: delisting „haniebny i nieuzasadniony” (Ukraińska Prawda, 22.09.2026; G3-036). 22. pakiet: ok. 1600 wpisów w przygotowaniu, „nie wcześniej niż pod koniec X” (PayTechLaw za Kallas, 03.09.2026; G3-039) [C/3]; po zmianie rządu na Węgrzech w V 2026 rolę blokującego przejęła Słowacja (RFE/RL, 08.09.2026; C-13). Koncepcja użycia zamrożonych aktywów Banku Rosji — „koncepcja, nie plan” (G3-040). Cło USA na większość towarów z UE: pułap 15% (TariffsTool, akt. 14.09.2026; G3-043) — potwierdzone bez zmian, 14.09.2026.
+FACT: the EU Council extended individual sanctions for violating Ukraine's integrity by 36 months, to 22.09.2029 (for the first time instead of 6 months), while removing Usmanov and Fridman, among others, from the list (Euronews, EU Today, Agence Europe, 22.09.2026; G3-035) [B/2]. Ukraine's MFA: the delisting is "shameful and unjustified" (Ukrainska Pravda, 22.09.2026; G3-036). The 22nd package: approx. 1600 listings in preparation, "not earlier than end of X" (PayTechLaw via Kallas, 03.09.2026; G3-039) [C/3]; after the change of government in Hungary in V 2026 Slovakia has taken over the blocking role (RFE/RL, 08.09.2026; C-13). The concept of using frozen Bank of Russia assets — "a concept, not a plan" (G3-040). US tariff on most EU goods: a 15% ceiling (TariffsTool, updated 14.09.2026; G3-043) — confirmed unchanged, 14.09.2026.
 
-OCENA (pewność: średnia): UE utrzymuje kurs sankcyjny, ale płaci za jednomyślność ustępstwami w listach indywidualnych; tempo kolejnego pakietu zależy od Słowacji.
+ASSESSMENT (confidence: medium): the EU maintains its sanctions course, but pays for unanimity with concessions on individual listings; the pace of the next package depends on Slovakia.
 
 ---
 
-## B. Punkty tarcia
+## B. Friction points
 
-| Region | Stan 23.09.2026 (fakty) | Zmiana vs wydanie 00 | OCENA |
+| Region | State on 23.09.2026 (facts) | Change vs edition 00 | ASSESSMENT |
 |---|---|---|---|
-| Zatoka / Iran | 15 okresów bez uderzeń USA na ląd (G1-005); blokada trwa (G1-006); 21.09 dwa tankowce trafione koło Ormuzu, 2 lekko rannych, sprawca nieznany (GlobalSecurity za UKMTO; G1-004) [C/2]; rozmowy 22.09 (G4-002); mapa drogowa Iranu 23.09 (A-dod.) | „Wojna ograniczona, MoU wygasłe” → zawieszenie uderzeń i wznowiony kontakt | Zawieszenie broni de facto, bez porozumienia i mechanizmu kontroli; obie strony zachowują zdolność szybkiej eskalacji (pewność: średnia) |
-| Jemen / Arabia Saudyjska | 19.09 pierwszy atak Huti na Rijad w tej eskalacji, pożar zbiornika paliwa przy lotnisku (Al Jazeera, NBC, NPR; G1-015) [B/2]; Arabia Saudyjska z wyczerpanymi zapasami pocisków przechwytujących — źródła anonimowe (NBC News; G1-016) [B/3]; USA odmawiają uderzeń na Huti (G1-018); ofensywa Huti i kontrofensywa rządu (PLC) w środkowym Jemenie (G1-021, SPOR) | Wojna przeniesiona na terytorium saudyjskie; Huti wpisani do warunków Iranu (G4-003) | Front jemeński stał się elementem negocjacji USA–Iran; Arabia Saudyjska to najsłabsze ogniwo obrony powietrznej w regionie (pewność: średnia) |
-| Ukraina | 21.09 brak potwierdzonych zmian linii (ISW za Kyiv Post, 22.09.2026; G1-043) [B/2]; ok. 150 km² netto dla RU w 4 tyg. do 14.09 (DeepState; G1-044); MO FR: 4 miejscowości zajęte 22.09 — twierdzenie strony (Mail.ru za MO FR; G1-045) [C/4]; UA uderza w rafinerie (G2-026…028) | Impas z lokalną inicjatywą UA → impas z powolnym postępem RU i ukraińską kampanią na głębię | Obie strony przeniosły wysiłek z linii frontu na infrastrukturę przeciwnika; rozejm energetyczny staje się głównym przedmiotem przetargu (pewność: średnia) |
-| Bałtyk i flanka | Ił-20 22.09 (G1-033) [A/2]; dron z ładunkiem z Białorusi nad Litwą 14/15.09, zestrzelony przez włoskie Eurofightery (MSZ Litwy, NPR; G1-035) [A/2]; flary rosyjskiej fregaty wobec duńskiego śmigłowca ok. 14.09 (Irish Times; G1-036); Estonia od IV nie zatrzymuje tankowców floty cieni (G1-040); brak art. 4 w 2026 (G1-041) | Brak incydentu z ofiarami; kolejne testy poniżej progu | Rosja utrzymuje presję poniżej progu art. 4; NATO reaguje punktowo (pewność: średnia) |
-| Tajwan / Morze Płd.-chińskie | Brak nazwanych ćwiczeń PLA w IX (MON Tajwanu, Bloomberg; G1-055); aktywność lotnicza PLA w ADIZ w I–VII −52% r/r (globalmilitary.net za MON Tajwanu; A-dod.); kolizja 18.09 (G1-053, SPOR); 0 lotniskowców USA w misji w Indo-Pacyfiku (USNI News; G1-051, G1-052) — potwierdzone bez zmian, 18.09.2026 | Bez zmian; nowa kolizja | Chiny w okresie szczytu naciskają na Filipiny, nie na Tajwan (pewność: niska — brak dziennych danych MON Tajwanu 15–23.09) |
-| Półwysep Koreański | 2 pociski SRBM z rejonu Wonsan 20.09 (ok. 450 i ponad 600 km), poprzednie 12.09 (CNN, US News za Yonhap; G1-057) [B/2]; wg Korei Płd. 11 podejrzanych testów w 2026 do 12.08 (Stars and Stripes; B-dod.) | Nowe testy | Rutyna bez przekroczenia progu ICBM (pewność: średnia) |
-| Liban / Izrael | 05.09 dron Hezbollahu i odwetowe uderzenia IDF, co najmniej 3 zabitych wg Libanu (Times of Israel; G1-063) | Brak nowych danych 21–23.09 | Izrael jako strona zdolna zerwać tor USA–Iran nie był analizowany w etapach 03–04 — luka (05 §1 p. 2; sekcja J) |
+| Gulf / Iran | 15 periods without US strikes on land (G1-005); the blockade continues (G1-006); on 21.09 two tankers hit near Hormuz, 2 lightly wounded, perpetrator unknown (GlobalSecurity citing UKMTO; G1-004) [C/2]; talks on 22.09 (G4-002); Iran's road map of 23.09 (A-add.) | "Limited war, MoU expired" → suspension of strikes and resumed contact | A de facto ceasefire, without an agreement or a monitoring mechanism; both sides keep the capacity for rapid escalation (confidence: medium) |
+| Yemen / Saudi Arabia | On 19.09 the first Houthi attack on Riyadh in this escalation, a fuel tank fire near the airport (Al Jazeera, NBC, NPR; G1-015) [B/2]; Saudi Arabia with depleted interceptor stocks — anonymous sources (NBC News; G1-016) [B/3]; the USA refuses to strike the Houthis (G1-018); Houthi offensive and government (PLC) counter-offensive in central Yemen (G1-021, DISP) | The war carried onto Saudi territory; the Houthis written into Iran's conditions (G4-003) | The Yemeni front has become part of the US–Iran negotiations; Saudi Arabia is the weakest link of air defence in the region (confidence: medium) |
+| Ukraine | On 21.09 no confirmed changes to the line (ISW citing Kyiv Post, 22.09.2026; G1-043) [B/2]; approx. 150 km² net for RU in 4 weeks to 14.09 (DeepState; G1-044); RF MoD: 4 localities taken on 22.09 — a party's claim (Mail.ru citing the RF MoD; G1-045) [C/4]; UA strikes refineries (G2-026…028) | Stalemate with a local UA initiative → stalemate with slow RU progress and a Ukrainian deep-strike campaign | Both sides have shifted effort from the front line to the adversary's infrastructure; an energy ceasefire is becoming the main bargaining item (confidence: medium) |
+| Baltic and the flank | Il-20 on 22.09 (G1-033) [A/2]; a drone with a payload from Belarus over Lithuania 14/15.09, shot down by Italian Eurofighters (Lithuanian MFA, NPR; G1-035) [A/2]; flares from a Russian frigate towards a Danish helicopter approx. 14.09 (Irish Times; G1-036); Estonia has not detained shadow fleet tankers since IV (G1-040); no Art. 4 in 2026 (G1-041) | No incident with casualties; further tests below the threshold | Russia keeps pressure below the Art. 4 threshold; NATO responds case by case (confidence: medium) |
+| Taiwan / South China Sea | No named PLA exercises in IX (Taiwan MND, Bloomberg; G1-055); PLA air activity in the ADIZ in I–VII −52% y/y (globalmilitary.net citing Taiwan MND; A-add.); collision on 18.09 (G1-053, DISP); 0 US carriers on mission in the Indo-Pacific (USNI News; G1-051, G1-052) — confirmed unchanged, 18.09.2026 | Unchanged; a new collision | During the summit period China presses the Philippines, not Taiwan (confidence: low — no daily Taiwan MND data for 15–23.09) |
+| Korean Peninsula | 2 SRBMs from the Wonsan area on 20.09 (approx. 450 and over 600 km), previous on 12.09 (CNN, US News citing Yonhap; G1-057) [B/2]; according to South Korea 11 suspected tests in 2026 to 12.08 (Stars and Stripes; B-add.) | New tests | Routine without crossing the ICBM threshold (confidence: medium) |
+| Lebanon / Israel | On 05.09 a Hezbollah drone and retaliatory IDF strikes, at least 3 killed according to Lebanon (Times of Israel; G1-063) | No new data for 21–23.09 | Israel as a party able to break the US–Iran track was not analysed in stages 03–04 — a gap (05 §1 item 2; section J) |
 
-**Regiony bez związku z PIR (po jednej linii).** Sahel: blokada paliwowa Bamako od IX 2025; konwój ponad 900 cystern 14.09 (Al Jazeera; G4-037); oferta dialogu Goïty 21.09 (Studio Tamani; G4-038). Sudan: raport misji ONZ o do 2 tys. byłych kolumbijskich wojskowych po stronie RSF (UN News, 03.09.2026; G4-044); stan 21–23.09 niesprawdzony. Kuba: co najmniej szósty ogólnokrajowy blackout w 2026 r. 18.09 (CBS News, AP; G4-043). Wenezuela: sekcja E. Kaukaz: sekcja E.
+**Regions without a link to a PIR (one line each).** Sahel: fuel blockade of Bamako since IX 2025; a convoy of over 900 tankers on 14.09 (Al Jazeera; G4-037); Goïta's offer of dialogue on 21.09 (Studio Tamani; G4-038). Sudan: a UN mission report on up to 2,000 former Colombian soldiers on the RSF side (UN News, 03.09.2026; G4-044); state for 21–23.09 not checked. Cuba: at least the sixth nationwide blackout in 2026 on 18.09 (CBS News, AP; G4-043). Venezuela: section E. Caucasus: section E.
 
-**Zdarzenia sporne — dwie interpretacje**
+**Disputed events — two interpretations**
 
-- Oferta Iranu otwarcia Ormuzu w 7 dni (US News za Reuters; Iran International za Kyodo, 22.09.2026; G1-007) [B/3]: (1) realny sygnał deeskalacji — dwa niezależne przekazy i mapa drogowa z 23.09; (2) przeciek bez pokrycia w IRGC, który zaprzecza kontaktom (G4-011) i zapowiada „zamkniętą” cieśninę (G1-009).
-- Forma rozmów 22.09: (1) Iran (IRIB, Tasnim; G4-004): spotkanie „na naleganie strony amerykańskiej”, wyłącznie w celu przekazania warunków, przez pośrednika katarskiego (G4-008); (2) USA (Witkoff; Al Jazeera, Iran International; G4-006): „runda rozmów”, pośrednicy krążyli między delegacjami. Strona trzecia — MSZ Kataru — potwierdza spotkanie premiera z Araghczim i „wysiłki na rzecz deeskalacji” (The Peninsula, 22.09.2026; G4-009) [B/1].
-- Rozejm energetyczny Rosja–Ukraina: (1) Trump (ok. 15–17.09): strony się zgodziły; (2) Kijów „nie został poinformowany”, Kreml wiąże rozejm z sankcjami na przewozy, uderzenia trwają (Al Jazeera, Eastern Herald; G4-020, G4-021).
-- Kolizja 18.09 koło Palawanu: (1) staranowanie statku BFAR przez chiński kuter (USNI News, 18.09.2026; perspektywa Z); (2) prowokacja statku filipińskiego — rzecznik straży przybrzeżnej ChRL (Chinanews, 18.09.2026; A); relacja strony trzeciej — China Global South Project (T) (G1-053).
-- Skala ataku Huti na Rijad i Janbu 19.09: (1) Huti — „ogromne pożary” w „wrażliwych celach” (Jemeni Press; G1-014) [C/3]; (2) koalicja saudyjska — jeden pocisk przechwycony, ataki na Biszę, Taif, Farasan i Janbu udaremnione (SPA, Al Jazeera; G1-015, B-dod.). Niezależnej relacji z miejsca brak.
+- Iran's offer to open Hormuz within 7 days (US News citing Reuters; Iran International citing Kyodo, 22.09.2026; G1-007) [B/3]: (1) a real de-escalation signal — two independent reports and the road map of 23.09; (2) a leak without backing in the IRGC, which denies contacts (G4-011) and announces a "closed" strait (G1-009).
+- Format of the talks on 22.09: (1) Iran (IRIB, Tasnim; G4-004): a meeting "at the insistence of the American side", solely to pass on conditions, through a Qatari intermediary (G4-008); (2) USA (Witkoff; Al Jazeera, Iran International; G4-006): a "round of talks", intermediaries moving between delegations. Third party — the Qatari MFA confirms the prime minister's meeting with Araghchi and "efforts towards de-escalation" (The Peninsula, 22.09.2026; G4-009) [B/1].
+- Russia–Ukraine energy ceasefire: (1) Trump (approx. 15–17.09): the parties have agreed; (2) Kyiv "was not informed", the Kremlin ties the ceasefire to sanctions on shipping, strikes continue (Al Jazeera, Eastern Herald; G4-020, G4-021).
+- Collision on 18.09 near Palawan: (1) ramming of a BFAR vessel by a Chinese boat (USNI News, 18.09.2026; perspective W); (2) provocation by a Philippine vessel — PRC coast guard spokesperson (Chinanews, 18.09.2026; A); third-party account — China Global South Project (T) (G1-053).
+- Scale of the Houthi attack on Riyadh and Yanbu on 19.09: (1) Houthis — "huge fires" at "sensitive targets" (Yemeni Press; G1-014) [C/3]; (2) Saudi coalition — one missile intercepted, attacks on Bisha, Taif, Farasan and Yanbu foiled (SPA, Al Jazeera; G1-015, B-add.). No independent on-the-ground account.
 
-**Mechanizm.** Zawieszenie uderzeń USA na Iran zmniejsza bezpośrednie ryzyko dla Ormuzu, ale przenosi napięcie na Jemen i Arabię Saudyjską, czyli na drogę obejścia cieśniny (Rijad, Janbu, rurociąg Wschód–Zachód). Tym samym sekcja B łączy się z C (przesmyki) i D (ceny). Kampania ukraińska na rafinerie ogranicza rosyjski eksport paliw (zakaz eksportu diesla do 31.10; G2-029) i podtrzymuje wysokie marże diesla w Europie, co przenosi się na ceny w Polsce. Brak lotniskowców USA w Indo-Pacyfiku wiąże teatr bliskowschodni z tajwańskim: siły USA zajęte w Zatoce (USS George Washington na Morzu Arabskim, G1-052) nie są dostępne w Azji.
+**Mechanism.** The suspension of US strikes on Iran reduces the direct risk to Hormuz but shifts the tension to Yemen and Saudi Arabia, i.e. to the route bypassing the strait (Riyadh, Yanbu, the East–West pipeline). In this way section B links to C (chokepoints) and D (prices). The Ukrainian campaign against refineries limits Russian fuel exports (diesel export ban to 31.10; G2-029) and sustains high diesel margins in Europe, which passes through to prices in Poland. The absence of US carriers in the Indo-Pacific ties the Middle East theatre to the Taiwan one: US forces busy in the Gulf (USS George Washington in the Arabian Sea, G1-052) are not available in Asia.
 
-**Dla Polski:** presja rosyjska poniżej progu art. 4 trwa (Ił-20 40 km od wybrzeża 22.09) równolegle z przeglądem postawy USA — najważniejszą zmienną do 06.11 jest decyzja Pentagonu, nie kolejny incydent.
+**For Poland:** Russian pressure below the Art. 4 threshold continues (Il-20 40 km from the coast on 22.09) in parallel with the US posture review — the most important variable until 06.11 is the Pentagon's decision, not another incident.
 
 ---
 
-## C. Przesmyki i lokalizacje
+## C. Chokepoints and locations
 
-| Przesmyk | Stan 23.09.2026 | Zmiana vs wydanie 00 |
+| Chokepoint | State on 23.09.2026 | Change vs edition 00 |
 |---|---|---|
-| Ormuz | PortWatch: 1 przejście 20.09, 8 — 13.09 (potwierdzone bez zmian, 19.09.2026), 6 — 06.09; bazowo ok. 85/dobę; 434 statki czekają (Straits Daily Brief za PortWatch; G1-001, G1-002) [C/2]. Dane żeglugowe: 12–17 przejść masowców w weekend 19–20.09 wobec 37 tydzień wcześniej (GlobalSecurity, CBS News; G1-003). CENTCOM/UKMTO: ok. 32 statki/dobę 17–19.09 „z pomocą USA”, przepływy „najwyższe od 6 mies.” (G2-006) [B/3]. Reuters: eksport saudyjski przez Ormuz 2,9 mln b/d przez 6 dni wobec 0,7 mln b/d w VIII (G2-005). Iran: reżim „zezwoleń i opłat” ok. 1–2 mln USD za statek — jedno źródło (Windward; G1-059) [C/4] | Sprzeczne pomiary (niżej) |
-| Bab al-Mandab | Huti kontrolują całe jemeńskie wybrzeże Morza Czerwonego, Mokkę i Perim (Al Jazeera, NPR, 11.09.2026; G1-020) [B/2]; przejścia tankowców −39% od 20.07, powiązanych z Arabią Saudyjską −46% (TankerMap; G1-023) [D/3]; w II kw. 2026 przez cieśninę płynęło 8,1 mln b/d ropy i produktów, niemal 2× r/r (Modern Diplomacy za EIA/Vortexa; G1-022) [C/3] | Bez zmiany statusu, pogłębienie |
-| Suez | VIII 2026: 1358 statków (+27% r/r z 1070), przychód 567,1 mln USD (Egyptian Streets, 21.09.2026; Bloomberg, 08.09.2026; G1-024) [C/2]; kontenerowce nadal wokół Przylądka | **Korekta:** „ogr.” dotyczy tylko kontenerowców; ruch ogółem rośnie |
-| Kanał Panamski | Limit 32 przejść/dobę od 15.09 (od pocz. IX 34; przepustowość ok. 40) z powodu suszy (Al Jazeera, DTN; G1-058) [B/2]; od 01.10 niższe dopuszczalne zanurzenie; opady V–VIII −34% (DTN, Maritime Executive; B-dod.) | Nowe (luka z wydania 00 zamknięta) |
-| Rurociąg Wschód–Zachód (Arabia Saudyjska) | Wyłączony po atakach dronów 11/13.09 (Al Jazeera Arabic, NBC; G2-007); wznowiony 22.09 na obniżonym przepływie; Aramco bez komentarza (G2-008) [B/3] | Wyłączony → częściowo wznowiony |
-| Cieśniny Duńskie | 292 rejsy tankowców floty cieni przez duńskie wody w 2025; w 2026 wzmocnione inspekcje na kotwicowisku Skagen (gCaptain; G1-062) [B/2] | Bez zmian |
-| Malakka, Bosfor, Arktyka | Niesprawdzone w tym wydaniu | Luka (sekcja J) |
+| Hormuz | PortWatch: 1 transit on 20.09, 8 on 13.09 (confirmed unchanged, 19.09.2026), 6 on 06.09; baseline approx. 85/day; 434 ships waiting (Straits Daily Brief citing PortWatch; G1-001, G1-002) [C/2]. Shipping data: 12–17 bulk carrier transits over the weekend of 19–20.09 vs 37 a week earlier (GlobalSecurity, CBS News; G1-003). CENTCOM/UKMTO: approx. 32 ships/day on 17–19.09 "with US assistance", flows "highest in 6 months" (G2-006) [B/3]. Reuters: Saudi exports through Hormuz 2.9 mb/d over 6 days vs 0.7 mb/d in VIII (G2-005). Iran: a "permits and fees" regime of approx. USD 1–2 million per ship — one source (Windward; G1-059) [C/4] | Contradictory measurements (below) |
+| Bab al-Mandab | The Houthis control the entire Yemeni Red Sea coast, Mocha and Perim (Al Jazeera, NPR, 11.09.2026; G1-020) [B/2]; tanker transits −39% since 20.07, those linked to Saudi Arabia −46% (TankerMap; G1-023) [D/3]; in Q2 2026 8.1 mb/d of crude and products passed through the strait, almost 2× y/y (Modern Diplomacy citing EIA/Vortexa; G1-022) [C/3] | No change of status, deepening |
+| Suez | VIII 2026: 1,358 ships (+27% y/y from 1,070), revenue USD 567.1 million (Egyptian Streets, 21.09.2026; Bloomberg, 08.09.2026; G1-024) [C/2]; container ships still around the Cape | **Correction:** "restricted" applies only to container ships; total traffic is rising |
+| Panama Canal | Limit of 32 transits/day since 15.09 (34 from the start of IX; capacity approx. 40) due to drought (Al Jazeera, DTN; G1-058) [B/2]; lower permitted draught from 01.10; rainfall V–VIII −34% (DTN, Maritime Executive; B-add.) | New (gap from edition 00 closed) |
+| East–West pipeline (Saudi Arabia) | Shut down after drone attacks on 11/13.09 (Al Jazeera Arabic, NBC; G2-007); restarted on 22.09 at reduced flow; Aramco without comment (G2-008) [B/3] | Shut down → partly restarted |
+| Danish Straits | 292 shadow fleet tanker voyages through Danish waters in 2025; in 2026 stepped-up inspections at the Skagen anchorage (gCaptain; G1-062) [B/2] | Unchanged |
+| Malacca, Bosporus, Arctic | Not checked in this edition | Gap (section J) |
 
-**Sprzeczność pomiarów w Ormuzie — dwie interpretacje.** (1) Przepływ rośnie pod eskortą USA, a PortWatch, oparty na AIS, nie widzi statków z wyłączonymi transponderami (CENTCOM, UKMTO, dane satelitarne Reutersa). (2) Cieśnina pozostaje zamknięta, a liczby CENTCOM są zawyżone — Iran nazywał je „sfabrykowanymi” już w wydaniu 00, a Chatam al-Anbija mówi o „zamkniętej” cieśninie z przepływem tylko wyznaczonymi trasami (G1-009). OCENA (pewność: niska): obie serie mogą być prawdziwe jednocześnie — ruch eskortowany i ruch bez AIS rośnie, ruch widoczny w AIS spada. Obie serie pochodzą od strony sporu albo z agregatu; niezależnej perspektywy T brak (05 §1 p. 3). Pytania rejestru o Ormuz rozstrzygane PortWatch mierzą wyłącznie ruch jawny.
+**Contradictory measurements in Hormuz — two interpretations.** (1) Flow is rising under US escort, and PortWatch, based on AIS, does not see ships with transponders switched off (CENTCOM, UKMTO, Reuters satellite data). (2) The strait remains closed and the CENTCOM figures are inflated — Iran called them "fabricated" already in edition 00, and Khatam al-Anbiya speaks of a "closed" strait with flow only along designated routes (G1-009). ASSESSMENT (confidence: low): both series may be true at the same time — escorted traffic and traffic without AIS are rising, traffic visible in AIS is falling. Both series come from a party to the dispute or from an aggregator; there is no independent T perspective (05 §1 item 3). Registry questions on Hormuz resolved by PortWatch measure only visible traffic.
 
-**Mechanizm.** Częściowy restart rurociągu Wschód–Zachód i eskortowany eksport saudyjski przez Ormuz tłumaczą spadek Brent poniżej 100 USD. Obie drogi leżą w zasięgu Iranu i Huti (G1-009: groźba uderzeń w infrastrukturę naftową regionu; G1-014: deklarowany atak na Janbu), więc spadek ceny opiera się na zdolnościach, które przeciwnik może szybko wyłączyć. Przekierowanie ropy z Janbu na północ podnosi ruch w Suezie (+27% r/r), a eksport energii z USA — obciążenie Kanału Panamskiego (limit 32/dobę). Wąskie gardła przesuwają się na przesmyki, które dotąd nie były ograniczeniem.
+**Mechanism.** The partial restart of the East–West pipeline and escorted Saudi exports through Hormuz explain the drop of Brent below USD 100. Both routes lie within reach of Iran and the Houthis (G1-009: threat of strikes on the region's oil infrastructure; G1-014: declared attack on Yanbu), so the price drop rests on capacities the adversary can quickly disable. Redirecting crude from Yanbu northwards raises traffic in Suez (+27% y/y), and US energy exports raise the load on the Panama Canal (limit 32/day). Bottlenecks are moving to chokepoints that were not a constraint before.
 
-**Dla Polski:** trasa saudyjskiej ropy do Polski po 11.09 pozostaje nieustalona (luka z wydania 00). Rosnący ruch przez Suez wskazuje, że ropa z Janbu płynie na północ — to trasa korzystna dla dostaw do Europy, ale zależna od utrzymania Janbu pod ostrzałem Huti.
+**For Poland:** the route of Saudi crude to Poland after 11.09 remains unestablished (gap from edition 00). Rising traffic through Suez indicates that crude from Yanbu is flowing north — a favourable route for supplies to Europe, but dependent on keeping Yanbu running under Houthi fire.
 
 ---
 
-## D. Surowce i łańcuchy dostaw
+## D. Raw materials and supply chains
 
-| Surowiec | Stan 23.09.2026 | Zmiana vs wydanie 00 |
+| Commodity | State on 23.09.2026 | Change vs edition 00 |
 |---|---|---|
-| Ropa | Brent 99,25 USD/bbl (22.09, kontrakt XI), piąta sesja spadków, pierwsze zamknięcie poniżej 100 od 08.09 (G2-002) [B/2]; 21.09 100,34 USD (Rigzone; G2-001); 23.09 w trakcie sesji poniżej 99 USD — szósta sesja spadków (Trading Economics; A-dod.); rok wcześniej 66,68 USD (+48,9% r/r) (Fortune; G2-003). IEA: podaż 2026 100,7 mln b/d (−5,7 mln b/d r/r) — potwierdzone bez zmian, 11.09.2026; ponad 10 mln b/d wydobycia w Zatoce wyłączone; zapasy −507 mln bbl od początku wojny (IEA; G2-010) [A/2]. OPEC+ (7 państw) utrzymał produkcję w X, spotkanie 04.10 (Rigzone; G2-011) | Spadek z ok. 104 USD (19.09) |
-| Gaz | TTF 71,33–73,66 EUR/MWh 22.09 (+121% r/r) (G2-015); 21.09: 77,55 (G2-014); 15.09: ok. 82,80 (G2-013). Magazyny UE 70,3% vs średnia 5-letnia 88,0%; tłoczenie 2790 GWh/d; Niemcy ok. 57% — najniżej we wrześniu od 15–20 lat (G2-017) [C/2]. Cel na 01.11 złagodzony z 90% do 80%; projekcja przy tempie z 13.09: 78,2% (GEF; G2-018) [C/3]. Polska 98% (G2-019) [B/2]. Katar: naprawa 2 linii LNG w Ras Laffan ok. 3 lata, utracone ok. 17% zdolności eksportowej (The Peninsula, LNG Prime, 21.09.2026; G2-020); siła wyższa wobec Edisona do pocz. XI (LNG Prime; G2-021). Jamał LNG: 156 ładunków do UE w I–VIII, zakaz kontraktów długoterminowych od 01.01.2027 (G2-030) [C/3] | TTF w dół z 78–82; magazyny +1,8 pp; Katar potwierdzony i doprecyzowany (3 lata zamiast 3–5) |
-| Paliwa w Polsce | Program CPN zakończony 31.08, VAT z 8% na 23%, cen maksymalnych we IX brak (Biznesinfo, Globenergia; G2-022) [B/2]. ON (e-petrol): 8,75 zł/l 09.09, 8,89 zł/l 16.09 (G2-023, G2-024), **8,99 zł/l 23.09**, w 4 województwach ≥ 9,00 (Portal Samorządowy za e-petrol; C-04); Orlen obniżył hurt 23.09 (Motoguru; C-04). Premier Tusk 16.09: powrót CPN po podpisaniu ustawy o podatku od nadzwyczajnych zysków; prezydent skierował ustawę do TK (Forsal; C-05) | **Obalone** z wydania 00: cena maksymalna ON 7,37 zł/l już nie obowiązuje |
-| Paliwa w Rosji | Zakaz eksportu diesla dla producentów przedłużony do 31.10, benzyny do 31.01.2027 (Wiedomosti; G2-029) [B/2]. Trafione rafinerie: Moskwa 19/20.09 — wg 3 źródeł Reutersa pełne wstrzymanie przerobu pierwotnego (The Insider; G2-026) [B/3]; Ufa 21.09 (G2-027); Samara 22.09 (G2-028). SG ZSU: ponad 45% mocy wyłączone — liczba strony, bez potwierdzenia T (G1-046) | Nowe |
-| Ziemie rzadkie i metale | Zawieszenie kontroli ChRL z 09.10.2025 do 10.11.2026, decyzji o przedłużeniu brak (MOFCOM, CSIS; G2-033) [A/2] — potwierdzone bez zmian, 23.09.2026. Zakaz eksportu galu, germanu, antymonu i materiałów supertwardych do USA zawieszony do 27.11.2026 (Fastmarkets, CNBC; G2-034) [B/2]. Eksport magnesów VIII: 5010 t łącznie (−6% m/m), do USA 512 t (−21% m/m), I–VIII 41 890 t (+23% r/r) (SMM, SCMP; G2-035) [B/2] | Nowy termin 27.11 |
-| Półprzewodniki | H200 formalnie dopuszczone do ChRL „case-by-case” z opłatą 25%, do V 2026 bez żadnej dostawy — Pekin zniechęca do zakupu; Blackwell i Rubin objęte zakazem (CNBC, 14.05.2026; G2-038) [B/2] | Bez nowych danych (stan z V) |
-| Uran | U3O8 spot 89,70 USD/lb; kontrakty długoterminowe ok. 96,50 USD/lb — nominalny rekord (Trading Economics; G2-039) [C/2]. Rosatom: 26% usług wzbogacania dla USA w 2025; waiver do 470 t/rok do 2028 (Foreign Policy; G2-040) [B/3] | Nowe |
-| Żywność i nawozy | Indeks FAO VIII 133,3 pkt (+1,9% m/m) — najwyżej od XI 2022 (FAO, 05.09.2026; G2-031) [A/2]; mocznik 460 USD/t (+10,2% m/m) (Trading Economics; G2-032) | Nowe liczby |
+| Crude oil | Brent USD 99.25/bbl (22.09, XI contract), fifth session of declines, first close below 100 since 08.09 (G2-002) [B/2]; 21.09 USD 100.34 (Rigzone; G2-001); 23.09 intraday below USD 99 — sixth session of declines (Trading Economics; A-add.); a year earlier USD 66.68 (+48.9% y/y) (Fortune; G2-003). IEA: supply in 2026 100.7 mb/d (−5.7 mb/d y/y) — confirmed unchanged, 11.09.2026; over 10 mb/d of Gulf production shut in; stocks −507 million bbl since the start of the war (IEA; G2-010) [A/2]. OPEC+ (7 states) kept production unchanged for X, meeting on 04.10 (Rigzone; G2-011) | Down from approx. USD 104 (19.09) |
+| Gas | TTF EUR 71.33–73.66/MWh on 22.09 (+121% y/y) (G2-015); 21.09: 77.55 (G2-014); 15.09: approx. 82.80 (G2-013). EU storage 70.3% vs 5-year average 88.0%; injection 2,790 GWh/d; Germany approx. 57% — lowest in September in 15–20 years (G2-017) [C/2]. Target for 01.11 eased from 90% to 80%; projection at the pace of 13.09: 78.2% (GEF; G2-018) [C/3]. Poland 98% (G2-019) [B/2]. Qatar: repair of 2 LNG trains at Ras Laffan approx. 3 years, approx. 17% of export capacity lost (The Peninsula, LNG Prime, 21.09.2026; G2-020); force majeure towards Edison until early XI (LNG Prime; G2-021). Yamal LNG: 156 cargoes to the EU in I–VIII, ban on long-term contracts from 01.01.2027 (G2-030) [C/3] | TTF down from 78–82; storage +1.8 pp; Qatar confirmed and clarified (3 years instead of 3–5) |
+| Fuels in Poland | The CPN programme ended on 31.08, VAT from 8% to 23%, no maximum prices in IX (Biznesinfo, Globenergia; G2-022) [B/2]. Diesel (e-petrol): PLN 8.75/l on 09.09, PLN 8.89/l on 16.09 (G2-023, G2-024), **PLN 8.99/l on 23.09**, in 4 voivodeships ≥ 9.00 (Portal Samorządowy citing e-petrol; C-04); Orlen cut wholesale prices on 23.09 (Motoguru; C-04). Prime Minister Tusk on 16.09: return of CPN after the windfall profits tax act is signed; the president referred the act to the Constitutional Tribunal (Forsal; C-05) | **Refuted** from edition 00: the maximum diesel price of PLN 7.37/l no longer applies |
+| Fuels in Russia | Diesel export ban for producers extended to 31.10, gasoline to 31.01.2027 (Vedomosti; G2-029) [B/2]. Refineries hit: Moscow 19/20.09 — according to 3 Reuters sources a complete halt of primary processing (The Insider; G2-026) [B/3]; Ufa 21.09 (G2-027); Samara 22.09 (G2-028). UAF General Staff: over 45% of capacity knocked out — a party's figure, without T confirmation (G1-046) | New |
+| Rare earths and metals | Suspension of the PRC controls of 09.10.2025 until 10.11.2026, no decision on extension (MOFCOM, CSIS; G2-033) [A/2] — confirmed unchanged, 23.09.2026. Ban on exports of gallium, germanium, antimony and superhard materials to the USA suspended until 27.11.2026 (Fastmarkets, CNBC; G2-034) [B/2]. Magnet exports VIII: 5,010 t in total (−6% m/m), to the USA 512 t (−21% m/m), I–VIII 41,890 t (+23% y/y) (SMM, SCMP; G2-035) [B/2] | New deadline 27.11 |
+| Semiconductors | H200 formally allowed to the PRC "case-by-case" with a 25% fee, no delivery at all by V 2026 — Beijing discourages purchases; Blackwell and Rubin under a ban (CNBC, 14.05.2026; G2-038) [B/2] | No new data (state as of V) |
+| Uranium | U3O8 spot USD 89.70/lb; long-term contracts approx. USD 96.50/lb — a nominal record (Trading Economics; G2-039) [C/2]. Rosatom: 26% of enrichment services for the USA in 2025; waiver up to 470 t/year until 2028 (Foreign Policy; G2-040) [B/3] | New |
+| Food and fertilisers | FAO index VIII 133.3 pts (+1.9% m/m) — highest since XI 2022 (FAO, 05.09.2026; G2-031) [A/2]; urea USD 460/t (+10.2% m/m) (Trading Economics; G2-032) | New figures |
 
-OCENA (pewność: średnia): spadek cen ropy i gazu 21–22.09 jest reakcją na sygnały dyplomatyczne i częściowe obejścia, a nie na zmianę bilansu. IEA wciąż opisuje ubytek ponad 10 mln b/d w Zatoce, a magazyny UE są 17,7 pp poniżej średniej. Rynek wycenia deeskalację, zanim ją potwierdzono.
+ASSESSMENT (confidence: medium): the fall in oil and gas prices on 21–22.09 is a reaction to diplomatic signals and partial bypasses, not to a change in the balance. The IEA still describes a loss of over 10 mb/d in the Gulf, and EU storage is 17.7 pp below the average. The market is pricing de-escalation before it has been confirmed.
 
-**Mechanizm.** Ceny ropy i gazu stały się funkcją toru dyplomatycznego USA–Iran (sekcja B) i utrzymania obejść (sekcja C). Diesel w Europie (ponad 200 USD/bbl na pocz. IX wg IEA; G2-010) ma dwa źródła szoku naraz: Zatokę i Rosję (zakazy eksportu, uderzenia ukraińskie). Dlatego diesel reaguje na dobre wiadomości z Iranu słabiej niż Brent. W Polsce do tego dochodzi skok podatkowy (VAT 8% → 23% od 01.09). Terminy 10.11 (ziemie rzadkie) i 27.11 (Ga/Ge/Sb) wiążą łańcuchy dostaw z wynikiem szczytu 24.09 i dalszych rund (sekcja F).
+**Mechanism.** Oil and gas prices have become a function of the US–Iran diplomatic track (section B) and of keeping the bypasses running (section C). Diesel in Europe (over USD 200/bbl at the start of IX according to the IEA; G2-010) has two sources of shock at once: the Gulf and Russia (export bans, Ukrainian strikes). That is why diesel reacts more weakly than Brent to good news from Iran. In Poland there is also the tax jump (VAT 8% → 23% from 01.09). The deadlines of 10.11 (rare earths) and 27.11 (Ga/Ge/Sb) tie supply chains to the outcome of the summit on 24.09 and further rounds (section F).
 
-**Dla Polski:** magazyny gazu w Polsce (98%) chronią przed fizycznym niedoborem, ale nie przed ceną — TTF i diesel (8,99 zł/l bez CPN) przenoszą szok bezpośrednio na inflację (CPI VIII 3,4% r/r; G3-027).
+**For Poland:** gas storage in Poland (98%) protects against physical shortage, but not against price — TTF and diesel (PLN 8.99/l without CPN) pass the shock directly into inflation (CPI VIII 3.4% y/y; G3-027).
 
 ---
 
-## E. Przesunięcia orientacji państw
+## E. Shifts in state orientation
 
-| Państwo | Zdarzenie (fakty) | Kierunek | OCENA |
+| State | Event (facts) | Direction | ASSESSMENT |
 |---|---|---|---|
-| Grenlandia / Dania | 22.09 umowa zmieniająca umowę obronną z 1951 r.: modernizacja Pituffik, nowe obszary obronne USA w Narsarsuaq i Mestersvig, zakaz baz państw spoza NATO (whitehouse.gov, NPR; G4-025) [A/1]; potwierdzenie suwerenności Królestwa i prawa Grenlandczyków do samostanowienia; wymaga zatwierdzenia przez Inatsisartut i Folketing (stm.dk, DR; G4-026) [A/1]; Rosja (Pieskow): „sprawa odpowiednich państw” (Life.ru, 22.09.2026; G4-027) | Zbliżenie do USA na warunkach Kopenhagi | Spór o „własność” wyspy zamieniono w umowę obronną; ryzyko dla spójności NATO z wydania 00 zmalało (pewność: średnia) |
-| Rosja | Większość konstytucyjna Jednej Rosji (G4-028); Sprawiedliwa Rosja na progu 5,00% przy 96,95% protokołów (wg News.ru i Interfax 5,13% przy 97,64% — C-01; wartości 5,13% red team nie potwierdził); wyniki ostateczne CKW 25.09; pierwsze posiedzenie Dumy najpóźniej ok. 19–20.10 (Rambler; G4-030) | Konsolidacja | Brak wewnętrznych ograniczeń dla decyzji wojennych i budżetowych do 2027 r. (pewność: średnia) |
-| Polska | Rozmowy o stałej obecności USA „w końcowej fazie”, udział PL 15–17 mld zł (G1-027) [B/2]; Moody's A2 → A3 (G3-030); Nawrocki w Nowym Jorku: rozmowy z przywódcami państw bałtyckich, Sekretarzem Generalnym ONZ i Erdoğanem (RMF24, Polsat News; G4-058) | Silniejsza więź bilateralna z USA przy słabszych finansach | Polska płaci za obecność USA w czasie, gdy spada jej rating — napięcie między PIR-2 a PIR-6 (pewność: średnia) |
-| Indie, Turcja | Indie wobec H.R. 5334: skutki „przekazane na wysokim szczeblu”, „wszelkie niezbędne środki” (MSZ Indii; The Week, The Wire, 17.09.2026; G3-006) [B/1]; Turcja w strefie ryzyka cła (Rosja ok. 36,7% tureckiego importu ropy i produktów — wyliczenie Dünya), bez oficjalnej reakcji rządu (Dünya, TRT Haber; G3-049) [C/2] | Równoważenie | Ustawa naciska na państwa „środka” szybciej niż na Chiny (pewność: niska) |
-| Katar, Pakistan | Katar mediatorem w Nowym Jorku (G4-009, G4-010); minister spraw wewnętrznych Pakistanu w Teheranie 21–22.09: „rozmawialiśmy o procesie mediacji” (Dawn, Al Jazeera; G4-056) [B/2] | Rośnie rola pośredników | Potwierdzenie oceny z wydania 00 (pewność: wysoka) |
-| Wenezuela | Rodríguez 02.09: wybory „bez wątpienia”, gdy kraj „będzie gotowy” (Bloomberg, CiberCuba; G4-040); 18.09 opozycja w dialogu ogłosiła start procedury wyboru sędziów TSJ (Infobae za EFE; G4-041) [B/2] | Pod kuratelą USA — potwierdzone bez zmian, 18.09.2026 | Bez zmiany istoty; data wyborów nieustalona |
-| Łotwa, Brazylia, Bośnia i Hercegowina | Wybory: Łotwa 03.10 (cvk.lv; G4-031) [A/1]; Brazylia 04.10 i 25.10; BiH 04.10 (Balkan Insight; G4-034). Łotwa: Zjednoczona Lista prowadzi we wszystkich sondażach (SKDS VIII — 15,2% ogółu; „Latvijas fakti” IX — 15,9% ogółu; PolitPro 22.09 — 22,9%) (LSM; jauns.lv; PolitPro; G4-032, C-02, B-dod.). Brazylia: Datafolha 15–17.09 — I tura Lula 39%, F. Bolsonaro 36%; II tura 46 vs 44 (US News za Reuters; G4-033) [B/2]; Quaest 17–20.09 — I tura 37 vs 33 (Terra; C-03) | — | Brazylia: remis statystyczny w II turze; Łotwa: przewaga Zjednoczonej Listy 3–10 pkt w zależności od sondażu (pewność: średnia) |
-| Armenia–Azerbejdżan | Traktat parafowany 08.08.2025, niepodpisany; Baku warunkuje podpis zmianą konstytucji Armenii; referendum konstytucyjne w Armenii bez ustalonej daty (Armenian Weekly, 22.09.2026; CACI, 15.01.2026; G4-049) [C/2] — rok 2027 z pierwotnego rekordu nie znajduje potwierdzenia w źródłach (korekta etapu 08); TRIPP na etapie spółki (Day.az, 17.09.2026; G4-048) | Bez zmian — potwierdzone bez zmian, 17.09.2026 | Proces zablokowany do czasu zmiany konstytucji Armenii; termin nieustalony (pewność: średnia) |
-| Mali | Oferta dialogu Goïty 21.09 „pod warunkiem integralności terytorialnej” (G4-038); JNIM nie odpowiedział | Bez zmian orientacji (AES, Africa Corps) | Oferta świadczy o słabości junty, nie o sile (pewność: niska) |
+| Greenland / Denmark | On 22.09 an agreement amending the 1951 defence agreement: modernisation of Pituffik, new US defence areas in Narsarsuaq and Mestersvig, a ban on bases of non-NATO states (whitehouse.gov, NPR; G4-025) [A/1]; confirmation of the sovereignty of the Kingdom and of Greenlanders' right to self-determination; requires approval by the Inatsisartut and the Folketing (stm.dk, DR; G4-026) [A/1]; Russia (Peskov): "a matter for the states concerned" (Life.ru, 22.09.2026; G4-027) | Rapprochement with the USA on Copenhagen's terms | The dispute over "ownership" of the island has been turned into a defence agreement; the risk to NATO cohesion from edition 00 has decreased (confidence: medium) |
+| Russia | Constitutional majority for United Russia (G4-028); A Just Russia at the 5.00% threshold with 96.95% of protocols counted (according to News.ru and Interfax 5.13% with 97.64% — C-01; the red team did not confirm the 5.13% value); final CEC results on 25.09; first sitting of the Duma at the latest approx. 19–20.10 (Rambler; G4-030) | Consolidation | No domestic constraints on war and budget decisions until 2027 (confidence: medium) |
+| Poland | Talks on a permanent US presence "in the final phase", PL share PLN 15–17 billion (G1-027) [B/2]; Moody's A2 → A3 (G3-030); Nawrocki in New York: talks with the leaders of the Baltic states, the UN Secretary-General and Erdoğan (RMF24, Polsat News; G4-058) | Stronger bilateral tie with the USA with weaker finances | Poland is paying for a US presence at a time when its rating is falling — a tension between PIR-2 and PIR-6 (confidence: medium) |
+| India, Turkey | India on H.R. 5334: the consequences "conveyed at a high level", "all necessary measures" (Indian MEA; The Week, The Wire, 17.09.2026; G3-006) [B/1]; Turkey in the tariff risk zone (Russia approx. 36.7% of Turkish imports of crude and products — Dünya's calculation), no official government reaction (Dünya, TRT Haber; G3-049) [C/2] | Balancing | The act presses the "middle" states faster than China (confidence: low) |
+| Qatar, Pakistan | Qatar as mediator in New York (G4-009, G4-010); Pakistan's interior minister in Tehran 21–22.09: "we discussed the mediation process" (Dawn, Al Jazeera; G4-056) [B/2] | The role of intermediaries is growing | Confirmation of the assessment from edition 00 (confidence: high) |
+| Venezuela | Rodríguez on 02.09: elections "without a doubt" when the country "is ready" (Bloomberg, CiberCuba; G4-040); on 18.09 the opposition in the dialogue announced the start of the procedure to select TSJ judges (Infobae citing EFE; G4-041) [B/2] | Under US tutelage — confirmed unchanged, 18.09.2026 | No change in substance; election date not set |
+| Latvia, Brazil, Bosnia and Herzegovina | Elections: Latvia 03.10 (cvk.lv; G4-031) [A/1]; Brazil 04.10 and 25.10; BiH 04.10 (Balkan Insight; G4-034). Latvia: the United List leads in all polls (SKDS VIII — 15.2% of all respondents; "Latvijas fakti" IX — 15.9% of all respondents; PolitPro 22.09 — 22.9%) (LSM; jauns.lv; PolitPro; G4-032, C-02, B-add.). Brazil: Datafolha 15–17.09 — first round Lula 39%, F. Bolsonaro 36%; second round 46 vs 44 (US News citing Reuters; G4-033) [B/2]; Quaest 17–20.09 — first round 37 vs 33 (Terra; C-03) | — | Brazil: a statistical tie in the second round; Latvia: the United List ahead by 3–10 pts depending on the poll (confidence: medium) |
+| Armenia–Azerbaijan | Treaty initialled on 08.08.2025, not signed; Baku makes signature conditional on a change to Armenia's constitution; constitutional referendum in Armenia without a set date (Armenian Weekly, 22.09.2026; CACI, 15.01.2026; G4-049) [C/2] — the year 2027 from the original record is not confirmed in the sources (stage 08 correction); TRIPP at the company stage (Day.az, 17.09.2026; G4-048) | Unchanged — confirmed unchanged, 17.09.2026 | The process is blocked until Armenia's constitution is changed; timing not set (confidence: medium) |
+| Mali | Goïta's offer of dialogue on 21.09 "on condition of territorial integrity" (G4-038); JNIM did not respond | No change of orientation (AES, Africa Corps) | The offer signals the junta's weakness, not strength (confidence: low) |
 
-**Mechanizm.** Tydzień ZO ONZ skupił w jednym miejscu kanały pośredników — Katar i Pakistan wobec Iranu, Turcję jako możliwego gospodarza rozmów o Ukrainie (Anadolu, Hürriyet; G4-024). To przyspiesza tor dyplomatyczny, ale nie zmienia bilansu sił. H.R. 5334 zmienia kalkulację państw kupujących rosyjską energię (Indie, Turcja); ich reakcja przed ok. 18.10 wpłynie na przychody Rosji (sekcja F, PIR-6). Umowa grenlandzka pokazuje wzorzec, który może dotyczyć także Polski: USA zamieniają żądania w umowy obronne, w których partner płaci lub ustępuje w zamian za obecność.
+**Mechanism.** The UN General Assembly week gathered intermediary channels in one place — Qatar and Pakistan towards Iran, Turkey as a possible host of talks on Ukraine (Anadolu, Hürriyet; G4-024). This speeds up the diplomatic track but does not change the balance of power. H.R. 5334 changes the calculation of states buying Russian energy (India, Turkey); their reaction before approx. 18.10 will affect Russia's revenues (section F, PIR-6). The Greenland agreement shows a pattern that may also apply to Poland: the USA turns demands into defence agreements in which the partner pays or concedes in exchange for presence.
 
-**Dla Polski:** relacja z USA staje się bilateralna i transakcyjna — baza finansowana w dużej części przez Polskę (15–17 mld zł), a jej trwałość zależy od decyzji personalnych. To potwierdzenie oceny z wydania 00.
-
----
-
-## F. Rywalizacja gospodarcza i technologiczna
-
-**Cła.** FAKT: stawki USA na Chiny bez zmian — nowe cło z sekcji 301 („praca przymusowa”) 12,5% od 24.07.2026 plus dotychczasowe cła 301 (7,5–100%) i 232 (China Briefing, akt. 24.07.2026; G3-010) [B/2] — potwierdzone bez zmian, 23.09.2026. Chiny: cło „wzajemne” 10% w ramach rocznego rozejmu; cła „fentanylowe” zniesione 10.11.2025 (G3-011). UE: pułap 15%, stal i aluminium 50% (G3-043). H.R. 5334 przyjęta w Senacie 86–11 (07.08) i w Izbie 262–159 (16.09) (Baker McKenzie, RFE/RL; G3-001) [B/1].
-
-**Sankcje.** FAKT: H.R. 5334 to upoważnienie, nie decyzja (G3-003). OFAC: od 19.09 bez nowych działań; wcześniej w IX działania w programie irańskim (04, 08, 10, 14, 17.09), 16.09 usunięcia z listy rosyjskiej (OFAC Recent Actions; G3-042) [A/1]. UE: sankcje indywidualne przedłużone o 36 mies. (G3-035). Rosja 18.09 „znacznie rozszerzyła” zakazy wjazdu dla przedstawicieli instytucji UE i państw członkowskich (GlobalSecurity za MSZ FR; G3-038). Chiny: ostatni wpis MOFCOM na listę kontroli eksportu 22.06.2026 — 10 podmiotów z USA (MOFCOM, Xinhua; G3-047) [A/1].
-
-**Stopy procentowe.** FAKT: Fed 3,75–4,00% po podwyżce o 25 pb 16.09 — pierwszej od 2023 r., jednogłośnej (federalreserve.gov; G3-024) [A/1]; przewodniczący Fed od 22.05.2026 Kevin Warsh; w projekcjach z IX 16 z 19 uczestników oczekuje co najmniej jednej podwyżki jeszcze w 2026 (CNBC; C-09). EBC: depozytowa 2,50% po podwyżce 10.09; HICP VIII 3,3% (Bankier.pl; G3-025) [B/1] — potwierdzone bez zmian, 10.09.2026; ekonomiści (sondaż Bloomberga) uważają 2,50% za koniec cyklu (G3-026). NBP: 3,75% (G3-027) [B/1] — potwierdzone bez zmian, 09.09.2026. Bank Rosji: 14,00%, pierwsza pauza po 10 obniżkach (cbr.ru, 11.09.2026; G3-021) [A/1]. PBoC: LPR 3,0% i 3,5% bez zmian (Chinanews, 20.09.2026; G3-028).
-
-**Finanse publiczne.** FAKT: Rosja — deficyt I–VIII 5,795 bln RUB (2,5% PKB); dochody naftowo-gazowe −16,7% r/r, nienaftowe +18,1% (MinFin FR; G3-017) [A/2] — potwierdzone bez zmian, 09.09.2026; sierpień z nadwyżką ok. 0,6–0,7 bln RUB (BOFIT; G3-018); płynne aktywa FNB ok. 3,7 bln RUB (BOFIT, 14.08.2026; G3-022) [A/2]; projekt budżetu 2027 rząd rozpatruje 24.09, potem wniesienie do Dumy (Fontanka, Interfax; C-14). Polska — deficyt sektora GG 7,1% PKB w 2027 (projekt), 2026: 6,8% (ING) albo 7,1% (rp.pl) — rozbieżność; potrzeby pożyczkowe netto 2027: 317 mld zł (ING, rp.pl; G3-034) [B/2]. USA — deficyt 2,0 bln USD za 11 miesięcy FY2026 (CRFB za CBO; G3-044); finansowanie rządu (CR) do 11.12.2026. Ukraina — projekt budżetu 2027: potrzeba finansowania zewnętrznego 52,6 mld USD (Interfax-Ukraina; G3-023) [B/2].
-
-**Waluty i płatności.** FAKT: EUR/PLN 4,3633 (18.09) → 4,3545 (21.09) → 4,3463 (22.09) (NBP, tabela A; G3-029, G3-033) [A/1]. BRICS: deklaracja z New Delhi o rozwoju BRICS Pay (pilotaż) (Al Jazeera, 16.09.2026; G3-045). SPFS: 573 uczestników na koniec I poł. 2026 wobec 579 na koniec 2025 (Interfax za Bankiem Rosji; G3-048). Udział juana w komunikatach SWIFT poniżej 3% wobec ok. 51% dolara (G3-046) [C/3].
-
-**Technologia.** FAKT: USA zaproponowały Chinom dialog o AI z mechanizmem powiadamiania o incydentach (CNBC, AP, 20.09.2026; G3-013); Xinhua potwierdza „dialog o sprawach AI” bez szczegółów (Xinhua, 21.09.2026; G3-014) [B/1]. Na kolacji państwowej 24.09 zaplanowano udział m.in. szefa Nvidii (The National, RFA; G2-037) [B/3].
-
-OCENA (pewność: średnia): Fed i EBC zacieśniają politykę z powodu szoku energetycznego, NBP stoi — różnica między stopą NBP a górną granicą stopy Fed jest ujemna (−25 pb). Brak reakcji złotego na obniżkę ratingu wskazuje, że rynek wcześniej wycenił słabość fiskalną; większym ryzykiem dla PLN jest globalna awersja do ryzyka niż sam rating.
-
-OCENA (pewność: niska): termin ok. 18.10 (H.R. 5334) wypada między szczytem 24.09 a terminem 10.11. Administracja ma narzędzie, którego użycie wobec Chin rozbiłoby rozejm, a wobec Indii czy Turcji uderzyłoby w partnerów. Z dotychczasowymi ruchami (odłożenie ceł „nadmierne moce”, pauza OFAC) najbardziej spójne jest trzymanie upoważnienia jako dźwigni bez szybkiego użycia; sygnału administracji w tej sprawie brak.
-
-**Mechanizm.** Szok energetyczny (D) → inflacja → podwyżki Fed i EBC → droższy kapitał dla państw z wysokim deficytem (Polska ok. 7% PKB) → presja na rating. Równolegle rozejm USA–Chiny (termin 10.11) łączy w jeden pakiet cła, ziemie rzadkie i sankcje wtórne: decyzja w jednym obszarze przestawia pozostałe.
-
-**Dla Polski:** najbliższe daty zależne od świata: RPP 07.10 i 04.11, FOMC 28.10, EBC 29.10, przegląd S&P 06.11 (PAP Biznes; C-11). Potrzeby pożyczkowe netto na 2027 r. (317 mld zł) trafią na rynek przy droższym dolarze i euro.
+**For Poland:** the relationship with the USA is becoming bilateral and transactional — a base financed largely by Poland (PLN 15–17 billion), whose durability depends on personnel decisions. This confirms the assessment from edition 00.
 
 ---
 
-## G. Mapa zmian wpływów
+## F. Economic and technological rivalry
 
-Wszystkie wpisy w tabeli to OCENA (pewność: średnia, o ile nie zaznaczono inaczej), oparta na faktach z sekcji A–F.
+**Tariffs.** FACT: US rates on China unchanged — a new Section 301 tariff ("forced labour") of 12.5% from 24.07.2026 plus existing Section 301 (7.5–100%) and 232 tariffs (China Briefing, updated 24.07.2026; G3-010) [B/2] — confirmed unchanged, 23.09.2026. China: a "reciprocal" tariff of 10% under the one-year truce; "fentanyl" tariffs lifted on 10.11.2025 (G3-011). EU: 15% ceiling, steel and aluminium 50% (G3-043). H.R. 5334 passed in the Senate 86–11 (07.08) and in the House 262–159 (16.09) (Baker McKenzie, RFE/RL; G3-001) [B/1].
 
-| Domena | Ma przewagę | Zwiększa wpływ | Traci | Nierozstrzygnięte | Zmiana vs wydanie 00 |
+**Sanctions.** FACT: H.R. 5334 is an authorisation, not a decision (G3-003). OFAC: no new actions since 19.09; earlier in IX actions in the Iran programme (04, 08, 10, 14, 17.09), on 16.09 removals from the Russia list (OFAC Recent Actions; G3-042) [A/1]. EU: individual sanctions extended by 36 months (G3-035). Russia on 18.09 "significantly expanded" entry bans for representatives of EU institutions and member states (GlobalSecurity citing the RF MFA; G3-038). China: the last MOFCOM entry on the export control list on 22.06.2026 — 10 US entities (MOFCOM, Xinhua; G3-047) [A/1].
+
+**Interest rates.** FACT: Fed 3.75–4.00% after a 25 bp hike on 16.09 — the first since 2023, unanimous (federalreserve.gov; G3-024) [A/1]; Fed chair since 22.05.2026 Kevin Warsh; in the IX projections 16 of 19 participants expect at least one more hike in 2026 (CNBC; C-09). ECB: deposit rate 2.50% after the hike on 10.09; HICP VIII 3.3% (Bankier.pl; G3-025) [B/1] — confirmed unchanged, 10.09.2026; economists (Bloomberg survey) see 2.50% as the end of the cycle (G3-026). NBP: 3.75% (G3-027) [B/1] — confirmed unchanged, 09.09.2026. Bank of Russia: 14.00%, the first pause after 10 cuts (cbr.ru, 11.09.2026; G3-021) [A/1]. PBoC: LPR 3.0% and 3.5% unchanged (Chinanews, 20.09.2026; G3-028).
+
+**Public finances.** FACT: Russia — deficit I–VIII RUB 5.795 trillion (2.5% of GDP); oil and gas revenues −16.7% y/y, non-oil +18.1% (RF MinFin; G3-017) [A/2] — confirmed unchanged, 09.09.2026; August with a surplus of approx. RUB 0.6–0.7 trillion (BOFIT; G3-018); liquid NWF assets approx. RUB 3.7 trillion (BOFIT, 14.08.2026; G3-022) [A/2]; the government considers the 2027 draft budget on 24.09, then submission to the Duma (Fontanka, Interfax; C-14). Poland — general government deficit 7.1% of GDP in 2027 (draft), 2026: 6.8% (ING) or 7.1% (rp.pl) — a discrepancy; net borrowing needs 2027: PLN 317 billion (ING, rp.pl; G3-034) [B/2]. USA — deficit USD 2.0 trillion for 11 months of FY2026 (CRFB citing CBO; G3-044); government funding (CR) until 11.12.2026. Ukraine — 2027 draft budget: external financing need USD 52.6 billion (Interfax-Ukraine; G3-023) [B/2].
+
+**Currencies and payments.** FACT: EUR/PLN 4.3633 (18.09) → 4.3545 (21.09) → 4.3463 (22.09) (NBP, table A; G3-029, G3-033) [A/1]. BRICS: the New Delhi declaration on developing BRICS Pay (pilot) (Al Jazeera, 16.09.2026; G3-045). SPFS: 573 participants at the end of H1 2026 vs 579 at the end of 2025 (Interfax citing the Bank of Russia; G3-048). The yuan's share of SWIFT messages below 3% vs approx. 51% for the dollar (G3-046) [C/3].
+
+**Technology.** FACT: the USA proposed to China an AI dialogue with an incident notification mechanism (CNBC, AP, 20.09.2026; G3-013); Xinhua confirms a "dialogue on AI matters" without details (Xinhua, 21.09.2026; G3-014) [B/1]. The state dinner on 24.09 is scheduled to be attended by, among others, the head of Nvidia (The National, RFA; G2-037) [B/3].
+
+ASSESSMENT (confidence: medium): the Fed and the ECB are tightening policy because of the energy shock, the NBP is on hold — the gap between the NBP rate and the upper bound of the Fed rate is negative (−25 bp). The zloty's lack of reaction to the rating downgrade indicates that the market had priced in the fiscal weakness earlier; global risk aversion is a bigger risk for the PLN than the rating itself.
+
+ASSESSMENT (confidence: low): the approx. 18.10 deadline (H.R. 5334) falls between the summit on 24.09 and the 10.11 deadline. The administration has a tool whose use against China would break the truce, and against India or Turkey would hit partners. Given the moves so far (postponing the "overcapacity" tariffs, the OFAC pause), the most consistent course is holding the authorisation as leverage without rapid use; there is no signal from the administration on this.
+
+**Mechanism.** Energy shock (D) → inflation → Fed and ECB hikes → more expensive capital for states with high deficits (Poland approx. 7% of GDP) → pressure on the rating. In parallel, the US–China truce (deadline 10.11) binds tariffs, rare earths and secondary sanctions into one package: a decision in one area resets the others.
+
+**For Poland:** the nearest dates that depend on the world: MPC 07.10 and 04.11, FOMC 28.10, ECB 29.10, S&P review 06.11 (PAP Biznes; C-11). Net borrowing needs for 2027 (PLN 317 billion) will hit the market at a time of a more expensive dollar and euro.
+
+---
+
+## G. Map of shifts in influence
+
+All entries in the table are ASSESSMENT (confidence: medium, unless marked otherwise), based on facts from sections A–F.
+
+| Domain | Has the advantage | Gaining influence | Losing | Unresolved | Change vs edition 00 |
 |---|---|---|---|---|---|
-| Militarna | USA (globalnie) | Rosja lokalnie (ok. 150 km² w 4 tyg.); Ukraina w głębi Rosji (rafinerie: Moskwa, Ufa, Samara) | Arabia Saudyjska (obrona powietrzna); USA — dostępność w Azji (0 lotniskowców) | Skala redukcji USA w Europie (rekomendacja do 06.11) | Ukraina: z „lokalnej inicjatywy” na kampanię na głębię |
-| Polityczna | USA (agenda ZO ONZ, Grenlandia) | Katar i Pakistan (mediacje); Kreml wewnętrznie (Duma) | UE (delisting pod presją, spór z Kijowem) | Kto decyduje w Teheranie (pewność: niska) | Grenlandia: z ryzyka na umowę |
-| Gospodarcza | USA i Chiny | Eksporterzy energii spoza Zatoki | Importerzy energii (UE; Polska — paliwa bez CPN) | Wynik szczytu 24.09 i terminu 10.11 | Brent < 100 — spadek premii ryzyka |
-| Technologiczna | USA (chipy) | Chiny (magnesy jako dźwignia) | — | Dialog o AI (propozycja USA) | Nowy termin Ga/Ge/Sb 27.11 |
-| Energetyczna | USA, Norwegia, Rosja (Jamał) | Arabia Saudyjska (restart rurociągu, eksport przez Ormuz pod eskortą) | Rosja w paliwach (rafinerie, zakazy eksportu) | Rzeczywisty przepływ przez Ormuz (sprzeczne serie; pewność: niska) | Rurociąg Wschód–Zachód wznowiony częściowo |
-| Finansowa | USA (dolar, H.R. 5334) | — | Polska (rating), Rosja (SPFS maleje) | Użycie H.R. 5334 po ok. 18.10 | Nowe upoważnienie |
-| Infrastrukturalna | Chiny (przetwórstwo) | Egipt (Suez +27% r/r), USA (Grenlandia: 2 nowe obszary) | Panama (limit 32/dobę) | Janbu i rurociąg Wschód–Zachód pod ostrzałem Huti | Suez: korekta z „ogr.” |
+| Military | USA (globally) | Russia locally (approx. 150 km² in 4 weeks); Ukraine deep in Russia (refineries: Moscow, Ufa, Samara) | Saudi Arabia (air defence); USA — availability in Asia (0 carriers) | Scale of the US reduction in Europe (recommendation by 06.11) | Ukraine: from a "local initiative" to a deep-strike campaign |
+| Political | USA (UN GA agenda, Greenland) | Qatar and Pakistan (mediation); the Kremlin domestically (Duma) | EU (delisting under pressure, dispute with Kyiv) | Who decides in Tehran (confidence: low) | Greenland: from a risk to an agreement |
+| Economic | USA and China | Energy exporters outside the Gulf | Energy importers (EU; Poland — fuels without CPN) | Outcome of the summit on 24.09 and the 10.11 deadline | Brent < 100 — fall in the risk premium |
+| Technological | USA (chips) | China (magnets as leverage) | — | AI dialogue (US proposal) | New Ga/Ge/Sb deadline 27.11 |
+| Energy | USA, Norway, Russia (Yamal) | Saudi Arabia (pipeline restart, exports through Hormuz under escort) | Russia in fuels (refineries, export bans) | Actual flow through Hormuz (contradictory series; confidence: low) | East–West pipeline partly restarted |
+| Financial | USA (dollar, H.R. 5334) | — | Poland (rating), Russia (SPFS shrinking) | Use of H.R. 5334 after approx. 18.10 | New authorisation |
+| Infrastructure | China (processing) | Egypt (Suez +27% y/y), USA (Greenland: 2 new areas) | Panama (limit 32/day) | Yanbu and the East–West pipeline under Houthi fire | Suez: correction from "restricted" |
 
 ---
 
-## H. Scenariusze i prognozy
+## H. Scenarios and forecasts
 
-PROGNOZA. Jedyna sekcja raportu głównego z prawdopodobieństwami. Scenariusze to OCENA etapu 07 oparta na prognozach AGR_RT (zamrożonych w commicie 32a635e przed zebraniem benchmarków) i na analizie z etapu 03 (ACH, wskaźniki W1–W20). Scenariusze nie są rozliczane wynikiem Briera, bo nie mają jednoznacznych kryteriów; rozliczane są pytania z aneksu. Prawdopodobieństwa scenariuszy sumują się do 100% w każdym horyzoncie. Pewność analityczna rozkładów: **niska**.
+FORECAST. The only section of the main report with probabilities. The scenarios are a stage 07 ASSESSMENT based on the AGG_RT forecasts (frozen in commit 32a635e before the benchmarks were collected) and on the stage 03 analysis (ACH, indicators I1–I20). Scenarios are not scored with the Brier score because they have no unambiguous criteria; the questions in the annex are scored. Scenario probabilities sum to 100% in each horizon. Analytical confidence of the distributions: **low**.
 
-### H.1 Scenariusze
+### H.1 Scenarios
 
-#### Horyzont 6–12 miesięcy (do IX 2027)
+#### Horizon 6–12 months (to IX 2027)
 
-| Scenariusz | Opis | Czynniki uruchamiające | P (01) | P (00) | Sygnały wczesnego ostrzegania (daty) | Pytania z rejestru, które go mierzą |
+| Scenario | Description | Triggers | P (01) | P (00) | Early warning signals (dates) | Registry questions that measure it |
 |---|---|---|---|---|---|---|
-| **Bazowy: „Przewlekły kryzys bez rozstrzygnięć”** | Ormuz ograniczony (PortWatch poniżej 20 przejść na dobę) co najmniej do I kw. 2027 albo otwarty de facto tylko dla ruchu eskortowanego; zawieszenie uderzeń USA–Iran przerywane incydentami, bez porozumienia końcowego. Rozmowy o Ukrainie bez rozejmu, front z powolnym postępem Rosji. USA i Chiny przedłużają rozejm handlowy bez rozwiązania sporu o licencje na ziemie rzadkie. Rosja bez dekretu mobilizacyjnego (pobór całoroczny). | Rozdwojenie ośrodków decyzji w Teheranie; twarde warunki Kremla; Chiny i USA potrzebują rozejmu przed V plenum (26–29.10) i wyborami (03.11). | **55%** — mniej więcej równe szanse (najbardziej prawdopodobny z trzech) | 50% | 24.09 — szczyt Xi–Trump bez rozwiązania ziem rzadkich; do ok. 07.10 — druga runda USA–Iran bez porozumienia; X–XI — PortWatch poniżej 20 przejść/dobę; 10.11 — przedłużenie zawieszenia kontroli ChRL; 06.11 — rekomendacja przeglądu postawy USA bez redukcji w Polsce | Q-0011, Q-0021, Q-0026, Q-0036, Q-0037, Q-0042 |
-| **Korzystny: „Podwójna deeskalacja”** | Porozumienie USA–Iran (ramowe lub tymczasowe) ze stopniowym otwarciem Ormuzu i zniesieniem blokady; ramowy rozejm w Ukrainie, zaczynając od obustronnie potwierdzonego rozejmu energetycznego. | Presja cen paliw przed 03.11; mapa drogowa Iranu z 23.09 (60 dni zawieszenia broni); mediacja Kataru i Pakistanu; rosyjskie finanse (deficyt 2,5% PKB). | **20%** — mało prawdopodobny | 20% | Data drugiej rundy USA–Iran ogłoszona przez obie strony; PortWatch średnio ponad 40 przejść/dobę; oficjalne zniesienie blokady; spotkanie trójstronne USA–UA–RU z datą; Rosja i Ukraina obie potwierdzają rozejm energetyczny; TTF poniżej 60 EUR/MWh | Q-0028, Q-0038, Q-0036, Q-0059, Q-0026, Q-0030, Q-0008 |
-| **Kryzysowy: „Sprzężenie kryzysów”** | Wznowienie uderzeń USA (lub Izraela) na Iran i uderzenia Iranu lub Huti w infrastrukturę Zatoki (Janbu, rurociąg Wschód–Zachód, Abqaiq, Ras Tanura); rozpad rozejmu USA–Chiny (brak przedłużenia do 10.11, cła z H.R. 5334 na ChRL, sankcje na chiński bank); incydent z ofiarami na terytorium NATO; zima z magazynami gazu UE poniżej 55% na 01.01.2027. | Kurs IRGC; logika „szybkiej operacji” przed lub po 03.11; Izrael jako strona samodzielna; zimna zima; użycie H.R. 5334 po ok. 18.10. | **25%** — mało prawdopodobny | 30% | Komunikat CENTCOM o uderzeniu na ląd Iranu; ponowne wyłączenie rurociągu Wschód–Zachód; Brent powyżej 120 USD; brak wspólnego komunikatu USA–ChRL do 10.11; wpis banku z ChRL na listę SDN; ofiara śmiertelna od drona lub pocisku w państwie NATO | Q-0065, Q-0007, Q-0009, Q-0010, Q-0012, Q-0018, Q-0002, Q-0027 |
+| **Base: "Protracted crisis without resolution"** | Hormuz restricted (PortWatch below 20 transits per day) at least until Q1 2027 or open de facto only to escorted traffic; the US–Iran suspension of strikes interrupted by incidents, without a final agreement. Talks on Ukraine without a ceasefire, a front with slow Russian progress. The USA and China extend the trade truce without resolving the dispute over rare earth licences. Russia without a mobilisation decree (year-round conscription). | Split of decision centres in Tehran; the Kremlin's hard conditions; China and the USA need a truce before the Fifth Plenum (26–29.10) and the elections (03.11). | **55%** — roughly even chances (the most likely of the three) | 50% | 24.09 — Xi–Trump summit without a rare earths solution; by approx. 07.10 — second US–Iran round without an agreement; X–XI — PortWatch below 20 transits/day; 10.11 — extension of the suspension of PRC controls; 06.11 — US posture review recommendation without a reduction in Poland | Q-0011, Q-0021, Q-0026, Q-0036, Q-0037, Q-0042 |
+| **Favourable: "Double de-escalation"** | A US–Iran agreement (framework or interim) with a gradual opening of Hormuz and lifting of the blockade; a framework ceasefire in Ukraine, starting with a mutually confirmed energy ceasefire. | Pressure of fuel prices before 03.11; Iran's road map of 23.09 (60-day ceasefire); mediation by Qatar and Pakistan; Russian finances (deficit 2.5% of GDP). | **20%** — unlikely | 20% | Date of the second US–Iran round announced by both sides; PortWatch averaging over 40 transits/day; official lifting of the blockade; a US–UA–RU trilateral meeting with a date; Russia and Ukraine both confirm an energy ceasefire; TTF below EUR 60/MWh | Q-0028, Q-0038, Q-0036, Q-0059, Q-0026, Q-0030, Q-0008 |
+| **Crisis: "Coupling of crises"** | Resumed US (or Israeli) strikes on Iran and Iranian or Houthi strikes on Gulf infrastructure (Yanbu, the East–West pipeline, Abqaiq, Ras Tanura); collapse of the US–China truce (no extension by 10.11, H.R. 5334 tariffs on the PRC, sanctions on a Chinese bank); an incident with casualties on NATO territory; a winter with EU gas storage below 55% on 01.01.2027. | The IRGC's course; the logic of a "quick operation" before or after 03.11; Israel as an independent party; a cold winter; use of H.R. 5334 after approx. 18.10. | **25%** — unlikely | 30% | CENTCOM statement on a strike on Iranian land; renewed shutdown of the East–West pipeline; Brent above USD 120; no joint US–PRC statement by 10.11; a PRC bank added to the SDN list; a fatality from a drone or missile in a NATO state | Q-0065, Q-0007, Q-0009, Q-0010, Q-0012, Q-0018, Q-0002, Q-0027 |
 
-**Uzasadnienie zmian względem wydania 00.**
-- Kryzysowy −5 pp. Wyzwalacze tego scenariusza mają w prognozach AGR_RT pojedynczo prawdopodobieństwa od 0.06 do 0.35: uderzenie USA na Iran do 31.12 — 0.26 (Q-0065); Brent powyżej 120 USD — 0.19 (Q-0007); TTF powyżej 90 EUR/MWh — 0.30 (Q-0009); magazyny UE poniżej 55% na 01.01.2027 — 0.35 (Q-0010); brak przedłużenia rozejmu USA–ChRL do 10.11 — 0.25 (dopełnienie Q-0011); bank z ChRL na liście SDN do 31.03.2027 — 0.09 (Q-0018); ofiara na terytorium NATO — 0.06 (Q-0002). Scenariusz wymaga sprzężenia co najmniej dwóch–trzech z nich. Od wydania 00 USA wstrzymują uderzenia (15 okresów), rozmowy ruszyły (22.09), rurociąg Wschód–Zachód wznowiono. W przeciwną stronę działają atak Huti na Rijad (19.09), twardsze warunki Iranu i trafione tankowce (21.09) — dlatego obniżka wynosi tylko 5 pp.
-- Korzystny bez zmian. Porozumienie USA–Iran do 31.12 ma 0.30 (Q-0028), a zniesienie blokady 0.28 (Q-0038). Jednak scenariusz wymaga także ramowego rozejmu w Ukrainie, a tu sygnały są słabe: Kreml mówi o „braku postępów” (21.09), obustronne potwierdzenie rozejmu energetycznego do 07.10 ma 0.12 (Q-0059), spotkanie Putin–Trump do 31.03.2027 — 0.27 (Q-0030).
-- Bazowy +5 pp — przejmuje różnicę. Opis skorygowano o dwa elementy obalone w etapie 03: „wymiana uderzeń USA–Iran” (od 15 okresów brak uderzeń) i „niejawna mobilizacja” (pobór w 2026 r. jest całoroczny na podstawie dekretu nr 998; osobnego dekretu się nie spodziewa, a dekret mobilizacyjny do 31.12 jest prawie wykluczony — 0.03, Q-0001).
-- Ryzyko skorelowanego błędu: ocena scenariusza kryzysowego opiera się w dużej mierze na założeniu Z1 („administracja nie wznowi uderzeń przed 03.11”), które red team wskazał jako wspólne dla ok. 10 prognoz (05 §1 p. 1), oraz na pominięciu Izraela jako samodzielnego aktora (05 §1 p. 2). Jeśli Z1 zawiedzie, jednocześnie przesuną się Q-0007, Q-0028, Q-0038, Q-0041, Q-0065 i Q-0068.
+**Rationale for changes relative to edition 00.**
+- Crisis −5 pp. The triggers of this scenario individually have AGG_RT probabilities from 0.06 to 0.35: US strike on Iran by 31.12 — 0.26 (Q-0065); Brent above USD 120 — 0.19 (Q-0007); TTF above EUR 90/MWh — 0.30 (Q-0009); EU storage below 55% on 01.01.2027 — 0.35 (Q-0010); no extension of the US–PRC truce by 10.11 — 0.25 (complement of Q-0011); a PRC bank on the SDN list by 31.03.2027 — 0.09 (Q-0018); a fatality on NATO territory — 0.06 (Q-0002). The scenario requires a coupling of at least two or three of them. Since edition 00 the USA has held off strikes (15 periods), talks have begun (22.09), and the East–West pipeline has been restarted. Working in the opposite direction are the Houthi attack on Riyadh (19.09), Iran's harder conditions and the tankers hit (21.09) — which is why the reduction is only 5 pp.
+- Favourable unchanged. A US–Iran agreement by 31.12 has 0.30 (Q-0028), and lifting of the blockade 0.28 (Q-0038). However, the scenario also requires a framework ceasefire in Ukraine, and the signals there are weak: the Kremlin speaks of "no progress" (21.09), mutual confirmation of an energy ceasefire by 07.10 has 0.12 (Q-0059), a Putin–Trump meeting by 31.03.2027 — 0.27 (Q-0030).
+- Base +5 pp — takes up the difference. The description was corrected for two elements refuted in stage 03: "exchange of US–Iran strikes" (no strikes for 15 periods) and "covert mobilisation" (conscription in 2026 is year-round under decree no. 998; no separate decree is expected, and a mobilisation decree by 31.12 is almost ruled out — 0.03, Q-0001).
+- Risk of correlated error: the assessment of the crisis scenario rests largely on key assumption KA1 ("the administration will not resume strikes before 03.11"), which the red team identified as shared by approx. 10 forecasts (05 §1 item 1), and on the omission of Israel as an independent actor (05 §1 item 2). If KA1 fails, Q-0007, Q-0028, Q-0038, Q-0041, Q-0065 and Q-0068 will shift at the same time.
 
-#### Horyzont 2–3 lata (do 2029)
+#### Horizon 2–3 years (to 2029)
 
-| Scenariusz | Opis | Czynniki uruchamiające | P (01) | P (00) | Sygnały wczesnego ostrzegania (daty) |
+| Scenario | Description | Triggers | P (01) | P (00) | Early warning signals (dates) |
 |---|---|---|---|---|---|
-| **Bazowy: „Ład blokowy z drogą energią”** | Ormuz otwarty pod nowym reżimem (nadzór i opłaty), premia ryzyka trwała. Wojna w Ukrainie zamrożona na linii kontaktu bez traktatu. Europa zbliża się do 5% PKB na obronę i bezpieczeństwo; USA redukują obecność w Europie po przeglądzie postawy i przesuwają część sił na flankę. Chiny umacniają się w Azji. | Wyczerpanie stron; transakcyjna polityka USA wobec sojuszników (Grenlandia, baza w Polsce finansowana przez PL). | **45%** — mniej więcej równe szanse (najbardziej prawdopodobny z trzech) | 45% | 06.11.2026 — rekomendacja przeglądu postawy USA; X 2026 — projekt budżetu Rosji na 2027–2029; ratyfikacja umowy grenlandzkiej; NDAA FY2027 (§1232); kampania prezydencka w USA 2028 |
-| **Korzystny: „Stabilizacja z gwarancjami”** | Trwały rozejm w Ukrainie z gwarancjami europejskimi i finansowaniem odbudowy; porozumienie z Iranem; normalizacja podaży; Rosja osłabiona fiskalnie. | Zmiana polityki lub władzy w Iranie; kryzys finansów Rosji (Brent poniżej 70 USD na dłużej). | **20%** — mało prawdopodobny | 20% | Umowa o gwarancjach z udziałem USA; powrót Kataru do pełnego eksportu LNG (naprawa ok. 3 lata — G2-020); TTF 30–40 EUR/MWh; zniesienie blokad morskich |
-| **Kryzysowy: „Test NATO i Tajwanu”** | Rosja testuje NATO w rejonie Bałtyku przy zmniejszonej obecności USA; ChRL przeprowadza „kwarantannę” Tajwanu; wojna handlowa USA–Chiny odnowiona. | Wycofanie 25–40 tys. żołnierzy USA z Europy; okno słabości USA w Azji (0 lotniskowców w misji). | **35%** — mało prawdopodobny | 35% | Decyzja o redukcji ≥ 10 tys. żołnierzy USA w Europie (Q-0003); nazwane ćwiczenia PLA wokół Tajwanu (Q-0005); ogłoszenie mobilizacji w Rosji; odwołanie wzajemnych wizyt Trump–Xi |
+| **Base: "Bloc order with expensive energy"** | Hormuz open under a new regime (supervision and fees), a lasting risk premium. The war in Ukraine frozen on the line of contact without a treaty. Europe approaches 5% of GDP on defence and security; the USA reduces its presence in Europe after the posture review and shifts part of its forces to the flank. China strengthens in Asia. | Exhaustion of the parties; transactional US policy towards allies (Greenland, a base in Poland financed by PL). | **45%** — roughly even chances (the most likely of the three) | 45% | 06.11.2026 — US posture review recommendation; X 2026 — Russia's draft budget for 2027–2029; ratification of the Greenland agreement; NDAA FY2027 (§1232); 2028 US presidential campaign |
+| **Favourable: "Stabilisation with guarantees"** | A lasting ceasefire in Ukraine with European guarantees and reconstruction financing; an agreement with Iran; normalisation of supply; Russia fiscally weakened. | A change of policy or power in Iran; a crisis in Russian finances (Brent below USD 70 for longer). | **20%** — unlikely | 20% | A guarantees agreement with US participation; Qatar's return to full LNG exports (repair approx. 3 years — G2-020); TTF EUR 30–40/MWh; lifting of naval blockades |
+| **Crisis: "Test of NATO and Taiwan"** | Russia tests NATO in the Baltic region with a reduced US presence; the PRC carries out a "quarantine" of Taiwan; the US–China trade war renewed. | Withdrawal of 25–40 thousand US troops from Europe; a window of US weakness in Asia (0 carriers on mission). | **35%** — unlikely | 35% | Decision to reduce US troops in Europe by ≥ 10 thousand (Q-0003); named PLA exercises around Taiwan (Q-0005); announcement of mobilisation in Russia; cancellation of the Trump–Xi reciprocal visits |
 
-OCENA (pewność: niska): dwa dni okresu badanego nie dają podstaw do zmiany rozkładu w tym horyzoncie. Nowe fakty działają w przeciwne strony: opcje redukcji 25–40 tys. żołnierzy USA w Europie (G1-030) wzmacniają wyzwalacz scenariusza kryzysowego, a umowa grenlandzka (G4-025) usuwa jedno ze źródeł napięć wewnątrz NATO. Rozkład utrzymany.
+ASSESSMENT (confidence: low): two days of the period under review give no basis for changing the distribution in this horizon. The new facts work in opposite directions: the options to reduce US troops in Europe by 25–40 thousand (G1-030) strengthen a trigger of the crisis scenario, and the Greenland agreement (G4-025) removes one source of tension within NATO. Distribution kept.
 
-#### Horyzont 5–10 lat (2031–2036)
+#### Horizon 5–10 years (2031–2036)
 
-| Scenariusz | Opis | Czynniki uruchamiające | P (01) | P (00) | Sygnały wczesnego ostrzegania |
+| Scenario | Description | Triggers | P (01) | P (00) | Early warning signals |
 |---|---|---|---|---|---|
-| **Bazowy: „Wielobiegunowość z dwoma rdzeniami”** | USA i Chiny jako rdzenie; Rosja partnerem zależnym od Chin; Europa średnio samodzielna militarnie; Zatoka traci status pewnego dostawcy; przyspieszona elektryfikacja i dywersyfikacja. | Trwałe koszty wojny z Iranem; industrializacja obronna Europy. | **50%** — równe szanse | 50% | Udział Chin w przetwórstwie ziem rzadkich poniżej 80%; europejskie zdolności strategiczne bez USA (obrona powietrzna, rozpoznanie); nowe szlaki lądowe (Middle Corridor, TRIPP) |
-| **Korzystny: „Odbudowa ładu transatlantyckiego”** | Odbudowa zaufania USA–Europa; Ukraina w UE; reformy w Rosji po Putinie. | Zmiana władzy w Rosji; pokolenie polityczne w USA przychylne sojuszom. | **20%** — mało prawdopodobny | 20% | Traktat akcesyjny Ukrainy; zmiana władzy w Rosji; stałe bazy USA w Polsce z przypisanym stanem osobowym |
-| **Kryzysowy: „Konflikt mocarstw”** | Wojna o Tajwan albo faktyczny rozpad NATO; rosyjski rewanż wobec państw bałtyckich. | Błąd kalkulacji; przyspieszenie rywalizacji technologicznej. | **30%** — mało prawdopodobny | 30% | Stulecie PLA (01.08.2027) jako deklarowany cel gotowości; wycofanie USA ze struktur dowodzenia NATO; przejście retoryki nuklearnej w rozmieszczenie |
+| **Base: "Multipolarity with two cores"** | The USA and China as cores; Russia as a partner dependent on China; Europe moderately autonomous militarily; the Gulf loses its status as a reliable supplier; accelerated electrification and diversification. | Lasting costs of the war with Iran; Europe's defence industrialisation. | **50%** — even chances | 50% | China's share of rare earth processing below 80%; European strategic capabilities without the USA (air defence, reconnaissance); new land routes (Middle Corridor, TRIPP) |
+| **Favourable: "Rebuilding the transatlantic order"** | Rebuilding of US–Europe trust; Ukraine in the EU; reforms in Russia after Putin. | A change of power in Russia; a political generation in the USA favourable to alliances. | **20%** — unlikely | 20% | Ukraine's accession treaty; a change of power in Russia; permanent US bases in Poland with assigned personnel |
+| **Crisis: "Great-power conflict"** | A war over Taiwan or a de facto break-up of NATO; Russian revanche against the Baltic states. | Miscalculation; acceleration of technological rivalry. | **30%** — unlikely | 30% | The PLA centenary (01.08.2027) as a declared readiness goal; US withdrawal from NATO command structures; nuclear rhetoric turning into deployment |
 
-OCENA (pewność: niska): rozkład utrzymany — w horyzoncie 5–10 lat dwa dni nowych faktów nie są informacją. Pierwsza realna rewizja: przegląd kwartalny (ok. 21.12.2026).
+ASSESSMENT (confidence: low): distribution kept — over a 5–10 year horizon two days of new facts are not information. First real revision: the quarterly review (approx. 21.12.2026).
 
-### H.2 Najważniejsze prognozy według PIR
+### H.2 Key forecasts by PIR
 
-Pełna lista 73 prognoz AGR_RT według wektorów, z rozrzutem soczewek i zmianą względem poprzedniego wydania — aneks na końcu raportu. Poniżej prognozy, które najmocniej rozróżniają scenariusze. W nawiasie: ID pytania i termin.
+The full list of 73 AGG_RT forecasts by vector, with the lens spread and the change relative to the previous edition — annex at the end of the report. Below are the forecasts that best discriminate between scenarios. In brackets: question ID and deadline.
 
-**PIR-1 — Rosja wobec NATO i flanki.** Dekret o mobilizacji do 31.12 — prawie wykluczony, **0.03** (Q-0001). Ofiara śmiertelna od rosyjskiego drona lub pocisku na terytorium NATO do 31.12 — bardzo mało prawdopodobna, **0.06** (Q-0002). Wniosek z art. 4 do 31.12 — bardzo mało prawdopodobny, **0.11** (Q-0027). Potwierdzone naruszenie polskiej przestrzeni powietrznej z kierunku RU/BY do 07.10 — bardzo mało prawdopodobne, **0.18** (Q-0045). Uszkodzenie kabla lub rurociągu na Bałtyku ze śledztwem do 31.03.2027 — prawdopodobne, **0.67** (Q-0040; największy rozrzut soczewek: 0.40–0.75; korekta red teamu +0.10 na podstawie klasy odniesienia — incydent w każdej z trzech ostatnich zim). Przyrost terytorium zajętego przez Rosję w X powyżej 200 km² — mało prawdopodobny, **0.23** (Q-0004). Rosja kontroluje cały Kramatorsk lub Słowiańsk do 30.06.2027 — bardzo mało prawdopodobne, **0.12** (Q-0073). Projekt budżetu 2027 z deficytem ≥ 2,0% PKB — równe szanse, **0.49** (Q-0053). 22. pakiet sankcji UE do 31.12 — równe szanse, **0.48** (Q-0019).
+**PIR-1 — Russia towards NATO and the flank.** Mobilisation decree by 31.12 — almost ruled out, **0.03** (Q-0001). A fatality from a Russian drone or missile on NATO territory by 31.12 — very unlikely, **0.06** (Q-0002). An Art. 4 request by 31.12 — very unlikely, **0.11** (Q-0027). A confirmed violation of Polish airspace from the RU/BY direction by 07.10 — very unlikely, **0.18** (Q-0045). Damage to a cable or pipeline in the Baltic with an investigation by 31.03.2027 — likely, **0.67** (Q-0040; the largest lens spread: 0.40–0.75; red team correction +0.10 based on the reference class — an incident in each of the last three winters). Increase in territory taken by Russia in X above 200 km² — unlikely, **0.23** (Q-0004). Russia controls all of Kramatorsk or Sloviansk by 30.06.2027 — very unlikely, **0.12** (Q-0073). Draft budget for 2027 with a deficit ≥ 2.0% of GDP — even chances, **0.49** (Q-0053). The EU's 22nd sanctions package by 31.12 — even chances, **0.48** (Q-0019).
 
-**PIR-2 — USA/NATO i obecność USA w Polsce.** Decyzja o zmniejszeniu liczby żołnierzy USA w Europie o co najmniej 10 tys. do 31.03.2027 — mało prawdopodobna, **0.40** (Q-0003; korekta red teamu +0.07: §1249 NDAA to procedura certyfikacji, nie zakaz). Oficjalna lokalizacja stałej bazy USA w Polsce do 07.10 — mało prawdopodobna, **0.20** (Q-0044). Spotkanie trójstronne delegacji USA–UA–RU do 30.11 — równe szanse, **0.45** (Q-0026). Spotkanie Putin–Trump do 31.03.2027 — mało prawdopodobne, **0.27** (Q-0030). Umowa dronowa USA–Ukraina do 07.10 — mało prawdopodobna, **0.27** (Q-0064). Republikanie z co najmniej 218 mandatami w Izbie — bardzo mało prawdopodobne, **0.11** (Q-0031).
+**PIR-2 — USA/NATO and the US presence in Poland.** A decision to reduce US troops in Europe by at least 10 thousand by 31.03.2027 — unlikely, **0.40** (Q-0003; red team correction +0.07: §1249 NDAA is a certification procedure, not a ban). Official location of a permanent US base in Poland by 07.10 — unlikely, **0.20** (Q-0044). A trilateral meeting of US–UA–RU delegations by 30.11 — even chances, **0.45** (Q-0026). A Putin–Trump meeting by 31.03.2027 — unlikely, **0.27** (Q-0030). A US–Ukraine drone agreement by 07.10 — unlikely, **0.27** (Q-0064). Republicans with at least 218 seats in the House — very unlikely, **0.11** (Q-0031).
 
-**PIR-3 — energia w Europie i w Polsce.** Brent powyżej 100 USD w dniu 06.10 — mało prawdopodobny, **0.40** (Q-0006); powyżej 120 USD w dowolnym dniu do 31.12 — **0.19** (Q-0007); poniżej 80 USD — **0.20** (Q-0008). TTF powyżej 90 EUR/MWh do 31.12 — mało prawdopodobny, **0.30** (Q-0009); powyżej 75 EUR/MWh w dniu 06.10 — **0.37** (Q-0048). Magazyny UE powyżej 73% w dniu 06.10 — prawdopodobne, **0.62** (Q-0049); co najmniej 80% w dniu 01.11 — mało prawdopodobne, **0.35** (Q-0067); poniżej 55% w dniu 01.01.2027 — mało prawdopodobne, **0.35** (Q-0010). Olej napędowy w Polsce powyżej 9,00 zł/l w notowaniu z 07.10 — mało prawdopodobny, **0.38** (Q-0050). CPI we wrześniu co najmniej 3,5% r/r — bardzo prawdopodobne, **0.94** (Q-0013; korekta red teamu +0.10 z powodu efektu bazy: w IX 2025 CPI m/m wynosił 0,0%). Podwyższenie produkcji przez OPEC+ na XI — mało prawdopodobne, **0.28** (Q-0051).
+**PIR-3 — energy in Europe and in Poland.** Brent above USD 100 on 06.10 — unlikely, **0.40** (Q-0006); above USD 120 on any day by 31.12 — **0.19** (Q-0007); below USD 80 — **0.20** (Q-0008). TTF above EUR 90/MWh by 31.12 — unlikely, **0.30** (Q-0009); above EUR 75/MWh on 06.10 — **0.37** (Q-0048). EU storage above 73% on 06.10 — likely, **0.62** (Q-0049); at least 80% on 01.11 — unlikely, **0.35** (Q-0067); below 55% on 01.01.2027 — unlikely, **0.35** (Q-0010). Diesel in Poland above PLN 9.00/l in the 07.10 reading — unlikely, **0.38** (Q-0050). CPI in September at least 3.5% y/y — very likely, **0.94** (Q-0013; red team correction +0.10 due to the base effect: in IX 2025 CPI m/m was 0.0%). OPEC+ raising production for XI — unlikely, **0.28** (Q-0051).
 
-**PIR-4 — USA–Chiny, technologie, surowce, Tajwan.** Obustronnie ogłoszone przedłużenie rozejmu handlowego do 07.10 — równe szanse, **0.45** (Q-0058); do 10.11 — prawdopodobne, **0.75** (Q-0011). Przedłużenie zawieszenia kontroli ziem rzadkich do 10.11 — prawdopodobne, **0.68** (Q-0021); zawieszenia zakazu Ga/Ge/Sb do 27.11 — **0.68** (Q-0022). Cło z H.R. 5334 na państwo inne niż Rosja do 31.12 — bardzo mało prawdopodobne, **0.19** (Q-0012). Nowy wpis MOFCOM wobec podmiotu z USA do 31.12 — mało prawdopodobny, **0.43** (Q-0023). Zgoda USA na eksport układów Blackwell do ChRL do 31.12 — bardzo mało prawdopodobna, **0.17** (Q-0024). Trump osobiście na APEC w Shenzhen — równe szanse, **0.53** (Q-0029). Notyfikacja sprzedaży broni Tajwanowi za co najmniej 1 mld USD do 31.12 — bardzo mało prawdopodobna, **0.17** (Q-0069). Nazwane ćwiczenia PLA wokół Tajwanu do 31.03.2027 — mało prawdopodobne, **0.33** (Q-0005).
+**PIR-4 — USA–China, technology, raw materials, Taiwan.** A mutually announced extension of the trade truce by 07.10 — even chances, **0.45** (Q-0058); by 10.11 — likely, **0.75** (Q-0011). Extension of the suspension of rare earth controls by 10.11 — likely, **0.68** (Q-0021); of the suspension of the Ga/Ge/Sb ban by 27.11 — **0.68** (Q-0022). An H.R. 5334 tariff on a state other than Russia by 31.12 — very unlikely, **0.19** (Q-0012). A new MOFCOM listing of a US entity by 31.12 — unlikely, **0.43** (Q-0023). US approval of Blackwell chip exports to the PRC by 31.12 — very unlikely, **0.17** (Q-0024). Trump in person at APEC in Shenzhen — even chances, **0.53** (Q-0029). Notification of an arms sale to Taiwan worth at least USD 1 billion by 31.12 — very unlikely, **0.17** (Q-0069). Named PLA exercises around Taiwan by 31.03.2027 — unlikely, **0.33** (Q-0005).
 
-**PIR-5 — Iran i szlaki morskie.** Uderzenie USA na lądowe terytorium Iranu do 07.10 — bardzo mało prawdopodobne, **0.06** (Q-0041); do 31.12 — mało prawdopodobne, **0.26** (Q-0065). Kolejna runda rozmów USA–Iran do 07.10 — równe szanse, **0.48** (Q-0042). Porozumienie USA–Iran obejmujące otwarcie Ormuzu do 31.12 — mało prawdopodobne, **0.30** (Q-0028); oficjalne zniesienie lub zawieszenie blokady — **0.28** (Q-0038). Co najmniej 20 przejść przez Ormuz w dowolnej dobie do 07.10 (PortWatch) — bardzo mało prawdopodobne, **0.11** (Q-0037); średnia 7-dniowa powyżej 40 do 31.12 — mało prawdopodobna, **0.24** (Q-0036). Atak na statek handlowy w Morzu Czerwonym, Bab al-Mandab lub Zatoce Adeńskiej do 07.10 — równe szanse, **0.51** (Q-0062; korekta red teamu +0.08: brak danych za IX to luka, nie dowód spokoju). Atak z Jemenu na Rijad potwierdzony przez Arabię Saudyjską do 07.10 — mało prawdopodobny, **0.37** (Q-0043). Uderzenie USA na Huti do 31.12 — **0.23** (Q-0068).
+**PIR-5 — Iran and sea lanes.** A US strike on Iran's land territory by 07.10 — very unlikely, **0.06** (Q-0041); by 31.12 — unlikely, **0.26** (Q-0065). Another round of US–Iran talks by 07.10 — even chances, **0.48** (Q-0042). A US–Iran agreement including the opening of Hormuz by 31.12 — unlikely, **0.30** (Q-0028); official lifting or suspension of the blockade — **0.28** (Q-0038). At least 20 transits through Hormuz on any day by 07.10 (PortWatch) — very unlikely, **0.11** (Q-0037); a 7-day average above 40 by 31.12 — unlikely, **0.24** (Q-0036). An attack on a merchant ship in the Red Sea, Bab al-Mandab or the Gulf of Aden by 07.10 — even chances, **0.51** (Q-0062; red team correction +0.08: the lack of data for IX is a gap, not evidence of calm). An attack from Yemen on Riyadh confirmed by Saudi Arabia by 07.10 — unlikely, **0.37** (Q-0043). A US strike on the Houthis by 31.12 — **0.23** (Q-0068).
 
-**PIR-6 — finanse mocarstw i PLN.** Podwyżka FOMC 28.10 — mało prawdopodobna, **0.33** (Q-0066). Podwyżka EBC do 31.12 — mało prawdopodobna, **0.43** (Q-0017). Zmiana stopy przez RPP do 31.12 — bardzo mało prawdopodobna, **0.18** (Q-0016). Obniżka stopy Banku Rosji 23.10 — mało prawdopodobna, **0.25** (Q-0020). EUR/PLN powyżej 4,3500 w dniu 07.10 — równe szanse, **0.46** (Q-0052). Obniżka ratingu Polski przez Fitch lub S&P do 31.03.2027 — mało prawdopodobna, **0.31** (Q-0070). Wpis podmiotu z ChRL lub Hongkongu na listę SDN w związku z Iranem do 07.10 — prawdopodobny, **0.56** (Q-0060). Akt UE umożliwiający użycie samych zamrożonych aktywów Banku Rosji do 30.06.2027 — bardzo mało prawdopodobny, **0.17** (Q-0071).
+**PIR-6 — great-power finances and the PLN.** FOMC hike on 28.10 — unlikely, **0.33** (Q-0066). ECB hike by 31.12 — unlikely, **0.43** (Q-0017). A rate change by the MPC by 31.12 — very unlikely, **0.18** (Q-0016). Bank of Russia rate cut on 23.10 — unlikely, **0.25** (Q-0020). EUR/PLN above 4.3500 on 07.10 — even chances, **0.46** (Q-0052). A downgrade of Poland's rating by Fitch or S&P by 31.03.2027 — unlikely, **0.31** (Q-0070). A PRC or Hong Kong entity added to the SDN list in connection with Iran by 07.10 — likely, **0.56** (Q-0060). An EU act allowing the use of the frozen Bank of Russia assets themselves by 30.06.2027 — very unlikely, **0.17** (Q-0071).
 
-**PIR-7 — orientacje państw.** Sprawiedliwa Rosja z co najmniej 5,00% w ostatecznych wynikach — bardzo prawdopodobne, **0.94** (Q-0054). Zjednoczona Lista z największą liczbą mandatów na Łotwie — bardzo prawdopodobne, **0.82** (Q-0055). Lula wygrywa wybory w Brazylii — prawdopodobne, **0.56** (Q-0033); ponad 50% w I turze — bardzo mało prawdopodobne, **0.06** (Q-0056). Data wyborów w Wenezueli do 31.03.2027 — mało prawdopodobna, **0.33** (Q-0034). Traktat Armenia–Azerbejdżan do 30.06.2027 — bardzo mało prawdopodobny, **0.13** (Q-0072). Goïta traci władzę do 31.03.2027 — bardzo mało prawdopodobne, **0.09** (Q-0035).
+**PIR-7 — state orientations.** A Just Russia with at least 5.00% in the final results — very likely, **0.94** (Q-0054). The United List with the largest number of seats in Latvia — very likely, **0.82** (Q-0055). Lula wins the election in Brazil — likely, **0.56** (Q-0033); over 50% in the first round — very unlikely, **0.06** (Q-0056). A date for elections in Venezuela by 31.03.2027 — unlikely, **0.33** (Q-0034). An Armenia–Azerbaijan treaty by 30.06.2027 — very unlikely, **0.13** (Q-0072). Goïta loses power by 31.03.2027 — very unlikely, **0.09** (Q-0035).
 
-### H.3 Właściwości zestawu prognoz
+### H.3 Properties of the forecast set
 
-- 73 pytania aktywne: panel stały 40 (po 5 na wektor), swobodne 33. Terminy: 28 pytań do 10.10.2026, 32 do 31.12.2026 (w tym terminy X–XII), 13 dłuższych. Pierwsze rozliczenie — w wydaniu 02.
-- Średnia AGR_RT: 0.338. Rozkład: poniżej 0.20 — 23 pytania; 0.20–0.44 — 28; 0.45–0.55 — 11; 0.56–0.79 — 8; 0.80 i więcej — 3. Trywialność (§3.8): 1 z 73 pytań poza przedziałem 0.05–0.95 (Q-0001) — reguła spełniona.
-- Pewność analityczna AGR_RT: niska — 50 pytań, średnia — 23, wysoka — 0.
-- Red team: 9 korekt przyjętych w etapie 06 (od −0.07 do +0.12), 0 odrzuconych. Rozrzut soczewek powyżej 0.30 — tylko Q-0040.
-- Pięć pytań ma identyczne p we wszystkich trzech soczewkach (Q-0001, Q-0002, Q-0026, Q-0044, Q-0058) — możliwe zakotwiczenie na wspólnym materiale z etapu 03; dla Q-0001 i Q-0002 dodatkowo zgłoszona ekspozycja soczewki B na wiersze soczewki A (sekcja J).
-- „Zmiana vs poprzednie wydanie”: wszystkie prognozy są nowe — wydanie 00 nie miało rejestru pytań.
+- 73 active questions: standing panel 40 (5 per vector), open 33. Deadlines: 28 questions by 10.10.2026, 32 by 31.12.2026 (including deadlines in X–XII), 13 longer. First scoring — in edition 02.
+- AGG_RT mean: 0.338. Distribution: below 0.20 — 23 questions; 0.20–0.44 — 28; 0.45–0.55 — 11; 0.56–0.79 — 8; 0.80 and above — 3. Triviality (§3.8): 1 of 73 questions outside the 0.05–0.95 range (Q-0001) — rule satisfied.
+- AGG_RT analytical confidence: low — 50 questions, medium — 23, high — 0.
+- Red team: 9 corrections accepted in stage 06 (from −0.07 to +0.12), 0 rejected. Lens spread above 0.30 — only Q-0040.
+- Five questions have identical p in all three lenses (Q-0001, Q-0002, Q-0026, Q-0044, Q-0058) — possible anchoring on shared stage 03 material; for Q-0001 and Q-0002 additionally a reported exposure of lens B to lens A rows (section J).
+- "Change vs previous edition": all forecasts are new — edition 00 had no question registry.
 
 ---
 
-## I. Tabela najistotniejszych zmian
+## I. Table of the most significant changes
 
-| Data | Wydarzenie | Region | Domena | Zyskuje | Traci | Znaczenie strategiczne (OCENA) | Pewn. | Możliwe konsekwencje |
+| Date | Event | Region | Domain | Gains | Loses | Strategic significance (ASSESSMENT) | Conf. | Possible consequences |
 |---|---|---|---|---|---|---|---|---|
-| 16.09.2026 | Fed podnosi stopy do 3,75–4,00% — pierwsza podwyżka od 2023 r. (G3-024) | USA / glob. | FIN | USD | Kraje z wysokimi potrzebami pożyczkowymi (PL: 317 mld zł netto w 2027) | Szok energetyczny przeszedł w politykę pieniężną głównych banków | wysoka | Droższy kapitał; presja na PLN przy awersji do ryzyka |
-| 18.09.2026 | Podpisanie H.R. 5334 — upoważnienie do ceł do 100% na importerów rosyjskiej energii (G3-002, G3-003) | USA / glob. | FIN / GOS | USA (dźwignia) | Rosja (potencjalnie przychody), Indie, Turcja | Nowe narzędzie sankcji wtórnych z terminem ok. 18.10 | wysoka | Rozbicie rozejmu USA–ChRL albo presja na Indie i Turcję |
-| 18.09.2026 | Moody's: Polska A2 → A3, perspektywa stabilna (G3-030) | Polska | FIN | — | Polska | Pierwsza obniżka przez Moody's; deficyt GG ok. 7% PKB | wysoka | Przeglądy S&P (06.11) i Fitch (perspektywa negatywna) |
-| 18.09.2026 | Opcje wycofania 25–40 tys. z ok. 80 tys. żołnierzy USA z Europy; rekomendacja do 06.11; równolegle zapowiedź bazy w PL (G1-030, G1-025) | Europa / PL | MIL | Flanka (potencjalnie) | Europa Zachodnia; spójność NATO | Możliwa redukcja o 31–50% stanu USA w Europie (25–40 z ok. 80 tys.) — na razie w fazie opcji | średnia | Redukcja ≥ 10 tys.; spór o lokalizację i stan osobowy bazy w PL |
-| 19.09.2026 | Pierwszy atak Huti na Rijad w tej eskalacji; deklarowany atak na Janbu (G1-014, G1-015) | Arabia Saudyjska | MIL / ENE | Huti, Iran (dźwignia) | Arabia Saudyjska | Obejście Ormuzu w zasięgu przeciwnika | średnia | Ponowne wyłączenie rurociągu Wschód–Zachód; skok Brent |
-| 19–22.09.2026 | Uderzenia UA na rafinerie w Moskwie, Ufie i Samarze (G2-026…028) | Rosja | MIL / ENE | Ukraina | Rosja (paliwa) | Kampania na głębię jako główny instrument UA; rozejm energetyczny jako przedmiot przetargu | średnia | Dłuższe zakazy eksportu paliw z RU; wyższe marże diesla w UE |
-| 20.09.2026 | PortWatch: 1 przejście przez Ormuz wobec 32/dobę wg CENTCOM (G1-001, G2-006) | Zatoka | INF | — | Importerzy ropy i LNG | Nie wiadomo, ile ropy realnie przepływa — główna luka informacyjna | niska | Rozbieżne rozliczenia pytań o Ormuz |
-| 21–22.09.2026 | Duma: JR 57,83%, ok. 355/450 mandatów; frekwencja sporna (G4-028, G4-029) | Rosja | WEW | Kreml | Opozycja systemowa | Większość konstytucyjna bez hamulców wewnętrznych do 2027 | wysoka | Budżet wojenny 2027 bez oporu parlamentarnego |
-| 22.09.2026 | Rozmowy USA–Iran w Nowym Jorku (ok. 3 h, mediacja Kataru); 23.09 mapa drogowa Iranu (G4-002, A-dod.) | Iran / USA | DYP | Katar, Pakistan (mediatorzy) | IRGC (kontrola przekazu) | Pierwszy strukturalny kontakt od VI 2026 | wysoka (fakt); niska (skutek) | Druga runda; zawieszenie broni; albo „wszystko skończy się szybko” |
-| 22.09.2026 | Umowa obronna USA–Dania–Grenlandia (G4-025, G4-026) | Arktyka | DYP / MIL | USA, Dania | Rosja, Chiny (zakaz baz spoza NATO) | Spór sojuszniczy zamieniony w umowę | wysoka | Ratyfikacja w Inatsisartut i Folketingu |
-| 22.09.2026 | Brent 99,25 USD (pierwszy raz < 100 od 08.09); TTF 71–74; restart rurociągu Wschód–Zachód (G2-002, G2-015, G2-008) | glob. | ENE | Importerzy energii | Eksporterzy (marginalnie) | Rynek wycenia deeskalację przed jej potwierdzeniem | średnia | Gwałtowny powrót premii ryzyka przy incydencie |
-| 22.09.2026 | UE przedłuża sankcje indywidualne o 36 mies.; delisting Usmanowa i Fridmana (G3-035) | UE | FIN | Rosja (pojedyncze osoby) | Spójność UE–Ukraina | Jednomyślność kupowana ustępstwami | średnia | Opóźnienie 22. pakietu (Słowacja) |
-| 22.09.2026 | Ił-20 przechwycony 40 km od polskiego wybrzeża (G1-033) | Bałtyk / PL | MIL | — | — | Ciągłość presji poniżej progu art. 4 | wysoka | Kolejne testy; ryzyko incydentu z ofiarami niskie, ale niezerowe |
-| 23.09.2026 | ON 8,99 zł/l (e-petrol), bez CPN; prezydent kieruje ustawę o podatku od nadzwyczajnych zysków do TK (C-04, C-05) | Polska | ENE / WEW | — | Konsumenci, inflacja | Szok paliwowy bez amortyzatora fiskalnego | wysoka | CPI IX powyżej 3,5% r/r; spór rząd–prezydent o CPN |
+| 16.09.2026 | The Fed raises rates to 3.75–4.00% — the first hike since 2023 (G3-024) | USA / global | FIN | USD | Countries with high borrowing needs (PL: PLN 317 billion net in 2027) | The energy shock has passed into the monetary policy of the main central banks | high | More expensive capital; pressure on the PLN under risk aversion |
+| 18.09.2026 | H.R. 5334 signed — authorisation for tariffs of up to 100% on importers of Russian energy (G3-002, G3-003) | USA / global | FIN / ECO | USA (leverage) | Russia (potentially revenues), India, Turkey | A new secondary sanctions tool with a deadline of approx. 18.10 | high | Break-up of the US–PRC truce or pressure on India and Turkey |
+| 18.09.2026 | Moody's: Poland A2 → A3, stable outlook (G3-030) | Poland | FIN | — | Poland | Moody's first downgrade; GG deficit approx. 7% of GDP | high | S&P (06.11) and Fitch (negative outlook) reviews |
+| 18.09.2026 | Options to withdraw 25–40 thousand of approx. 80 thousand US troops from Europe; recommendation by 06.11; in parallel, a base in PL announced (G1-030, G1-025) | Europe / PL | MIL | The flank (potentially) | Western Europe; NATO cohesion | A possible reduction of 31–50% of US strength in Europe (25–40 of approx. 80 thousand) — for now at the options stage | medium | Reduction ≥ 10 thousand; dispute over the location and personnel of the base in PL |
+| 19.09.2026 | First Houthi attack on Riyadh in this escalation; declared attack on Yanbu (G1-014, G1-015) | Saudi Arabia | MIL / ENE | Houthis, Iran (leverage) | Saudi Arabia | The Hormuz bypass within the adversary's reach | medium | Renewed shutdown of the East–West pipeline; Brent jump |
+| 19–22.09.2026 | UA strikes on refineries in Moscow, Ufa and Samara (G2-026…028) | Russia | MIL / ENE | Ukraine | Russia (fuels) | The deep-strike campaign as the main UA instrument; an energy ceasefire as a bargaining item | medium | Longer RU fuel export bans; higher diesel margins in the EU |
+| 20.09.2026 | PortWatch: 1 transit through Hormuz vs 32/day according to CENTCOM (G1-001, G2-006) | Gulf | INF | — | Importers of crude and LNG | It is unknown how much crude actually flows — the main information gap | low | Divergent resolutions of Hormuz questions |
+| 21–22.09.2026 | Duma: UR 57.83%, approx. 355/450 seats; turnout disputed (G4-028, G4-029) | Russia | DOM | Kremlin | Systemic opposition | A constitutional majority without domestic brakes until 2027 | high | 2027 war budget without parliamentary resistance |
+| 22.09.2026 | US–Iran talks in New York (approx. 3 h, Qatari mediation); on 23.09 Iran's road map (G4-002, A-add.) | Iran / USA | DIP | Qatar, Pakistan (mediators) | IRGC (control of the message) | The first structured contact since VI 2026 | high (fact); low (effect) | A second round; a ceasefire; or "it will all end quickly" |
+| 22.09.2026 | US–Denmark–Greenland defence agreement (G4-025, G4-026) | Arctic | DIP / MIL | USA, Denmark | Russia, China (ban on non-NATO bases) | An allied dispute turned into an agreement | high | Ratification in the Inatsisartut and the Folketing |
+| 22.09.2026 | Brent USD 99.25 (first time < 100 since 08.09); TTF 71–74; East–West pipeline restart (G2-002, G2-015, G2-008) | global | ENE | Energy importers | Exporters (marginally) | The market prices de-escalation before it is confirmed | medium | Abrupt return of the risk premium in case of an incident |
+| 22.09.2026 | EU extends individual sanctions by 36 months; delisting of Usmanov and Fridman (G3-035) | EU | FIN | Russia (individuals) | EU–Ukraine cohesion | Unanimity bought with concessions | medium | Delay of the 22nd package (Slovakia) |
+| 22.09.2026 | Il-20 intercepted 40 km from the Polish coast (G1-033) | Baltic / PL | MIL | — | — | Continuity of pressure below the Art. 4 threshold | high | Further tests; risk of an incident with casualties low but non-zero |
+| 23.09.2026 | Diesel PLN 8.99/l (e-petrol), without CPN; the president refers the windfall profits tax act to the Constitutional Tribunal (C-04, C-05) | Poland | ENE / DOM | — | Consumers, inflation | A fuel shock without a fiscal cushion | high | CPI IX above 3.5% y/y; government–president dispute over CPN |
 
 ---
 
-## J. Niepewności i braki
+## J. Uncertainties and gaps
 
-### J.1 Sporne interpretacje (szczegóły w B i C)
+### J.1 Disputed interpretations (details in B and C)
 
-- Przepływy przez Ormuz: PortWatch (AIS) vs CENTCOM/UKMTO i dane satelitarne Reutersa — brak niezależnej perspektywy T; obie serie od strony sporu albo z agregatu. Pewność: niska.
-- Oferta Iranu otwarcia Ormuzu w 7 dni i forma rozmów 22.09 — przekaz MSZ Iranu i USA vs IRGC.
-- Rozejm energetyczny Rosja–Ukraina — deklaracja Trumpa vs zaprzeczenie Kijowa i warunki Kremla.
-- Kolizja CCG–BFAR 18.09 — wersja filipińska vs chińska.
-- Skala ataku Huti 19.09 — Huti vs koalicja saudyjska.
-- Frekwencja w wyborach do Dumy — CKW 59% vs szacunek niezależny ok. 40%; wg niezależnego analityka ok. 23 pkt proc. wyniku JR sfałszowane (Meduza; G4-029) [B/3]. Obserwacja OBWE — brak.
-- Wynik Sprawiedliwej Rosji: 5,00% przy 96,95% protokołów (potwierdzone) vs 5,13% przy 97,64% (News.ru, Interfax; C-01 — red team nie potwierdził tej wartości); Meduza 22.09: doniesienie o „dopisaniu” ok. 60 tys. głosów na ostatnim etapie.
-- Tempo frontu: trzy serie — DeepState ok. 150 km²/4 tyg. (do 14.09), The Economist ok. 78 km²/30 dni (15.09) i ok. 200 km² (08.09) (G1-044).
-- §1249 NDAA po 30.09 — jedna analiza (grosswald.org), tekst ustawy nieotwarty; ocena red teamu: to procedura certyfikacji, nie zakaz (G1-031) [D/3].
+- Flows through Hormuz: PortWatch (AIS) vs CENTCOM/UKMTO and Reuters satellite data — no independent T perspective; both series from a party to the dispute or from an aggregator. Confidence: low.
+- Iran's offer to open Hormuz within 7 days and the format of the talks on 22.09 — the message of Iran's MFA and of the USA vs the IRGC.
+- Russia–Ukraine energy ceasefire — Trump's declaration vs Kyiv's denial and the Kremlin's conditions.
+- CCG–BFAR collision on 18.09 — Philippine vs Chinese version.
+- Scale of the Houthi attack on 19.09 — Houthis vs the Saudi coalition.
+- Turnout in the Duma elections — CEC 59% vs an independent estimate of approx. 40%; according to an independent analyst approx. 23 pp of UR's result was falsified (Meduza; G4-029) [B/3]. OSCE observation — none.
+- A Just Russia's result: 5.00% with 96.95% of protocols (confirmed) vs 5.13% with 97.64% (News.ru, Interfax; C-01 — the red team did not confirm this value); Meduza 22.09: a report of approx. 60 thousand votes "added" at the last stage.
+- Pace of the front: three series — DeepState approx. 150 km²/4 weeks (to 14.09), The Economist approx. 78 km²/30 days (15.09) and approx. 200 km² (08.09) (G1-044).
+- §1249 NDAA after 30.09 — one analysis (grosswald.org), text of the act not opened; red team assessment: it is a certification procedure, not a ban (G1-031) [D/3].
 
-### J.2 Luki w danych
+### J.2 Data gaps
 
-1. Kto w Teheranie decyduje o cieśninie (MSZ vs IRGC vs Najwyższy Przywódca bez nagrań wideo i audio).
-2. Liczba żołnierzy USA przypisanych do bazy w Polsce — brak w jakimkolwiek źródle; źródła o bazie wyłącznie polskie i prezydenckie (Trump), bez szczegółów Pentagonu.
-3. Bab al-Mandab: brak danych PortWatch po 14.09 i brak danych o atakach na statki handlowe w IX (strona UKMTO — HTTP 403).
-4. Budżet Rosji na 2027: data wniesienia do Dumy (posiedzenie rządu 24.09 — po dacie stanu).
-5. Po dacie stanu: wynik szczytu Xi–Trump (24.09), ostateczne wyniki CKW (25.09), treść dalszych rozmów USA–Iran.
-6. Obszary niesprawdzone: Malakka, Bosfor, Arktyka (poza Grenlandią), milicje irackie (drony na Rijad wg AJ Arabic za Reutersem — G2-009, SPOR), Liban po 05.09, lit, kobalt, nikiel, grafit, Naftoport i trasa ropy do Polski, Róg Afryki, Gruzja, Azja Centralna, Sudan 21–23.09.
-7. Dane niedostępne w chwili zbierania: kurs EUR/PLN z 23.09, bezpośredni odczyt GIE AGSI+ (API wymaga klucza), komunikat pierwotny Moody's i Rady UE z 22.09, tekst H.R. 5334.
-8. Aktywność PLA wokół Tajwanu 15–23.09 — dane MON Tajwanu tylko wyrywkowo.
-9. Izrael jako samodzielny aktor wojny z Iranem — nieanalizowany w etapach 03–04 (05 §1 p. 2).
+1. Who in Tehran decides on the strait (MFA vs IRGC vs the Supreme Leader without video or audio recordings).
+2. Number of US troops assigned to the base in Poland — not in any source; sources on the base are exclusively Polish and presidential (Trump), without Pentagon details.
+3. Bab al-Mandab: no PortWatch data after 14.09 and no data on attacks on merchant ships in IX (UKMTO page — HTTP 403).
+4. Russia's budget for 2027: date of submission to the Duma (government meeting on 24.09 — after the state date).
+5. After the state date: outcome of the Xi–Trump summit (24.09), final CEC results (25.09), content of further US–Iran talks.
+6. Areas not checked: Malacca, Bosporus, Arctic (apart from Greenland), Iraqi militias (drones on Riyadh according to AJ Arabic citing Reuters — G2-009, DISP), Lebanon after 05.09, lithium, cobalt, nickel, graphite, Naftoport and the crude route to Poland, the Horn of Africa, Georgia, Central Asia, Sudan 21–23.09.
+7. Data unavailable at the time of collection: EUR/PLN rate of 23.09, direct reading of GIE AGSI+ (the API requires a key), the primary Moody's and EU Council communications of 22.09, the text of H.R. 5334.
+8. PLA activity around Taiwan 15–23.09 — Taiwan MND data only patchy.
+9. Israel as an independent actor in the war with Iran — not analysed in stages 03–04 (05 §1 item 2).
 
-### J.3 Brakujące perspektywy (zasada trzech perspektyw)
+### J.3 Missing perspectives (rule of three perspectives)
 
-| Zdarzenie kluczowe | Z | A | T | Brak |
+| Key event | W | A | T | Missing |
 |---|---|---|---|---|
-| Rozmowy USA–Iran 22.09 | Al Jazeera za Witkoffem, Iran International | Tasnim, IRIB | MSZ Kataru (The Peninsula) | — |
-| H.R. 5334 | whitehouse.gov, Baker McKenzie | MSZ ChRL, MOFCOM, Kreml | MSZ Indii | Turcja — oficjalna reakcja rządu |
-| Przepływy przez Ormuz | CENTCOM, Reuters | Chatam al-Anbija | PortWatch przez agregat | Niezależna T z danymi pierwotnymi |
-| Atak Huti na Rijad | NBC, NPR | Huti (Jemeni Press), SPA | Al Jazeera | Niezależna relacja z miejsca |
-| Baza USA w Polsce | Stars and Stripes | Nawrocki, MON | — | T i Pentagon (szczegóły) |
-| Ił-20, dron nad Litwą | PL, LT, UE | — | — | RU/BY (A) i T |
-| Front w Ukrainie | ISW, DeepState | MO FR, SG ZSU | — | T |
-| Wybory do Dumy | Meduza, analitycy niezależni | CKW | — | T (brak obserwacji międzynarodowej) |
-| Tajwan IX | Bloomberg | MON Tajwanu | — | ChRL (Dowództwo Wschodnie) |
-| KRLD | CNN, Reuters za Yonhap | — | — | KCNA |
-| Katar — siła wyższa LNG | LNG Prime, OGJ | The Peninsula (al-Kaabi) | — | T (odbiorcy azjatyccy) |
-| Uderzenia na rafinerie w Rosji | Reuters (za The Insider) | AiF, Wiedomosti; Ukraińska Prawda | — | T (IEA, Kpler) i oficjalna ocena szkód RU |
-| Budżet Rosji 2027 | — | MinFin FR, Siłuanow | BOFIT | Z (świeże źródło z 21–23.09) |
-| Obniżka ratingu Polski | Moody's (za Bloomberg, Brussels Signal) | MF, Kancelaria Prezydenta | częściowo ING | T spoza Polski; komunikat pierwotny Moody's |
+| US–Iran talks 22.09 | Al Jazeera citing Witkoff, Iran International | Tasnim, IRIB | Qatari MFA (The Peninsula) | — |
+| H.R. 5334 | whitehouse.gov, Baker McKenzie | PRC MFA, MOFCOM, Kremlin | Indian MEA | Turkey — official government reaction |
+| Flows through Hormuz | CENTCOM, Reuters | Khatam al-Anbiya | PortWatch via an aggregator | Independent T with primary data |
+| Houthi attack on Riyadh | NBC, NPR | Houthis (Yemeni Press), SPA | Al Jazeera | Independent on-the-ground account |
+| US base in Poland | Stars and Stripes | Nawrocki, MoD | — | T and the Pentagon (details) |
+| Il-20, drone over Lithuania | PL, LT, EU | — | — | RU/BY (A) and T |
+| Front in Ukraine | ISW, DeepState | RF MoD, UAF General Staff | — | T |
+| Duma elections | Meduza, independent analysts | CEC | — | T (no international observation) |
+| Taiwan IX | Bloomberg | Taiwan MND | — | PRC (Eastern Theater Command) |
+| DPRK | CNN, Reuters citing Yonhap | — | — | KCNA |
+| Qatar — LNG force majeure | LNG Prime, OGJ | The Peninsula (al-Kaabi) | — | T (Asian buyers) |
+| Strikes on refineries in Russia | Reuters (citing The Insider) | AiF, Vedomosti; Ukrainska Pravda | — | T (IEA, Kpler) and an official RU damage assessment |
+| Russia's 2027 budget | — | RF MinFin, Siluanov | BOFIT | W (a fresh source from 21–23.09) |
+| Downgrade of Poland's rating | Moody's (citing Bloomberg, Brussels Signal) | Ministry of Finance, Chancellery of the President | partly ING | T from outside Poland; Moody's primary communication |
 
-OCENA (pewność: wysoka): najsłabiej ugruntowane są liczby wojenne podawane przez strony (MO FR, SG ZSU, Huti). W raporcie występują wyłącznie jako fakty o wypowiedzi.
+ASSESSMENT (confidence: high): the least well-grounded are the war figures given by the parties (RF MoD, UAF General Staff, Houthis). In the report they appear only as facts about statements.
 
-### J.4 Fakty i oceny wydania 00 usunięte lub skorygowane
+### J.4 Facts and assessments of edition 00 removed or corrected
 
-| Twierdzenie wydania 00 | Decyzja | Powód |
+| Claim of edition 00 | Decision | Reason |
 |---|---|---|
-| „Iran_status: MoU wygasłe” jako opis bieżący | Usunięte | Kontakt Araghczi–Witkoff/Kushner 22.09, kolejna runda zapowiedziana (G4-002, G4-005) |
-| Cła do 100% na importerów rosyjskiej ropy, w tym Chiny (nagłówki) | Skorygowane | To upoważnienie; ceł nie nałożono, najwcześniej ok. 18.10 (G3-003) |
-| Front w impasie z lokalną inicjatywą UA pod Łymaniem | Skorygowane | Impas z powolnym postępem RU: ok. 150 km² netto w 4 tyg. do 14.09 (G1-044) |
-| Suez „ogr.” | Skorygowane | VIII: 1358 statków, +27% r/r; ograniczenie dotyczy kontenerowców (G1-024) |
-| Cena maksymalna ON 7,37 zł/l; mechanizm we IX sporny | Usunięte | CPN zakończony 31.08; ostatnia cena maksymalna ON 7,31 zł/l (29–31.08); ON 8,99 zł/l 23.09 (G2-022, C-04) |
-| Rurociąg Wschód–Zachód wyłączony (11.09) | Nieaktualne | Wznowiony 22.09 na obniżonym przepływie (G2-008) |
-| K.6: jesienny pobór i „ewentualny dekret o rezerwistach” od 01.10 | Usunięte | Pobór w 2026 r. całoroczny (dekret nr 998 z 29.12.2025, 261 tys.; 00_plan §2); osobny dekret nie jest spodziewany |
-| Scenariusz bazowy 6–12 mies.: „wymiana uderzeń USA–Iran”, „niejawna mobilizacja” | Skorygowane (H.1) | 15 okresów bez uderzeń USA (G1-005); pobór całoroczny |
-| art4_ostatni = 10.09.2025 (PL) | Skorygowane, niepotwierdzone | Po Polsce wniosek złożyła Estonia (IX 2025); potwierdzenia na nato.int brak (G1-041) |
-| Katar: naprawa Ras Laffan 3–5 lat (jedno źródło) | Doprecyzowane | Minister: ok. 3 lata (G2-020); siła wyższa do pocz. XI (G2-021) |
-| Luki 00: EUR/PLN, deficyt PL, magazyny PL, stopa Fed, wyniki Dumy | Zamknięte | 4,3463 (G3-029); ok. 7% PKB (G3-034); 98% (G2-019); 3,75–4,00% (G3-024); JR 57,83% (G4-028) |
+| "Iran_status: MoU expired" as a current description | Removed | Araghchi–Witkoff/Kushner contact on 22.09, another round announced (G4-002, G4-005) |
+| Tariffs of up to 100% on importers of Russian oil, including China (headlines) | Corrected | It is an authorisation; no tariffs were imposed, approx. 18.10 at the earliest (G3-003) |
+| Front in stalemate with a local UA initiative near Lyman | Corrected | Stalemate with slow RU progress: approx. 150 km² net in 4 weeks to 14.09 (G1-044) |
+| Suez "restricted" | Corrected | VIII: 1,358 ships, +27% y/y; the restriction applies to container ships (G1-024) |
+| Maximum diesel price PLN 7.37/l; mechanism in IX disputed | Removed | CPN ended on 31.08; the last maximum diesel price PLN 7.31/l (29–31.08); diesel PLN 8.99/l on 23.09 (G2-022, C-04) |
+| East–West pipeline shut down (11.09) | Out of date | Restarted on 22.09 at reduced flow (G2-008) |
+| K.6: autumn conscription and "a possible reservist decree" from 01.10 | Removed | Conscription in 2026 is year-round (decree no. 998 of 29.12.2025, 261 thousand; 00_plan §2); a separate decree is not expected |
+| Base scenario 6–12 months: "exchange of US–Iran strikes", "covert mobilisation" | Corrected (H.1) | 15 periods without US strikes (G1-005); year-round conscription |
+| art4_latest = 10.09.2025 (PL) | Corrected, unconfirmed | After Poland, Estonia submitted a request (IX 2025); no confirmation on nato.int (G1-041) |
+| Qatar: Ras Laffan repair 3–5 years (one source) | Clarified | Minister: approx. 3 years (G2-020); force majeure until early XI (G2-021) |
+| Gaps of 00: EUR/PLN, PL deficit, PL storage, Fed rate, Duma results | Closed | 4.3463 (G3-029); approx. 7% of GDP (G3-034); 98% (G2-019); 3.75–4.00% (G3-024); UR 57.83% (G4-028) |
 
-### J.5 Jakość procesu w tym wydaniu
+### J.5 Process quality in this edition
 
-- Ekspozycja ślepoty soczewki B: przypadkowy podgląd dwóch wierszy soczewki A (Q-0001, Q-0002) przed prognozą; B podała te same wartości. Red team skorygował Q-0002 z powodu podwójnego liczenia dowodu (wartość — aneks). Ekspozycja soczewki C: fragment uzasadnienia soczewki B (Q-0073, bez wartości p) i wpisy dziennika po zapisaniu prognoz C. Wniosek procesowy (dziennik 04-C): format CSV sprawdzać poleceniem `head -1`, nie na końcu pliku.
-- Błąd rachunkowy w fakcie C-12 (5,5 TWh/d dotyczy celu 90%, nie 80%) — opisany przez red team; AGR dla Q-0067 uznany za mieszczący się w uzasadnionym przedziale.
-- Etap 03 prowadzony wyłącznie na materiałach G1–G4 (bez wyszukiwań); luki zgłoszone użytkownikowi, który zdecydował o kontynuacji.
-- Okres badany to 2 dni (21–23.09), bo wydanie uruchomiono z datą stanu 23.09 zamiast planowanej 05.10.
-
----
-
-## K. Wnioski dla Polski
-
-Format do wklejenia do raportu krajowego. Konwencja: FAKT z datą i wydawcą; [W] wysoka · [Ś] średnia · [N] niska pewność (co najmniej dwa zgodne niezależne źródła / jedno źródło lub parafraza / niepotwierdzone, sporne lub wywnioskowane). Prawdopodobieństwa — wyłącznie w sekcji H.
-
-### K.1 Fakty globalne zmieniające zdolność Rosji do eskalacji na wschodniej flance
-
-- **Środki (budżet):** 09.09.2026 — deficyt budżetu federalnego I–VIII 5,795 bln RUB (2,5% PKB) wobec rocznego planu 1,6%; dochody naftowo-gazowe −16,7% r/r, nienaftowe +18,1% (MinFin FR) [W] — potwierdzone bez zmian, 09.09.2026. Sierpień z nadwyżką ok. 0,6–0,7 bln RUB (BOFIT) [Ś]. 21.09.2026 — Siłuanow: deficyt 2027 „około 2% PKB”, cena odcięcia 50 USD/bbl, obrona „najważniejszym zadaniem” (Wiedomosti) [W]. Płynne aktywa FNB ok. 3,7 bln RUB (BOFIT, 14.08.2026) [Ś].
-- **Środki (paliwa):** 19–22.09.2026 — ukraińskie uderzenia na rafinerie w Moskwie, Ufie i Samarze (Reuters za The Insider; Ukraińska Prawda) [Ś]; 15.09.2026 — zakaz eksportu diesla przedłużony do 31.10 (Wiedomosti) [W]. Skala wyłączeń („ponad 45% mocy”) — liczba SG ZSU, bez potwierdzenia [N].
-- **Presja zewnętrzna:** 18.09.2026 — H.R. 5334 upoważnia do ceł do 100% na największych importerów rosyjskiej ropy i gazu; ceł nie nałożono, najwcześniej ok. 18.10 (Baker McKenzie; RFE/RL) [W]. Indie zapowiadają „wszelkie niezbędne środki” (MSZ Indii, 17.09.2026) [W].
-- **Ludzie:** pobór w 2026 r. całoroczny, 261 tys. (dekret nr 998 z 29.12.2025; Garant.ru) [W]; dekretu mobilizacyjnego brak.
-- **Swoboda polityczna:** 21–22.09.2026 — Jedna Rosja ok. 355/450 mandatów (CKW) [W]; frekwencja sporna (CKW 59% vs ok. 40% wg niezależnych analityków; Meduza) [N].
-- **Incydenty:** 22.09.2026 — Ił-20 przechwycony ok. 40 km od polskiego wybrzeża (Rzeczpospolita, TVN24) [W]; 14/15.09.2026 — dron z ładunkiem z Białorusi zestrzelony nad Litwą (MSZ Litwy, NPR) [W]; ok. 14.09.2026 — flary rosyjskiej fregaty wobec duńskiego śmigłowca (Irish Times) [Ś]. Wniosek z art. 4 w 2026 r. — brak (nato.int) [Ś].
-- **Ocena wywiadów:** ok. 21.09.2026 — europejskie służby: Rosja może podjąć „otwarcie agresywne działania wobec NATO w najbliższych miesiącach”; urzędnicy bałtyccy — brak oznak przygotowań do bezpośredniego ataku (ISW za Kyiv Post) [N].
-
-### K.2 Fakty zmieniające zdolność lub wolę USA/NATO do reakcji
-
-- 18.09.2026 — Pentagon: opcje wycofania 25–40 tys. z ok. 80 tys. żołnierzy USA w Europie, część sił może trafić na flankę; rekomendacja do 06.11 (NBC News; Stars and Stripes) [Ś].
-- 17–18.09.2026 — Trump: „znaczny postęp” ku nowej bazie armii USA w Polsce, lokalizacja „bardzo wkrótce”; bez informacji o stałym stacjonowaniu (Stars and Stripes; RFE/RL) [W]. 22.09.2026 — Nawrocki: „Fort Trump”, budowa przed 2029 r. (Bloomberg) [Ś]. MON: rozmowy „w końcowej fazie”, udział Polski 15–17 mld zł (Defence24; TVN24) [W].
-- Stan: ok. 10 tys. żołnierzy USA w Polsce, niemal wyłącznie rotacyjnie; stały garnizon tylko w Poznaniu; +5 tys. z 21.05.2026 niezrealizowane (Stars and Stripes, 18.09.2026) [W] — potwierdzone bez zmian, 18.09.2026.
-- NDAA FY2026 §1249: próg 76 tys. żołnierzy w EUCOM z wymogiem certyfikacji; możliwa luka po 30.09 (grosswald.org) [N]; projekt NDAA FY2027 §1232 przedłuża próg (Stars and Stripes) [Ś].
-- 22.09.2026 — umowa obronna USA–Dania–Grenlandia: Narsarsuaq, Mestersvig, modernizacja Pituffik, zakaz baz spoza NATO (whitehouse.gov; stm.dk) [W].
-- 0 lotniskowców USA w misji w Indo-Pacyfiku; USS George Washington na Morzu Arabskim (USNI News, 14–18.09.2026) [Ś].
-- 02.09–08.10.2026 — ćwiczenia „Namejs 2026” na Łotwie, ok. 12 tys. żołnierzy (MON Łotwy) [W].
-- 21.09.2026 — sondaże w USA: Demokraci +7–8 pkt, poparcie Trumpa 39% (RCP; Silver Bulletin) [W]; wybory połówkowe 03.11.2026.
-
-### K.3 Fakty zmieniające cenę lub dostępność energii w Polsce (horyzont 6 miesięcy)
-
-- TTF 71,33–73,66 EUR/MWh (22.09.2026; Trading Economics, EnergyRiskIQ) wobec 78–82 w połowie IX [W]; +121% r/r.
-- Magazyny gazu UE 70,3% wobec 88,0% średniej 5-letniej; Niemcy ok. 57% (22.09.2026; EnergyRiskIQ za AGSI+) [Ś]. Cel na 01.11 obniżony do 80% (GEF) [Ś]. Polska 98% (15.09.2026; netTG.pl za GSP) [W].
-- Brent 99,25 USD/bbl (22.09.2026) — pierwsze zamknięcie poniżej 100 USD od 08.09 [W]; IEA: ponad 10 mln b/d wydobycia w Zatoce wyłączone, zapasy −507 mln bbl od początku wojny (11.09.2026) [W].
-- Olej napędowy 8,99 zł/l (e-petrol, 23.09.2026), w 4 województwach ≥ 9,00 zł/l [W]; CPN zakończony 31.08.2026, VAT na paliwa 23% (Biznesinfo; Globenergia) [W]. Powrót CPN zależy od ustawy o podatku od nadzwyczajnych zysków, skierowanej przez prezydenta do TK (Forsal, 16.09.2026) [Ś].
-- Katar: siła wyższa wobec części odbiorców w Europie do pocz. XI; 17% zdolności eksportowej LNG utracone, naprawa ok. 3 lata (The Peninsula; LNG Prime, 21.09.2026) [W].
-- Rurociąg Wschód–Zachód wznowiony 22.09.2026 na obniżonym przepływie (3 źródła Reutersa; Aramco bez komentarza) [Ś]; 19.09.2026 — pierwszy atak Huti na Rijad (Al Jazeera; NBC; NPR) [W].
-- Rosja: zakaz eksportu diesla do 31.10.2026, benzyny do 31.01.2027 (Wiedomosti) [W]. UE: zakaz długoterminowych kontraktów na rosyjski LNG od 01.01.2027 [Ś].
-
-### K.4 Fakty zmieniające siłę PLN, dostępność kapitału i finanse publiczne
-
-- 18.09.2026 — Moody's: rating Polski A2 → A3, perspektywa stabilna; deficyt GG ok. 7% PKB w 2026–27 (Brussels Signal; Interia) [W]. Fitch: A−, perspektywa negatywna (potwierdzone 21.08.2026); S&P: A−, stabilna; przegląd S&P 06.11.2026 (PAP Biznes) [W].
-- EUR/PLN 4,3463 (NBP, 22.09.2026) wobec 4,3633 (18.09) — brak reakcji na obniżkę ratingu [W].
-- Stopy: NBP 3,75% (09.09.2026) — potwierdzone bez zmian, 09.09.2026 [W]; EBC depozytowa 2,50% (10.09.2026) [W]; Fed 3,75–4,00% (16.09.2026) [W]. Różnica NBP – górna granica Fed: −25 pb (wyliczenie).
-- CPI VIII 3,4% r/r (GUS za Bankier.pl) [W]; prezes NBP: stabilizacja stóp do ok. połowy 2027 (09–10.09.2026) [W].
-- Projekt budżetu 2027: deficyt budżetu państwa 282,6 mld zł, deficyt GG 7,1% PKB, potrzeby pożyczkowe netto 317 mld zł (ING; rp.pl, 28.08.2026) [Ś]; deficyt GG 2026: 6,8% (ING) albo 7,1% (rp.pl) — rozbieżność [N].
-- SAFE: pierwsza płatność dla Polski 6,6 mld EUR (15% z 43,7 mld EUR) (Komisja Europejska, 29.05.2026) [W]; informacji o drugiej transzy brak.
-
-### K.5 Fakty zmieniające dostawy dla polskiego przemysłu obronnego
-
-- Ziemie rzadkie: zawieszenie chińskich kontroli z 09.10.2025 (samar, gadolin, lutet, europ, iterb, technologie, klauzula eksterytorialna) wygasa 10.11.2026; decyzji o przedłużeniu brak (MOFCOM; CSIS) [W]. Runda handlowa 20.09.2026 bez postępu w tej sprawie (CNBC) [Ś].
-- Gal, german, antymon, materiały supertwarde: zawieszenie zakazu eksportu do USA do 27.11.2026, eksport na licencjach, zakaz dla odbiorców wojskowych utrzymany (Fastmarkets; CNBC) [W].
-- Magnesy z ziem rzadkich: eksport ChRL w VIII 5010 t (−6% m/m); do USA 512 t (−21% m/m) (SMM; SCMP, 21.09.2026) [W].
-- Konkurencja o obronę powietrzną: Arabia Saudyjska z wyczerpanymi zapasami pocisków przechwytujących prosi Francję, Wielką Brytanię, Pakistan i Egipt o pomoc (NBC News, źródła anonimowe) [N]; Ukraina zabiega o licencję na produkcję Patriot (Kyiv Independent; Al Jazeera, 21–22.09.2026) [W].
-- Uran: kontrakty długoterminowe ok. 96,50 USD/lb — nominalny rekord (Trading Economics, 21.09.2026) [Ś].
-
-### K.6 Daty w najbliższym kwartale, które mogą przestawić scenariusz bazowy
-
-- **24.09.2026** — szczyt Xi–Trump w Białym Domu: rozejm handlowy, ziemie rzadkie, H.R. 5334, Tajwan. Tego samego dnia rząd Rosji rozpatruje projekt budżetu 2027.
-- **25.09.2026** — ostateczne wyniki wyborów do Dumy (CKW).
-- **30.09.2026** — szybki szacunek CPI za IX (GUS).
-- **03.10.2026** — wybory do Sejmu Łotwy. **04.10.2026** — I tura wyborów w Brazylii (II tura 25.10); wybory w BiH; spotkanie siódemki OPEC+.
-- **ok. 07.10.2026** — termin, do którego rozstrzygnie się druga runda rozmów USA–Iran (pytanie Q-0042); 06–07.10 — posiedzenie RPP; wydanie 02.
-- **ok. 18.10.2026** — najwcześniejszy termin ceł z H.R. 5334.
-- **15–16.10.2026** — Rada Europejska. **23.10.2026** — Bank Rosji. **26–29.10.2026** — V plenum KC KPCh. **28.10.2026** — FOMC. **29.10.2026** — EBC.
-- **01.11.2026** — cel napełnienia magazynów gazu UE (80%); pocz. XI — koniec siły wyższej Kataru wobec Edisona.
-- **03.11.2026** — wybory połówkowe w USA. **04.11.2026** — RPP. **06.11.2026** — rekomendacja przeglądu postawy sił USA w Europie; przegląd ratingu Polski przez S&P.
-- **10.11.2026** — wygasa zawieszenie chińskich kontroli ziem rzadkich. **18–19.11.2026** — APEC w Shenzhen. **27.11.2026** — wygasa zawieszenie zakazu Ga/Ge/Sb. **29.11.2026** — pełne posiedzenie ministerialne OPEC+ (kwoty na 2027). **11.12.2026** — koniec finansowania rządu USA (CR).
-
-### K.7 Najbardziej kruche założenia scenariusza bazowego
-
-- Że administracja USA nie wznowi uderzeń na Iran przed 03.11 (Z1). Opiera się na 15 okresach bez uderzeń i relacji z drugiej ręki o porozumieniu „po wyborach”; to samo założenie niesie ok. 10 prognoz naraz.
-- Że rozdwojenie Teheranu (MSZ vs IRGC) blokuje porozumienie, ale obie frakcje unikają pełnej eskalacji (Z2). Sygnał ostrzegawczy: tankowce trafione 21.09 bez sprawcy.
-- Że Izrael nie zerwie toru USA–Iran samodzielnym uderzeniem — założenie niejawne, nieanalizowane w tym wydaniu.
-- Że Huti nie przerwą eksportu z Janbu ani przepływu rurociągiem Wschód–Zachód i nie uderzą w Abqaiq lub Ras Tanurę — założenie z wydania 00 utrzymane, pod presją (atak na Rijad 19.09).
-- Że Rosja nie przekroczy progu incydentu z ofiarami na terytorium NATO (Z4) — utrzymane.
-- Że przegląd postawy USA nie obejmie redukcji w Polsce (Z5) — rozstrzygnięcie po 06.11; liczba żołnierzy dla bazy w Polsce nieznana.
-- Że UE przejdzie zimę bez fizycznego niedoboru gazu (Z6) — mocne dla Polski (98%), kruche dla Niemiec (ok. 57%).
+- Lens B blindness exposure: an accidental preview of two lens A rows (Q-0001, Q-0002) before forecasting; B gave the same values. The red team corrected Q-0002 because of double counting of evidence (value — annex). Lens C exposure: a fragment of lens B's rationale (Q-0073, without a p value) and log entries after the C forecasts were saved. Process lesson (log 04-C): check the CSV format with `head -1`, not at the end of the file.
+- Arithmetic error in fact C-12 (5.5 TWh/d refers to the 90% target, not 80%) — described by the red team; AGG for Q-0067 judged to be within a justified range.
+- Stage 03 was conducted solely on materials G1–G4 (without searches); gaps were reported to the user, who decided to continue.
+- The period under review is 2 days (21–23.09), because the edition was run with a state date of 23.09 instead of the planned 05.10.
 
 ---
 
-## L. Blok stanu
+## K. Conclusions for Poland
+
+Format for pasting into a national report. Convention: FACT with date and publisher; [H] high · [M] medium · [L] low confidence (at least two consistent independent sources / one source or a paraphrase / unconfirmed, disputed or inferred). Probabilities — only in section H.
+
+### K.1 Global facts changing Russia's capacity to escalate on the eastern flank
+
+- **Resources (budget):** 09.09.2026 — federal budget deficit I–VIII RUB 5.795 trillion (2.5% of GDP) vs an annual plan of 1.6%; oil and gas revenues −16.7% y/y, non-oil +18.1% (RF MinFin) [H] — confirmed unchanged, 09.09.2026. August with a surplus of approx. RUB 0.6–0.7 trillion (BOFIT) [M]. 21.09.2026 — Siluanov: 2027 deficit "about 2% of GDP", cut-off price USD 50/bbl, defence "the most important task" (Vedomosti) [H]. Liquid NWF assets approx. RUB 3.7 trillion (BOFIT, 14.08.2026) [M].
+- **Resources (fuels):** 19–22.09.2026 — Ukrainian strikes on refineries in Moscow, Ufa and Samara (Reuters citing The Insider; Ukrainska Pravda) [M]; 15.09.2026 — diesel export ban extended to 31.10 (Vedomosti) [H]. Scale of outages ("over 45% of capacity") — a UAF General Staff figure, unconfirmed [L].
+- **External pressure:** 18.09.2026 — H.R. 5334 authorises tariffs of up to 100% on the largest importers of Russian oil and gas; no tariffs imposed, approx. 18.10 at the earliest (Baker McKenzie; RFE/RL) [H]. India announces "all necessary measures" (Indian MEA, 17.09.2026) [H].
+- **People:** conscription in 2026 is year-round, 261 thousand (decree no. 998 of 29.12.2025; Garant.ru) [H]; no mobilisation decree.
+- **Political freedom of action:** 21–22.09.2026 — United Russia approx. 355/450 seats (CEC) [H]; turnout disputed (CEC 59% vs approx. 40% according to independent analysts; Meduza) [L].
+- **Incidents:** 22.09.2026 — Il-20 intercepted approx. 40 km from the Polish coast (Rzeczpospolita, TVN24) [H]; 14/15.09.2026 — a drone with a payload from Belarus shot down over Lithuania (Lithuanian MFA, NPR) [H]; approx. 14.09.2026 — flares from a Russian frigate towards a Danish helicopter (Irish Times) [M]. Art. 4 request in 2026 — none (nato.int) [M].
+- **Intelligence assessments:** approx. 21.09.2026 — European services: Russia may take "openly aggressive actions against NATO in the coming months"; Baltic officials — no signs of preparations for a direct attack (ISW citing Kyiv Post) [L].
+
+### K.2 Facts changing the capacity or will of the USA/NATO to respond
+
+- 18.09.2026 — Pentagon: options to withdraw 25–40 thousand of approx. 80 thousand US troops in Europe, part of the forces may go to the flank; recommendation by 06.11 (NBC News; Stars and Stripes) [M].
+- 17–18.09.2026 — Trump: "significant progress" towards a new US Army base in Poland, location "very soon"; no information on permanent stationing (Stars and Stripes; RFE/RL) [H]. 22.09.2026 — Nawrocki: "Fort Trump", construction before 2029 (Bloomberg) [M]. MoD: talks "in the final phase", Poland's share PLN 15–17 billion (Defence24; TVN24) [H].
+- Status: approx. 10 thousand US troops in Poland, almost exclusively rotational; a permanent garrison only in Poznań; +5 thousand of 21.05.2026 not implemented (Stars and Stripes, 18.09.2026) [H] — confirmed unchanged, 18.09.2026.
+- NDAA FY2026 §1249: a threshold of 76 thousand troops in EUCOM with a certification requirement; a possible gap after 30.09 (grosswald.org) [L]; the NDAA FY2027 draft §1232 extends the threshold (Stars and Stripes) [M].
+- 22.09.2026 — US–Denmark–Greenland defence agreement: Narsarsuaq, Mestersvig, modernisation of Pituffik, ban on non-NATO bases (whitehouse.gov; stm.dk) [H].
+- 0 US carriers on mission in the Indo-Pacific; USS George Washington in the Arabian Sea (USNI News, 14–18.09.2026) [M].
+- 02.09–08.10.2026 — exercise "Namejs 2026" in Latvia, approx. 12 thousand troops (Latvian MoD) [H].
+- 21.09.2026 — US polls: Democrats +7–8 pts, Trump's approval 39% (RCP; Silver Bulletin) [H]; midterm elections 03.11.2026.
+
+### K.3 Facts changing the price or availability of energy in Poland (6-month horizon)
+
+- TTF EUR 71.33–73.66/MWh (22.09.2026; Trading Economics, EnergyRiskIQ) vs 78–82 in mid-IX [H]; +121% y/y.
+- EU gas storage 70.3% vs the 5-year average of 88.0%; Germany approx. 57% (22.09.2026; EnergyRiskIQ citing AGSI+) [M]. Target for 01.11 lowered to 80% (GEF) [M]. Poland 98% (15.09.2026; netTG.pl citing GSP) [H].
+- Brent USD 99.25/bbl (22.09.2026) — first close below USD 100 since 08.09 [H]; IEA: over 10 mb/d of Gulf production shut in, stocks −507 million bbl since the start of the war (11.09.2026) [H].
+- Diesel PLN 8.99/l (e-petrol, 23.09.2026), in 4 voivodeships ≥ PLN 9.00/l [H]; CPN ended on 31.08.2026, VAT on fuels 23% (Biznesinfo; Globenergia) [H]. The return of CPN depends on the windfall profits tax act, referred by the president to the Constitutional Tribunal (Forsal, 16.09.2026) [M].
+- Qatar: force majeure towards some buyers in Europe until early XI; 17% of LNG export capacity lost, repair approx. 3 years (The Peninsula; LNG Prime, 21.09.2026) [H].
+- East–West pipeline restarted on 22.09.2026 at reduced flow (3 Reuters sources; Aramco without comment) [M]; 19.09.2026 — first Houthi attack on Riyadh (Al Jazeera; NBC; NPR) [H].
+- Russia: diesel export ban to 31.10.2026, gasoline to 31.01.2027 (Vedomosti) [H]. EU: ban on long-term contracts for Russian LNG from 01.01.2027 [M].
+
+### K.4 Facts changing the strength of the PLN, access to capital and public finances
+
+- 18.09.2026 — Moody's: Poland's rating A2 → A3, stable outlook; GG deficit approx. 7% of GDP in 2026–27 (Brussels Signal; Interia) [H]. Fitch: A−, negative outlook (confirmed 21.08.2026); S&P: A−, stable; S&P review 06.11.2026 (PAP Biznes) [H].
+- EUR/PLN 4.3463 (NBP, 22.09.2026) vs 4.3633 (18.09) — no reaction to the rating downgrade [H].
+- Rates: NBP 3.75% (09.09.2026) — confirmed unchanged, 09.09.2026 [H]; ECB deposit rate 2.50% (10.09.2026) [H]; Fed 3.75–4.00% (16.09.2026) [H]. Gap NBP – Fed upper bound: −25 bp (calculation).
+- CPI VIII 3.4% y/y (Statistics Poland citing Bankier.pl) [H]; NBP governor: rates stable until approx. mid-2027 (09–10.09.2026) [H].
+- 2027 draft budget: state budget deficit PLN 282.6 billion, GG deficit 7.1% of GDP, net borrowing needs PLN 317 billion (ING; rp.pl, 28.08.2026) [M]; GG deficit 2026: 6.8% (ING) or 7.1% (rp.pl) — a discrepancy [L].
+- SAFE: first payment to Poland EUR 6.6 billion (15% of EUR 43.7 billion) (European Commission, 29.05.2026) [H]; no information on a second tranche.
+
+### K.5 Facts changing supplies for the Polish defence industry
+
+- Rare earths: the suspension of the Chinese controls of 09.10.2025 (samarium, gadolinium, lutetium, europium, ytterbium, technologies, extraterritorial clause) expires on 10.11.2026; no decision on extension (MOFCOM; CSIS) [H]. The trade round of 20.09.2026 without progress on this (CNBC) [M].
+- Gallium, germanium, antimony, superhard materials: suspension of the export ban to the USA until 27.11.2026, exports under licence, ban for military end users maintained (Fastmarkets; CNBC) [H].
+- Rare earth magnets: PRC exports in VIII 5,010 t (−6% m/m); to the USA 512 t (−21% m/m) (SMM; SCMP, 21.09.2026) [H].
+- Competition for air defence: Saudi Arabia with depleted interceptor stocks asks France, the United Kingdom, Pakistan and Egypt for help (NBC News, anonymous sources) [L]; Ukraine seeks a licence to produce Patriot (Kyiv Independent; Al Jazeera, 21–22.09.2026) [H].
+- Uranium: long-term contracts approx. USD 96.50/lb — a nominal record (Trading Economics, 21.09.2026) [M].
+
+### K.6 Dates in the coming quarter that could reset the base scenario
+
+- **24.09.2026** — Xi–Trump summit at the White House: trade truce, rare earths, H.R. 5334, Taiwan. On the same day the Russian government considers the 2027 draft budget.
+- **25.09.2026** — final results of the Duma elections (CEC).
+- **30.09.2026** — flash CPI estimate for IX (Statistics Poland).
+- **03.10.2026** — elections to the Latvian Saeima. **04.10.2026** — first round of the elections in Brazil (second round 25.10); elections in BiH; meeting of the OPEC+ seven.
+- **approx. 07.10.2026** — the date by which the second round of US–Iran talks will be settled (question Q-0042); 06–07.10 — MPC meeting; edition 02.
+- **approx. 18.10.2026** — the earliest date for H.R. 5334 tariffs.
+- **15–16.10.2026** — European Council. **23.10.2026** — Bank of Russia. **26–29.10.2026** — Fifth Plenum of the CPC Central Committee. **28.10.2026** — FOMC. **29.10.2026** — ECB.
+- **01.11.2026** — EU gas storage filling target (80%); early XI — end of Qatar's force majeure towards Edison.
+- **03.11.2026** — US midterm elections. **04.11.2026** — MPC. **06.11.2026** — recommendation of the US force posture review in Europe; S&P review of Poland's rating.
+- **10.11.2026** — the suspension of Chinese rare earth controls expires. **18–19.11.2026** — APEC in Shenzhen. **27.11.2026** — the suspension of the Ga/Ge/Sb ban expires. **29.11.2026** — full OPEC+ ministerial meeting (quotas for 2027). **11.12.2026** — end of US government funding (CR).
+
+### K.7 The most fragile assumptions of the base scenario
+
+- That the US administration will not resume strikes on Iran before 03.11 (KA1). It rests on 15 periods without strikes and a second-hand account of an agreement "after the elections"; the same assumption is carried by approx. 10 forecasts at once.
+- That the split in Tehran (MFA vs IRGC) blocks an agreement, but both factions avoid full escalation (KA2). Warning signal: tankers hit on 21.09 with no perpetrator identified.
+- That Israel will not break the US–Iran track with an independent strike — an implicit assumption, not analysed in this edition.
+- That the Houthis will not interrupt exports from Yanbu or flow through the East–West pipeline and will not strike Abqaiq or Ras Tanura — an assumption from edition 00 kept, under pressure (attack on Riyadh 19.09).
+- That Russia will not cross the threshold of an incident with casualties on NATO territory (KA4) — kept.
+- That the US posture review will not include a reduction in Poland (KA5) — resolution after 06.11; the number of troops for the base in Poland is unknown.
+- That the EU will get through the winter without a physical gas shortage (KA6) — strong for Poland (98%), fragile for Germany (approx. 57%).
+
+---
+
+## L. State block
 
 ```
-Brent=99,25 USD/bbl (zamknięcie 22.09.2026; 23.09 w sesji < 99) |
+Brent=99.25 USD/bbl (close 22.09.2026; 23.09 intraday < 99) |
 TTF=71–74 EUR/MWh (22.09.2026) |
-magazyny_UE=70,3% (22.09.2026; średnia 5-letnia 88,0%) |
-magazyny_PL=98% (15.09.2026) |
-magazyny_DE=ok. 57% (22.09.2026) |
-diesel_PL=8,99 zł/l (e-petrol, 23.09.2026) |
-ceny_maksymalne_paliw_PL=nie (CPN zakończony 31.08.2026; VAT 23%) |
-Ormuz=zamknięty de facto (PortWatch: 1 przejście 20.09.2026); SPOR: CENTCOM ok. 32 statki/dobę 17–19.09 pod eskortą |
-BaM=ogr. (Huti kontrolują wybrzeże i Perim; tankowce −39% od 20.07) |
-Suez=ruch rosnący (VIII 2026: 1358 statków, +27% r/r); kontenerowce wokół Przylądka |
-Panama=limit 32 przejść/dobę (od 15.09.2026) |
-rurociąg_Wschód–Zachód=wznowiony 22.09.2026 (obniżony przepływ) |
-Katar_siła_wyższa=do pocz. XI 2026; naprawa 2 linii LNG ok. 3 lata |
-RU_dekret_mobilizacja=nie (pobór całoroczny 2026, 261 tys.) |
-RU_deficyt=2,5% PKB (I–VIII 2026); 2027: „ok. 2% PKB” (DEKL 21.09.2026) |
-RU_stopa=14,00% (11.09.2026; następna decyzja 23.10) |
-RU_Duma=JR 57,83%, ok. 355/450 mandatów (wstępne 22.09.2026; frekwencja SPOR) |
-UA_front=impas z powolnym postępem RU (ok. 150 km² netto 17.08–14.09.2026, DeepState) |
-rozmowy_pokojowe=format trójstronny „co do zasady”, bez daty; Kreml „brak postępów” (21.09); Rubio–Ławrow 23.09 bez przełomu |
-US_lotniskowce_IndoPac=0 w misji (14–18.09.2026) |
-US_wojska_Europa=ok. 80 tys.; opcje redukcji 25–40 tys.; rekomendacja do 06.11.2026 |
-US_wojska_PL=ok. 10 tys. (rotacyjnie); +5 tys. z 21.05 niezrealizowane; baza stała — DEKL |
-art4_ostatni=IX 2025 (Estonia; niepotwierdzone na nato.int); w 2026 brak |
-Grenlandia=umowa obronna USA–Dania–Grenlandia 22.09.2026 (ratyfikacja w toku) |
-Chiny_ziemie_rzadkie_zawieszenie_do=10.11.2026 |
-Chiny_Ga_Ge_Sb_zawieszenie_do=27.11.2026 |
-US_cła_Chiny=12,5% (s.301 od 24.07) + dotychczasowe 301 i 232 |
-H.R.5334=upoważnienie do ceł do 100% (podpisane 18.09.2026; nie nałożone; najwcześniej ok. 18.10) |
-US_cła_UE=15% (pułap) |
-Tajwan_pakiet=14 mld USD wstrzymany (od 23.05.2026) |
-Iran_status=zawieszenie uderzeń USA (15 okresów); blokada USA trwa; rozmowy 22.09 w NY; mapa drogowa Iranu 23.09 (DEKL); IRGC odrzuca kontakt |
-Huti=atak na Rijad 19.09.2026; blokada statków saudyjskich od 20.07 |
-Wenezuela=p.o. D. Rodríguez, dialog z udziałem USA; data wyborów nieustalona |
-Sahel=Mali: blokada paliwowa Bamako; oferta dialogu Goïty 21.09.2026 |
-Kaukaz=traktat Armenia–Azerbejdżan niepodpisany; referendum konstytucyjne w Armenii — data nieustalona |
-BRICS_ostatni=12–13.09.2026 New Delhi |
-Fed=3,75–4,00% (16.09.2026) |
-EBC=2,50% (10.09.2026) |
-NBP=3,75% (09.09.2026) |
-EUR/PLN=4,3463 (NBP, 22.09.2026) |
-rating_PL=Moody's A3 stabilna (18.09.2026); Fitch A− negatywna; S&P A− stabilna |
-CPI_PL=3,4% r/r (VIII 2026) |
-scenariusz_bazowy=[Przewlekły kryzys bez rozstrzygnięć; rozkład — sekcja H.1] |
-najbliższe_daty=[24.09; 25.09; 30.09; 03–04.10; 07.10; ok. 18.10; 23.10; 28–29.10; 03.11; 06.11; 10.11; 18–19.11; 27.11] |
-pytania_aktywne=73 | rozstrzygniete_lacznie=0 | Brier_AGR_RT=b.d. (brak rozstrzygnięć) | BSS_vs_SQ=b.d. (brak rozstrzygnięć)
+EU_storage=70.3% (22.09.2026; 5-year average 88.0%) |
+PL_storage=98% (15.09.2026) |
+DE_storage=approx. 57% (22.09.2026) |
+diesel_PL=8.99 PLN/l (e-petrol, 23.09.2026) |
+PL_fuel_price_caps=no (CPN ended 31.08.2026; VAT 23%) |
+Hormuz=closed de facto (PortWatch: 1 transit on 20.09.2026); DISP: CENTCOM approx. 32 ships/day 17–19.09 under escort |
+BaM=restricted (Houthis control the coast and Perim; tankers −39% since 20.07) |
+Suez=traffic rising (VIII 2026: 1358 ships, +27% y/y); container ships around the Cape |
+Panama=limit of 32 transits/day (since 15.09.2026) |
+East–West_pipeline=resumed 22.09.2026 (reduced flow) |
+Qatar_force_majeure=until early XI 2026; repair of 2 LNG trains approx. 3 years |
+RU_mobilisation_decree=no (year-round conscription in 2026, 261k) |
+RU_deficit=2.5% of GDP (I–VIII 2026); 2027: "approx. 2% of GDP" (DECL 21.09.2026) |
+RU_rate=14.00% (11.09.2026; next decision 23.10) |
+RU_Duma=UR 57.83%, approx. 355/450 seats (preliminary 22.09.2026; turnout DISP) |
+UA_front=stalemate with slow Russian progress (approx. 150 km² net 17.08–14.09.2026, DeepState) |
+peace_talks=trilateral format "in principle", no date; Kremlin "no progress" (21.09); Rubio–Lavrov 23.09 without a breakthrough |
+US_carriers_IndoPac=0 on mission (14–18.09.2026) |
+US_troops_Europe=approx. 80k; reduction options 25–40k; recommendation by 06.11.2026 |
+US_troops_PL=approx. 10k (rotational); +5k of 21.05 not implemented; permanent base — DECL |
+art4_latest=IX 2025 (Estonia; unconfirmed on nato.int); none in 2026 |
+Greenland=US–Denmark–Greenland defence agreement 22.09.2026 (ratification in progress) |
+China_rare_earths_suspension_until=10.11.2026 |
+China_Ga_Ge_Sb_suspension_until=27.11.2026 |
+US_tariffs_China=12.5% (s.301 since 24.07) + existing 301 and 232 |
+H.R.5334=authorisation of tariffs up to 100% (signed 18.09.2026; not imposed; approx. 18.10 at the earliest) |
+US_tariffs_EU=15% (ceiling) |
+Taiwan_package=14 bn USD on hold (since 23.05.2026) |
+Iran_status=suspension of US strikes (15 periods); US blockade continues; talks 22.09 in NY; Iran's roadmap 23.09 (DECL); IRGC rejects contact |
+Houthis=attack on Riyadh 19.09.2026; blockade of Saudi ships since 20.07 |
+Venezuela=acting president D. Rodríguez, dialogue with US participation; election date not set |
+Sahel=Mali: fuel blockade of Bamako; Goïta's offer of dialogue 21.09.2026 |
+Caucasus=Armenia–Azerbaijan treaty not signed; constitutional referendum in Armenia — date not set |
+BRICS_latest=12–13.09.2026 New Delhi |
+Fed=3.75–4.00% (16.09.2026) |
+ECB=2.50% (10.09.2026) |
+NBP=3.75% (09.09.2026) |
+EUR/PLN=4.3463 (NBP, 22.09.2026) |
+PL_rating=Moody's A3 stable (18.09.2026); Fitch A− negative; S&P A− stable |
+PL_CPI=3.4% y/y (VIII 2026) |
+base_scenario=[Protracted crisis without resolution; distribution — section H.1] |
+next_dates=[24.09; 25.09; 30.09; 03–04.10; 07.10; approx. 18.10; 23.10; 28–29.10; 03.11; 06.11; 10.11; 18–19.11; 27.11] |
+active_questions=73 | resolved_total=0 | Brier_AGG_RT=n/a (no resolutions) | BSS_vs_SQ=n/a (no resolutions)
 ```
 
 ---
 
-## Aneks. Pełna lista prognoz AGR_RT według wektorów
+## Annex. Full list of AGG_RT forecasts by vector
 
-Źródło: `rejestr/prognozy.csv` (wydanie 01, przebiegi A, B, C, AGR_RT; zamrożone w commicie 32a635e). „Słownie” — skala z metodologii §10 (wartość 0.45–0.55 włącznie: „równe szanse”). „Rozrzut” — najniższa i najwyższa wartość soczewek. „Zmiana vs 00” — wydanie 00 nie miało rejestru, więc wszystkie prognozy są nowe. Korekty red teamu (AGR_RT ≠ AGR): Q-0002 +0.01, Q-0003 +0.07, Q-0013 +0.10, Q-0031 −0.05, Q-0039 −0.07, Q-0040 +0.10, Q-0050 +0.05, Q-0054 +0.12, Q-0062 +0.08.
+Source: `registry/forecasts.csv` (edition 01, runs A, B, C, AGG_RT; frozen in commit 32a635e). "Verbal" — the scale from methodology §10 (a value of 0.45–0.55 inclusive: "even chances"). "Spread" — the lowest and highest value of the lenses. "Change vs 00" — edition 00 had no registry, so all forecasts are new. Red-team adjustments (AGG_RT ≠ AGG): Q-0002 +0.01, Q-0003 +0.07, Q-0013 +0.10, Q-0031 −0.05, Q-0039 −0.07, Q-0040 +0.10, Q-0050 +0.05, Q-0054 +0.12, Q-0062 +0.08.
 
-### MIL — wojskowy (15 pytań)
+### MIL — military (15 questions)
 
-| ID | Pytanie | Termin | AGR_RT | Słownie | A / B / C | Rozrzut (min–max) | Pewność | Zmiana vs 00 |
+| ID | Question | Deadline | AGG_RT | Verbal | A / B / C | Spread (min–max) | Confidence | Change vs 00 |
 |---|---|---|---|---|---|---|---|---|
-| Q-0001 | Czy do 31.12.2026 prezydent Rosji podpisze dekret ogłaszający mobilizację (powszechną lub częściową)? | 31.12.2026 | **0.03** | prawie wykluczone | 0.03 / 0.03 / 0.03 | 0.03–0.03 | średnia | nowe |
-| Q-0002 | Czy do 31.12.2026 na terytorium państwa NATO zginie co najmniej jedna osoba w wyniku uderzenia rosyjskiego drona lub pocisku? | 31.12.2026 | **0.06** | bardzo mało prawd. | 0.05 / 0.05 / 0.05 | 0.05–0.05 | średnia | nowe |
-| Q-0003 | Czy do 31.03.2027 Pentagon lub Biały Dom ogłosi decyzję o zmniejszeniu liczby żołnierzy USA w Europie o co najmniej 10 000? | 31.03.2027 | **0.40** | mało prawd. | 0.35 / 0.35 / 0.30 | 0.30–0.35 | niska | nowe |
-| Q-0004 | Czy według DeepState netto przyrost terytorium Ukrainy zajętego przez Rosję w październiku 2026 r. przekroczy 200 km²? | 31.10.2026 | **0.23** | mało prawd. | 0.18 / 0.15 / 0.35 | 0.15–0.35 | średnia | nowe |
-| Q-0005 | Czy do 31.03.2027 Dowództwo Teatru Wschodniego ChRL ogłosi nazwane ćwiczenia wojskowe wokół Tajwanu? | 31.03.2027 | **0.33** | mało prawd. | 0.25 / 0.35 / 0.40 | 0.25–0.40 | niska | nowe |
-| Q-0041 | Czy między 24.09 a 07.10.2026 CENTCOM lub Pentagon ogłosi uderzenie sił USA na cel na lądowym terytorium Iranu? | 07.10.2026 | **0.06** | bardzo mało prawd. | 0.05 / 0.08 / 0.05 | 0.05–0.08 | średnia | nowe |
-| Q-0043 | Czy między 24.09 a 07.10.2026 Arabia Saudyjska potwierdzi atak pociskiem lub dronem z Jemenu wymierzony w Rijad? | 07.10.2026 | **0.37** | mało prawd. | 0.40 / 0.35 / 0.35 | 0.35–0.40 | niska | nowe |
-| Q-0044 | Czy do 07.10.2026 rząd USA lub RP oficjalnie ogłosi lokalizację nowej stałej bazy armii USA w Polsce? | 07.10.2026 | **0.20** | mało prawd. | 0.20 / 0.20 / 0.20 | 0.20–0.20 | niska | nowe |
-| Q-0045 | Czy między 24.09 a 07.10.2026 DO RSZ lub MON potwierdzi naruszenie polskiej przestrzeni powietrznej przez obiekt z kierunku Rosji lub Białorusi? | 07.10.2026 | **0.18** | bardzo mało prawd. | 0.25 / 0.15 / 0.15 | 0.15–0.25 | niska | nowe |
-| Q-0046 | Czy między 24.09 a 07.10.2026 KRLD wystrzeli pocisk balistyczny? | 07.10.2026 | **0.45** | równe szanse | 0.50 / 0.45 / 0.40 | 0.40–0.50 | niska | nowe |
-| Q-0047 | Czy między 24.09 a 07.10.2026 MON Tajwanu wykaże w raporcie dobowym co najmniej 20 statków powietrznych PLA wokół Tajwanu? | 07.10.2026 | **0.45** | równe szanse | 0.40 / 0.40 / 0.55 | 0.40–0.55 | niska | nowe |
-| Q-0065 | Czy do 31.12.2026 CENTCOM lub Pentagon ogłosi uderzenie sił USA na cel na lądowym terytorium Iranu? | 31.12.2026 | **0.26** | mało prawd. | 0.25 / 0.28 / 0.25 | 0.25–0.28 | niska | nowe |
-| Q-0068 | Czy do 31.12.2026 siły USA przeprowadzą uderzenie na cele Huti w Jemenie? | 31.12.2026 | **0.23** | mało prawd. | 0.25 / 0.25 / 0.20 | 0.20–0.25 | niska | nowe |
-| Q-0069 | Czy do 31.12.2026 DSCA notyfikuje Kongresowi sprzedaż uzbrojenia Tajwanowi o łącznej wartości co najmniej 1 mld USD? | 31.12.2026 | **0.17** | bardzo mało prawd. | 0.15 / 0.15 / 0.20 | 0.15–0.20 | niska | nowe |
-| Q-0073 | Czy do 30.06.2027 ISW oceni, że siły rosyjskie przejęły kontrolę nad całym Kramatorskiem lub całym Słowiańskiem? | 30.06.2027 | **0.12** | bardzo mało prawd. | 0.10 / 0.10 / 0.15 | 0.10–0.15 | średnia | nowe |
+| Q-0001 | Will the president of Russia sign by 31.12.2026 a decree announcing mobilisation (general or partial)? | 31.12.2026 | **0.03** | almost ruled out | 0.03 / 0.03 / 0.03 | 0.03–0.03 | medium | new |
+| Q-0002 | Will at least one person be killed on the territory of a NATO state by a Russian drone or missile strike by 31.12.2026? | 31.12.2026 | **0.06** | very unlikely | 0.05 / 0.05 / 0.05 | 0.05–0.05 | medium | new |
+| Q-0003 | Will the Pentagon or the White House announce by 31.03.2027 a decision to reduce the number of US troops in Europe by at least 10,000? | 31.03.2027 | **0.40** | unlikely | 0.35 / 0.35 / 0.30 | 0.30–0.35 | low | new |
+| Q-0004 | Will the net gain of Ukrainian territory occupied by Russia in October 2026 exceed 200 km² according to DeepState? | 31.10.2026 | **0.23** | unlikely | 0.18 / 0.15 / 0.35 | 0.15–0.35 | medium | new |
+| Q-0005 | Will the PRC Eastern Theater Command announce named military exercises around Taiwan by 31.03.2027? | 31.03.2027 | **0.33** | unlikely | 0.25 / 0.35 / 0.40 | 0.25–0.40 | low | new |
+| Q-0041 | Will CENTCOM or the Pentagon announce a US strike on a target on Iranian land territory between 24.09 and 07.10.2026? | 07.10.2026 | **0.06** | very unlikely | 0.05 / 0.08 / 0.05 | 0.05–0.08 | medium | new |
+| Q-0043 | Will Saudi Arabia confirm a missile or drone attack from Yemen aimed at Riyadh between 24.09 and 07.10.2026? | 07.10.2026 | **0.37** | unlikely | 0.40 / 0.35 / 0.35 | 0.35–0.40 | low | new |
+| Q-0044 | Will the US or Polish government officially announce by 07.10.2026 the location of a new permanent US Army base in Poland? | 07.10.2026 | **0.20** | unlikely | 0.20 / 0.20 / 0.20 | 0.20–0.20 | low | new |
+| Q-0045 | Will the Polish Operational Command (DO RSZ) or the Ministry of National Defence confirm a violation of Polish airspace by an object from the direction of Russia or Belarus between 24.09 and 07.10.2026? | 07.10.2026 | **0.18** | very unlikely | 0.25 / 0.15 / 0.15 | 0.15–0.25 | low | new |
+| Q-0046 | Will the DPRK launch a ballistic missile between 24.09 and 07.10.2026? | 07.10.2026 | **0.45** | even chances | 0.50 / 0.45 / 0.40 | 0.40–0.50 | low | new |
+| Q-0047 | Will Taiwan's Ministry of National Defense report at least 20 PLA aircraft around Taiwan in a daily report between 24.09 and 07.10.2026? | 07.10.2026 | **0.45** | even chances | 0.40 / 0.40 / 0.55 | 0.40–0.55 | low | new |
+| Q-0065 | Will CENTCOM or the Pentagon announce a US strike on a target on Iranian land territory by 31.12.2026? | 31.12.2026 | **0.26** | unlikely | 0.25 / 0.28 / 0.25 | 0.25–0.28 | low | new |
+| Q-0068 | Will US forces carry out a strike on Houthi targets in Yemen by 31.12.2026? | 31.12.2026 | **0.23** | unlikely | 0.25 / 0.25 / 0.20 | 0.20–0.25 | low | new |
+| Q-0069 | Will the DSCA notify Congress by 31.12.2026 of arms sales to Taiwan with a combined value of at least 1 bn USD? | 31.12.2026 | **0.17** | very unlikely | 0.15 / 0.15 / 0.20 | 0.15–0.20 | low | new |
+| Q-0073 | Will ISW assess by 30.06.2027 that Russian forces have taken control of the whole of Kramatorsk or the whole of Sloviansk? | 30.06.2027 | **0.12** | very unlikely | 0.10 / 0.10 / 0.15 | 0.10–0.15 | medium | new |
 
-### ENE — energetyczny (10 pytań)
+### ENE — energy (10 questions)
 
-| ID | Pytanie | Termin | AGR_RT | Słownie | A / B / C | Rozrzut (min–max) | Pewność | Zmiana vs 00 |
+| ID | Question | Deadline | AGG_RT | Verbal | A / B / C | Spread (min–max) | Confidence | Change vs 00 |
 |---|---|---|---|---|---|---|---|---|
-| Q-0006 | Czy cena rozliczeniowa kontraktu ICE Brent front-month w dniu 06.10.2026 przekroczy 100,00 USD/bbl? | 06.10.2026 | **0.40** | mało prawd. | 0.35 / 0.45 / 0.40 | 0.35–0.45 | średnia | nowe |
-| Q-0007 | Czy cena rozliczeniowa kontraktu ICE Brent front-month przekroczy 120 USD/bbl w dowolnym dniu sesyjnym między 24.09 a 31.12.2026? | 31.12.2026 | **0.19** | bardzo mało prawd. | 0.12 / 0.25 / 0.20 | 0.12–0.25 | niska | nowe |
-| Q-0008 | Czy cena rozliczeniowa kontraktu ICE Brent front-month spadnie poniżej 80 USD/bbl w dowolnym dniu sesyjnym między 24.09 a 31.12.2026? | 31.12.2026 | **0.20** | mało prawd. | 0.15 / 0.30 / 0.15 | 0.15–0.30 | niska | nowe |
-| Q-0009 | Czy cena rozliczeniowa kontraktu TTF front-month przekroczy 90 EUR/MWh w dowolnym dniu sesyjnym między 24.09 a 31.12.2026? | 31.12.2026 | **0.30** | mało prawd. | 0.25 / 0.35 / 0.30 | 0.25–0.35 | niska | nowe |
-| Q-0010 | Czy zapełnienie magazynów gazu w UE według GIE AGSI+ w dniu gazowym 01.01.2027 będzie niższe niż 55,0%? | 01.01.2027 | **0.35** | mało prawd. | 0.40 / 0.25 / 0.40 | 0.25–0.40 | niska | nowe |
-| Q-0048 | Czy cena rozliczeniowa kontraktu TTF front-month w dniu 06.10.2026 przekroczy 75,00 EUR/MWh? | 06.10.2026 | **0.37** | mało prawd. | 0.35 / 0.37 / 0.40 | 0.35–0.40 | niska | nowe |
-| Q-0049 | Czy zapełnienie magazynów gazu w UE według GIE AGSI+ w dniu gazowym 06.10.2026 przekroczy 73,0%? | 06.10.2026 | **0.62** | prawdopodobne | 0.70 / 0.60 / 0.55 | 0.55–0.70 | niska | nowe |
-| Q-0050 | Czy średnia krajowa cena oleju napędowego w notowaniu tygodniowym e-petrol z 07.10.2026 przekroczy 9,00 zł/l? | 07.10.2026 | **0.38** | mało prawd. | 0.30 / 0.35 / 0.35 | 0.30–0.35 | niska | nowe |
-| Q-0051 | Czy na spotkaniu 04.10.2026 państwa OPEC+ prowadzące dobrowolne cięcia ogłoszą podwyższenie wymaganej produkcji na listopad 2026 r.? | 07.10.2026 | **0.28** | mało prawd. | 0.30 / 0.30 / 0.25 | 0.25–0.30 | niska | nowe |
-| Q-0067 | Czy zapełnienie magazynów gazu w UE według GIE AGSI+ w dniu gazowym 01.11.2026 wyniesie co najmniej 80,0%? | 01.11.2026 | **0.35** | mało prawd. | 0.30 / 0.45 / 0.30 | 0.30–0.45 | średnia | nowe |
+| Q-0006 | Will the settlement price of the ICE Brent front-month contract on 06.10.2026 exceed 100.00 USD/bbl? | 06.10.2026 | **0.40** | unlikely | 0.35 / 0.45 / 0.40 | 0.35–0.45 | medium | new |
+| Q-0007 | Will the settlement price of the ICE Brent front-month contract exceed 120 USD/bbl on any trading day between 24.09 and 31.12.2026? | 31.12.2026 | **0.19** | very unlikely | 0.12 / 0.25 / 0.20 | 0.12–0.25 | low | new |
+| Q-0008 | Will the settlement price of the ICE Brent front-month contract fall below 80 USD/bbl on any trading day between 24.09 and 31.12.2026? | 31.12.2026 | **0.20** | unlikely | 0.15 / 0.30 / 0.15 | 0.15–0.30 | low | new |
+| Q-0009 | Will the settlement price of the TTF front-month contract exceed 90 EUR/MWh on any trading day between 24.09 and 31.12.2026? | 31.12.2026 | **0.30** | unlikely | 0.25 / 0.35 / 0.30 | 0.25–0.35 | low | new |
+| Q-0010 | Will EU gas storage fill per GIE AGSI+ on gas day 01.01.2027 be below 55.0%? | 01.01.2027 | **0.35** | unlikely | 0.40 / 0.25 / 0.40 | 0.25–0.40 | low | new |
+| Q-0048 | Will the settlement price of the TTF front-month contract on 06.10.2026 exceed 75.00 EUR/MWh? | 06.10.2026 | **0.37** | unlikely | 0.35 / 0.37 / 0.40 | 0.35–0.40 | low | new |
+| Q-0049 | Will EU gas storage fill per GIE AGSI+ on gas day 06.10.2026 exceed 73.0%? | 06.10.2026 | **0.62** | likely | 0.70 / 0.60 / 0.55 | 0.55–0.70 | low | new |
+| Q-0050 | Will the national average price of diesel in the e-petrol weekly quotation of 07.10.2026 exceed 9.00 PLN/l? | 07.10.2026 | **0.38** | unlikely | 0.30 / 0.35 / 0.35 | 0.30–0.35 | low | new |
+| Q-0051 | Will the OPEC+ states with voluntary cuts announce at the 04.10.2026 meeting an increase in required production for November 2026? | 07.10.2026 | **0.28** | unlikely | 0.30 / 0.30 / 0.25 | 0.25–0.30 | low | new |
+| Q-0067 | Will EU gas storage fill per GIE AGSI+ on gas day 01.11.2026 be at least 80.0%? | 01.11.2026 | **0.35** | unlikely | 0.30 / 0.45 / 0.30 | 0.30–0.45 | medium | new |
 
-### GOS — gospodarczo-handlowy (7 pytań)
+### ECO — economic and trade (7 questions)
 
-| ID | Pytanie | Termin | AGR_RT | Słownie | A / B / C | Rozrzut (min–max) | Pewność | Zmiana vs 00 |
+| ID | Question | Deadline | AGG_RT | Verbal | A / B / C | Spread (min–max) | Confidence | Change vs 00 |
 |---|---|---|---|---|---|---|---|---|
-| Q-0011 | Czy do 10.11.2026 rządy USA i ChRL obydwa ogłoszą przedłużenie rozejmu handlowego (celnego) albo nowe porozumienie handlowe, które go zastępuje? | 10.11.2026 | **0.75** | prawdopodobne | 0.72 / 0.75 / 0.78 | 0.72–0.78 | średnia | nowe |
-| Q-0012 | Czy do 31.12.2026 prezydent USA nałoży cło na podstawie ustawy H.R. 5334 na towary z co najmniej jednego państwa innego niż Rosja? | 31.12.2026 | **0.19** | bardzo mało prawd. | 0.20 / 0.15 / 0.22 | 0.15–0.22 | niska | nowe |
-| Q-0013 | Czy szybki szacunek GUS inflacji CPI za wrzesień 2026 r. wyniesie co najmniej 3,5% r/r? | 30.09.2026 | **0.94** | bardzo prawd. | 0.80 / 0.85 / 0.88 | 0.80–0.88 | średnia | nowe |
-| Q-0014 | Czy indeks cen żywności FAO (FFPI) za wrzesień 2026 r. będzie wyższy niż 133,3 pkt? | 09.10.2026 | **0.56** | prawdopodobne | 0.55 / 0.55 / 0.58 | 0.55–0.58 | niska | nowe |
-| Q-0015 | Czy do 31.03.2027 USA wprowadzą cło na towary z UE przekraczające pułap 15% ustalony w porozumieniu z 2026 r.? | 31.03.2027 | **0.11** | bardzo mało prawd. | 0.12 / 0.12 / 0.08 | 0.08–0.12 | średnia | nowe |
-| Q-0057 | Czy między 24.09 a 07.10.2026 USA opublikują raport o nadmiernych mocach produkcyjnych rekomendujący cła na ChRL albo ogłoszą nową stawkę celną na towary z ChRL? | 07.10.2026 | **0.13** | bardzo mało prawd. | 0.12 / 0.12 / 0.15 | 0.12–0.15 | średnia | nowe |
-| Q-0058 | Czy do 07.10.2026 rządy USA i ChRL obydwa ogłoszą przedłużenie rozejmu handlowego (celnego) lub nowe porozumienie handlowe? | 07.10.2026 | **0.45** | równe szanse | 0.45 / 0.45 / 0.45 | 0.45–0.45 | niska | nowe |
+| Q-0011 | Will the governments of the USA and the PRC both announce by 10.11.2026 an extension of the trade (tariff) truce or a new trade agreement replacing it? | 10.11.2026 | **0.75** | likely | 0.72 / 0.75 / 0.78 | 0.72–0.78 | medium | new |
+| Q-0012 | Will the US president impose a tariff under H.R. 5334 on goods from at least one country other than Russia by 31.12.2026? | 31.12.2026 | **0.19** | very unlikely | 0.20 / 0.15 / 0.22 | 0.15–0.22 | low | new |
+| Q-0013 | Will the Statistics Poland (GUS) flash estimate of CPI inflation for September 2026 be at least 3.5% y/y? | 30.09.2026 | **0.94** | very likely | 0.80 / 0.85 / 0.88 | 0.80–0.88 | medium | new |
+| Q-0014 | Will the FAO Food Price Index (FFPI) for September 2026 be higher than 133.3 points? | 09.10.2026 | **0.56** | likely | 0.55 / 0.55 / 0.58 | 0.55–0.58 | low | new |
+| Q-0015 | Will the USA introduce a tariff on EU goods exceeding the 15% ceiling set in the 2026 agreement by 31.03.2027? | 31.03.2027 | **0.11** | very unlikely | 0.12 / 0.12 / 0.08 | 0.08–0.12 | medium | new |
+| Q-0057 | Will the USA publish between 24.09 and 07.10.2026 an overcapacity report recommending tariffs on the PRC, or announce a new tariff rate on PRC goods? | 07.10.2026 | **0.13** | very unlikely | 0.12 / 0.12 / 0.15 | 0.12–0.15 | medium | new |
+| Q-0058 | Will the governments of the USA and the PRC both announce by 07.10.2026 an extension of the trade (tariff) truce or a new trade agreement? | 07.10.2026 | **0.45** | even chances | 0.45 / 0.45 / 0.45 | 0.45–0.45 | low | new |
 
-### FIN — finansowo-sankcyjny (12 pytań)
+### FIN — financial and sanctions (12 questions)
 
-| ID | Pytanie | Termin | AGR_RT | Słownie | A / B / C | Rozrzut (min–max) | Pewność | Zmiana vs 00 |
+| ID | Question | Deadline | AGG_RT | Verbal | A / B / C | Spread (min–max) | Confidence | Change vs 00 |
 |---|---|---|---|---|---|---|---|---|
-| Q-0016 | Czy RPP zmieni stopę referencyjną NBP na którymkolwiek posiedzeniu między 24.09 a 31.12.2026? | 31.12.2026 | **0.18** | bardzo mało prawd. | 0.15 / 0.10 / 0.30 | 0.10–0.30 | średnia | nowe |
-| Q-0017 | Czy EBC podniesie stopę depozytową na posiedzeniu odbytym między 24.09 a 31.12.2026? | 31.12.2026 | **0.43** | mało prawd. | 0.45 / 0.45 / 0.40 | 0.40–0.45 | niska | nowe |
-| Q-0018 | Czy do 31.03.2027 OFAC wpisze na listę SDN bank zarejestrowany w ChRL kontynentalnej w związku z Iranem lub Rosją? | 31.03.2027 | **0.09** | bardzo mało prawd. | 0.10 / 0.08 / 0.08 | 0.08–0.10 | średnia | nowe |
-| Q-0019 | Czy do 31.12.2026 Rada UE przyjmie 22. pakiet sankcji wobec Rosji? | 31.12.2026 | **0.48** | równe szanse | 0.55 / 0.50 / 0.40 | 0.40–0.55 | niska | nowe |
-| Q-0020 | Czy Bank Rosji obniży stopę kluczową na posiedzeniu zaplanowanym na 23.10.2026? | 23.10.2026 | **0.25** | mało prawd. | 0.30 / 0.25 / 0.20 | 0.20–0.30 | średnia | nowe |
-| Q-0052 | Czy średni kurs EUR/PLN NBP z 07.10.2026 będzie wyższy niż 4,3500? | 07.10.2026 | **0.46** | równe szanse | 0.45 / 0.47 / 0.45 | 0.45–0.47 | niska | nowe |
-| Q-0053 | Czy projekt ustawy o budżecie federalnym Rosji na 2027 r. wniesiony do Dumy do 07.10.2026 przewiduje deficyt co najmniej 2,0% PKB? | 07.10.2026 | **0.49** | równe szanse | 0.50 / 0.45 / 0.52 | 0.45–0.52 | niska | nowe |
-| Q-0060 | Czy między 24.09 a 07.10.2026 OFAC wpisze na listę SDN podmiot z ChRL lub Hongkongu w związku z Iranem? | 07.10.2026 | **0.56** | prawdopodobne | 0.55 / 0.68 / 0.45 | 0.45–0.68 | niska | nowe |
-| Q-0061 | Czy między 24.09 a 07.10.2026 OFAC wpisze na listę SDN nowy podmiot w związku z Rosją? | 07.10.2026 | **0.22** | mało prawd. | 0.25 / 0.15 / 0.25 | 0.15–0.25 | niska | nowe |
-| Q-0066 | Czy FOMC podniesie przedział docelowy stopy funduszy federalnych na posiedzeniu 27–28.10.2026? | 28.10.2026 | **0.33** | mało prawd. | 0.30 / 0.40 / 0.30 | 0.30–0.40 | niska | nowe |
-| Q-0070 | Czy do 31.03.2027 Fitch lub S&P obniży długoterminowy rating Polski w walucie obcej? | 31.03.2027 | **0.31** | mało prawd. | 0.30 / 0.33 / 0.30 | 0.30–0.33 | niska | nowe |
-| Q-0071 | Czy do 30.06.2027 Rada UE przyjmie akt prawny umożliwiający wykorzystanie na rzecz Ukrainy samych zamrożonych aktywów Banku Rosji (nie tylko zysków nadzwyczajnych)? | 30.06.2027 | **0.17** | bardzo mało prawd. | 0.20 / 0.12 / 0.20 | 0.12–0.20 | niska | nowe |
+| Q-0016 | Will the Monetary Policy Council change the NBP reference rate at any meeting between 24.09 and 31.12.2026? | 31.12.2026 | **0.18** | very unlikely | 0.15 / 0.10 / 0.30 | 0.10–0.30 | medium | new |
+| Q-0017 | Will the ECB raise the deposit rate at a meeting held between 24.09 and 31.12.2026? | 31.12.2026 | **0.43** | unlikely | 0.45 / 0.45 / 0.40 | 0.40–0.45 | low | new |
+| Q-0018 | Will OFAC add to the SDN list by 31.03.2027 a bank registered in mainland PRC in connection with Iran or Russia? | 31.03.2027 | **0.09** | very unlikely | 0.10 / 0.08 / 0.08 | 0.08–0.10 | medium | new |
+| Q-0019 | Will the EU Council adopt the 22nd package of sanctions against Russia by 31.12.2026? | 31.12.2026 | **0.48** | even chances | 0.55 / 0.50 / 0.40 | 0.40–0.55 | low | new |
+| Q-0020 | Will the Bank of Russia cut its key rate at the meeting scheduled for 23.10.2026? | 23.10.2026 | **0.25** | unlikely | 0.30 / 0.25 / 0.20 | 0.20–0.30 | medium | new |
+| Q-0052 | Will the NBP average EUR/PLN rate of 07.10.2026 be higher than 4.3500? | 07.10.2026 | **0.46** | even chances | 0.45 / 0.47 / 0.45 | 0.45–0.47 | low | new |
+| Q-0053 | Does the draft Russian federal budget law for 2027 submitted to the Duma by 07.10.2026 provide for a deficit of at least 2.0% of GDP? | 07.10.2026 | **0.49** | even chances | 0.50 / 0.45 / 0.52 | 0.45–0.52 | low | new |
+| Q-0060 | Will OFAC add to the SDN list an entity from the PRC or Hong Kong in connection with Iran between 24.09 and 07.10.2026? | 07.10.2026 | **0.56** | likely | 0.55 / 0.68 / 0.45 | 0.45–0.68 | low | new |
+| Q-0061 | Will OFAC add a new entity to the SDN list in connection with Russia between 24.09 and 07.10.2026? | 07.10.2026 | **0.22** | unlikely | 0.25 / 0.15 / 0.25 | 0.15–0.25 | low | new |
+| Q-0066 | Will the FOMC raise the target range for the federal funds rate at the 27–28.10.2026 meeting? | 28.10.2026 | **0.33** | unlikely | 0.30 / 0.40 / 0.30 | 0.30–0.40 | low | new |
+| Q-0070 | Will Fitch or S&P downgrade Poland's long-term foreign-currency rating by 31.03.2027? | 31.03.2027 | **0.31** | unlikely | 0.30 / 0.33 / 0.30 | 0.30–0.33 | low | new |
+| Q-0071 | Will the EU Council adopt by 30.06.2027 a legal act allowing the frozen assets of the Bank of Russia themselves (not only windfall profits) to be used for Ukraine? | 30.06.2027 | **0.17** | very unlikely | 0.20 / 0.12 / 0.20 | 0.12–0.20 | low | new |
 
-### TEC — technologiczno-surowcowy (5 pytań)
+### TEC — technology and raw materials (5 questions)
 
-| ID | Pytanie | Termin | AGR_RT | Słownie | A / B / C | Rozrzut (min–max) | Pewność | Zmiana vs 00 |
+| ID | Question | Deadline | AGG_RT | Verbal | A / B / C | Spread (min–max) | Confidence | Change vs 00 |
 |---|---|---|---|---|---|---|---|---|
-| Q-0021 | Czy do 10.11.2026 ChRL ogłosi przedłużenie lub uchylenie zawieszenia kontroli eksportu ziem rzadkich wprowadzonych 09.10.2025? | 10.11.2026 | **0.68** | prawdopodobne | 0.63 / 0.70 / 0.72 | 0.63–0.72 | średnia | nowe |
-| Q-0022 | Czy do 27.11.2026 ChRL ogłosi przedłużenie lub uchylenie zawieszenia zakazu eksportu galu, germanu, antymonu i materiałów supertwardych do USA? | 27.11.2026 | **0.68** | prawdopodobne | 0.60 / 0.72 / 0.72 | 0.60–0.72 | średnia | nowe |
-| Q-0023 | Czy między 24.09 a 31.12.2026 MOFCOM wpisze co najmniej jeden podmiot z USA na listę kontroli eksportu lub na listę podmiotów niewiarygodnych? | 31.12.2026 | **0.43** | mało prawd. | 0.35 / 0.50 / 0.45 | 0.35–0.50 | niska | nowe |
-| Q-0024 | Czy do 31.12.2026 rząd USA zezwoli na eksport do ChRL układów AI Nvidia z architekturą Blackwell lub nowszą? | 31.12.2026 | **0.17** | bardzo mało prawd. | 0.15 / 0.15 / 0.20 | 0.15–0.20 | niska | nowe |
-| Q-0025 | Czy eksport magnesów trwałych z ziem rzadkich z ChRL do USA we wrześniu 2026 r. przekroczy 512 t? | 20.10.2026 | **0.50** | równe szanse | 0.45 / 0.60 / 0.45 | 0.45–0.60 | niska | nowe |
+| Q-0021 | Will the PRC announce by 10.11.2026 an extension or repeal of the suspension of the rare-earth export controls introduced on 09.10.2025? | 10.11.2026 | **0.68** | likely | 0.63 / 0.70 / 0.72 | 0.63–0.72 | medium | new |
+| Q-0022 | Will the PRC announce by 27.11.2026 an extension or repeal of the suspension of the ban on exports of gallium, germanium, antimony and superhard materials to the USA? | 27.11.2026 | **0.68** | likely | 0.60 / 0.72 / 0.72 | 0.60–0.72 | medium | new |
+| Q-0023 | Will MOFCOM add at least one US entity to the export control list or the unreliable entity list between 24.09 and 31.12.2026? | 31.12.2026 | **0.43** | unlikely | 0.35 / 0.50 / 0.45 | 0.35–0.50 | low | new |
+| Q-0024 | Will the US government permit exports to the PRC of Nvidia AI chips with the Blackwell architecture or newer by 31.12.2026? | 31.12.2026 | **0.17** | very unlikely | 0.15 / 0.15 / 0.20 | 0.15–0.20 | low | new |
+| Q-0025 | Will PRC exports of rare-earth permanent magnets to the USA in September 2026 exceed 512 t? | 20.10.2026 | **0.50** | even chances | 0.45 / 0.60 / 0.45 | 0.45–0.60 | low | new |
 
-### DYP — dyplomatyczny i sojusze (9 pytań)
+### DIP — diplomacy and alliances (9 questions)
 
-| ID | Pytanie | Termin | AGR_RT | Słownie | A / B / C | Rozrzut (min–max) | Pewność | Zmiana vs 00 |
+| ID | Question | Deadline | AGG_RT | Verbal | A / B / C | Spread (min–max) | Confidence | Change vs 00 |
 |---|---|---|---|---|---|---|---|---|
-| Q-0026 | Czy do 30.11.2026 odbędzie się trójstronne spotkanie delegacji rządowych USA, Ukrainy i Rosji? | 30.11.2026 | **0.45** | równe szanse | 0.45 / 0.45 / 0.45 | 0.45–0.45 | niska | nowe |
-| Q-0027 | Czy między 24.09 a 31.12.2026 którekolwiek państwo NATO złoży wniosek o konsultacje na podstawie art. 4 Traktatu Północnoatlantyckiego? | 31.12.2026 | **0.11** | bardzo mało prawd. | 0.10 / 0.12 / 0.12 | 0.10–0.12 | średnia | nowe |
-| Q-0028 | Czy do 31.12.2026 USA i Iran ogłoszą zawarcie porozumienia (ramowego, tymczasowego lub końcowego) obejmującego otwarcie Cieśniny Ormuz? | 31.12.2026 | **0.30** | mało prawd. | 0.35 / 0.25 / 0.30 | 0.25–0.35 | niska | nowe |
-| Q-0029 | Czy Donald Trump weźmie osobiście udział w spotkaniu przywódców APEC w Shenzhen (18–19.11.2026)? | 19.11.2026 | **0.53** | równe szanse | 0.50 / 0.60 / 0.50 | 0.50–0.60 | niska | nowe |
-| Q-0030 | Czy do 31.03.2027 Władimir Putin i Donald Trump spotkają się osobiście? | 31.03.2027 | **0.27** | mało prawd. | 0.30 / 0.25 / 0.25 | 0.25–0.30 | niska | nowe |
-| Q-0042 | Czy między 24.09 a 07.10.2026 odbędzie się kolejna runda rozmów przedstawicieli rządów USA i Iranu (bezpośrednich lub pośrednich)? | 07.10.2026 | **0.48** | równe szanse | 0.55 / 0.45 / 0.45 | 0.45–0.55 | niska | nowe |
-| Q-0059 | Czy do 07.10.2026 Rosja i Ukraina obie oficjalnie potwierdzą obowiązujące porozumienie o wzajemnym wstrzymaniu uderzeń w infrastrukturę energetyczną? | 07.10.2026 | **0.12** | bardzo mało prawd. | 0.15 / 0.10 / 0.10 | 0.10–0.15 | średnia | nowe |
-| Q-0064 | Czy do 07.10.2026 USA i Ukraina podpiszą międzyrządową umowę o dronach? | 07.10.2026 | **0.27** | mało prawd. | 0.25 / 0.25 / 0.30 | 0.25–0.30 | niska | nowe |
-| Q-0072 | Czy do 30.06.2027 Armenia i Azerbejdżan podpiszą traktat pokojowy? | 30.06.2027 | **0.13** | bardzo mało prawd. | 0.12 / 0.15 / 0.12 | 0.12–0.15 | średnia | nowe |
+| Q-0026 | Will a trilateral meeting of government delegations of the USA, Ukraine and Russia take place by 30.11.2026? | 30.11.2026 | **0.45** | even chances | 0.45 / 0.45 / 0.45 | 0.45–0.45 | low | new |
+| Q-0027 | Will any NATO state submit a request for consultations under Article 4 of the North Atlantic Treaty between 24.09 and 31.12.2026? | 31.12.2026 | **0.11** | very unlikely | 0.10 / 0.12 / 0.12 | 0.10–0.12 | medium | new |
+| Q-0028 | Will the USA and Iran announce by 31.12.2026 the conclusion of an agreement (framework, interim or final) that includes the opening of the Strait of Hormuz? | 31.12.2026 | **0.30** | unlikely | 0.35 / 0.25 / 0.30 | 0.25–0.35 | low | new |
+| Q-0029 | Will Donald Trump personally attend the APEC leaders' meeting in Shenzhen (18–19.11.2026)? | 19.11.2026 | **0.53** | even chances | 0.50 / 0.60 / 0.50 | 0.50–0.60 | low | new |
+| Q-0030 | Will Vladimir Putin and Donald Trump meet in person by 31.03.2027? | 31.03.2027 | **0.27** | unlikely | 0.30 / 0.25 / 0.25 | 0.25–0.30 | low | new |
+| Q-0042 | Will another round of talks between representatives of the US and Iranian governments (direct or indirect) take place between 24.09 and 07.10.2026? | 07.10.2026 | **0.48** | even chances | 0.55 / 0.45 / 0.45 | 0.45–0.55 | low | new |
+| Q-0059 | Will Russia and Ukraine both officially confirm by 07.10.2026 an agreement in force on a mutual halt to strikes on energy infrastructure? | 07.10.2026 | **0.12** | very unlikely | 0.15 / 0.10 / 0.10 | 0.10–0.15 | medium | new |
+| Q-0064 | Will the USA and Ukraine sign an intergovernmental drone agreement by 07.10.2026? | 07.10.2026 | **0.27** | unlikely | 0.25 / 0.25 / 0.30 | 0.25–0.30 | low | new |
+| Q-0072 | Will Armenia and Azerbaijan sign a peace treaty by 30.06.2027? | 30.06.2027 | **0.13** | very unlikely | 0.12 / 0.15 / 0.12 | 0.12–0.15 | medium | new |
 
-### WEW — polityka wewnętrzna (8 pytań)
+### DOM — domestic politics (8 questions)
 
-| ID | Pytanie | Termin | AGR_RT | Słownie | A / B / C | Rozrzut (min–max) | Pewność | Zmiana vs 00 |
+| ID | Question | Deadline | AGG_RT | Verbal | A / B / C | Spread (min–max) | Confidence | Change vs 00 |
 |---|---|---|---|---|---|---|---|---|
-| Q-0031 | Czy Partia Republikańska zdobędzie co najmniej 218 mandatów w Izbie Reprezentantów w wyborach 03.11.2026? | 31.12.2026 | **0.11** | bardzo mało prawd. | 0.15 / 0.12 / 0.20 | 0.12–0.20 | średnia | nowe |
-| Q-0032 | Czy do 31.12.2026 zostanie opublikowane nowe nagranie wideo lub audio z wystąpieniem Modżtaby Chameneiego? | 31.12.2026 | **0.14** | bardzo mało prawd. | 0.15 / 0.12 / 0.15 | 0.12–0.15 | niska | nowe |
-| Q-0033 | Czy Luiz Inácio Lula da Silva wygra wybory prezydenckie w Brazylii w 2026 r. (I tura 04.10 lub II tura 25.10)? | 31.10.2026 | **0.56** | prawdopodobne | 0.55 / 0.57 / 0.55 | 0.55–0.57 | niska | nowe |
-| Q-0034 | Czy do 31.03.2027 CNE lub rząd Wenezueli ogłosi konkretną datę wyborów prezydenckich? | 31.03.2027 | **0.33** | mało prawd. | 0.30 / 0.35 / 0.35 | 0.30–0.35 | niska | nowe |
-| Q-0035 | Czy do 31.03.2027 Assimi Goïta przestanie sprawować władzę w Mali (zamach, rezygnacja, śmierć lub przejęcie Bamako przez JNIM lub FLA)? | 31.03.2027 | **0.09** | bardzo mało prawd. | 0.08 / 0.10 / 0.10 | 0.08–0.10 | niska | nowe |
-| Q-0054 | Czy Sprawiedliwa Rosja uzyska co najmniej 5,00% głosów w ostatecznych wynikach wyborów do Dumy ogłoszonych przez CKW? | 30.09.2026 | **0.94** | bardzo prawd. | 0.85 / 0.68 / 0.93 | 0.68–0.93 | średnia | nowe |
-| Q-0055 | Czy Zjednoczona Lista (Apvienotais saraksts) zdobędzie najwięcej mandatów w wyborach do Sejmu Łotwy 03.10.2026? | 10.10.2026 | **0.82** | bardzo prawd. | 0.75 / 0.88 / 0.82 | 0.75–0.88 | średnia | nowe |
-| Q-0056 | Czy Lula da Silva zdobędzie ponad 50% ważnych głosów w I turze wyborów prezydenckich 04.10.2026? | 05.10.2026 | **0.06** | bardzo mało prawd. | 0.08 / 0.04 / 0.07 | 0.04–0.08 | średnia | nowe |
+| Q-0031 | Will the Republican Party win at least 218 seats in the House of Representatives in the 03.11.2026 elections? | 31.12.2026 | **0.11** | very unlikely | 0.15 / 0.12 / 0.20 | 0.12–0.20 | medium | new |
+| Q-0032 | Will a new video or audio recording of Mojtaba Khamenei speaking be published by 31.12.2026? | 31.12.2026 | **0.14** | very unlikely | 0.15 / 0.12 / 0.15 | 0.12–0.15 | low | new |
+| Q-0033 | Will Luiz Inácio Lula da Silva win the 2026 presidential election in Brazil (first round 04.10 or second round 25.10)? | 31.10.2026 | **0.56** | likely | 0.55 / 0.57 / 0.55 | 0.55–0.57 | low | new |
+| Q-0034 | Will the CNE or the government of Venezuela announce a specific date for the presidential election by 31.03.2027? | 31.03.2027 | **0.33** | unlikely | 0.30 / 0.35 / 0.35 | 0.30–0.35 | low | new |
+| Q-0035 | Will Assimi Goïta cease to hold power in Mali by 31.03.2027 (coup, resignation, death or capture of Bamako by JNIM or the FLA)? | 31.03.2027 | **0.09** | very unlikely | 0.08 / 0.10 / 0.10 | 0.08–0.10 | low | new |
+| Q-0054 | Will A Just Russia obtain at least 5.00% of the vote in the final results of the Duma elections announced by the Central Election Commission? | 30.09.2026 | **0.94** | very likely | 0.85 / 0.68 / 0.93 | 0.68–0.93 | medium | new |
+| Q-0055 | Will the United List (Apvienotais saraksts) win the most seats in the elections to the Latvian Saeima on 03.10.2026? | 10.10.2026 | **0.82** | very likely | 0.75 / 0.88 / 0.82 | 0.75–0.88 | medium | new |
+| Q-0056 | Will Lula da Silva win more than 50% of valid votes in the first round of the presidential election on 04.10.2026? | 05.10.2026 | **0.06** | very unlikely | 0.08 / 0.04 / 0.07 | 0.04–0.08 | medium | new |
 
-### INF — infrastruktura i żegluga (7 pytań)
+### INF — infrastructure and shipping (7 questions)
 
-| ID | Pytanie | Termin | AGR_RT | Słownie | A / B / C | Rozrzut (min–max) | Pewność | Zmiana vs 00 |
+| ID | Question | Deadline | AGG_RT | Verbal | A / B / C | Spread (min–max) | Confidence | Change vs 00 |
 |---|---|---|---|---|---|---|---|---|
-| Q-0036 | Czy w dowolnym dniu między 24.09 a 31.12.2026 średnia 7-dniowa liczby przejść przez Cieśninę Ormuz według IMF PortWatch przekroczy 40 statków na dobę? | 31.12.2026 | **0.24** | mało prawd. | 0.30 / 0.20 / 0.22 | 0.20–0.30 | niska | nowe |
-| Q-0037 | Czy IMF PortWatch odnotuje co najmniej 20 przejść przez Cieśninę Ormuz w dowolnej dobie między 24.09 a 07.10.2026? | 07.10.2026 | **0.11** | bardzo mało prawd. | 0.10 / 0.12 / 0.12 | 0.10–0.12 | niska | nowe |
-| Q-0038 | Czy do 31.12.2026 USA oficjalnie zniosą lub zawieszą blokadę morską portów irańskich? | 31.12.2026 | **0.28** | mało prawd. | 0.32 / 0.22 / 0.30 | 0.22–0.32 | niska | nowe |
-| Q-0039 | Czy do 31.10.2026 Urząd Kanału Panamskiego podniesie dzienny limit przejść powyżej 32? | 31.10.2026 | **0.15** | bardzo mało prawd. | 0.35 / 0.10 / 0.20 | 0.10–0.35 | niska | nowe |
-| Q-0040 | Czy do 31.03.2027 rząd lub prokuratura państwa nadbałtyckiego ogłosi uszkodzenie podmorskiego kabla lub rurociągu na Bałtyku wraz z postępowaniem w sprawie działania zewnętrznego? | 31.03.2027 | **0.67** | prawdopodobne | 0.40 / 0.75 / 0.55 | 0.40–0.75 | niska | nowe |
-| Q-0062 | Czy między 24.09 a 07.10.2026 UKMTO lub JMIC poinformuje o ataku na statek handlowy w Morzu Czerwonym, Bab al-Mandab lub Zatoce Adeńskiej? | 07.10.2026 | **0.51** | równe szanse | 0.45 / 0.45 / 0.40 | 0.40–0.45 | niska | nowe |
-| Q-0063 | Czy między 24.09 a 07.10.2026 UKMTO lub JMIC potwierdzi trafienie statku handlowego w Zatoce Perskiej, Cieśninie Ormuz lub Zatoce Omańskiej? | 07.10.2026 | **0.42** | mało prawd. | 0.45 / 0.40 / 0.40 | 0.40–0.45 | niska | nowe |
+| Q-0036 | Will the 7-day average number of transits through the Strait of Hormuz per IMF PortWatch exceed 40 ships per day on any day between 24.09 and 31.12.2026? | 31.12.2026 | **0.24** | unlikely | 0.30 / 0.20 / 0.22 | 0.20–0.30 | low | new |
+| Q-0037 | Will IMF PortWatch record at least 20 transits through the Strait of Hormuz on any day between 24.09 and 07.10.2026? | 07.10.2026 | **0.11** | very unlikely | 0.10 / 0.12 / 0.12 | 0.10–0.12 | low | new |
+| Q-0038 | Will the USA officially lift or suspend the naval blockade of Iranian ports by 31.12.2026? | 31.12.2026 | **0.28** | unlikely | 0.32 / 0.22 / 0.30 | 0.22–0.32 | low | new |
+| Q-0039 | Will the Panama Canal Authority raise the daily transit limit above 32 by 31.10.2026? | 31.10.2026 | **0.15** | very unlikely | 0.35 / 0.10 / 0.20 | 0.10–0.35 | low | new |
+| Q-0040 | Will the government or prosecutor of a Baltic Sea state announce by 31.03.2027 damage to a subsea cable or pipeline in the Baltic together with proceedings concerning external action? | 31.03.2027 | **0.67** | likely | 0.40 / 0.75 / 0.55 | 0.40–0.75 | low | new |
+| Q-0062 | Will UKMTO or JMIC report an attack on a merchant ship in the Red Sea, Bab el-Mandeb or the Gulf of Aden between 24.09 and 07.10.2026? | 07.10.2026 | **0.51** | even chances | 0.45 / 0.45 / 0.40 | 0.40–0.45 | low | new |
+| Q-0063 | Will UKMTO or JMIC confirm a hit on a merchant ship in the Persian Gulf, the Strait of Hormuz or the Gulf of Oman between 24.09 and 07.10.2026? | 07.10.2026 | **0.42** | unlikely | 0.45 / 0.40 / 0.40 | 0.40–0.45 | low | new |
