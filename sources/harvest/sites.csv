@@ -1,0 +1,17 @@
+id;name;country;lat;lon;radius_km;verified;notes
+kirishi;Kirishi refinery (KINEF);RU;59.46;32.03;6;N;verify coordinates before relying on counts
+ust_luga;Ust-Luga port;RU;59.68;28.40;8;N;
+primorsk;Primorsk oil terminal;RU;60.35;28.62;6;N;
+novorossiysk;Novorossiysk (Sheskharis terminal);RU;44.72;37.80;6;N;
+tuapse;Tuapse refinery and terminal;RU;44.10;39.08;5;N;
+ryazan;Ryazan refinery;RU;54.56;39.77;6;N;
+volgograd;Volgograd refinery;RU;48.64;44.44;6;N;
+saratov;Saratov refinery;RU;51.49;46.00;6;N;
+syzran;Syzran refinery;RU;53.18;48.40;6;N;
+novokuibyshevsk;Novokuibyshevsk refinery;RU;53.10;49.95;6;N;
+moscow_refinery;Moscow refinery (Kapotnya);RU;55.64;37.81;4;N;
+ufa;Ufa refineries;RU;54.83;56.05;8;N;
+abqaiq;Abqaiq processing plant;SA;25.94;49.68;8;N;permanent flares: use the baseline
+ras_tanura;Ras Tanura refinery and terminal;SA;26.64;50.16;8;N;permanent flares: use the baseline
+yanbu;Yanbu industrial city;SA;24.00;38.20;15;N;permanent flares: use the baseline
+riyadh_refinery;Riyadh refinery;SA;24.56;46.87;6;N;

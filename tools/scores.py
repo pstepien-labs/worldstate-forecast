@@ -8,6 +8,9 @@ Usage:
   python3 tools/scores.py                             # all editions, output to screen
   python3 tools/scores.py --to-edition 03 --out editions/.../01_scores.md
   python3 tools/scores.py --bootstrap A B             # confidence interval of the Brier difference A−B
+  python3 tools/scores.py --editions 02,03,04         # only forecasts made in these editions
+  python3 tools/scores.py --framework 1.1.0           # only editions produced with this framework version
+                                                      # (mapping edition -> version: registry/editions.csv)
 """
 import argparse
 import csv
@@ -57,7 +60,11 @@ def main():
     ap.add_argument('--out', default=None)
     ap.add_argument('--bootstrap', nargs=2, metavar=('P1', 'P2'), default=None)
     ap.add_argument('--n-boot', type=int, default=2000)
+    ap.add_argument('--editions', default=None, help='comma-separated editions to include (e.g. 02,03)')
+    ap.add_argument('--framework', default=None, help='include only editions produced with this framework version')
     a = ap.parse_args()
+    fw_of = {r['edition']: r.get('framework_version', '') for r in read('editions.csv')}
+    only_editions = {e.strip().zfill(2) for e in a.editions.split(',')} if a.editions else None
 
     questions = {q['id']: q for q in read('questions.csv')}
     forecasts = read('forecasts.csv')
@@ -83,6 +90,10 @@ def main():
         if qid not in outcome:
             continue
         if a.to_edition and int(p['edition']) > int(a.to_edition):
+            continue
+        if only_editions and p['edition'].zfill(2) not in only_editions:
+            continue
+        if a.framework and fw_of.get(p['edition'].zfill(2), '') != a.framework:
             continue
         rows_all.append((qid, p['edition'], p['run'], float(p['p']), outcome[qid], p['date']))
 
@@ -171,6 +182,8 @@ def main():
     gk = breakdown('Clusters', lambda w: questions[w[0]].get('cluster', '') or 'NONE')
     pr(f'Brier AGG_RT with a weight of 1 per cluster: **{fmt(mean([mean(v) for v in gk.values()]))}**\n')
     breakdown('Vectors', lambda w: questions[w[0]].get('vector', ''))
+    breakdown('Editions (forecast made in)', lambda w: w[1])
+    breakdown('Framework versions (registry/editions.csv)', lambda w: fw_of.get(w[1].zfill(2), '') or 'unregistered')
 
     def horizon(w):
         try:

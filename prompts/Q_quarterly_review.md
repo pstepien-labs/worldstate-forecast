@@ -4,6 +4,7 @@
 
 ## Tasks
 
+0. **Inputs from the learning loop.** Read the latest learning review(s) in `reviews/learning/` (L1–L5) and every proposal with status `DEFERRED_TO_Q` in `reviews/learning/proposals.csv`. Group all results by framework and methodology version (`registry/editions.csv`; `python3 tools/scores.py --framework <v>`). If no learning review covers the quarter, run `/gL1`–`/gL4` for the quarter first.
 1. **Full scores** (script `tools/scores.py`, all editions of the quarter):
    - Brier and BSS for AGG_RT relative to the status quo and to the crowd (EXACT only),
    - calibration,
@@ -28,7 +29,7 @@
    - a change to the horizon distribution,
    - a change to the PIRs.
 6. **New panel** for the next quarter: 40 questions, 5 per vector.
-7. **Approval.** Present the proposals to the user. After approval create `methodology/methodology_v1.1.md` as a new file — v1.0 stays unchanged.
+7. **Approval.** Present the proposals to the user. After approval create `methodology/methodology_v1.1.md` as a new file — v1.0 stays unchanged. Bump `VERSION` to the next major version, set `METHODOLOGY=v1.1` in `editions/CURRENT.md` for the next edition, add a row to `methodology/methodology_changes.md`, and set the related proposals to `IMPLEMENTED`.
 
 ## Output
 

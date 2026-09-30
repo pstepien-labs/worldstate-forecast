@@ -1,5 +1,7 @@
 # Source map
 
+This map guides human and AI searching. The **harvester** turns it into machine-readable configuration: `sources/harvest/feeds.csv` (feeds, pages, Telegram, GDELT queries), `datasets.csv` (primary numeric data), `keywords.csv` (multilingual concepts), `source_universe.csv` (required roles per actor). Keep both in step: a source added here should get a harvester row, and vice versa (`/gH repair`).
+
 Three-perspective rule: for every key event — a Western source (W), a source from the actor's side (A), a third-party source (T). State sources are a fact about a statement and a perspective, never the only confirmation of a disputed event. The same rating scale (A–F, 1–6) applies to Western and non-Western sources.
 
 ## Sources by actor

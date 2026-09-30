@@ -4,7 +4,7 @@
 
 ## Tasks
 
-1. Read `log.md`, `08_quality_control.md` and `03_question_bank_changes.md` from editions 01–03.
+1. Read `log.md`, `08_quality_control.md`, `03_question_bank_changes.md` and `provenance.md` from editions 01–03, and the learning review (L1–L5) for editions 01–03 if it exists. Where a learning review exists, this retrospective only adds the process view (time, interruptions, rule violations) and does not repeat it.
 2. List process problems:
    - stages interrupted or repeated and their causes,
    - voided or ambiguous questions,
