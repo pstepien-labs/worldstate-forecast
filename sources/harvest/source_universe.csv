@@ -1,0 +1,37 @@
+actor;name;priority;required_roles;notes
+# Required roles per actor: official, state_loyal, independent_exile, western (Western reporting ABOUT the actor comes via western feeds), third.
+# Coverage report (02_harvest/coverage.md) flags required roles with no items in the window. Priority 1 = PIR actors.
+US;United States;1;official,western;statements = facts about statements
+RU;Russia;1;official,state_loyal,independent_exile;compare TASS EN vs RU, exile media for the domestic picture
+CN;China;1;official,state_loyal,independent_exile;MFA ladder of formulations, SCMP/Caixin as independent-leaning
+UA;Ukraine;1;official,state_loyal,independent_exile;
+IR;Iran;1;official,state_loyal,independent_exile;MFA track vs IRGC track (Tasnim)
+EU;European Union;1;official,western;
+PL;Poland;1;official,independent_exile;
+NATO;NATO;1;official;
+SA;Saudi Arabia;2;official,state_loyal;
+AE;United Arab Emirates;2;state_loyal;
+QA;Qatar;2;third;Al Jazeera EN vs AR
+IL;Israel;2;independent_exile;
+TR;Turkey;2;state_loyal,western;
+IN;India;2;official,independent_exile;
+TW;Taiwan;2;official,independent_exile;
+JP;Japan;2;official,independent_exile;
+KR;South Korea;2;state_loyal;Yonhap (semi-public agency)
+KP;North Korea;3;third;via KCNA Watch
+YE;Yemen (Houthis);2;state_loyal;Saba (Houthi-run)
+LV;Latvia;3;independent_exile;
+EE;Estonia;3;independent_exile;
+LT;Lithuania;3;independent_exile;
+BY;Belarus;3;independent_exile;
+AM;Armenia;3;independent_exile;
+AZ;Azerbaijan;3;state_loyal;
+GE;Georgia;3;independent_exile;
+BR;Brazil;3;independent_exile;
+VE;Venezuela;3;state_loyal,independent_exile;
+CU;Cuba;3;state_loyal;
+SD;Sudan;3;independent_exile;
+ML;Mali;3;independent_exile;
+ET;Ethiopia;3;independent_exile;
+PK;Pakistan;3;independent_exile;
+GL;Greenland;3;independent_exile;

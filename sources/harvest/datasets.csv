@@ -1,0 +1,27 @@
+id;enabled;adapter;name;url;params;indicator;unit;needs_key;interval_h;groups;notes
+# --- exchange rates and policy rates ---
+nbp_eurpln;1;nbp;NBP table A EUR/PLN;https://api.nbp.pl/api/exchangerates/rates/a/eur/{start}/{end}/?format=json;;EUR/PLN;PLN;;12;G3;resolution source for EUR/PLN questions
+nbp_usdpln;1;nbp;NBP table A USD/PLN;https://api.nbp.pl/api/exchangerates/rates/a/usd/{start}/{end}/?format=json;;USD/PLN;PLN;;12;G3;
+ecb_eurusd;1;sdmx_csv;ECB reference rate EUR/USD;https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?startPeriod={start}&format=csvdata;;EUR/USD;USD;;12;G3;
+ecb_dfr;1;sdmx_csv;ECB deposit facility rate;https://data-api.ecb.europa.eu/service/data/FM/B.U2.EUR.4F.KR.DFR.LEV?startPeriod={start}&format=csvdata;;ECB_deposit_rate;%;;24;G3;
+fred_fed_upper;1;fred_csv;Fed funds target range upper (FRED DFEDTARU);https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU&cosd={start};;Fed_target_upper;%;;24;G3;
+fred_fed_lower;1;fred_csv;Fed funds target range lower (FRED DFEDTARL);https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARL&cosd={start};;Fed_target_lower;%;;24;G3;
+fred_us10y;1;fred_csv;US 10-year Treasury yield (FRED DGS10);https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd={start};;UST10Y;%;;24;G3;
+fred_usd_broad;1;fred_csv;Broad US dollar index (FRED DTWEXBGS);https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS&cosd={start};;USD_broad_index;index;;24;G3;
+cbr_fx;1;cbr_xml;Bank of Russia official FX rates;https://www.cbr.ru/scripts/XML_daily.asp?date_req={date_ddmmyyyy};codes=USD,EUR,CNY;RUB_FX;RUB;;24;G3;may be blocked outside RU
+cbr_keyrate;1;snapshot;Bank of Russia key rate page;https://www.cbr.ru/eng/hd_base/KeyRate/;ext=html;RU_key_rate;%;;24;G3;raw page kept, read the latest row
+# --- oil and gas ---
+fred_brent;1;fred_csv;Brent spot (FRED DCOILBRENTEU, EIA data);https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU&cosd={start};;Brent_spot;USD/bbl;;24;G2;published with a lag of a few days
+fred_wti;1;fred_csv;WTI spot (FRED DCOILWTICO);https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO&cosd={start};;WTI_spot;USD/bbl;;24;G2;
+eia_brent;1;eia;EIA Brent spot (API);https://api.eia.gov/v2/petroleum/pri/spt/data/?api_key={key:EIA_API_KEY}&frequency=daily&data%5B0%5D=value&facets%5Bseries%5D%5B%5D=RBRTE&start={start}&sort%5B0%5D%5Bcolumn%5D=period&sort%5B0%5D%5Bdirection%5D=desc;;Brent_spot_EIA;USD/bbl;EIA_API_KEY;24;G2;free key: eia.gov/opendata
+eia_us_crude_stocks;1;eia;EIA US commercial crude stocks (weekly);https://api.eia.gov/v2/petroleum/stoc/wstk/data/?api_key={key:EIA_API_KEY}&frequency=weekly&data%5B0%5D=value&facets%5Bseries%5D%5B%5D=WCESTUS1&start={start};;US_crude_stocks;thousand bbl;EIA_API_KEY;24;G2;
+agsi_eu;1;agsi;GIE AGSI+ EU gas storage;https://agsi.gie.eu/api?type=eu&from={start}&to={end}&size=300;;gas_storage_full:EU;%;AGSI_API_KEY;24;G2;free key: agsi.gie.eu (account), verify params with check
+agsi_pl;1;agsi;GIE AGSI+ Poland gas storage;https://agsi.gie.eu/api?country=pl&from={start}&to={end}&size=300;;gas_storage_full:PL;%;AGSI_API_KEY;24;G2;
+agsi_de;1;agsi;GIE AGSI+ Germany gas storage;https://agsi.gie.eu/api?country=de&from={start}&to={end}&size=300;;gas_storage_full:DE;%;AGSI_API_KEY;24;G2;
+# --- shipping chokepoints ---
+portwatch;1;arcgis;IMF PortWatch daily chokepoint transits;https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=date+%3E%3D+DATE+%27{start}%27&outFields=*&orderByFields=date+DESC&resultRecordCount=2000&f=json;date_field=date|name_field=portname|value_fields=n_total,n_tanker;transits;count;;24;G1;resolution source for Hormuz questions, verify the layer with check
+# --- sanctions lists ---
+ofac_sdn;1;csv_diff;OFAC SDN list (additions/removals);https://www.treasury.gov/ofac/downloads/sdn.csv;;OFAC_SDN;rows;;24;G3;
+# --- independent physical signals ---
+firms_ru_west;1;firms;NASA FIRMS fires — western Russia;https://firms.modaps.eosdis.nasa.gov/api/area/csv/{key:FIRMS_MAP_KEY}/VIIRS_SNPP_NRT/30,43,58,62/{days};;fires_ru_west;detections;FIRMS_MAP_KEY;24;G1|G2;counts near refineries/ports in sites.csv, free key: firms.modaps.eosdis.nasa.gov/api
+firms_gulf;1;firms;NASA FIRMS fires — Arabian Peninsula;https://firms.modaps.eosdis.nasa.gov/api/area/csv/{key:FIRMS_MAP_KEY}/VIIRS_SNPP_NRT/34,12,60,32/{days};;fires_gulf;detections;FIRMS_MAP_KEY;24;G1|G2;gas flares are permanent: compare with the site baseline, not zero

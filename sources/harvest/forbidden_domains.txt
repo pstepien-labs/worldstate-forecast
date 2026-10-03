@@ -1,0 +1,15 @@
+# Forecasting services and prediction markets: forbidden outside stage 06 (CLAUDE.md rule 3.9).
+# The harvester never stores items from these domains.
+metaculus.com
+gjopen.com
+goodjudgment.com
+polymarket.com
+kalshi.com
+manifold.markets
+predictit.org
+randforecastinginitiative.org
+infer-pub.com
+oddschecker.com
+betfair.com
+smarkets.com
+electionbettingodds.com

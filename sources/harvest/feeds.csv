@@ -1,0 +1,214 @@
+id;enabled;kind;name;url;lang;country;actor;role;tier;groups;interval_h;notes
+# --- Western wires, broadcasters, papers (W) ---
+bbc_world;1;rss;BBC World;https://feeds.bbci.co.uk/news/world/rss.xml;en;GB;GB;western;B;G1|G2|G3|G4;4;
+guardian_world;1;rss;The Guardian World;https://www.theguardian.com/world/rss;en;GB;GB;western;B;G1|G4;4;
+nyt_world;1;rss;New York Times World;https://rss.nytimes.com/services/xml/rss/nyt/World.xml;en;US;US;western;B;G1|G4;4;
+wapo_world;1;rss;Washington Post World;https://feeds.washingtonpost.com/rss/world;en;US;US;western;B;G1|G4;6;
+npr_world;1;rss;NPR World;https://feeds.npr.org/1004/rss.xml;en;US;US;western;B;G1|G4;6;
+cnbc_world;1;rss;CNBC World;https://www.cnbc.com/id/100727362/device/rss/rss.html;en;US;US;western;B;G2|G3;4;
+cnbc_economy;1;rss;CNBC Economy;https://www.cnbc.com/id/20910258/device/rss/rss.html;en;US;US;western;B;G3;6;
+ft_world;1;rss;Financial Times World;https://www.ft.com/world?format=rss;en;GB;GB;western;A;G2|G3|G4;6;headlines only (paywall)
+dw_en;1;rss;Deutsche Welle (EN);https://rss.dw.com/rdf/rss-en-all;en;DE;DE;western;B;G1|G4;6;
+france24_en;1;rss;France 24 (EN);https://www.france24.com/en/rss;en;FR;FR;western;B;G1|G4;6;
+euronews;1;rss;Euronews;https://www.euronews.com/rss;en;FR;EU;western;B;G4;6;
+politico_eu;1;rss;Politico Europe;https://www.politico.eu/feed/;en;BE;EU;western;B;G3|G4;6;
+rferl;1;rss;RFE/RL;https://www.rferl.org/api/zrqiteuuir;en;CZ;US;western;B;G1|G4;6;verify feed id
+lemonde_intl;1;rss;Le Monde International;https://www.lemonde.fr/international/rss_full.xml;fr;FR;FR;western;B;G1|G4;6;
+spiegel_ausland;1;rss;Der Spiegel Ausland;https://www.spiegel.de/ausland/index.rss;de;DE;DE;western;B;G1|G4;6;
+faz_politik;1;rss;FAZ Politik;https://www.faz.net/rss/aktuell/politik/;de;DE;DE;western;B;G4;6;
+elpais_intl;1;rss;El País Internacional;https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/internacional/portada;es;ES;ES;western;B;G4;6;
+# --- defence, maritime, energy trade press (W) ---
+defensenews;1;rss;Defense News;https://www.defensenews.com/arc/outboundfeeds/rss/?outputType=xml;en;US;US;western;B;G1;6;
+breakingdefense;1;rss;Breaking Defense;https://breakingdefense.com/feed/;en;US;US;western;B;G1;6;
+twz;1;rss;The War Zone;https://www.twz.com/feed;en;US;US;western;B;G1;6;
+usni;1;rss;USNI News;https://news.usni.org/feed;en;US;US;western;A;G1;6;fleet tracker source
+warontherocks;1;rss;War on the Rocks;https://warontherocks.com/feed/;en;US;US;think_tank;B;G1|G4;24;
+gcaptain;1;rss;gCaptain;https://gcaptain.com/feed/;en;US;US;western;B;G1;6;
+splash247;1;rss;Splash247;https://splash247.com/feed/;en;SG;SG;third;B;G1;6;
+maritime_exec;1;rss;Maritime Executive;https://maritime-executive.com/articles.rss;en;US;US;western;B;G1;6;verify URL
+oilprice;1;rss;OilPrice.com;https://oilprice.com/rss/main;en;US;US;western;C;G2;6;
+rigzone;1;rss;Rigzone;https://www.rigzone.com/news/rss/rigzone_latest.aspx;en;US;US;western;B;G2;6;
+lngprime;1;rss;LNG Prime;https://lngprime.com/feed/;en;HR;EU;western;B;G2;12;
+mining_com;1;rss;Mining.com;https://www.mining.com/feed/;en;CA;CA;western;B;G2;12;
+eia_tie;1;rss;EIA Today in Energy;https://www.eia.gov/rss/todayinenergy.xml;en;US;US;official;A;G2;24;
+# --- think tanks (W and others) ---
+atlantic_council;1;rss;Atlantic Council;https://www.atlanticcouncil.org/feed/;en;US;US;think_tank;B;G1|G3|G4;24;
+csis;1;rss;CSIS Analysis;https://www.csis.org/analysis/feed;en;US;US;think_tank;B;G1|G2|G4;24;verify URL
+isw;1;rss;ISW;https://understandingwar.org/feed/;en;US;US;think_tank;B;G1;12;verify URL, daily Ukraine/Iran updates
+crisisgroup;1;rss;International Crisis Group;https://www.crisisgroup.org/rss.xml;en;BE;BE;third;B;G4;24;verify URL
+bruegel;1;rss;Bruegel;https://www.bruegel.org/rss.xml;en;BE;EU;think_tank;B;G3;24;verify URL
+osw;1;rss;OSW Centre for Eastern Studies;https://www.osw.waw.pl/en/rss.xml;en;PL;PL;think_tank;B;G1|G4;24;verify URL
+# --- Western official (W / official) ---
+nato_news;1;rss;NATO news;https://www.nato.int/cps/rss/en/natohq/rssFeed.xsl/rssFeed.xml;en;BE;NATO;official;A;G1;6;
+whitehouse;1;rss;White House;https://www.whitehouse.gov/feed/;en;US;US;official;A;G1|G3|G4;4;statements = facts about statements
+state_dept;1;rss;US State Department press;https://www.state.gov/rss-feed/press-releases/feed/;en;US;US;official;A;G4;6;verify URL
+dod;1;rss;US Department of Defense releases;https://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=9&Site=945&max=20;en;US;US;official;A;G1;6;verify ContentType
+fed_press;1;rss;Federal Reserve press;https://www.federalreserve.gov/feeds/press_all.xml;en;US;US;official;A;G3;12;
+ecb_press;1;rss;ECB press;https://www.ecb.europa.eu/rss/press.html;en;DE;EU;official;A;G3;12;
+fedreg_ofac;1;rss;Federal Register: OFAC;https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=foreign-assets-control-office;en;US;US;official;A;G3;12;
+fedreg_bis;1;rss;Federal Register: BIS export controls;https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau;en;US;US;official;A;G2|G3;12;
+fedreg_ustr;1;rss;Federal Register: USTR;https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=trade-representative-office-of-united-states;en;US;US;official;A;G3;12;
+ofac_recent;1;page;OFAC recent actions;https://ofac.treasury.gov/recent-actions;en;US;US;official;A;G3;12;
+uk_fcdo;1;rss;UK FCDO;https://www.gov.uk/government/organisations/foreign-commonwealth-development-office.atom;en;GB;GB;official;A;G4;12;
+eu_council;1;rss;EU Council press releases;https://www.consilium.europa.eu/en/rss/pressreleases.ashx;en;BE;EU;official;A;G3|G4;12;verify URL
+# --- UN and multilateral (T / official) ---
+un_news;1;rss;UN News;https://news.un.org/feed/subscribe/en/news/all/rss.xml;en;UN;UN;third;A;G4;6;
+reliefweb;1;rss;ReliefWeb updates;https://reliefweb.int/updates/rss.xml;en;UN;UN;third;B;G4;12;
+wto_news;1;rss;WTO news;https://www.wto.org/library/rss/latest_news_e.xml;en;CH;WTO;third;A;G3;24;
+iaea_news;1;rss;IAEA news;https://www.iaea.org/feeds/topnews;en;AT;IAEA;third;A;G2|G4;24;verify URL
+# --- Poland (A for PL) ---
+pap;1;rss;PAP;https://www.pap.pl/rss.xml;pl;PL;PL;state;B;G1|G3|G4;4;verify URL
+tvn24;1;rss;TVN24 najnowsze;https://tvn24.pl/najnowsze.xml;pl;PL;PL;independent;B;G1|G4;4;
+polsat;1;rss;Polsat News;https://www.polsatnews.pl/rss/wszystkie.xml;pl;PL;PL;independent;B;G1|G4;6;
+bankier;1;rss;Bankier.pl;https://www.bankier.pl/rss/wiadomosci.xml;pl;PL;PL;independent;B;G2|G3;6;
+defence24;1;rss;Defence24;https://defence24.pl/rss;pl;PL;PL;independent;B;G1;12;verify URL
+notes_poland;1;rss;Notes from Poland;https://notesfrompoland.com/feed/;en;PL;PL;independent;B;G4;12;
+# --- Russia: official, state/loyal, independent/exile ---
+kremlin_en;1;rss;Kremlin (EN);http://en.kremlin.ru/events/president/news/rss;en;RU;RU;official;A;G1|G4;4;may be blocked outside RU
+kremlin_ru;1;rss;Kremlin (RU);http://kremlin.ru/events/president/news/rss;ru;RU;RU;official;A;G1|G4;4;may be blocked outside RU
+mid_ru;1;page;Russian MFA news;https://mid.ru/ru/foreign_policy/news/;ru;RU;RU;official;A;G4;12;may be blocked outside RU
+cbr_press;1;page;Bank of Russia press;https://www.cbr.ru/press/event/;ru;RU;RU;official;A;G3;24;
+tass_ru;1;rss;TASS (RU);https://tass.ru/rss/v2.xml;ru;RU;RU;state;B;G1|G2|G3|G4;4;
+tass_en;1;rss;TASS (EN);https://tass.com/rss/v2.xml;en;RU;RU;state;B;G1|G4;6;compare with RU version
+ria;1;rss;RIA Novosti;https://ria.ru/export/rss2/archive/index.xml;ru;RU;RU;state;C;G1|G4;4;
+interfax_ru;1;rss;Interfax;https://www.interfax.ru/rss.asp;ru;RU;RU;loyal;B;G1|G3|G4;4;
+kommersant;1;rss;Kommersant;https://www.kommersant.ru/RSS/news.xml;ru;RU;RU;loyal;B;G3|G4;6;
+rbc;1;rss;RBC;https://rssexport.rbc.ru/rbcnews/news/30/full.rss;ru;RU;RU;loyal;B;G2|G3;6;
+vedomosti;1;rss;Vedomosti;https://www.vedomosti.ru/rss/news;ru;RU;RU;loyal;B;G2|G3;6;
+rt_en;1;rss;RT (EN);https://www.rt.com/rss/;en;RU;RU;state;D;G4;12;messaging for foreign audiences
+meduza_ru;1;rss;Meduza (RU);https://meduza.io/rss/all;ru;LV;RU;exile;B;G4;6;
+meduza_en;1;rss;Meduza (EN);https://meduza.io/rss/en/all;en;LV;RU;exile;B;G4;12;
+moscowtimes;1;rss;The Moscow Times;https://www.themoscowtimes.com/rss/news;en;NL;RU;exile;B;G3|G4;6;
+mediazona;1;rss;Mediazona;https://zona.media/rss;ru;RU;RU;independent;B;G4;12;verify URL
+theins;1;rss;The Insider;https://theins.ru/feed;ru;LV;RU;exile;B;G1|G4;12;verify URL
+novaya_eu;1;rss;Novaya Gazeta Europe;https://novayagazeta.eu/feed/rss;ru;LV;RU;exile;B;G4;12;verify URL
+tg_mod_russia;1;telegram;Russian MoD (Telegram);mod_russia;ru;RU;RU;official;B;G1;6;claims of a party
+tg_rybar;1;telegram;Rybar (Telegram);rybar;ru;RU;RU;loyal;D;G1;6;military blogger, claims only
+tg_wargonzo;1;telegram;WarGonzo (Telegram);wargonzo;ru;RU;RU;loyal;D;G1;6;military blogger, claims only
+# --- Ukraine ---
+ukrinform;1;rss;Ukrinform (EN);https://www.ukrinform.net/rss/block-lastnews;en;UA;UA;state;B;G1|G4;4;
+pravda_ua;1;rss;Ukrainska Pravda (EN);https://www.pravda.com.ua/eng/rss/;en;UA;UA;independent;B;G1|G4;6;verify URL
+kyiv_independent;1;rss;Kyiv Independent;https://kyivindependent.com/rss/;en;UA;UA;independent;B;G1|G4;6;verify URL
+tg_deepstate;1;telegram;DeepState (Telegram);DeepStateUA;uk;UA;UA;independent;B;G1;6;front-line mapping
+tg_kpszsu;1;telegram;Ukrainian Air Force (Telegram);kpszsu;uk;UA;UA;official;B;G1;6;claims of a party
+tg_genstaff_ua;1;telegram;UA General Staff (Telegram);GeneralStaffZSU;uk;UA;UA;official;B;G1;6;claims of a party
+# --- Belarus, Baltics, Nordics, Greenland ---
+lsm_en;1;rss;LSM (Latvia, EN);https://eng.lsm.lv/rss/;en;LV;LV;independent;B;G1|G4;12;verify URL
+err_news;1;rss;ERR News (Estonia);https://news.err.ee/rss;en;EE;EE;independent;B;G1|G4;12;
+lrt_en;1;rss;LRT English (Lithuania);https://www.lrt.lt/en/news-in-english?rss;en;LT;LT;independent;B;G1|G4;12;verify URL
+yle_news;1;rss;Yle News (EN);https://yle.fi/rss/uutiset/tuoreimmat;fi;FI;FI;independent;B;G1|G4;12;verify URL
+belsat;1;rss;Belsat;https://belsat.eu/en/feed/;en;PL;BY;exile;C;G1|G4;12;verify URL
+sermitsiaq;1;rss;Sermitsiaq (Greenland);https://www.sermitsiaq.ag/rss;da;GL;GL;independent;B;G4;24;verify URL
+# --- China, Taiwan, Hong Kong ---
+xinhua_en;1;rss;Xinhua (EN);https://english.news.cn/rss/worldrss.xml;en;CN;CN;state;B;G4;6;verify URL
+peoples_daily_cn;1;rss;People's Daily (politics, ZH);http://www.people.com.cn/rss/politics.xml;zh;CN;CN;state;B;G4;6;
+peoples_daily_en;1;rss;People's Daily (EN);http://en.people.cn/rss/90777.xml;en;CN;CN;state;B;G4;12;
+globaltimes;1;rss;Global Times;https://www.globaltimes.cn/rss/outbrain.xml;en;CN;CN;state;C;G1|G4;6;hawkish tone, compare with People's Daily
+chinadaily_world;1;rss;China Daily World;http://www.chinadaily.com.cn/rss/world_rss.xml;en;CN;CN;state;B;G4;12;
+cgtn_world;1;rss;CGTN World;https://www.cgtn.com/subscribe/rss/section/world.xml;en;CN;CN;state;C;G4;12;verify URL
+fmprc_en;1;page;PRC MFA press conferences (EN);https://www.fmprc.gov.cn/eng/xw/fyrbt/;en;CN;CN;official;A;G1|G3|G4;6;ladder of formulations
+fmprc_zh;1;page;PRC MFA press conferences (ZH);https://www.mfa.gov.cn/web/fyrbt_673021/;zh;CN;CN;official;A;G1|G3|G4;6;
+mofcom_en;1;page;MOFCOM news (EN);https://english.mofcom.gov.cn/;en;CN;CN;official;A;G2|G3;12;verify URL
+scmp_china;1;rss;SCMP China;https://www.scmp.com/rss/4/feed;en;HK;CN;independent;B;G1|G4;6;
+scmp_econ;1;rss;SCMP Economy;https://www.scmp.com/rss/92/feed;en;HK;CN;independent;B;G2|G3;12;verify feed id
+caixin;1;rss;Caixin Global;https://www.caixinglobal.com/rss/;en;CN;CN;independent;B;G3;12;verify URL
+taipeitimes;1;rss;Taipei Times;https://www.taipeitimes.com/xml/index.rss;en;TW;TW;independent;B;G1|G4;6;
+focustaiwan;1;rss;Focus Taiwan (CNA);https://focustaiwan.tw/rss/aall.xml;en;TW;TW;state;B;G1|G4;6;verify URL
+twmnd_pla;1;page;Taiwan MND PLA activity;https://www.mnd.gov.tw/English/PublishTable.aspx?types=Military%20News%20Update&Title=News%20Channel;en;TW;TW;official;A;G1;12;daily PLA aircraft/ship counts
+# --- Japan, Korea ---
+nhk_intl;1;rss;NHK International (JA);https://www3.nhk.or.jp/rss/news/cat6.xml;ja;JP;JP;independent;A;G1|G4;6;
+japantimes;1;rss;The Japan Times;https://www.japantimes.co.jp/feed/;en;JP;JP;independent;B;G1|G4;12;
+nikkei_asia;1;rss;Nikkei Asia;https://asia.nikkei.com/rss/feed/nar;en;JP;JP;independent;A;G2|G3;6;
+jp_mod_joint;1;page;Japan Joint Staff press releases;https://www.mod.go.jp/js/press/index.html;ja;JP;JP;official;A;G1;12;PLA/Russian activity near Japan
+yonhap_en;1;rss;Yonhap (EN);https://en.yna.co.kr/RSS/news.xml;en;KR;KR;state;B;G1|G4;6;
+kcnawatch;1;rss;KCNA Watch;https://kcnawatch.org/feed/;en;KR;KP;third;C;G1;12;relays DPRK state media, verify URL
+# --- India, Pakistan, South Asia ---
+thehindu_intl;1;rss;The Hindu International;https://www.thehindu.com/news/international/feeder/default.rss;en;IN;IN;independent;B;G4;6;
+indianexpress_world;1;rss;Indian Express World;https://indianexpress.com/section/world/feed/;en;IN;IN;independent;B;G4;6;
+toi_world;1;rss;Times of India World;https://timesofindia.indiatimes.com/rssfeeds/296589292.cms;en;IN;IN;independent;C;G4;6;
+pib;1;rss;PIB (Government of India);https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3;en;IN;IN;official;A;G3|G4;12;verify URL
+mea_india;1;page;MEA India press releases;https://www.mea.gov.in/press-releases.htm;en;IN;IN;official;A;G4;12;
+bbc_hindi;1;rss;BBC Hindi;https://feeds.bbci.co.uk/hindi/rss.xml;hi;GB;GB;western;B;G4;12;
+dawn;1;rss;Dawn (Pakistan);https://www.dawn.com/feeds/home;en;PK;PK;independent;B;G4;6;
+# --- Middle East: Gulf, Iran, Israel, Turkey, Arab world ---
+aljazeera_en;1;rss;Al Jazeera (EN);https://www.aljazeera.com/xml/rss/all.xml;en;QA;QA;third;B;G1|G4;4;Qatar-funded
+aljazeera_ar;1;rss;Al Jazeera (AR);https://www.aljazeera.net/aljazeerarss/a7c186be-1baa-4bd4-9d80-a84db769f779/73d0e1b4-532f-45ef-b135-bfdff8b8cab9;ar;QA;QA;third;B;G1|G4;4;verify URL, differs from EN edition
+alarabiya_en;1;rss;Al Arabiya (EN);https://english.alarabiya.net/feed/rss2/en.xml;en;AE;SA;loyal;B;G1|G4;6;Saudi-owned, verify URL
+arabnews;1;rss;Arab News;https://www.arabnews.com/rss.xml;en;SA;SA;loyal;B;G2|G4;6;verify URL
+thenational;1;rss;The National (UAE);https://www.thenationalnews.com/arc/outboundfeeds/rss/?outputType=xml;en;AE;AE;loyal;B;G2|G4;6;verify URL
+almonitor;1;rss;Al-Monitor;https://www.al-monitor.com/rss;en;US;US;independent;B;G1|G4;12;
+mee;1;rss;Middle East Eye;https://www.middleeasteye.net/rss;en;GB;GB;independent;C;G1|G4;6;
+bbc_arabic;1;rss;BBC Arabic;https://feeds.bbci.co.uk/arabic/rss.xml;ar;GB;GB;western;B;G1|G4;6;
+saba_ye;1;rss;Saba (Houthi-run, EN);https://www.saba.ye/en/rss.php;en;YE;YE;state;D;G1;6;Houthi claims, verify URL
+irna_en;1;rss;IRNA (EN);https://en.irna.ir/rss;en;IR;IR;state;C;G1|G4;4;
+tasnim_en;1;rss;Tasnim (EN);https://www.tasnimnews.com/en/rss/feed/0/7/0/all-stories;en;IR;IR;loyal;C;G1|G4;4;IRGC-affiliated
+tasnim_fa;1;rss;Tasnim (FA);https://www.tasnimnews.com/fa/rss/feed/0/7/0/all-stories;fa;IR;IR;loyal;C;G1|G4;4;IRGC-affiliated
+mehr_en;1;rss;Mehr (EN);https://en.mehrnews.com/rss;en;IR;IR;state;C;G1|G4;6;
+presstv;1;rss;Press TV;https://www.presstv.ir/RSS;en;IR;IR;state;D;G1|G4;6;messaging for foreign audiences
+tehrantimes;1;rss;Tehran Times;https://www.tehrantimes.com/rss;en;IR;IR;loyal;C;G2|G4;6;
+bbc_persian;1;rss;BBC Persian;https://feeds.bbci.co.uk/persian/rss.xml;fa;GB;IR;exile;B;G1|G4;6;
+iranintl_en;1;rss;Iran International (EN);https://www.iranintl.com/en/feed;en;GB;IR;exile;C;G1|G4;6;opposition-leaning, verify URL
+timesofisrael;1;rss;Times of Israel;https://www.timesofisrael.com/feed/;en;IL;IL;independent;B;G1|G4;4;
+jpost;1;rss;Jerusalem Post;https://www.jpost.com/rss/rssfeedsheadlines.aspx;en;IL;IL;independent;B;G1|G4;6;
+ynet_he;1;rss;Ynet (HE);https://www.ynet.co.il/Integration/StoryRss2.xml;he;IL;IL;independent;B;G1|G4;6;
+aa_en;1;rss;Anadolu Agency (EN);https://www.aa.com.tr/en/rss/default?cat=guncel;en;TR;TR;state;B;G1|G4;4;
+aa_tr;1;rss;Anadolu Ajansı (TR);https://www.aa.com.tr/tr/rss/default?cat=guncel;tr;TR;TR;state;B;G1|G4;4;
+dailysabah;1;rss;Daily Sabah;https://www.dailysabah.com/rssFeed/10;en;TR;TR;loyal;C;G4;12;verify URL
+bbc_turkce;1;rss;BBC Türkçe;https://feeds.bbci.co.uk/turkce/rss.xml;tr;GB;GB;western;B;G4;12;
+# --- Caucasus, Central Asia ---
+eurasianet;1;rss;Eurasianet;https://eurasianet.org/feed;en;US;US;independent;B;G4;12;
+ocmedia;1;rss;OC Media;https://oc-media.org/feed/;en;GE;GE;independent;B;G4;12;
+newsam_en;1;rss;News.am (EN);https://news.am/eng/rss/;en;AM;AM;independent;C;G4;12;verify URL
+azertac;1;rss;AZERTAC;https://azertag.az/en/rss;en;AZ;AZ;state;C;G4;12;verify URL
+kunuz_en;1;rss;Kun.uz (EN);https://kun.uz/en/news/rss;en;UZ;UZ;independent;C;G4;24;verify URL
+# --- Africa ---
+jeuneafrique;1;rss;Jeune Afrique;https://www.jeuneafrique.com/feed/;fr;FR;AF;independent;B;G4;12;
+rfi_afrique;1;rss;RFI Afrique;https://www.rfi.fr/fr/afrique/rss;fr;FR;FR;western;B;G4;12;
+allafrica;1;rss;AllAfrica headlines;https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf;en;ZA;AF;third;C;G4;12;
+africareport;1;rss;The Africa Report;https://www.theafricareport.com/feed/;en;FR;AF;independent;B;G4;12;
+sudantribune;1;rss;Sudan Tribune;https://sudantribune.com/feed/;en;SD;SD;independent;C;G4;12;verify URL
+addisstandard;1;rss;Addis Standard;https://addisstandard.com/feed/;en;ET;ET;independent;C;G4;12;
+studiotamani;1;rss;Studio Tamani (Mali);https://www.studiotamani.org/feed;fr;ML;ML;independent;C;G4;12;verify URL
+# --- Latin America ---
+folha_mundo;1;rss;Folha Mundo;https://feeds.folha.uol.com.br/mundo/rss091.xml;pt;BR;BR;independent;B;G4;12;
+folha_poder;1;rss;Folha Poder;https://feeds.folha.uol.com.br/poder/rss091.xml;pt;BR;BR;independent;B;G4;6;
+g1;1;rss;G1 Globo;https://g1.globo.com/rss/g1/;pt;BR;BR;independent;B;G4;6;
+mercopress;1;rss;MercoPress;https://en.mercopress.com/rss;en;UY;LATAM;third;C;G4;12;
+efectococuyo;1;rss;Efecto Cocuyo (Venezuela);https://efectococuyo.com/feed/;es;VE;VE;independent;C;G4;12;
+telesur;1;rss;teleSUR;https://www.telesurtv.net/rss/RssPortada.xml;es;VE;VE;state;D;G4;12;voice of Caracas, verify URL
+granma;1;rss;Granma (Cuba);https://www.granma.cu/feed;es;CU;CU;state;D;G4;24;
+# --- shipping security advisories ---
+ukmto;1;page;UKMTO recent incidents;https://www.ukmto.org/recent-incidents;en;GB;GB;official;A;G1;6;may need JavaScript
+marad_msci;1;page;MARAD maritime advisories;https://www.maritime.dot.gov/msci-advisories;en;US;US;official;A;G1;24;
+# --- multilingual discovery via GDELT DOC 2.0 (English queries match translated text; sourcelang/sourcecountry filters) ---
+gd_hormuz;1;gdelt;GDELT: Hormuz;(hormuz OR "persian gulf" tanker);;;;discovered;;G1|G2;12;
+gd_hormuz_fa;1;gdelt;GDELT: Hormuz (Persian sources);hormuz sourcelang:persian;fa;IR;IR;discovered;;G1|G2;12;
+gd_hormuz_ar;1;gdelt;GDELT: Hormuz (Arabic sources);(hormuz OR houthi OR yanbu) sourcelang:arabic;ar;;;discovered;;G1|G2;12;
+gd_redsea;1;gdelt;GDELT: Red Sea / Houthis;(houthi OR "red sea" OR "bab el-mandeb" OR "bab al-mandab");;;;discovered;;G1;12;
+gd_ukraine_ru;1;gdelt;GDELT: Ukraine war (Russian sources);(ukraine OR donbas OR zaporizhzhia OR kharkiv) sourcelang:russian;ru;RU;RU;discovered;;G1;12;
+gd_ukraine_uk;1;gdelt;GDELT: Ukraine war (Ukrainian sources);(russia OR front OR drone) sourcelang:ukrainian;uk;UA;UA;discovered;;G1;12;
+gd_nato_flank;1;gdelt;GDELT: NATO eastern flank;(nato AND (baltic OR poland OR lithuania OR latvia OR estonia OR romania) AND (drone OR airspace OR incursion OR exercise));;;;discovered;;G1;12;
+gd_taiwan_zh;1;gdelt;GDELT: Taiwan (Chinese sources);(taiwan OR "south china sea" OR philippines) sourcelang:chinese;zh;;;discovered;;G1;12;
+gd_korea;1;gdelt;GDELT: Korean Peninsula;("north korea" OR pyongyang) (missile OR launch OR nuclear);;;;discovered;;G1;12;
+gd_oil;1;gdelt;GDELT: oil market;(brent OR opec OR "oil price" OR "crude oil");;;;discovered;;G2;12;
+gd_lng;1;gdelt;GDELT: gas and LNG;(lng OR "gas storage" OR ttf OR "natural gas price");;;;discovered;;G2;12;
+gd_rare_earths_zh;1;gdelt;GDELT: rare earths (Chinese sources);("rare earth" OR gallium OR germanium OR antimony OR "export control") sourcelang:chinese;zh;CN;CN;discovered;;G2;12;
+gd_chips;1;gdelt;GDELT: semiconductors and export controls;(semiconductor OR nvidia OR "export controls" OR "entity list");;;;discovered;;G2;12;
+gd_sanctions;1;gdelt;GDELT: sanctions;(sanctions AND (russia OR iran OR china OR "shadow fleet"));;;;discovered;;G3;12;
+gd_tariffs;1;gdelt;GDELT: tariffs and trade;(tariff OR "trade deal" OR "trade truce");;;;discovered;;G3;12;
+gd_russia_economy_ru;1;gdelt;GDELT: Russian economy (Russian sources);(budget OR deficit OR "key rate" OR inflation) sourcecountry:russia;ru;RU;RU;discovered;;G3;12;
+gd_china_economy_zh;1;gdelt;GDELT: Chinese economy (Chinese sources);(economy OR yuan OR exports OR "central bank") sourcelang:chinese;zh;CN;CN;discovered;;G3;12;
+gd_iran_domestic_fa;1;gdelt;GDELT: Iran domestic (Persian sources);(khamenei OR irgc OR pezeshkian OR araghchi OR parliament) sourcelang:persian;fa;IR;IR;discovered;;G4;12;
+gd_talks;1;gdelt;GDELT: summits and peace talks;(summit OR "peace talks" OR ceasefire OR negotiations) (russia OR ukraine OR iran OR china);;;;discovered;;G4;12;
+gd_turkey_tr;1;gdelt;GDELT: Turkish sources on region;(russia OR iran OR ukraine OR nato OR syria) sourcelang:turkish;tr;TR;TR;discovered;;G4;12;
+gd_india;1;gdelt;GDELT: India foreign policy;(india AND (russia OR china OR oil OR tariff OR pakistan)) sourcecountry:india;en;IN;IN;discovered;;G4;12;
+gd_sahel_fr;1;gdelt;GDELT: Sahel and Sudan (French sources);(mali OR sahel OR burkina OR niger OR soudan) sourcelang:french;fr;;;discovered;;G4;12;
+gd_sudan_horn;1;gdelt;GDELT: Sudan and Horn of Africa;(sudan OR "rapid support forces" OR ethiopia OR eritrea OR somalia);;;;discovered;;G4;12;
+gd_latam_es;1;gdelt;GDELT: Venezuela and Cuba (Spanish sources);(venezuela OR cuba OR maduro OR "delcy rodriguez") sourcelang:spanish;es;;;discovered;;G4;12;
+gd_brazil_pt;1;gdelt;GDELT: Brazil politics (Portuguese sources);(lula OR bolsonaro OR eleicao OR eleição) sourcelang:portuguese;pt;BR;BR;discovered;;G4;12;
+gd_caucasus;1;gdelt;GDELT: Caucasus and Central Asia;(armenia OR azerbaijan OR georgia OR kazakhstan OR uzbekistan OR kyrgyzstan OR tajikistan);;;;discovered;;G4;12;
+gd_arctic;1;gdelt;GDELT: Arctic and Greenland;(greenland OR arctic OR "northern sea route");;;;discovered;;G4;24;
+gd_japan_ja;1;gdelt;GDELT: Japanese sources on China/Russia/Korea;(china OR russia OR "north korea" OR taiwan) sourcelang:japanese;ja;JP;JP;discovered;;G1|G4;12;
+gd_korea_ko;1;gdelt;GDELT: Korean sources;("north korea" OR missile OR china OR russia) sourcelang:korean;ko;KR;KR;discovered;;G1|G4;12;
+gd_hebrew;1;gdelt;GDELT: Israeli sources on Iran/Lebanon;(iran OR hezbollah OR lebanon OR houthi) sourcelang:hebrew;he;IL;IL;discovered;;G1|G4;12;
+gd_poland_pl;1;gdelt;GDELT: Polish sources on security/economy;(nato OR russia OR drone OR "us troops" OR inflation OR budget) sourcecountry:poland;pl;PL;PL;discovered;;G1|G3;12;

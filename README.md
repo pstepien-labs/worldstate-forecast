@@ -1,92 +1,101 @@
-# Skalibrowana prognoza układu sił — pakiet startowy
+# Calibrated Balance-of-Power Forecast — starter kit
 
-**Misja:** przewidywać ruchy mocarstw trafniej niż proste punkty odniesienia — i udowadniać to pomiarem.
+**Mission:** forecast the moves of the great powers more accurately than simple baselines — and prove it by measurement.
 
-> **English summary.** *Calibrated Balance-of-Power Forecast* is an open, auditable process for forecasting great-power moves (USA, EU, Russia, China, Iran, Ukraine) with an AI agent (Claude Code) and **measuring** whether it beats simple baselines. Each biweekly issue runs 9 stages: fact collection with three-perspective sourcing (Western / actor / third-party), analysis, three blind forecasting "lenses", a red team, aggregation, freezing forecasts in an append-only CSV registry, benchmarking, and a report. Accuracy is scored with Brier score, Brier skill score, calibration and bootstrap intervals (`narzedzia/wyniki.py`, Python stdlib only). Git history of the registry is the evidence that forecasts were not edited after the fact. The working language of all files is **Polish**. Nothing here is investment advice. Licenses: code MIT, content CC BY 4.0.
+*Calibrated Balance-of-Power Forecast* is an open, auditable process for forecasting great-power moves (USA, EU, Russia, China, Iran, Ukraine) with an AI agent (Claude Code) and **measuring** whether it beats simple baselines. Each two-weekly edition runs 9 stages: fact collection with three-perspective sourcing (Western / actor / third party), analysis, three blind forecasting "lenses", a red team, aggregation, freezing forecasts in an append-only CSV registry, benchmarking, and a report. Accuracy is scored with the Brier score, Brier skill score, calibration and bootstrap intervals (`tools/scores.py`, Python standard library only). The git history of the registry is the evidence that forecasts were not edited after the fact. Nothing here is investment advice.
 
-Pakiet to zestaw plików dla Claude Code (model Claude Opus 5, z dostępem do sieci). To nie jest oprogramowanie: jedyny skrypt (`narzedzia/wyniki.py`) liczy wyniki trafności. Wszystko inne to instrukcje w Markdown i rejestr w CSV.
+The kit is a set of files for Claude Code plus three small tools (Python standard library only):
 
-## Wymagania
+- a **local harvester** that collects news feeds, official pages, public Telegram channels, GDELT article lists and primary datasets continuously, across about 18 languages, resumably and observably;
+- a **pipeline tool** that tells you the next step and records the **provenance** of every stage (framework version, methodology version, commit, prompt, model);
+- the **scoring script**.
 
-- Claude Code z modelem Claude Opus 5 i dostępem do wyszukiwania i pobierania stron.
-- `git` i `python3` (bez dodatkowych bibliotek).
-- Opcjonalnie `pandoc` — do generowania PDF raportu.
+Everything else is instructions in Markdown and a registry in CSV.
 
-## Zawartość
+> **Language note.** The project was run in Polish until 28.09.2026 and then translated into English in full (files, prompts, registry, editions 00–01). The method and all numbers are unchanged; the Polish originals remain at git tag `wydanie-01`. Details and the code mapping: `methodology/methodology_changes.md`.
 
-| Ścieżka | Co to jest |
+## Quick start (local machine)
+
+```bash
+git clone https://github.com/pstepien-labs/worldstate-forecast.git && cd worldstate-forecast
+python3 -m tools.harvester selftest      # 20/20 checks
+claude                                   # then type: /gH start   (starts continuous harvesting)
+                                         # any time:  /next       (where am I, what to run next)
+```
+
+**The full step-by-step procedure is in [RUNBOOK.md](RUNBOOK.md).** It covers setup, harvesting and recovery, the 14 edition steps, and the learning loop.
+
+## Requirements
+
+- Claude Code (CLI) with web search and fetch; macOS or Linux (Windows: WSL2).
+- `git` and `python3` 3.9+ (no extra libraries).
+- Optional: free API keys for primary data (`.env.example`); `pandoc` for a PDF of the report.
+
+## Contents
+
+| Path | What it is |
 |---|---|
-| `CLAUDE.md` | Reguły stałe; Claude Code wczytuje je automatycznie w każdej sesji w tym katalogu |
-| `metodologia/metodologia_v1.0.md` | Metoda zamrożona do przeglądu kwartalnego |
-| `prompty/00–08, M, Q` | Instrukcje etapów, mini-retrospektywy i przeglądu kwartalnego |
-| `.claude/commands/` | Skróty `/g00` … `/g08`, `/gM`, `/gQ` uruchamiające etapy |
-| `rejestr/*.csv` | Pytania, prognozy, benchmarki, rozstrzygnięcia, źródła (tylko do dopisywania) |
-| `rejestr/pytania_propozycje_z_wydania_00.csv` | 28 propozycji pytań do panelu, do weryfikacji w wydaniu 01 |
-| `zrodla/mapa_zrodel.md` | Źródła według aktorów i perspektyw |
-| `wydania/2026-09-21_wydanie-00/` | Punkt wyjścia: raport PDF i blok stanu |
-| `narzedzia/wyniki.py` | Liczenie Briera, BSS, kalibracji, błędu kierunkowego, bootstrapu |
+| `RUNBOOK.md` | Step-by-step guide: setup, harvest, edition, learning loop, troubleshooting |
+| `CLAUDE.md` | Standing rules; Claude Code loads them automatically in every session in this directory |
+| `VERSION` | Framework version (semantic versioning; scheme in `methodology/methodology_changes.md`) |
+| `methodology/methodology_v1.0.md` | The method, frozen until the quarterly review |
+| `prompts/00–08, H, M, Q` | Stage instructions: edition stages, harvest, mini-retrospective, quarterly review |
+| `prompts/learning/L1–L5` | Learning loop: hindsight audit, performance by version, reasoning trace, sources, framework proposals |
+| `.claude/commands/` | Shortcuts `/g00` … `/g08`, `/gH`, `/gL1` … `/gL5`, `/gM`, `/gQ`, `/next` |
+| `registry/*.csv` | Questions, forecasts, benchmarks, resolutions, sources, **editions** (append-only) |
+| `sources/source_map.md`, `sources/harvest/` | Sources by actor and perspective; harvester configuration (feeds, datasets, keywords, source universe) |
+| `tools/harvester/` | Local harvester (`python3 -m tools.harvester --help`) |
+| `tools/pipeline.py` | Next step, provenance, edition register |
+| `tools/scores.py` | Brier, BSS, calibration, directional bias, bootstrap; filters by edition and framework version |
+| `scripts/harvest.sh` | Start / stop / status / tail of the background harvester |
+| `editions/` | Edition 00 (starting point) and edition 01 (first full edition) |
 
-## Jak uruchomić jedno wydanie
+## How one edition runs
 
-W terminalu, w katalogu pakietu: `claude`, potem `/model`, wybierz Opus 5. Każdy etap uruchamiaj w **nowej sesji** (`/clear` między etapami). Etapy przekazują sobie wyniki przez pliki.
+Harvest continuously between editions. Then run the stages 00–08 in Claude Code, one stage per session (`/clear` between stages). Stages pass results through files. Stage 00 builds the harvest digest, stage 02 verifies its leads and fills the flagged gaps with web search, and stages 03–06 reason and forecast blind. Stage 07 writes the report with a provenance line, and stage 08 checks everything and registers the edition. Details, times and recovery: [RUNBOOK.md](RUNBOOK.md).
 
-| Krok | Komenda | Czas orientacyjny | Uwagi |
-|---|---|---|---|
-| 1 | `/g00 2026-10-05 01` | 15–30 min | data stanu i numer wydania |
-| 2 | `/g01` | 0–60 min | w wydaniu 01 zwykle pusty |
-| — | **Ty** | 10–20 min | przejrzyj sekcję „DO WERYFIKACJI” w `01_rozstrzygniecia.md` |
-| 3–6 | `/g02 G1`, `/g02 G2`, `/g02 G3`, `/g02 G4` | 1–3 h każda | najcięższy etap; przerwaną grupę uruchom ponownie tą samą komendą |
-| 7 | `/g03` | 1–2 h | analiza i bank pytań |
-| 8–10 | `/g04 A`, `/g04 B`, `/g04 C` | ~1 h każda | trzy osobne sesje, koniecznie po `/clear` |
-| 11 | `/g05` | ~1 h | red team |
-| 12 | `/g06` | ~1 h | zamrożenie prognoz, potem benchmarki |
-| 13 | `/g07` | 1–2 h | raport |
-| 14 | `/g08` | 30–60 min | kontrola jakości, tag git |
+## Schedule
 
-Łącznie ok. 12–20 godzin pracy agenta na wydanie. Rozłóż etapy na 2–3 dni. Jeśli skróty nie działają w Twojej wersji Claude Code, wpisz ręcznie: „Przeczytaj CLAUDE.md, wydania/AKTUALNE.md i prompty/0X_….md, wykonaj etap. Parametry: …”.
+**Edition 01 — state 23.09.2026: "Start-up with measurement"** (done).
+- Full collection in four vector groups.
+- Standing panel of 40 questions from the edition 00 proposals plus 33 open questions.
+- About 40% of questions with a deadline around 06–07.10, so that edition 02 has its first resolutions.
+- First blind forecasts of the three lenses, red team, freezing, benchmarks, report.
 
-Uprawnienia: Claude Code będzie prosić o zgodę na wyszukiwanie, pobieranie stron, `git` i `python3`. Możesz je zezwolić na stałe dla tego projektu przez `/permissions`. Nie wyłączaj pytań o uprawnienia globalnie.
+**Edition 02 — state on or after 07.10.2026: "First feedback loop".**
+- Run it no earlier than 07.10: 23 questions have deadlines on 06–07.10.
+- First resolutions and indicative scores.
+- Collection in "changes and verification" mode: facts from 01 confirmed or removed with a reason.
+- A larger share of actor-side sources for key events.
 
-## Plan pierwszych trzech iteracji
+**Edition 03 — around 02.11.2026: "Before the cluster of dates".**
+- Just before 03.11 (US elections), 10.11 (rare earths) and 18–19.11 (APEC). Many questions will resolve within three weeks — a good test.
+- After the edition: `/gM` — mini-retrospective of the **process** (no change of method).
 
-**Wydanie 01 — stan 05.10.2026: „Rozruch z pomiarem”.**
-- Pełne zbieranie w czterech grupach wektorów.
-- Ustalenie panelu 40 pytań z propozycji z wydania 00 plus 20–40 pytań swobodnych.
-- Ok. 40% pytań z terminem do 19.10, żeby wydanie 02 miało pierwsze rozstrzygnięcia.
-- Pierwsze ślepe prognozy trzech soczewek, red team, zamrożenie, benchmarki, raport.
+Then editions 04–06 (every two weeks) without changes to the method and the quarterly review `/gQ` around 21.12.2026.
 
-**Wydanie 02 — stan 19.10.2026: „Pierwsza pętla zwrotna”.**
-- Pierwsze rozstrzygnięcia i wyniki orientacyjne.
-- Zbieranie w trybie „zmiany i weryfikacja”: fakty z 01 potwierdzone albo usunięte z uzasadnieniem.
-- Większy udział źródeł strony-aktora przy zdarzeniach kluczowych.
+## What you do
 
-**Wydanie 03 — stan 02.11.2026: „Przed skupiskiem dat”.**
-- Tuż przed 03.11 (wybory w USA), 10.11 (ziemie rzadkie) i 18–19.11 (APEC). Wiele pytań rozstrzygnie się w ciągu trzech tygodni — dobry test.
-- Po wydaniu: `/gM` — mini-retrospektywa **procesu** (bez zmian metody).
+1. Keep the harvester running between editions (`scripts/harvest.sh status`).
+2. Approve resolutions flagged VERIFY (a new row with a higher `version` in `registry/resolutions.csv`).
+3. Accept or reject proposals from the learning loop (`/gL5`), the mini-retrospective and the quarterly review.
+4. Once per edition, read `08_quality_control.md`: blindness violations, edits to the registry history, coverage and provenance gaps.
 
-Dalej: wydania 04–06 (16.11, 30.11, 14.12) bez zmian metody i przegląd kwartalny `/gQ` ok. 21.12.2026.
+## Three rules that must not be broken
 
-## Co robisz Ty
+1. **Append-only registry.** The forecast history is the evidence; git confirms it.
+2. **Forecast blindness.** The lenses and the red team see neither the benchmarks nor each other.
+3. **Method frozen for a quarter.** Otherwise it is impossible to tell what helped.
 
-1. Zatwierdzasz rozstrzygnięcia z flagą WERYFIKUJ (nowy wiersz z wyższą `wersja` w `rejestr/rozstrzygniecia.csv`).
-2. Akceptujesz albo odrzucasz propozycje z mini-retrospektywy i przeglądu kwartalnego.
-3. Raz na wydanie czytasz `08_kontrola.md`: czy nie było naruszeń ślepoty prognoz i edycji historii rejestru.
+## Disclaimer
 
-## Trzy reguły, których nie wolno łamać
+The forecasts are probabilistic and for research purposes. This is not investment, financial or political advice. Facts come from the public sources given in the records; their content belongs to the publishers.
 
-1. **Rejestr tylko do dopisywania.** Historia prognoz jest dowodem; git to potwierdza.
-2. **Ślepota prognoz.** Soczewki i red team nie widzą benchmarków ani siebie nawzajem.
-3. **Metoda zamrożona na kwartał.** Inaczej nie da się stwierdzić, co pomogło.
+## Contributing
 
-## Zastrzeżenie
+Issues and change proposals are welcome — details in [CONTRIBUTING.md](CONTRIBUTING.md). Two things are not negotiable: we do not edit existing registry rows and we do not change methodology v1.0 outside the quarterly review.
 
-Prognozy są probabilistyczne i mają charakter badawczy. To nie jest porada inwestycyjna, finansowa ani polityczna. Fakty pochodzą z publicznych źródeł wskazanych w rekordach; ich treść należy do wydawców.
+## License
 
-## Współpraca
-
-Zgłoszenia (issues) i propozycje zmian są mile widziane — szczegóły w [CONTRIBUTING.md](CONTRIBUTING.md). Dwie rzeczy nie są negocjowalne: nie edytujemy istniejących wierszy rejestru i nie zmieniamy metodologii v1.0 poza przeglądem kwartalnym.
-
-## Licencja
-
-- Kod (`narzedzia/wyniki.py`): [MIT](LICENSE).
-- Metodologia, prompty, rejestr, wydania i pozostałe treści: [CC BY 4.0](LICENSE-CONTENT.md).
+- Code (`tools/`, `scripts/`): [MIT](LICENSE).
+- Methodology, prompts, registry, editions and other content: [CC BY 4.0](LICENSE-CONTENT.md).

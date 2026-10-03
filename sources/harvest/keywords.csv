@@ -1,0 +1,171 @@
+concept;label;groups;vectors;pir;actors;lang;terms
+# Terms: separated by |, case-insensitive. Latin/Cyrillic terms match at the start of a word (stems allowed: "sanction" matches "sanctions").
+# A term ending in $ (and any term of up to 3 characters) must match a whole word.
+# Arabic, Persian, Hebrew, Chinese, Japanese, Korean terms match anywhere in the text.
+hormuz;Strait of Hormuz and Gulf shipping;G1,G2;INF,MIL,ENE;PIR-5;IR,SA,AE,QA,OM;en;hormuz|persian gulf|gulf of oman|tanker seiz|tanker attack
+hormuz;;G1,G2;;;;ru;ормуз|персидск залив|персидском заливе|танкер
+hormuz;;G1,G2;;;;uk;ормуз|танкер
+hormuz;;G1,G2;;;;fa;هرمز|خلیج فارس|نفتکش
+hormuz;;G1,G2;;;;ar;هرمز|الخليج العربي|ناقلة|ناقلات
+hormuz;;G1,G2;;;;zh;霍尔木兹|波斯湾|油轮
+hormuz;;G1,G2;;;;tr;hürmüz|basra körfezi|tanker
+hormuz;;G1,G2;;;;fr;ormuz|golfe persique|pétrolier
+hormuz;;G1,G2;;;;de;hormus|persischen golf|tanker
+hormuz;;G1,G2;;;;es;ormuz|golfo pérsico|petrolero
+hormuz;;G1,G2;;;;pl;ormuz|zatoka perska|tankowiec|tankowc
+hormuz;;G1,G2;;;;ja;ホルムズ|ペルシャ湾|タンカー
+hormuz;;G1,G2;;;;he;הורמוז|המפרץ הפרסי|מכלית
+red_sea;Red Sea, Bab el-Mandeb, Houthis, Suez;G1,G2;INF,MIL;PIR-5;YE,SA,IR,EG;en;houthi|red sea|bab el-mandeb|bab al-mandab|suez|yanbu|ansar allah
+red_sea;;G1,G2;;;;ru;хусит|красное море|красном море|баб-эль-мандеб|суэц
+red_sea;;G1,G2;;;;ar;الحوثي|أنصار الله|البحر الأحمر|باب المندب|قناة السويس|ينبع
+red_sea;;G1,G2;;;;fa;حوثی|انصارالله|دریای سرخ|باب المندب
+red_sea;;G1,G2;;;;zh;胡塞|红海|曼德海峡|苏伊士
+red_sea;;G1,G2;;;;fr;houthi|mer rouge|bab el-mandeb|suez
+red_sea;;G1,G2;;;;he;החות'ים|חות'י|ים סוף
+red_sea;;G1,G2;;;;tr;husi|kızıldeniz|süveyş
+ukraine_war;War in Ukraine: front, strikes, casualties;G1;MIL;PIR-1;RU,UA;en;ukrain|donbas|donetsk|zaporizh|kharkiv|kherson|pokrovsk|kramatorsk|sloviansk|front line|frontline
+ukraine_war;;G1;;;;ru;украин|донбасс|донецк|запорож|харьков|херсон|покровск|краматорск|славянск|сво |линия фронта|всу
+ukraine_war;;G1;;;;uk;україн|донбас|донецьк|запоріж|харків|херсон|покровськ|краматорськ|словянськ|фронт|зсу
+ukraine_war;;G1;;;;zh;乌克兰|顿巴斯|顿涅茨克|扎波罗热|哈尔科夫
+ukraine_war;;G1;;;;pl;ukrain|donbas|doniec|zaporoż|charków|linia frontu|na froncie
+ukraine_war;;G1;;;;de;ukrain|donbass|saporischschja|charkiw|frontlinie|frontverlauf
+ukraine_war;;G1;;;;fr;ukrain|donbass|zaporijia|kharkiv
+ukraine_war;;G1;;;;tr;ukrayna|donbas
+refinery_strikes;Strikes on energy infrastructure (refineries, ports, grid);G1,G2;MIL,ENE;PIR-1,PIR-3;RU,UA;en;refinery|oil depot|power plant|energy infrastructure|energy ceasefire|oil terminal
+refinery_strikes;;G1,G2;;;;ru;нпз|нефтеперерабатывающ|нефтебаз|энергетическ инфраструктур|энергетическое перемирие|электростанц
+refinery_strikes;;G1,G2;;;;uk;нпз|нафтобаз|енергетичн інфраструктур|енергетичне перемир|електростанц
+nato_flank;NATO eastern flank, Baltic, airspace incidents;G1;MIL;PIR-1,PIR-2;RU,BY,PL,LT,LV,EE,FI,RO;en;nato|eastern flank|baltic sea|article 4|article 5|airspace violation|kaliningrad|suwalki|shadow fleet|undersea cable
+nato_flank;;G1;;;;ru;нато|восточн фланг|балтийск|калининград|сувалк|теневой флот|нарушени воздушного пространства
+nato_flank;;G1;;;;pl;nato|wschodnia flanka|wschodniej flanki|bałtyk|kaliningrad|przesmyk suwalski|artykuł 4|artykułu 4|naruszenie przestrzeni|flota cieni|uszkodzenie kabla|uszkodzony kabel
+nato_flank;;G1;;;;de;nato|ostflanke|ostsee|kaliningrad|schattenflotte
+nato_flank;;G1;;;;zh;北约|波罗的海
+nato_flank;;G1;;;;uk;нато|балтійськ
+nato_flank;;G1;;;;fr;otan|flanc est|baltique
+drones;Drones and missiles incidents;G1;MIL;PIR-1;RU,UA,BY,IR;en;drone|uav|shahed|geran|ballistic missile|cruise missile|air defence|air defense
+drones;;G1;;;;ru;беспилотник|бпла|дрон|шахед|герань|баллистическ ракет|крылат ракет|пво
+drones;;G1;;;;uk;безпілотник|бпла|дрон|шахед|балістичн ракет|крилат ракет|ппо
+drones;;G1;;;;pl;dron|bezzałogow|pocisk|obrona powietrzna
+drones;;G1;;;;fa;پهپاد|موشک
+drones;;G1;;;;ar;مسيرة|مسيّرة|صاروخ|صواريخ
+drones;;G1;;;;he;כטב"ם|רחפן|טיל
+us_posture_europe;US forces in Europe and Poland;G1,G4;MIL,DIP;PIR-2;US,PL,DE;en;us troops|u.s. troops|american troops|force posture|posture review|brigade combat team|fort trump|us base in poland|eucom
+us_posture_europe;;G1,G4;;;;pl;wojsk amerykańsk|żołnierz amerykańsk|żołnierzy usa|baza usa|bazy usa|fort trump|obecność usa|stała baza
+us_posture_europe;;G1,G4;;;;de;us-truppen|us-soldaten|truppenabzug
+us_posture_europe;;G1,G4;;;;ru;американск войск|контингент сша
+taiwan_scs;Taiwan Strait and South China Sea;G1;MIL;PIR-4;CN,TW,PH,US;en;taiwan|taipei|south china sea|scarborough|second thomas|spratly|philippine coast guard|pla navy|pla air
+taiwan_scs;;G1;;;;zh;台湾|台海|南海|黄岩岛|仁爱礁|解放军|东部战区|菲律宾
+taiwan_scs;;G1;;;;ja;台湾|南シナ海|尖閣|人民解放軍
+taiwan_scs;;G1;;;;ru;тайван|южно-китайск
+korea;Korean Peninsula;G1;MIL;PIR-4;KP,KR,JP;en;north korea|pyongyang|dprk|kim jong un|korean peninsula
+korea;;G1;;;;ko;북한|조선|김정은|탄도미사일
+korea;;G1;;;;ja;北朝鮮|弾道ミサイル
+korea;;G1;;;;zh;朝鲜|半岛
+korea;;G1;;;;ru;кндр|северн корея|пхеньян
+israel_iran_levant;Israel, Iran, Lebanon, Iraq militias;G1,G4;MIL,DIP;PIR-5;IL,IR,LB,IQ;en;israel|idf|hezbollah|lebanon|gaza|iraqi militia|kataib|netanyahu
+israel_iran_levant;;G1,G4;;;;he;איראן|חיזבאללה|לבנון|צה"ל|עזה
+israel_iran_levant;;G1,G4;;;;ar;إسرائيل|حزب الله|لبنان|غزة|الحشد الشعبي
+israel_iran_levant;;G1,G4;;;;fa;اسرائیل|رژیم صهیونیستی|حزب‌الله|لبنان
+iran_diplomacy;Iran–US talks, nuclear file, blockade;G1,G4;DIP;PIR-5;IR,US,QA,PK,OM;en;iran talks|iranian talks|witkoff|araghchi|iran deal|nuclear talks|enrichment|iaea|blockade of iran|iranian ports
+iran_diplomacy;;G1,G4;;;;fa;مذاکره|عراقچی|ویتکاف|غنی‌سازی|آژانس|محاصره
+iran_diplomacy;;G1,G4;;;;ar;المفاوضات|عراقجي|ويتكوف|التخصيب|الوكالة الدولية
+iran_diplomacy;;G1,G4;;;;ru;иран переговор|переговоры с иран|аракчи|уэткофф|уиткофф|магатэ|обогащени
+oil;Oil market: prices, supply, OPEC+;G2;ENE;PIR-3;SA,RU,US,AE,IQ;en;brent|oil price|crude|opec|barrels per day|oil supply|oil output|oil exports|diesel
+oil;;G2;;;;ru;нефт|брент|опек|дизел|бензин
+oil;;G2;;;;ar;النفط|برنت|أوبك|الخام
+oil;;G2;;;;fa;نفت|اوپک
+oil;;G2;;;;zh;原油|石油|布伦特|欧佩克
+oil;;G2;;;;pl;ropa|ropy|brent|opec|diesel|olej napędowy
+oil;;G2;;;;es;petróleo|brent|opep
+oil;;G2;;;;pt;petróleo|opep
+gas_lng;Gas and LNG: prices, storage, supply;G2;ENE;PIR-3;QA,RU,NO,US;en;lng|liquefied natural gas|natural gas|gas storage|gas price|ttf|ras laffan|yamal|gas supply
+gas_lng;;G2;;;;ru;спг|сжиженн газ|природн газ|газохранилищ|ямал|газпром
+gas_lng;;G2;;;;pl;lng|gaz ziemny|magazyny gazu|ceny gazu|gazoport
+gas_lng;;G2;;;;de;flüssiggas|lng|gasspeicher|gaspreis
+gas_lng;;G2;;;;ar;الغاز الطبيعي المسال|الغاز المسال|راس لفان
+gas_lng;;G2;;;;zh;液化天然气|天然气
+fuel_poland;Fuel prices and energy policy in Poland;G2;ENE;PIR-3;PL;pl;ceny paliw|cena paliw|olej napędowy|benzyn|stacje paliw|cpn|orlen|ceny maksymaln|podatek od nadzwyczajnych zysków
+fuel_poland;;G2;;;;en;orlen|poland fuel
+rare_earths;Rare earths and critical minerals;G2;TEC;PIR-4;CN,US;en;rare earth|critical mineral|gallium|germanium|antimony|graphite|lithium|cobalt|magnet export|mp materials
+rare_earths;;G2;;;;zh;稀土|关键矿产|镓|锗|锑|石墨|出口管制
+rare_earths;;G2;;;;ru;редкоземельн|галлий|германий|сурьм
+rare_earths;;G2;;;;ja;レアアース|希土類
+chips;Semiconductors, AI and export controls;G2;TEC;PIR-4;CN,US,TW,NL,KR,JP;en;semiconductor|chip export|nvidia|h200|blackwell|tsmc|asml|export control|entity list|ai chip
+chips;;G2;;;;zh;半导体|芯片|英伟达|台积电|光刻|实体清单
+chips;;G2;;;;ja;半導体|輸出規制
+chips;;G2;;;;ko;반도체|수출 규제
+food_fertiliser;Food and fertilisers;G2;ENE,ECO;PIR-3;RU,UA,QA;en;fertiliser|fertilizer|urea|ammonia|grain export|wheat price|fao food price|grain corridor
+food_fertiliser;;G2;;;;ru;удобрен|карбамид|зерн|пшениц
+food_fertiliser;;G2;;;;uk;добрив|зерн|пшениц
+nuclear_uranium;Uranium, enrichment, nuclear fuel;G2;TEC;PIR-4;RU,US,KZ,NE;en;uranium|nuclear fuel|rosatom|centrifuge
+nuclear_uranium;;G2;;;;ru;уран|росатом|ядерн топлив
+sanctions;Sanctions and counter-sanctions;G3;FIN;PIR-6;US,EU,RU,CN,IR;en;sanction|ofac|sdn list|shadow fleet|price cap|secondary tariff|asset freeze|frozen assets|delisting|sanctioning russia
+sanctions;;G3;;;;ru;санкц|ofac|теневой флот|потолок цен|заморожен актив
+sanctions;;G3;;;;zh;制裁|反制|不可靠实体
+sanctions;;G3;;;;fa;تحریم
+sanctions;;G3;;;;ar;عقوبات
+sanctions;;G3;;;;pl;sankcj|zamrożon aktyw
+sanctions;;G3;;;;de;sanktion
+sanctions;;G3;;;;fr;sanction
+sanctions;;G3;;;;tr;yaptırım
+tariffs_trade;Tariffs and trade deals;G3;ECO;PIR-4;US,CN,EU,IN;en;tariff|trade war|trade truce|trade deal|section 301|section 232|customs duty|trade talks|ieepa
+tariffs_trade;;G3;;;;zh;关税|贸易战|贸易协议|经贸磋商
+tariffs_trade;;G3;;;;ru;пошлин|торгов войн|торговое соглашени
+tariffs_trade;;G3;;;;pl;cła|cło|wojna handlowa|umowa handlowa
+tariffs_trade;;G3;;;;de;zölle|zoll|handelskrieg|handelsabkommen
+tariffs_trade;;G3;;;;hi;टैरिफ|शुल्क
+central_banks;Central banks and interest rates;G3;FIN;PIR-6;US,EU,PL,RU,CN;en;interest rate|rate hike|rate cut|key rate|federal reserve|fomc|ecb|monetary policy|central bank|pboc|loan prime rate
+central_banks;;G3;;;;ru;ключев ставк|центробанк|банк россии|набиуллин|денежно-кредитн
+central_banks;;G3;;;;pl;stopy procentowe|stóp procentowych|rpp|nbp|glapiński|rada polityki pieniężnej
+central_banks;;G3;;;;zh;利率|降息|加息|央行|人民银行|lpr
+central_banks;;G3;;;;de;leitzins|ezb|zinserhöhung|zinssenkung
+budgets_debt;Budgets, deficits, ratings, debt;G3;FIN;PIR-6;RU,US,CN,PL,UA;en;budget deficit|federal budget|draft budget|public debt|credit rating|downgrade|moody's|fitch|s&p global ratings|national wealth fund|government shutdown|continuing resolution
+budgets_debt;;G3;;;;ru;дефицит бюджет|федеральн бюджет|проект бюджет|минфин|фнб|фонд национального благосостояния|силуанов
+budgets_debt;;G3;;;;pl;deficyt|budżet|dług publiczny|rating|obniżk ratingu|moody's|fitch|potrzeby pożyczkowe
+budgets_debt;;G3;;;;uk;бюджет|дефіцит
+currencies_payments;Currencies and payment systems;G3;FIN;PIR-6;US,CN,RU,PL;en;yuan|renminbi|dollar index|de-dollar|swift|spfs|brics pay|cips|zloty|exchange rate
+currencies_payments;;G3;;;;ru;юан|курс рубл|курс доллар|спфс|swift|дедоллариз
+currencies_payments;;G3;;;;zh;人民币|美元|跨境支付|cips
+currencies_payments;;G3;;;;pl;złot|kurs euro|kurs dolara
+summits_talks;Summits, talks, ceasefires, agreements;G4;DIP;PIR-2,PIR-4,PIR-5,PIR-7;US,RU,CN,UA,EU;en;summit|peace talks|ceasefire|truce|negotiation|state visit|bilateral talks|trilateral|peace deal|peace plan|memorandum
+summits_talks;;G4;;;;ru;саммит|переговор|перемири|визит|встреча путин|мирн соглашени|меморандум
+summits_talks;;G4;;;;zh;峰会|会谈|会晤|停火|国事访问|谈判
+summits_talks;;G4;;;;uk;саміт|переговор|перемир|мирн угод
+summits_talks;;G4;;;;ar;قمة|مفاوضات|وقف إطلاق النار|هدنة
+summits_talks;;G4;;;;fa;مذاکرات|آتش‌بس|نشست
+summits_talks;;G4;;;;tr;zirve|müzakere|ateşkes
+summits_talks;;G4;;;;pl;szczyt|rozmowy pokojowe|zawieszenie broni|rozejm|negocjacj
+elections;Elections and changes of government;G4;DOM;PIR-7;;en;election|referendum|parliamentary vote|runoff|coalition government|prime minister resign|snap poll|midterm
+elections;;G4;;;;ru;выбор|референдум|дума|отставк правительств
+elections;;G4;;;;pt;eleição|eleições|segundo turno|lula|bolsonaro|tse
+elections;;G4;;;;es;elecciones|referéndum|cne
+elections;;G4;;;;pl;wybory|referendum|dymisj|koalicj
+elections;;G4;;;;de;wahl|koalition|regierungskrise
+elections;;G4;;;;fr;élection|référendum|premier ministre
+elections;;G4;;;;tr;seçim|referandum
+russia_domestic;Russia: domestic politics, mobilisation, repression;G4;DOM;PIR-1,PIR-7;RU;en;kremlin|putin|state duma|mobilization|mobilisation|conscription|peskov|lavrov|medvedev
+russia_domestic;;G4;;;;ru;кремл|путин|госдум|мобилизац|призывн|осенний призыв|весенний призыв|песков|лавров|медведев|совбез
+china_domestic;China: domestic politics and economy;G4;DOM;PIR-4,PIR-7;CN;en;xi jinping|politburo|plenum|communist party of china|cpc central committee|state council|li qiang
+china_domestic;;G4;;;;zh;习近平|政治局|全会|中共中央|国务院|李强
+iran_domestic;Iran: domestic politics;G4;DOM;PIR-5,PIR-7;IR;en;khamenei|irgc|revolutionary guard|pezeshkian|majlis|supreme leader|supreme national security council
+iran_domestic;;G4;;;;fa;خامنه‌ای|خامنه ای|سپاه|پزشکیان|مجلس|رهبر انقلاب|شورای عالی امنیت ملی
+iran_domestic;;G4;;;;ar;خامنئي|الحرس الثوري|بزشكيان
+us_domestic;USA: domestic politics shaping foreign policy;G4;DOM;PIR-2,PIR-7;US;en;white house|congress|senate|house of representatives|midterm|trump administration|pentagon|ndaa|supreme court
+africa;Africa: Sahel, Sudan, Horn of Africa;G4;DOM,MIL;PIR-7;ML,BF,NE,SD,ET,SO,ER;en;mali$|malian|sahel|burkina|niger junta|jnim|bamako|sudan|rapid support forces|darfur|el fasher|ethiopia|eritrea|somalia|al-shabaab|africa corps|wagner
+africa;;G4;;;;fr;mali$|malien|sahel|burkina|niger|jnim|bamako|soudan|goïta|africa corps|wagner|junte
+africa;;G4;;;;ar;السودان|الدعم السريع|الفاشر|دارفور|مالي|الصومال|إثيوبيا
+africa;;G4;;;;ru;мали$|сахел|африканск корпус|судан
+latam;Latin America: Venezuela, Cuba, Brazil;G4;DIP,DOM;PIR-7;VE,CU,BR;en;venezuela|caracas|delcy rodriguez|maduro|cuba$|cuban|havana|brazil|lula$
+latam;;G4;;;;es;venezuela|caracas|delcy rodríguez|maduro|cuba|la habana|apagón
+latam;;G4;;;;pt;venezuela|cuba|lula|brasil
+caucasus_central_asia;Caucasus and Central Asia;G4;DIP;PIR-7;AM,AZ,GE,KZ,UZ,KG,TJ,TM;en;armenia|azerbaijan|pashinyan|aliyev|tripp|zangezur|georgia tbilisi|georgian dream|kazakhstan|uzbekistan|kyrgyzstan|tajikistan|turkmenistan|middle corridor
+caucasus_central_asia;;G4;;;;ru;армени|азербайджан|пашинян|алиев|зангезур|грузия|грузии|тбилис|казахстан|узбекистан|киргиз|таджикистан|туркменистан
+caucasus_central_asia;;G4;;;;tr;ermenistan|azerbaycan|zengezur|orta koridor
+arctic_greenland;Arctic and Greenland;G4;DIP,MIL;PIR-2;GL,DK,US,RU;en;greenland|arctic|pituffik|northern sea route|svalbard
+arctic_greenland;;G4;;;;da;grønland|arktis|pituffik|inatsisartut
+arctic_greenland;;G4;;;;ru;арктик|гренланди|северный морской путь|севморпут
+eu_politics;EU decisions: sanctions packages, funding, defence;G3,G4;DIP,FIN;PIR-2,PIR-6;EU,HU,SK,PL;en;european council|european commission|von der leyen|kallas|sanctions package|safe loans|eu budget|reparations loan|qualified majority
+eu_politics;;G3,G4;;;;pl;rada europejska|komisja europejska|pakiet sankcji|program safe|unia europejska
+eu_politics;;G3,G4;;;;de;europäischer rat|eu-kommission|sanktionspaket
+eu_politics;;G3,G4;;;;fr;conseil européen|commission européenne|paquet de sanctions
+poland_security;Poland: security, defence, politics;G1,G4;MIL,DOM;PIR-1,PIR-2;PL;pl;ministerstwo obrony|ministra obrony|kosiniak-kamysz|sikorski|nawrocki|tusk|bbn|wojsko polskie|siły zbrojne|granica z białorusią|tarcza wschód
+poland_security;;G1,G4;;;;en;poland|polish|warsaw|nawrocki|tusk|sikorski

@@ -1,4 +1,4 @@
 ---
-description: Mini-retrospektywa procesu (po wydaniu 03)
+description: Process mini-retrospective (after edition 03)
 ---
-Przeczytaj CLAUDE.md, wydania/AKTUALNE.md i metodologia/metodologia_v1.0.md, a następnie prompty/M_mini_retro.md i wykonaj mini-retrospektywę.
+Read CLAUDE.md, editions/CURRENT.md and methodology/methodology_v1.0.md, then prompts/M_mini_retro.md and carry out the mini-retrospective.
