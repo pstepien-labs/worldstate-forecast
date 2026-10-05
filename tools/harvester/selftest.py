@@ -48,6 +48,7 @@ t_page;1;page;Test MFA page;http://HOST/page.html;en;CN;CN;official;B;G4;12;
 t_robots;1;rss;Robots-blocked;http://HOST/private/x.xml;en;US;US;western;B;G1;6;
 t_dead;1;rss;Dead feed;http://HOST/missing.xml;en;US;US;western;B;G1;6;
 t_429;1;rss;Rate-limited feed;http://LOCALHOST/ratelimit.xml;en;US;US;western;B;G1;6;
+t_optout;1;rss;Opted-out publisher;http://optout.invalid/feed.xml;en;US;US;western;B;G1;6;
 '''
 DATASETS = '''id;enabled;adapter;name;url;params;indicator;unit;needs_key;interval_h;groups;notes
 d_nbp;1;nbp;NBP EUR/PLN;http://HOST/nbp.json;;EUR/PLN;PLN;;24;G3;
@@ -95,6 +96,7 @@ def main():
             f.write(body.replace('HOST', host))
     for name, body in {'feeds.csv': FEEDS, 'datasets.csv': DATASETS, 'keywords.csv': KEYWORDS,
                        'source_universe.csv': UNIVERSE, 'forbidden_domains.txt': 'polymarket.com\n',
+                       'optout_domains.txt': 'optout.invalid   # test opt-out\n',
                        'countries.csv': 'code;names\nGB;United Kingdom\n', 'sites.csv': 'id;name;lat;lon;radius_km\n'}.items():
         with open(os.path.join(cfg, name), 'w', encoding='utf-8') as f:
             f.write(body.replace('LOCALHOST', 'localhost:' + host.split(':')[1]).replace('HOST', host))
@@ -125,12 +127,14 @@ def main():
     ok('resume run succeeds', r.returncode == 0, r.stderr[-300:])
     ok('stale lock taken over', 'stale_lock_removed' in r.stdout)
     state = json.load(open(os.path.join(data, 'state', 'sources.json')))
-    ok('all sources attempted after resume', len(state) == 11, str(sorted(state)))
+    ok('all sources attempted after resume', len(state) == 12, str(sorted(state)))
     ok('sources done before crash not refetched', all(state[k]['last_attempt'] == first_attempts[k] for k in done_first))
     ok('robots.txt respected', state['t_robots'].get('status') == 'skipped', state['t_robots'].get('last_error'))
     ok('dead feed backs off', state['t_dead'].get('status') == 'retrying', state['t_dead'].get('last_error'))
     ok('rate limit (429) pauses the host, not counted as failure',
        state['t_429'].get('status') == 'throttled' and not state['t_429'].get('consecutive_failures'), str(state['t_429']))
+    ok('publisher opt-out honoured (never fetched)', state['t_optout'].get('status') == 'skipped'
+       and 'opted out' in (state['t_optout'].get('last_error') or '') and not state['t_optout'].get('last_http'), str(state['t_optout']))
     ok('missing API key skipped, not failed', state['d_key'].get('status') == 'skipped', state['d_key'].get('last_error'))
     # 3) nothing due now
     r = hv('run')

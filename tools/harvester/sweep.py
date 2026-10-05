@@ -14,7 +14,7 @@ import time
 from datetime import datetime, timedelta, timezone
 
 from . import HARVESTER_VERSION, adapters, store
-from .config import (forbidden_domains, interval_hours, iso, load_sources, now, parse_iso, truthy)
+from .config import (forbidden_domains, interval_hours, is_forbidden, iso, load_sources, now, parse_iso, truthy)
 from .net import Fetcher
 
 MAX_BACKOFF_H = 24
@@ -75,7 +75,12 @@ class Harvester:
         e = self.entry(task['id'])
         t0 = time.time()
         e['last_attempt'] = iso(now())
-        res = adapters.run_task(task, self.fetcher, e, self.ctx)
+        if task.get('kind') != 'gdelt' and task.get('url', '').startswith('http') and \
+                is_forbidden(task['url'], self.ctx['forbidden']):
+            res = adapters.Result()
+            res.skipped = 'publisher opted out or domain forbidden (sources/harvest/optout_domains.txt, forbidden_domains.txt)'
+        else:
+            res = adapters.run_task(task, self.fetcher, e, self.ctx)
         ms = int((time.time() - t0) * 1000)
         e.update(res.state)
         e['last_http'] = res.http_status

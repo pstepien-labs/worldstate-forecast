@@ -1,0 +1,6 @@
+# Publishers who asked not to be collected. The harvester never fetches or stores
+# anything from these domains (sources pointing at them are skipped, items linking to
+# them are dropped). Add one domain per line with the date and a reference to the request:
+#   example.com    # opt-out request of dd.mm.yyyy, issue/e-mail ref
+# Honour every request within 7 days (promised on the public legal notice), then delete what was
+# collected: python3 -m tools.harvester purge-domain <domain>

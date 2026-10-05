@@ -120,6 +120,15 @@ def pick_ledger(questions, official, n, today):
     return sorted(out, key=lambda q: (q['deadline'], q['id']))
 
 
+def page_head(cfg, desc):
+    return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            f'<meta name="description" content="{desc}">\n<meta property="og:title" content="{e(cfg["name"])}">\n'
+            f'<meta property="og:description" content="{desc}">\n<meta property="og:type" content="website">\n'
+            f'<meta property="og:url" content="{e(cfg.get("site_url", ""))}">\n'
+            '<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>\n')
+
+
 def build():
     cfg = json.load(open(os.path.join(ROOT, 'site', 'config.json'), encoding='utf-8'))
     repo = cfg['repo_url'].rstrip('/')
@@ -253,20 +262,37 @@ def build():
 
     with open(os.path.join(ROOT, 'site', 'preview.html'), 'w', encoding='utf-8') as f:
         f.write(tpl)
+
+    # legal notice page (shares the landing page's stylesheet)
+    style = tpl[tpl.index('<style>'):tpl.index('</style>') + len('</style>')]
+    operator = e(cfg.get('operator_name')) or 'the maintainer of its <a href="' + e(repo) + '">GitHub repository</a>'
+    if cfg.get('contact_email'):
+        em = e(cfg['contact_email'])
+        contact_block = (f'<p>Contact for questions, corrections, opt-out and takedown requests:</p>'
+                         f'<div class="copy"><code>{em}</code><button type="button" data-copy="{em}">Copy</button></div>')
+    else:
+        contact_block = (f'<p>Contact for questions, corrections, opt-out and takedown requests: open an issue in the '
+                         f'<a href="{e(repo)}/issues">repository</a>.</p>')
+    legal = read_text('site/legal.html')
+    for k, v in {'NAME': e(cfg['name']), 'REPO': e(repo), 'STYLE': style, 'OPERATOR': operator,
+                 'CONTACT_BLOCK': contact_block, 'UPDATED': e(cfg.get('legal_updated') or datetime.now(timezone.utc).strftime('%d.%m.%Y')),
+                 'FOOTER_META': footer}.items():
+        legal = legal.replace('{{' + k + '}}', v)
+    assert '{{' not in legal, 'unfilled placeholder in site/legal.html'
+    legal += tpl[tpl.rindex('<script>'):]  # copy-button script
+    with open(os.path.join(ROOT, 'site', 'preview_legal.html'), 'w', encoding='utf-8') as f:
+        f.write(legal)
     split = tpl.index('<div class="wrap">')
     head, body = tpl[:split], tpl[split:]
     desc = e(cfg.get('tagline', ''))
-    page = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
-            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-            f'<meta name="description" content="{desc}">\n<meta property="og:title" content="{e(cfg["name"])}">\n'
-            f'<meta property="og:description" content="{desc}">\n<meta property="og:type" content="website">\n'
-            f'<meta property="og:url" content="{e(cfg.get("site_url", ""))}">\n'
-            '<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>\n'
-            f'{head}</head>\n<body>\n{body}</body>\n</html>\n')
+    page = page_head(cfg, desc) + f'{head}</head>\n<body>\n{body}</body>\n</html>\n'
     docs = os.path.join(ROOT, 'docs')
     os.makedirs(os.path.join(docs, 'data'), exist_ok=True)
     with open(os.path.join(docs, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(page)
+    lsplit = legal.index('<div class="wrap">')
+    with open(os.path.join(docs, 'legal.html'), 'w', encoding='utf-8') as f:
+        f.write(page_head(cfg, desc) + legal[:lsplit] + '</head>\n<body>\n' + legal[lsplit:] + '</body>\n</html>\n')
     open(os.path.join(docs, '.nojekyll'), 'w').close()
     for name in PUBLIC_REGISTRY:
         src = os.path.join(ROOT, 'registry', name)

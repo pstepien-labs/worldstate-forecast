@@ -16,3 +16,7 @@ data/
 
 # Generated preview fragment of the landing page
 site/preview.html
+
+# Harvest digests contain third-party headlines and snippets: kept locally, never published
+editions/*/02_harvest/G*_digest.md
+site/preview_legal.html
