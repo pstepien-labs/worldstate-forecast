@@ -1,0 +1,20 @@
+# Outlets whose content is collected for research but never republished.
+# Conservative policy: Russian state media, outlets listed under EU sanctions on Russian
+# media (Council Regulation (EU) No 833/2014, Annex XV, as amended) and outlets of
+# sanctioned parties. They may be cited in research files as "a statement by <outlet>",
+# paraphrased, never quoted, and never linked or named as a source in public outputs
+# (site, social posts). Keep this list current: check the latest Annex XV when adding.
+rt.com
+russian.rt.com
+sputniknews.com
+sputnikglobe.com
+ria.ru
+tass.ru
+tass.com
+iz.ru
+rg.ru
+tsargrad.tv
+1tv.ru
+vesti.ru
+presstv.ir
+saba.ye

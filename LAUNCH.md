@@ -37,6 +37,17 @@ The natural model for a research project like this is **open core plus support p
 - Never give buy/sell calls. Price questions (Brent, EUR/PLN) are research, and paid market recommendations can fall under investment-advice rules.
 - Keep the "Research, not advice" disclaimer on the site and the X profile.
 
+### Legal notice and requests
+
+The site has a legal notice page (`docs/legal.html`, linked in the footer). It covers: research not advice, AI-assisted content, copyright and data mining, publisher opt-out and takedown, state and sanctioned media, licences, privacy and corrections. Fill `operator_name` and `contact_email` in `site/config.json` so it names who is responsible and how to reach you.
+
+If a publisher asks to opt out:
+1. Add the domain to `sources/harvest/optout_domains.txt`, with the date of the request.
+2. Run `python3 -m tools.harvester purge-domain <domain>`.
+3. Commit and push, and reply to the publisher.
+
+The notice promises this within 7 days.
+
 ## 3. Launch checklist (you)
 
 ### A. Before making the repository public (30 min)

@@ -11,6 +11,7 @@ Provenance: `python3 tools/pipeline.py stage-start S --arg <MODE> --model "<your
 - **Never state a new probability between editions.** Frozen forecasts are never changed. New evidence is described by its direction ("pushes up / down for the next edition") and weighed formally only in the next edition. This keeps the track record honest.
 - **Three perspectives.** For a contested event, link at least two sides (e.g. the actor's own statement and a third-party source). A government statement is a fact about a statement.
 - **Every post stands alone:** ≤ 280 characters, link to the source, and where it fits a link to the question on the site (`<site_url>#forecasts`) or the report.
+- **Never quote, link or screenshot** outlets in `sources/harvest/no_republish.txt` (Russian state media, sanctioned outlets). If their statement matters, write "according to Russian state agency X" and link an independent report of that statement instead.
 - **Not advice.** No buy/sell language, no market calls. Forecasts on prices are framed as research questions.
 - **Disclosure:** the account bio (and the first post of a thread) says the project is AI-assisted with human review.
 

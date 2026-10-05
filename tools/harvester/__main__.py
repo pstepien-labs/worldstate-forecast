@@ -8,6 +8,7 @@
   python3 -m tools.harvester stop              ask a running harvester to stop after the current source
   python3 -m tools.harvester status            live status: progress, health, errors, liveness
   python3 -m tools.harvester digest            build the edition digest (window from editions/CURRENT.md)
+  python3 -m tools.harvester purge-domain DOMAIN    delete stored items from a publisher (opt-out request)
   python3 -m tools.harvester search CONCEPT|TEXT [--day YYYY-MM-DD | --from YYYY-MM-DD --to YYYY-MM-DD]
 """
 import argparse
@@ -149,6 +150,33 @@ def cmd_search(a):
     return 0
 
 
+def cmd_purge_domain(a):
+    """Delete every stored item whose link is on the given domain (publisher opt-out)."""
+    import glob
+    from .config import is_forbidden
+    d = a.domain.lower().strip()
+    dom = {d[4:] if d.startswith('www.') else d}
+    removed = kept = 0
+    for p in glob.glob(os.path.join(data_dir(), 'items', '*', '*.jsonl')):
+        out = []
+        with open(p, encoding='utf-8') as f:
+            for line in f:
+                try:
+                    url = json.loads(line).get('url', '')
+                except json.JSONDecodeError:
+                    out.append(line)
+                    continue
+                if is_forbidden(url, dom):
+                    removed += 1
+                else:
+                    out.append(line)
+                    kept += 1
+        store.write_atomic(p, ''.join(out))
+    print(f'purged {removed} items from {a.domain}; {kept} items kept. '
+          f'Add the domain to sources/harvest/optout_domains.txt so it is never collected again.')
+    return 0
+
+
 def cmd_selftest(a):
     from . import selftest
     return selftest.main()
@@ -179,6 +207,9 @@ def main(argv=None):
     d.add_argument('--to')
     d.add_argument('--out')
     d.set_defaults(fn=cmd_digest)
+    pg = sub.add_parser('purge-domain', help='delete stored items from a publisher (opt-out)')
+    pg.add_argument('domain')
+    pg.set_defaults(fn=cmd_purge_domain)
     q = sub.add_parser('search')
     q.add_argument('query')
     q.add_argument('--day')

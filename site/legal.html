@@ -1,0 +1,81 @@
+<title>{{NAME}} legal notice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+{{STYLE}}
+<style>
+.legal { max-width: 760px; padding-block: 40px 24px; }
+.legal h1 { font-size: var(--step-3); }
+.legal .updated { margin-top: 10px; }
+.legal h2 { font-size: var(--step-1); margin-top: 40px; margin-bottom: 10px; }
+.legal p, .legal li { color: var(--ink); }
+.legal p + p { margin-top: 12px; }
+.legal ul { margin: 10px 0 0; padding-left: 20px; }
+.legal li { margin-bottom: 6px; max-width: var(--measure); }
+.legal li::marker { color: var(--accent); }
+.legal .note { margin-top: 28px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--rule); font-size: 0.95rem; color: var(--muted); }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">{{NAME}}</a>
+    <nav aria-label="Sections">
+      <a href="index.html#method">Method</a>
+      <a href="index.html#forecasts">Forecasts</a>
+      <a href="index.html#data">Data &amp; access</a>
+      <a href="index.html#contribute">Contribute</a>
+      <a href="{{REPO}}">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="legal">
+    <p class="label">Legal notice</p>
+    <h1>How this project works within the law</h1>
+    <p class="label updated">Last updated {{UPDATED}}</p>
+
+    <h2>Who runs this</h2>
+    <p>{{NAME}} is an independent, non-commercial research experiment run by {{OPERATOR}}. It is not affiliated with any government, political party, news publisher, forecasting platform or prediction market.</p>
+    {{CONTACT_BLOCK}}
+
+    <h2>Research, not advice</h2>
+    <p>Forecasts are probabilities produced for research. They are not predictions that an event will or will not happen, and nothing on this site or in the reports is investment, financial, trading, legal or political advice. Do not base decisions on it.</p>
+    <p>The content is provided as it is, without any warranty of accuracy, completeness or timeliness. To the extent the law allows, the project accepts no liability for decisions or losses arising from its use.</p>
+
+    <h2>AI-assisted content</h2>
+    <p>Reports, analyses and forecasts are produced by AI models working under written, public rules, with human review. The models used are named in every report. AI-assisted content can contain errors; corrections are welcome (see below).</p>
+
+    <h2>Sources, copyright and quotation</h2>
+    <ul>
+      <li>Every fact in a report names its publisher, date and a link to the original. Copyright in that material stays with its publishers.</li>
+      <li>Short quotations are used only where the exact wording matters, with attribution, for research, commentary and criticism.</li>
+      <li>To find relevant news, the project automatically reads publicly available headlines and short summaries for analysis (text and data mining). This material stays on the operator's computer and is <b>not republished</b>: no harvested headlines, summaries or articles are distributed through this site, the repository or social media.</li>
+      <li>The collector identifies itself, respects robots.txt, spaces its requests, and never logs in or circumvents paywalls, blocks or other technical measures.</li>
+    </ul>
+
+    <h2>Publisher opt-out and takedown</h2>
+    <p>Publishers who do not want their content collected can ask to opt out. The domain is added to an exclusion list within 7 days, after which nothing from it is fetched or stored, and anything previously collected from it is deleted from the local collection. Requests to remove a passage from a published report are reviewed promptly; where a request is justified, the passage is removed or replaced by a link. Use the contact above or open an issue in the <a href="{{REPO}}/issues">repository</a>.</p>
+
+    <h2>State and sanctioned media</h2>
+    <p>Statements by state-controlled media are part of the evidence base, because the method requires the view of each actor's own side. As a precaution, content from Russian state media and from outlets subject to EU or US sanctions is never republished: such outlets are only described in the project's own words as "a statement by" the outlet, without quotation, and are not linked from this site or from social media posts. Their mention is documentation of what a party said, not endorsement or distribution of it.</p>
+
+    <h2>Licences and third-party data</h2>
+    <ul>
+      <li>The project's own code is licensed under MIT; its own content (methodology, prompts, reports, forecasts, registry) under Creative Commons Attribution 4.0 (CC BY 4.0).</li>
+      <li>Third-party data keep their own terms: exchange and interest rates from the National Bank of Poland and the European Central Bank, series from FRED (Federal Reserve Bank of St. Louis), chokepoint data from IMF PortWatch, and article metadata from the GDELT Project, each used with attribution. Comparisons with forecasting platforms and prediction markets record a small number of published values, with links, in the research files; they are not shown on this site.</li>
+      <li>Names of governments, organisations, publishers and platforms are used only to identify them; no endorsement is implied.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>This site sets no cookies and uses no analytics, tracking or advertising. It is hosted on GitHub Pages; GitHub may process technical data such as IP addresses when serving it (see GitHub's privacy statement). If you write to the project, your address and message are used only to reply and are not shared.</p>
+
+    <h2>Corrections</h2>
+    <p>Factual errors in reports are corrected in the next edition and recorded openly. Frozen forecasts are never edited after publication, because their unchanged record is the basis of the scoring.</p>
+
+    <p class="note">This notice describes how the project operates. It is not a contract and does not limit any rights you have under applicable law.</p>
+  </main>
+
+  <footer>
+    <span>{{FOOTER_META}}</span>
+    <span><a href="index.html">Home</a> · Code MIT · content CC BY 4.0 · <a href="{{REPO}}">source</a></span>
+  </footer>
+</div>

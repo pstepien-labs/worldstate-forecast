@@ -41,13 +41,13 @@ Goal: keep the source universe working and balanced. You may edit only `sources/
 
 1. `python3 -m tools.harvester status` — record sources OK / failing at the state date.
 2. `python3 -m tools.harvester digest` — writes `<DIRECTORY>/02_harvest/`: `G1_digest.md`…`G4_digest.md`, `coverage.md`, `indicators.md`, `sources_health.md`, `manifest.json`.
-3. Read `coverage.md` and `indicators.md` and write `<DIRECTORY>/02_harvest/harvest_notes.md` (at most one page):
+3. Read `coverage.md` and `indicators.md` and write `<DIRECTORY>/02_harvest/harvest_notes.md` (at most one page, in your own words — no copied headlines or snippets; it is published):
    - the window actually covered, total items, languages, countries, Western share;
    - concepts flagged ⚠W>80%, ⚠no actor, ⚠<3 lang — these become **mandatory targeted searches** for the stage 02 group that owns the concept (list them per group G1–G4);
    - silent required cells of the source universe, per group;
    - failing sources that matter for resolution of registry questions (e.g. PortWatch, NBP, AGSI);
    - primary-data values available for block L (from `indicators.md`), each with its date.
-4. Commit: `edition-NN stage-H` (the digest files are small; full texts stay in `data/`).
+4. Commit: `edition-NN stage-H`. The `G*_digest.md` files contain other publishers' headlines and snippets: they are git-ignored and stay on this machine. Committed are only `coverage.md`, `indicators.md`, `sources_health.md`, `manifest.json` and `harvest_notes.md`.
 
 ## Rules
 

@@ -98,8 +98,8 @@ def interval_hours(task):
         return DEFAULT_INTERVAL_H.get(task.get('kind'), 12)
 
 
-def forbidden_domains():
-    path = os.path.join(config_dir(), 'forbidden_domains.txt')
+def domain_list(name):
+    path = os.path.join(config_dir(), name)
     out = set()
     if os.path.exists(path):
         with open(path, encoding='utf-8') as f:
@@ -108,6 +108,11 @@ def forbidden_domains():
                 if line:
                     out.add(line)
     return out
+
+
+def forbidden_domains():
+    """Never fetched or stored: forecasting services/markets (CLAUDE.md 3.9) and publishers who opted out."""
+    return domain_list('forbidden_domains.txt') | domain_list('optout_domains.txt')
 
 
 def is_forbidden(url_or_domain, forbidden):

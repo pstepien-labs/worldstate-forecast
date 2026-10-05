@@ -1,4 +1,15 @@
-<title>{{NAME}}</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Calibrated balance-of-power forecasts. Frozen before the outcome. Scored after.">
+<meta property="og:title" content="Worldstate Forecast">
+<meta property="og:description" content="Calibrated balance-of-power forecasts. Frozen before the outcome. Scored after.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pstepien-labs.github.io/worldstate-forecast/">
+<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>
+<title>Worldstate Forecast legal notice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -157,138 +168,84 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
   @keyframes settle { from { left: 50%; } }
 }
 </style>
+<style>
+.legal { max-width: 760px; padding-block: 40px 24px; }
+.legal h1 { font-size: var(--step-3); }
+.legal .updated { margin-top: 10px; }
+.legal h2 { font-size: var(--step-1); margin-top: 40px; margin-bottom: 10px; }
+.legal p, .legal li { color: var(--ink); }
+.legal p + p { margin-top: 12px; }
+.legal ul { margin: 10px 0 0; padding-left: 20px; }
+.legal li { margin-bottom: 6px; max-width: var(--measure); }
+.legal li::marker { color: var(--accent); }
+.legal .note { margin-top: 28px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--rule); font-size: 0.95rem; color: var(--muted); }
+</style>
 
+</head>
+<body>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="#top">{{NAME}}</a>
+    <a class="brand" href="index.html">Worldstate Forecast</a>
     <nav aria-label="Sections">
-      <a href="#method">Method</a>
-      <a href="#forecasts">Forecasts</a>
-      <a href="#record">Track record</a>
-      <a href="#data">Data &amp; access</a>
-      <a href="#contribute">Contribute</a>
-      <a href="{{REPO}}">GitHub</a>
+      <a href="index.html#method">Method</a>
+      <a href="index.html#forecasts">Forecasts</a>
+      <a href="index.html#data">Data &amp; access</a>
+      <a href="index.html#contribute">Contribute</a>
+      <a href="https://github.com/pstepien-labs/worldstate-forecast">GitHub</a>
     </nav>
   </header>
 
-  <main id="top">
-    <div class="hero">
-      <div>
-        <p class="label eyebrow">Open research experiment · since 21.09.2026</p>
-        <h1>Every forecast is frozen <em>before</em> the outcome. Then we score ourselves.</h1>
-        <p class="lead">An AI-assisted, fully documented process that forecasts the moves of the great powers every two weeks, with sources from all sides of each conflict, and measures whether it beats simple baselines.</p>
-        <div class="ctas">
-          <a class="btn primary" href="{{LATEST_REPORT_URL}}">Read the latest report</a>
-          <a class="btn" href="#forecasts">See the forecasts</a>
-          <a class="btn" href="#contribute">Contribute</a>
-        </div>
-      </div>
-      {{FEATURED}}
-    </div>
+  <main class="legal">
+    <p class="label">Legal notice</p>
+    <h1>How this project works within the law</h1>
+    <p class="label updated">Last updated 05.10.2026</p>
 
-    <div class="status">{{STATS}}</div>
+    <h2>Who runs this</h2>
+    <p>Worldstate Forecast is an independent, non-commercial research experiment run by the maintainer of its <a href="https://github.com/pstepien-labs/worldstate-forecast">GitHub repository</a>. It is not affiliated with any government, political party, news publisher, forecasting platform or prediction market.</p>
+    <p>Contact for questions, corrections, opt-out and takedown requests: open an issue in the <a href="https://github.com/pstepien-labs/worldstate-forecast/issues">repository</a>.</p>
 
-    <section id="method">
-      <div class="sec-head">
-        <h2>How an edition is made</h2>
-        <p>The same pipeline runs every two weeks. Each stage is written down as an instruction file in the repository, so anyone can rerun it, criticise it or improve it.</p>
-      </div>
-      <ol class="steps">
-        <li><h3>Harvest</h3><p>About {{SOURCES}} sources in {{LANGUAGES}} languages are collected continuously: news agencies, ministries, state and exile media, GDELT and primary data such as IMF PortWatch transits.</p></li>
-        <li><h3>Facts from three sides</h3><p>Every key event is sourced from a Western outlet, the actor's own side and a third party. Missing perspectives are recorded as gaps, not filled in.</p></li>
-        <li><h3>Analysis</h3><p>Key assumptions, competing hypotheses and warning indicators. Facts, assessments and forecasts are kept apart.</p></li>
-        <li><h3>Three blind lenses</h3><p>Great-power strategy, base rates and domestic constraints each forecast every question in a separate session, without seeing each other.</p></li>
-        <li><h3>Red team</h3><p>A fourth session attacks the analysis and may adjust a forecast by at most 15 points, only with evidence.</p></li>
-        <li><h3>Freeze</h3><p>The official forecast is committed to an append-only registry. Git history is the proof that nothing was edited later. Only then are prediction markets consulted for comparison.</p></li>
-        <li><h3>Score</h3><p>When questions resolve, Brier scores are computed against a status-quo baseline and the crowd, including the misses.</p></li>
-      </ol>
-    </section>
+    <h2>Research, not advice</h2>
+    <p>Forecasts are probabilities produced for research. They are not predictions that an event will or will not happen, and nothing on this site or in the reports is investment, financial, trading, legal or political advice. Do not base decisions on it.</p>
+    <p>The content is provided as it is, without any warranty of accuracy, completeness or timeliness. To the extent the law allows, the project accepts no liability for decisions or losses arising from its use.</p>
 
-    <section>
-      <div class="sec-head">
-        <h2>What makes it different</h2>
-        <p>Geopolitical commentary is plentiful. Commentary that can be wrong in public, and is measured when it is, is rare.</p>
-      </div>
-      <div class="principles">
-        <div><h3>Pre-registered</h3><p>Probabilities from 1% to 99%, written to a registry that is never edited, with dated resolution criteria and sources fixed in advance.</p></div>
-        <div><h3>Three perspectives per event</h3><p>A statement from Moscow, Washington, Beijing or Tehran is recorded as a fact about a statement, never as proof that the event happened.</p></div>
-        <div><h3>Measured against baselines</h3><p>Accuracy is compared with "nothing changes" and with forecasting crowds. No conclusions are drawn before 30 resolved questions.</p></div>
-        <div><h3>Open by default</h3><p>Methodology, prompts, code, forecasts and reports are public. Code under MIT, content under CC BY 4.0.</p></div>
-        <div><h3>Versioned</h3><p>Every report states the framework version, methodology version and AI models that produced it, so improvements can be told apart from luck.</p></div>
-        <div><h3>Honest about its limits</h3><p>This is an experiment run by one person with AI assistance. It is not a newsroom, a think tank or a trading signal.</p></div>
-      </div>
-    </section>
+    <h2>AI-assisted content</h2>
+    <p>Reports, analyses and forecasts are produced by AI models working under written, public rules, with human review. The models used are named in every report. AI-assisted content can contain errors; corrections are welcome (see below).</p>
 
-    <section id="forecasts">
-      <div class="sec-head">
-        <h2>Open forecasts</h2>
-        <p>A selection from the latest edition, across all eight vectors. The full list with resolution criteria is in the registry.</p>
-      </div>
-      <div class="ledger" role="table" aria-label="Open forecasts">
-        <div class="row head" role="row"><span role="columnheader">ID</span><span role="columnheader">Question</span><span role="columnheader">Resolves</span><span role="columnheader">Official forecast</span><span role="columnheader">Vector</span></div>
-        {{LEDGER}}
-      </div>
-      <p class="ledger-note">{{LEDGER_NOTE}}</p>
-    </section>
+    <h2>Sources, copyright and quotation</h2>
+    <ul>
+      <li>Every fact in a report names its publisher, date and a link to the original. Copyright in that material stays with its publishers.</li>
+      <li>Short quotations are used only where the exact wording matters, with attribution, for research, commentary and criticism.</li>
+      <li>To find relevant news, the project automatically reads publicly available headlines and short summaries for analysis (text and data mining). This material stays on the operator's computer and is <b>not republished</b>: no harvested headlines, summaries or articles are distributed through this site, the repository or social media.</li>
+      <li>The collector identifies itself, respects robots.txt, spaces its requests, and never logs in or circumvents paywalls, blocks or other technical measures.</li>
+    </ul>
 
-    <section id="record">
-      <div class="sec-head">
-        <h2>Track record</h2>
-        <p>Scoring uses the Brier score: the mean squared difference between forecast and outcome. 0 is perfect; always answering 50% scores 0.25.</p>
-      </div>
-      {{TRACK}}
-    </section>
+    <h2>Publisher opt-out and takedown</h2>
+    <p>Publishers who do not want their content collected can ask to opt out. The domain is added to an exclusion list within 7 days, after which nothing from it is fetched or stored, and anything previously collected from it is deleted from the local collection. Requests to remove a passage from a published report are reviewed promptly; where a request is justified, the passage is removed or replaced by a link. Use the contact above or open an issue in the <a href="https://github.com/pstepien-labs/worldstate-forecast/issues">repository</a>.</p>
 
-    <section id="data">
-      <div class="sec-head">
-        <h2>Data &amp; access</h2>
-        <p>Everything the project produces itself is free. What it collects from others stays with its publishers.</p>
-      </div>
-      <div class="tablewrap">
-        <table>
-          <thead><tr><th>What</th><th>Contents</th><th>Format</th><th>Access</th></tr></thead>
-          <tbody>
-            {{DATA_ROWS}}
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <h2>State and sanctioned media</h2>
+    <p>Statements by state-controlled media are part of the evidence base, because the method requires the view of each actor's own side. As a precaution, content from Russian state media and from outlets subject to EU or US sanctions is never republished: such outlets are only described in the project's own words as "a statement by" the outlet, without quotation, and are not linked from this site or from social media posts. Their mention is documentation of what a party said, not endorsement or distribution of it.</p>
 
-    <section id="contribute">
-      <div class="two">
-        <div>
-          <h2>Contribute</h2>
-          <p style="margin-top:12px">The project improves through criticism. The most useful help is specific: a better source, a flawed assumption, a bug.</p>
-          <ul>
-            <li><b>Sources in your language.</b> Official, state, independent or exile outlets the harvester is missing, especially from the actors' own side.</li>
-            <li><b>Challenge a forecast.</b> Open an issue with the evidence. It is weighed in the next edition; frozen forecasts are never changed.</li>
-            <li><b>Review the method.</b> Lenses, aggregation and scoring are open for the quarterly review.</li>
-            <li><b>Code.</b> The harvester and scoring tools are small, standard-library Python.</li>
-          </ul>
-          <div class="support-links"><a class="btn primary" href="{{REPO}}">Open the repository</a><a class="btn" href="{{REPO}}/blob/main/CONTRIBUTING.md">Contribution guide</a></div>
-        </div>
-        <div id="support">
-          <h2>Support</h2>
-          <p style="margin-top:12px">Running the harvester and the AI stages costs time and money. Support keeps the experiment independent and free to read.</p>
-          {{SUPPORT}}
-          {{CONTACT}}
-        </div>
-      </div>
-    </section>
+    <h2>Licences and third-party data</h2>
+    <ul>
+      <li>The project's own code is licensed under MIT; its own content (methodology, prompts, reports, forecasts, registry) under Creative Commons Attribution 4.0 (CC BY 4.0).</li>
+      <li>Third-party data keep their own terms: exchange and interest rates from the National Bank of Poland and the European Central Bank, series from FRED (Federal Reserve Bank of St. Louis), chokepoint data from IMF PortWatch, and article metadata from the GDELT Project, each used with attribution. Comparisons with forecasting platforms and prediction markets record a small number of published values, with links, in the research files; they are not shown on this site.</li>
+      <li>Names of governments, organisations, publishers and platforms are used only to identify them; no endorsement is implied.</li>
+    </ul>
 
-    <div class="disclaimer">
-      <p><b>Research, not advice.</b> Forecasts are probabilistic research outputs. Nothing here is investment, financial, legal or political advice.</p>
-      <p><b>AI-assisted.</b> Stages are carried out by AI models under written rules and human oversight; models are named in every report.</p>
-      <p><b>Independent.</b> No affiliation with any government, party, publisher or prediction market. Facts link to their original publishers. <a href="legal.html">Legal notice, opt-out and takedown</a>.</p>
-    </div>
+    <h2>Privacy</h2>
+    <p>This site sets no cookies and uses no analytics, tracking or advertising. It is hosted on GitHub Pages; GitHub may process technical data such as IP addresses when serving it (see GitHub's privacy statement). If you write to the project, your address and message are used only to reply and are not shared.</p>
+
+    <h2>Corrections</h2>
+    <p>Factual errors in reports are corrected in the next edition and recorded openly. Frozen forecasts are never edited after publication, because their unchanged record is the basis of the scoring.</p>
+
+    <p class="note">This notice describes how the project operates. It is not a contract and does not limit any rights you have under applicable law.</p>
   </main>
 
   <footer>
-    <span>{{FOOTER_META}}</span>
-    <span><a href="legal.html">Legal notice</a> · Code MIT · content CC BY 4.0 · <a href="{{REPO}}">source</a></span>
+    <span>Framework 1.4.0 · methodology v1.0 · latest edition 01 (state 23.09.2026) · page built 05.10.2026</span>
+    <span><a href="index.html">Home</a> · Code MIT · content CC BY 4.0 · <a href="https://github.com/pstepien-labs/worldstate-forecast">source</a></span>
   </footer>
 </div>
-
 <script>
 document.querySelectorAll('[data-copy]').forEach(function (b) {
   b.addEventListener('click', function () {
@@ -306,3 +263,5 @@ function selectCode(b) {
   var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
 }
 </script>
+</body>
+</html>
