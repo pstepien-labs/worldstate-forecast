@@ -13,3 +13,6 @@ data/
 
 # Secrets
 .env
+
+# Generated preview fragment of the landing page
+site/preview.html
