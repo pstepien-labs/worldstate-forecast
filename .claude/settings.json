@@ -14,13 +14,26 @@
       "Bash(git tag:*)",
       "Bash(git rev-parse:*)",
       "WebSearch",
-      "WebFetch"
+      "WebFetch",
+      "Bash(scripts/harvest.sh start:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(sort:*)",
+      "Bash(date:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git fetch:*)"
     ],
     "deny": [
       "Read(./.env)",
       "Bash(git push --force:*)",
       "Bash(git reset --hard:*)",
       "Bash(git rebase:*)"
-    ]
+    ],
+    "defaultMode": "acceptEdits"
   }
 }

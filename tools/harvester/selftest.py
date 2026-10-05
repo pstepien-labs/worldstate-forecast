@@ -47,6 +47,7 @@ t_tg;1;telegram;Test TG;http://HOST/tg.html;ru;RU;RU;loyal;D;G1;6;
 t_page;1;page;Test MFA page;http://HOST/page.html;en;CN;CN;official;B;G4;12;
 t_robots;1;rss;Robots-blocked;http://HOST/private/x.xml;en;US;US;western;B;G1;6;
 t_dead;1;rss;Dead feed;http://HOST/missing.xml;en;US;US;western;B;G1;6;
+t_429;1;rss;Rate-limited feed;http://LOCALHOST/ratelimit.xml;en;US;US;western;B;G1;6;
 '''
 DATASETS = '''id;enabled;adapter;name;url;params;indicator;unit;needs_key;interval_h;groups;notes
 d_nbp;1;nbp;NBP EUR/PLN;http://HOST/nbp.json;;EUR/PLN;PLN;;24;G3;
@@ -71,6 +72,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, *a):
         pass
 
+    def do_GET(self):
+        if self.path.startswith('/ratelimit'):
+            self.send_response(429)
+            self.send_header('Retry-After', '120')
+            self.end_headers()
+            return
+        return super().do_GET()
+
 
 def main():
     tmp = tempfile.mkdtemp(prefix='harvest-selftest-')
@@ -88,7 +97,7 @@ def main():
                        'source_universe.csv': UNIVERSE, 'forbidden_domains.txt': 'polymarket.com\n',
                        'countries.csv': 'code;names\nGB;United Kingdom\n', 'sites.csv': 'id;name;lat;lon;radius_km\n'}.items():
         with open(os.path.join(cfg, name), 'w', encoding='utf-8') as f:
-            f.write(body.replace('HOST', host))
+            f.write(body.replace('LOCALHOST', 'localhost:' + host.split(':')[1]).replace('HOST', host))
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     env = dict(os.environ, HARVEST_DATA=data, HARVEST_CONFIG=cfg, HARVEST_MIN_DELAY='0', HARVEST_BACKFILL_DAYS='5',
                NO_PROXY='127.0.0.1,localhost', no_proxy='127.0.0.1,localhost')
@@ -116,10 +125,12 @@ def main():
     ok('resume run succeeds', r.returncode == 0, r.stderr[-300:])
     ok('stale lock taken over', 'stale_lock_removed' in r.stdout)
     state = json.load(open(os.path.join(data, 'state', 'sources.json')))
-    ok('all sources attempted after resume', len(state) == 10, str(sorted(state)))
+    ok('all sources attempted after resume', len(state) == 11, str(sorted(state)))
     ok('sources done before crash not refetched', all(state[k]['last_attempt'] == first_attempts[k] for k in done_first))
     ok('robots.txt respected', state['t_robots'].get('status') == 'skipped', state['t_robots'].get('last_error'))
     ok('dead feed backs off', state['t_dead'].get('status') == 'retrying', state['t_dead'].get('last_error'))
+    ok('rate limit (429) pauses the host, not counted as failure',
+       state['t_429'].get('status') == 'throttled' and not state['t_429'].get('consecutive_failures'), str(state['t_429']))
     ok('missing API key skipped, not failed', state['d_key'].get('status') == 'skipped', state['d_key'].get('last_error'))
     # 3) nothing due now
     r = hv('run')
