@@ -11,7 +11,7 @@ import os
 import shutil
 import signal
 import time
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 
 from . import HARVESTER_VERSION, adapters, store
 from .config import (forbidden_domains, interval_hours, iso, load_sources, now, parse_iso, truthy)
@@ -73,7 +73,12 @@ class Harvester:
         if res.observations:
             new_obs = self._store_observations(res.observations)
         interval = interval_hours(task)
-        if res.skipped:
+        if getattr(res, 'throttled_until', None):
+            e['status'] = 'throttled'
+            e['last_error'] = res.skipped
+            e['next_due'] = iso(datetime.fromtimestamp(res.throttled_until, timezone.utc) + timedelta(minutes=1))
+            self.log('source_throttled', level='info', source=task['id'], until=e['next_due'])
+        elif res.skipped:
             e['status'] = 'skipped'
             e['last_error'] = res.skipped
             e['next_due'] = iso(now() + timedelta(hours=24))
@@ -222,7 +227,7 @@ class Harvester:
     def write_status(self, tasks=None):
         tasks = tasks if tasks is not None else [t for t in load_sources() if truthy(t.get('enabled', '1'))]
         self.status['heartbeat'] = iso(now())
-        counts = {'ok': 0, 'retrying': 0, 'failing': 0, 'skipped': 0, 'never_run': 0}
+        counts = {'ok': 0, 'retrying': 0, 'failing': 0, 'throttled': 0, 'skipped': 0, 'never_run': 0}
         for t in tasks:
             st = self.state.get(t['id'], {}).get('status') or 'never_run'
             counts[st] = counts.get(st, 0) + 1
@@ -245,7 +250,7 @@ def render_status_md(status, state, tasks):
         lines.append(f"Next sweep: {status.get('next_sweep')}")
     s = status.get('sources', {})
     lines += ['', f"Sources enabled: {status.get('sources_enabled')} — ok {s.get('ok', 0)}, retrying {s.get('retrying', 0)}, "
-              f"failing {s.get('failing', 0)}, skipped (robots/key) {s.get('skipped', 0)}, never run {s.get('never_run', 0)}",
+              f"failing {s.get('failing', 0)}, throttled (waiting, normal) {s.get('throttled', 0)}, skipped (robots/key) {s.get('skipped', 0)}, never run {s.get('never_run', 0)}",
               f"Items stored in total: {status.get('items_stored')}", '']
     bad = [(t['id'], state.get(t['id'], {})) for t in tasks if state.get(t['id'], {}).get('status') in ('failing', 'skipped')]
     if bad:

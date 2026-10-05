@@ -30,6 +30,7 @@ class Result:
         self.skipped = None
         self.note = ''
         self.http_status = None
+        self.throttled_until = None
 
 
 # ---------- helpers ----------
@@ -133,6 +134,7 @@ def fetch(fetcher, url, entry, res, conditional=True, headers=None):
     res.http_status = r.status
     if r.skipped:
         res.skipped = r.skipped
+        res.throttled_until = r.throttled_until
         return None
     if r.error:
         res.error = r.error

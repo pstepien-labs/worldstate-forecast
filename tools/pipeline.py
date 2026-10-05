@@ -24,7 +24,7 @@ import os
 import re
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -246,44 +246,92 @@ def harvester_line():
             + ('' if alive else ' — restart with `scripts/harvest.sh start` (it resumes)'))
 
 
-def cmd_status(a):
+MIN_GAP_DAYS = 14  # editions are two-weekly (methodology §1; README schedule)
+
+STAGE_TEXT = {
+    '00': 'Start the edition: plan, calendar, versions, and the harvest digest',
+    'H': 'Build the harvest digest for the edition window',
+    '01': 'Resolve questions whose deadline has passed and compute accuracy scores',
+    '02': 'Collect and verify facts for one group of topics',
+    '03': 'Analysis and question bank',
+    '04': 'Blind forecast by one lens',
+    '05': 'Red team: challenge the analysis and the forecasts',
+    '06': 'Aggregate, freeze the forecasts, then collect benchmarks',
+    '07': 'Write the report',
+    '08': 'Quality control, tag and register the edition',
+}
+
+
+def compute_state():
+    """Everything a human or the /edition orchestrator needs to decide the next step."""
     cur = current()
-    print(f"Framework {framework_version()} · methodology {methodology_version(cur)} · harvester {harvester_version()} · "
-          f"commit {sh('git', 'rev-parse', '--short', 'HEAD')} · branch {sh('git', 'rev-parse', '--abbrev-ref', 'HEAD')}")
-    print(harvester_line())
+    today = datetime.now(timezone.utc).date()
+    st = {'today': today.isoformat(), 'framework_version': framework_version(),
+          'methodology_version': methodology_version(cur), 'harvester': harvester_line(),
+          'edition': cur.get('NR'), 'state_date': cur.get('STATE_DATE'), 'directory': cur.get('DIRECTORY'),
+          'steps': [], 'next': None, 'edition_closed': False}
     if not cur.get('DIRECTORY'):
-        print('No current edition. Next: /g00 <STATE_DATE> <NR>')
-        return
-    print(f"\nEdition {cur.get('NR')} · state date {cur.get('STATE_DATE')} · period from {cur.get('PERIOD_FROM')} · {cur.get('DIRECTORY')}\n")
+        st['next'] = {'stage': '00', 'arg': f'{today.isoformat()} 01', 'cmd': f'/g00 {today.isoformat()} 01'}
+        return st
     steps = edition_done_map(cur)
     if steps[-1][3]:  # edition closed (stage 08 done and tagged): earlier gaps are historical
-        steps = [(st, arg, cmd, True) for st, arg, cmd, _ in steps]
-    nxt = None
+        steps = [(s_, a_, c_, True) for s_, a_, c_, _ in steps]
     for stage, arg, cmd, ok in steps:
-        mark = 'done' if ok else 'todo'
-        if not ok and nxt is None:
-            nxt = (stage, arg, cmd)
-            mark = 'NEXT'
-        label = (stage + (' ' + arg if arg else '')).ljust(6)
-        print(f"  [{mark:4}] {label} {cmd}")
-    print()
-    today = datetime.now(timezone.utc).date().isoformat()
-    if nxt is None:
-        nr = int(cur.get('NR', '0')) + 1
-        print(f"Edition {cur.get('NR')} is closed. Keep the harvester running. Next edition: "
-              f"`/g00 <STATE_DATE> {nr:02d}` in a new session (state date at least 14 days after {cur.get('STATE_DATE')}, "
-              f"and not in the future). Learning loop (optional, any time between editions): /gL1 … /gL5 — see RUNBOOK.md.")
+        st['steps'].append({'stage': stage, 'arg': arg, 'cmd': cmd, 'done': ok})
+        if not ok and st['next'] is None:
+            st['next'] = {'stage': stage, 'arg': arg, 'cmd': cmd, 'prompt': STAGES[stage][0], 'what': STAGE_TEXT.get(stage, '')}
+    if st['next'] is None:
+        st['edition_closed'] = True
+        prev = datetime.strptime(cur['STATE_DATE'], '%Y-%m-%d').date()
+        earliest = prev + timedelta(days=MIN_GAP_DAYS)
+        nr = f"{int(cur.get('NR', '0')) + 1:02d}"
+        st['next_edition'] = nr
+        st['earliest_state_date'] = earliest.isoformat()
+        st['can_start_next_edition'] = today >= earliest
+        st['suggested_state_date'] = today.isoformat() if today >= earliest else earliest.isoformat()
+        st['days_to_wait'] = max(0, (earliest - today).days)
+        st['next'] = {'stage': '00', 'arg': f"{st['suggested_state_date']} {nr}", 'cmd': f"/g00 {st['suggested_state_date']} {nr}",
+                      'prompt': STAGES['00'][0], 'what': STAGE_TEXT['00']}
+    elif st['next']['stage'] == 'H' and cur.get('STATE_DATE', '9999') > today.isoformat():
+        st['waiting_reason'] = f"the state date {cur['STATE_DATE']} is in the future; keep harvesting until then"
+    return st
+
+
+def fmt_date(iso_date):
+    return datetime.strptime(iso_date, '%Y-%m-%d').strftime('%d.%m.%Y')
+
+
+def cmd_status(a):
+    st = compute_state()
+    if getattr(a, 'json', False):
+        print(json.dumps(st, ensure_ascii=False, indent=1))
         return
-    stage, arg, cmd = nxt
-    if stage == 'H' and cur.get('STATE_DATE', '9999') > today:
-        print(f"Next: {cmd} — but the state date {cur['STATE_DATE']} is in the future. Keep harvesting until then.")
+    print(f"Framework {st['framework_version']} · methodology {st['methodology_version']} · harvester {harvester_version()} · "
+          f"commit {sh('git', 'rev-parse', '--short', 'HEAD')} · branch {sh('git', 'rev-parse', '--abbrev-ref', 'HEAD')}")
+    print(st['harvester'])
+    if st['directory']:
+        print(f"\nEdition {st['edition']} · state date {fmt_date(st['state_date'])} · {st['directory']}\n")
+        for x in st['steps']:
+            mark = 'done' if x['done'] else ('NEXT' if st['next'] and not st['edition_closed'] and x['stage'] == st['next']['stage'] and x['arg'] == st['next']['arg'] else 'todo')
+            label = (x['stage'] + (' ' + x['arg'] if x['arg'] else '')).ljust(9)
+            print(f"  [{mark:4}] {label} {x['cmd']}")
+        print()
+    if st['edition_closed']:
+        e, nr = st['earliest_state_date'], st['next_edition']
+        print(f"Edition {st['edition']} is finished (report: {st['directory']}/07_report.md).")
+        if st['can_start_next_edition']:
+            print(f"You can produce edition {nr} now. Type: /edition   (it uses today, {fmt_date(st['today'])}, as the state date)")
+        else:
+            print(f"Edition {nr} can start on or after {fmt_date(e)}: editions are two weeks apart, counted from edition "
+                  f"{st['edition']}'s state date ({fmt_date(st['state_date'])}). That is {st['days_to_wait']} day(s) from today. "
+                  f"Until then keep the harvester running; on that day type: /edition")
         return
-    extra = ''
-    if stage in ('04', '05', '06') or (stage == '02'):
-        extra = ' Start it in a NEW session (/clear first).'
-    if stage == '04':
-        extra += ' Each lens in its own session; do not read other lens files.'
-    print(f'Next step: {cmd}.{extra}')
+    if st.get('waiting_reason'):
+        print(f"Waiting: {st['waiting_reason']}.")
+        return
+    nx = st['next']
+    print(f"Edition {st['edition']} is in progress. To continue everything automatically type: /edition")
+    print(f"(Manual mode: next stage is {nx['cmd']} — {nx['what']}; one stage per session, /clear first.)")
 
 
 def cmd_register(a):
@@ -328,7 +376,9 @@ def cmd_versions(a):
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest='cmd', required=True)
-    sub.add_parser('status').set_defaults(fn=cmd_status)
+    stp = sub.add_parser('status')
+    stp.add_argument('--json', action='store_true', help='machine-readable state (used by /edition)')
+    stp.set_defaults(fn=cmd_status)
     for ev in ('stage-start', 'stage-end'):
         s = sub.add_parser(ev)
         s.add_argument('stage')

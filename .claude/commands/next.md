@@ -1,4 +1,4 @@
 ---
-description: Where am I? Shows the pipeline state, the harvester state and the exact next command
+description: Where am I? Pipeline state, harvester state, and what to type next
 ---
-Run `python3 tools/pipeline.py status` and `python3 -m tools.harvester status`. Explain the result in at most 8 lines: which edition and stage we are in, whether the harvester is running (if not, offer to restart it with `scripts/harvest.sh start`), and the exact next command to type, including whether it needs a new session (/clear first). Do not start the next stage yourself.
+Run `python3 tools/pipeline.py status` and explain the result to the user in at most 6 plain lines: is the harvester running (if not, offer `scripts/harvest.sh start`), which edition exists and whether it is finished, and what to type next — normally just `/edition` (on or after the date the status gives). Do not start anything yourself.

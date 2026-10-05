@@ -17,7 +17,7 @@ RUNBOOK.md                       step-by-step guide for a local run (human)
 README.md                        overview (human)
 VERSION                          framework version (semver; see methodology_changes.md, "Versioning")
 methodology/                     methodology_v1.0.md (frozen), methodology_changes.md
-prompts/                         stage instructions 00–08, H (harvest), M, Q; learning/ L1–L5
+prompts/                         stage instructions 00–08, H (harvest), M, Q; learning/ L1–L5; RUN_edition, RUN_learning (orchestrators)
 registry/                        questions, forecasts, benchmarks, resolutions, sources, editions (.csv)
 sources/source_map.md            source map by actor and perspective
 sources/harvest/                 harvester configuration: feeds, datasets, keywords, source universe, sites
@@ -45,7 +45,7 @@ reviews/                         quarterly reviews; reviews/learning/ learning-l
 12. **Methodology v1.0 is frozen** until the quarterly review. Do not change the lenses, aggregation, panel or scales. Process fixes (e.g. clarifying an instruction) may be made only after user approval and an entry in `methodology/methodology_changes.md`.
 13. **Permitted software (framework 1.1):** `tools/scores.py` (scores), `tools/pipeline.py` (next step, provenance, edition register), `tools/harvester/` (collection) and `scripts/harvest.sh` — Python standard library only, no databases (files: CSV, JSONL, Markdown). Change them only through an approved proposal (learning step L5 or the quarterly review). Do not build other software. One-off calculations may be run as commands, never saved in the repository.
 14. **Stage protocol and provenance.** Every stage (00–08, H digest/repair, L1–L5, M, Q) starts with `python3 tools/pipeline.py stage-start <stage> [--arg X] --model "<your model id>"` and ends with `python3 tools/pipeline.py stage-end <stage> [--arg X]` before its commit. Never invent a missing provenance value; record the gap. A stage that changes the framework (VERSION) must not run while an edition is between stages 03 and 06.
-15. **Not sure what to do next?** `python3 tools/pipeline.py status` prints the state and the exact next command.
+15. **Not sure what to do next?** `python3 tools/pipeline.py status` prints the state and the exact next command. `/edition` (`prompts/RUN_edition.md`) runs a whole edition as a sequence of `stage-runner` sub-agents, one clean context per stage; the orchestrator never reads stage outputs that rule 3.8 forbids and never passes content between stages.
 
 ## 4. Vocabularies
 

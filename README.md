@@ -17,13 +17,21 @@ Everything else is instructions in Markdown and a registry in CSV.
 ## Quick start (local machine)
 
 ```bash
-git clone https://github.com/pstepien-labs/worldstate-forecast.git && cd worldstate-forecast
-python3 -m tools.harvester selftest      # 20/20 checks
-claude                                   # then type: /gH start   (starts continuous harvesting)
-                                         # any time:  /next       (where am I, what to run next)
+gh repo clone pstepien-labs/worldstate-forecast && cd worldstate-forecast   # private repo: gh auth login first
+python3 -m tools.harvester selftest      # 21/21 checks
+claude
 ```
 
-**The full step-by-step procedure is in [RUNBOOK.md](RUNBOOK.md).** It covers setup, harvesting and recovery, the 14 edition steps, and the learning loop.
+Then, inside Claude Code:
+
+| Type | When |
+|---|---|
+| `/gH start` | once — starts continuous background harvesting |
+| `/edition` | every two weeks (on or after the date `/next` shows) — produces the whole edition and the report |
+| `/next` | whenever unsure |
+| `/learn` | optional, between editions — reviews past editions and proposes improvements |
+
+Full procedure: **[RUNBOOK.md](RUNBOOK.md)**.
 
 ## Requirements
 
@@ -41,7 +49,7 @@ claude                                   # then type: /gH start   (starts contin
 | `methodology/methodology_v1.0.md` | The method, frozen until the quarterly review |
 | `prompts/00–08, H, M, Q` | Stage instructions: edition stages, harvest, mini-retrospective, quarterly review |
 | `prompts/learning/L1–L5` | Learning loop: hindsight audit, performance by version, reasoning trace, sources, framework proposals |
-| `.claude/commands/` | Shortcuts `/g00` … `/g08`, `/gH`, `/gL1` … `/gL5`, `/gM`, `/gQ`, `/next` |
+| `.claude/commands/`, `.claude/agents/` | `/edition`, `/learn`, `/next`, `/gH`; single stages `/g00` … `/g08`, `/gL1` … `/gL5`, `/gM`, `/gQ`; the `stage-runner` sub-agent |
 | `registry/*.csv` | Questions, forecasts, benchmarks, resolutions, sources, **editions** (append-only) |
 | `sources/source_map.md`, `sources/harvest/` | Sources by actor and perspective; harvester configuration (feeds, datasets, keywords, source universe) |
 | `tools/harvester/` | Local harvester (`python3 -m tools.harvester --help`) |
@@ -52,7 +60,7 @@ claude                                   # then type: /gH start   (starts contin
 
 ## How one edition runs
 
-Harvest continuously between editions. Then run the stages 00–08 in Claude Code, one stage per session (`/clear` between stages). Stages pass results through files. Stage 00 builds the harvest digest, stage 02 verifies its leads and fills the flagged gaps with web search, and stages 03–06 reason and forecast blind. Stage 07 writes the report with a provenance line, and stage 08 checks everything and registers the edition. Details, times and recovery: [RUNBOOK.md](RUNBOOK.md).
+Harvest continuously between editions. Then `/edition` runs the stages 00–08, each as a separate sub-agent with a clean context. Stages pass results through files. Stage 00 builds the harvest digest, stage 02 verifies its leads and fills the flagged gaps with web search, and stages 03–06 reason and forecast blind. Stage 07 writes the report with a provenance line, and stage 08 checks everything and registers the edition. Details, times and recovery: [RUNBOOK.md](RUNBOOK.md).
 
 ## Schedule
 
