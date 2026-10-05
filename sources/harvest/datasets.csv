@@ -3,7 +3,7 @@ id;enabled;adapter;name;url;params;indicator;unit;needs_key;interval_h;groups;no
 nbp_eurpln;1;nbp;NBP table A EUR/PLN;https://api.nbp.pl/api/exchangerates/rates/a/eur/{start}/{end}/?format=json;;EUR/PLN;PLN;;12;G3;resolution source for EUR/PLN questions
 nbp_usdpln;1;nbp;NBP table A USD/PLN;https://api.nbp.pl/api/exchangerates/rates/a/usd/{start}/{end}/?format=json;;USD/PLN;PLN;;12;G3;
 ecb_eurusd;1;sdmx_csv;ECB reference rate EUR/USD;https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?startPeriod={start}&format=csvdata;;EUR/USD;USD;;12;G3;
-ecb_dfr;1;sdmx_csv;ECB deposit facility rate;https://data-api.ecb.europa.eu/service/data/FM/B.U2.EUR.4F.KR.DFR.LEV?startPeriod={start}&format=csvdata;;ECB_deposit_rate;%;;24;G3;
+ecb_dfr;1;sdmx_csv;ECB deposit facility rate;https://data-api.ecb.europa.eu/service/data/FM/B.U2.EUR.4F.KR.DFR.LEV?lastNObservations=3&format=csvdata;;ECB_deposit_rate;%;;24;G3;rate is published only on change dates, so a date window can be empty; last 3 decisions instead (repair 05.10.2026)
 fred_fed_upper;1;fred_csv;Fed funds target range upper (FRED DFEDTARU);https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU&cosd={start};;Fed_target_upper;%;;24;G3;
 fred_fed_lower;1;fred_csv;Fed funds target range lower (FRED DFEDTARL);https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARL&cosd={start};;Fed_target_lower;%;;24;G3;
 fred_us10y;1;fred_csv;US 10-year Treasury yield (FRED DGS10);https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd={start};;UST10Y;%;;24;G3;
