@@ -12,7 +12,7 @@ Provenance: at the start of modes `repair` and `digest` run `python3 tools/pipel
 2. If `data/harvest/CHECK.md` does not exist or is older than 7 days: run `python3 -m tools.harvester check` (about 10–20 minutes; GDELT is rate-limited to one request every 6 s). Summarise: sources OK / failing / skipped, by kind and language. If more than 20% fail, run MODE `repair` before starting.
 3. `scripts/harvest.sh start` (on Windows without WSL: tell the user to run `python -m tools.harvester watch` in a separate terminal and keep it open).
 4. Confirm with `scripts/harvest.sh status` that the LIVENESS line says "running".
-5. Tell the user in 4–6 lines: it is running in the background and survives closing Claude Code; how to watch it (`scripts/harvest.sh status`, `scripts/harvest.sh tail`, `data/harvest/STATUS.md`); how to stop and resume (`scripts/harvest.sh stop` / `start` — it resumes where it stopped); that the computer must stay on and online (sleep pauses it; it resumes when the machine wakes); roughly how much disk it uses (typically 20–100 MB per day).
+5. Tell the user in 4–6 lines: it is running in the background and survives closing Claude Code; how to watch it (`scripts/harvest.sh status`, `scripts/harvest.sh tail`, `data/harvest/STATUS.md`); how to stop and resume (`scripts/harvest.sh stop` / `start` — it resumes where it stopped); that the computer must stay on and online (sleep pauses it; it resumes when the machine wakes); roughly how much disk it uses (typically 20–100 MB per day). Finish with the line printed by `python3 tools/pipeline.py status` about when the next edition can start, and say that on that day the user types `/edition`.
 
 ## MODE status
 

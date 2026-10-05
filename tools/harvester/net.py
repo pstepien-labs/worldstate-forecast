@@ -15,11 +15,15 @@ from urllib.parse import urlparse
 from . import HARVESTER_VERSION
 
 # Hosts that ask for slower request rates (seconds between requests).
-HOST_DELAYS = {'api.gdeltproject.org': 6.0, 't.me': 5.0, 'www.sec.gov': 1.0}
+HOST_DELAYS = {'api.gdeltproject.org': 10.0, 't.me': 5.0, 'www.sec.gov': 1.0}
+# After HTTP 429/503 a host is paused for this long (doubled on each repeat, max 6 h) unless it sends Retry-After.
+COOLDOWN_START_S = 900
+COOLDOWN_MAX_S = 6 * 3600
 
 
 class FetchResult:
-    def __init__(self, url, status=None, body=b'', headers=None, error=None, not_modified=False, skipped=None):
+    def __init__(self, url, status=None, body=b'', headers=None, error=None, not_modified=False, skipped=None,
+                 throttled_until=None):
         self.url = url
         self.status = status
         self.body = body
@@ -27,6 +31,7 @@ class FetchResult:
         self.error = error
         self.not_modified = not_modified
         self.skipped = skipped  # reason when the request was deliberately not made
+        self.throttled_until = throttled_until  # epoch seconds: host asked us to slow down
 
     @property
     def ok(self):
@@ -60,6 +65,7 @@ class Fetcher:
         self.log = log or (lambda *a, **k: None)
         self._last = {}
         self._robots = {}
+        self._cooldown = {}   # host -> (until_epoch, current_cooldown_seconds)
         cafile = os.environ.get('HARVEST_CA_BUNDLE')
         self.ctx = ssl.create_default_context(cafile=cafile) if cafile else ssl.create_default_context()
 
@@ -115,7 +121,30 @@ class Fetcher:
             return raw
         return raw
 
+    def cooling(self, host):
+        until = self._cooldown.get(host, (0, 0))[0]
+        return until if until > time.time() else None
+
+    def _throttle(self, host, retry_after):
+        prev = self._cooldown.get(host, (0, 0))[1]
+        secs = None
+        if retry_after:
+            try:
+                secs = int(retry_after)
+            except ValueError:
+                secs = None
+        if secs is None:
+            secs = min(COOLDOWN_MAX_S, prev * 2 if prev else COOLDOWN_START_S)
+        until = time.time() + secs
+        self._cooldown[host] = (until, secs)
+        self.log('host_throttled', host=host, pause_min=round(secs / 60))
+        return until
+
     def get(self, url, headers=None, etag=None, last_modified=None, check_robots=True):
+        host = urlparse(url).netloc
+        until = self.cooling(host)
+        if until:
+            return FetchResult(url, skipped='host paused after rate limiting', throttled_until=until)
         if check_robots and not self.allowed(url):
             return FetchResult(url, skipped='robots.txt disallows')
         h = {'User-Agent': self.ua, 'Accept-Encoding': 'gzip', 'Accept': '*/*'}
@@ -132,10 +161,14 @@ class Fetcher:
                 if len(raw) > self.max_bytes:
                     raw = raw[:self.max_bytes]
                     hdrs['x-truncated'] = '1'
+                self._cooldown.pop(host, None)
                 return FetchResult(url, r.status, self._decode(raw, r.headers), hdrs)
         except urllib.error.HTTPError as e:
             if e.code == 304:
                 return FetchResult(url, 304, not_modified=True)
+            if e.code in (429, 503):
+                until = self._throttle(host, e.headers.get('Retry-After') if e.headers else None)
+                return FetchResult(url, e.code, skipped=f'rate limited (HTTP {e.code})', throttled_until=until)
             return FetchResult(url, e.code, error=f'HTTP {e.code}')
         except (urllib.error.URLError, socket.timeout, ConnectionError, ssl.SSLError, OSError) as e:
             reason = getattr(e, 'reason', e)
