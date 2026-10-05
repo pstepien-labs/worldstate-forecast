@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Calibrated balance-of-power forecasts. Frozen before the outcome. Scored after.">
+<meta property="og:title" content="Worldstate Forecast">
+<meta property="og:description" content="Calibrated balance-of-power forecasts. Frozen before the outcome. Scored after.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pstepien-labs.github.io/worldstate-forecast/">
+<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>
+<title>Worldstate Forecast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a research ledger — one reading column, data set in a monospace margin; the frozen-forecast ticket is the single bold element. */
+:root {
+  --paper: #f2f5f5;
+  --surface: #ffffff;
+  --ink: #15232b;
+  --muted: #56666f;
+  --rule: #d3dcdf;
+  --accent: #0b6970;
+  --accent-soft: #dcecec;
+  --stamp: #8c3a2b;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step--1: 0.84rem;
+  --step-0: 1rem;
+  --step-1: 1.2rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(2.1rem, 4.6vw, 3.3rem);
+  --measure: 66ch;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f181d; --surface: #152229; --ink: #e2eaec; --muted: #93a4ac;
+    --rule: #263740; --accent: #5cb9bd; --accent-soft: #17343a; --stamp: #e39079;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f181d; --surface: #152229; --ink: #e2eaec; --muted: #93a4ac;
+  --rule: #263740; --accent: #5cb9bd; --accent-soft: #17343a; --stamp: #e39079;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-inline: 16px; padding-block: 0;
+}
+.wrap { max-width: 1080px; margin-inline: auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: var(--step-2); }
+p { margin: 0; max-width: var(--measure); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.label { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+/* header */
+.top { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: baseline; justify-content: space-between; padding-block: 22px; border-bottom: 1px solid var(--rule); }
+.brand { font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; color: var(--ink); text-decoration: none; }
+.top nav { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: var(--step--1); }
+.top nav a { color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--accent); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; padding-block: 56px 48px; align-items: center; }
+.hero h1 { font-size: var(--step-3); }
+.hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.hero .lead { font-size: var(--step-1); color: var(--muted); margin-top: 20px; max-width: 46ch; }
+.hero .eyebrow { margin-bottom: 18px; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.btn { display: inline-block; padding: 11px 18px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary:hover { background: var(--accent); color: var(--paper); }
+
+.ticket { background: var(--surface); border: 1px solid var(--rule); padding: 22px 24px 20px; position: relative; }
+.ticket .stamp { position: absolute; top: 16px; right: 18px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--stamp); border: 1.5px solid var(--stamp); padding: 3px 8px; transform: rotate(4deg); }
+.ticket .q { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.35; margin-top: 14px; padding-right: 64px; }
+.ticket .p { font-family: var(--font-display); font-size: 3.6rem; font-weight: 600; line-height: 1; margin-top: 18px; font-variant-numeric: tabular-nums; }
+.ticket .p small { font-size: 1rem; font-family: var(--font-mono); font-weight: 400; color: var(--muted); margin-left: 8px; }
+.scale { position: relative; height: 34px; margin-top: 14px; }
+.scale .track { position: absolute; left: 0; right: 0; top: 10px; height: 6px; background: var(--accent-soft); }
+.scale .spread { position: absolute; top: 10px; height: 6px; background: var(--accent); opacity: 0.35; }
+.scale .mark { position: absolute; top: 4px; width: 2px; height: 18px; background: var(--accent); }
+.scale .ticks { position: absolute; left: 0; right: 0; top: 20px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+.ticket dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; margin: 18px 0 0; font-size: var(--step--1); }
+.ticket dt { color: var(--muted); font-family: var(--font-mono); }
+.ticket dd { margin: 0; font-family: var(--font-mono); }
+
+/* status strip */
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.status div { padding: 18px 16px 18px 0; }
+.status b { display: block; font-family: var(--font-display); font-size: var(--step-2); font-weight: 600; font-variant-numeric: tabular-nums; }
+.status span { font-size: var(--step--1); color: var(--muted); }
+
+section { padding-block: 64px 0; }
+.sec-head { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 32px; margin-bottom: 28px; align-items: baseline; }
+.sec-head p { color: var(--muted); }
+
+/* method steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 28px; counter-reset: step; }
+.steps li { counter-increment: step; padding: 18px 0 20px; border-top: 1px solid var(--rule); min-width: 0; }
+.steps li::before { content: counter(step, decimal-leading-zero); font-family: var(--font-mono); font-size: var(--step--1); color: var(--accent); display: block; margin-bottom: 6px; }
+.steps h3 { font-size: var(--step-1); margin-bottom: 6px; }
+.steps p { font-size: 0.94rem; color: var(--muted); }
+
+.principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 26px 40px; }
+.principles div { min-width: 0; }
+.principles h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+.principles p { color: var(--muted); font-size: 0.95rem; }
+
+/* ledger */
+.ledger { border-top: 2px solid var(--ink); }
+.row { display: grid; grid-template-columns: 74px minmax(0, 1fr) 96px 170px 46px; gap: 16px; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--rule); }
+.row.head { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 10px 0; }
+.row .id, .row .date, .row .vec { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); font-variant-numeric: tabular-nums; }
+.row .qt { font-size: 0.95rem; min-width: 0; }
+.prob { display: grid; grid-template-columns: minmax(0, 1fr) 42px; gap: 10px; align-items: center; }
+.prob .bar { height: 6px; background: var(--accent-soft); position: relative; }
+.prob .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); }
+.prob b { font-family: var(--font-mono); font-weight: 500; text-align: right; font-variant-numeric: tabular-nums; }
+.ledger-note { margin-top: 14px; font-size: var(--step--1); color: var(--muted); }
+
+.track-box { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 40px; }
+.track-box .big { font-family: var(--font-display); font-size: var(--step-2); line-height: 1.3; max-width: 34ch; }
+.track-box p + p { margin-top: 12px; }
+
+/* access table */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.95rem; min-width: 620px; }
+th { text-align: left; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 400; padding: 10px 14px 10px 0; border-bottom: 2px solid var(--ink); }
+td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td.k { font-weight: 600; white-space: nowrap; }
+.pill { font-family: var(--font-mono); font-size: 0.72rem; padding: 2px 7px; border: 1px solid var(--rule); color: var(--muted); white-space: nowrap; }
+.pill.free { border-color: var(--accent); color: var(--accent); }
+
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+.two ul { margin: 14px 0 0; padding-left: 18px; }
+.two li { margin-bottom: 8px; }
+.two li::marker { color: var(--accent); }
+.support-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.copy { display: inline-flex; gap: 8px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+.copy code { font-family: var(--font-mono); background: var(--surface); border: 1px solid var(--rule); padding: 4px 8px; user-select: all; }
+.copy button { font: inherit; font-size: var(--step--1); background: none; border: 1px solid var(--rule); color: var(--ink); padding: 4px 10px; cursor: pointer; }
+
+.disclaimer { margin-top: 64px; padding: 22px 0; border-top: 1px solid var(--rule); font-size: var(--step--1); color: var(--muted); display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px 40px; }
+footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+@media (max-width: 820px) {
+  .hero, .track-box, .two, .sec-head { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .hero { padding-block: 36px 32px; }
+  .row { grid-template-columns: 62px minmax(0, 1fr); gap: 4px 12px; }
+  .row.head { display: none; }
+  .row .qt { grid-column: 2; }
+  .row .date { grid-column: 2; }
+  .row .prob { grid-column: 2; max-width: 260px; }
+  .row .vec { grid-column: 1; grid-row: 2; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ticket .mark { animation: settle 900ms cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes settle { from { left: 50%; } }
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top">Worldstate Forecast</a>
+    <nav aria-label="Sections">
+      <a href="#method">Method</a>
+      <a href="#forecasts">Forecasts</a>
+      <a href="#record">Track record</a>
+      <a href="#data">Data &amp; access</a>
+      <a href="#contribute">Contribute</a>
+      <a href="https://github.com/pstepien-labs/worldstate-forecast">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <p class="label eyebrow">Open research experiment · since 21.09.2026</p>
+        <h1>Every forecast is frozen <em>before</em> the outcome. Then we score ourselves.</h1>
+        <p class="lead">An AI-assisted, fully documented process that forecasts the moves of the great powers every two weeks, with sources from all sides of each conflict, and measures whether it beats simple baselines.</p>
+        <div class="ctas">
+          <a class="btn primary" href="https://github.com/pstepien-labs/worldstate-forecast/blob/main/editions/2026-09-23_edition-01/07_report.md">Read the latest report</a>
+          <a class="btn" href="#forecasts">See the forecasts</a>
+          <a class="btn" href="#contribute">Contribute</a>
+        </div>
+      </div>
+      <aside class="ticket" aria-label="Example of a frozen forecast">
+        <span class="stamp">FROZEN</span>
+        <p class="label">Q-0028 · DIP · PIR-5; PIR-3</p>
+        <p class="q">Will the USA and Iran announce by 31.12.2026 the conclusion of an agreement (framework, interim or final) that includes the opening of the Strait of Hormuz?</p>
+        <p class="p">30%<small>official forecast</small></p>
+        <div class="scale" aria-hidden="true"><span class="track"></span>
+          <span class="spread" style="left:25.0%;width:10.0%"></span>
+          <span class="mark" style="left:calc(30.0% - 1px)"></span>
+          <span class="ticks"><span>0</span><span>50</span><span>100</span></span></div>
+        <dl>
+          <dt>edition</dt><dd>01 · state 23.09.2026</dd>
+          <dt>frozen in</dt><dd><a href="https://github.com/pstepien-labs/worldstate-forecast/commit/32a635e">commit 32a635e</a></dd>
+          <dt>lens spread</dt><dd>25%–35% (three blind lenses)</dd>
+          <dt>resolves</dt><dd>31.12.2026 · source: whitehouse.gov; state.gov; president.ir; mfa.ir</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="status"><div><b>1</b><span>edition published</span></div><div><b>73</b><span>open questions</span></div><div><b>0</b><span>resolved and scored</span></div><div><b>07.10.2026</b><span>next edition (earliest)</span></div><div><b>18</b><span>languages harvested</span></div></div>
+
+    <section id="method">
+      <div class="sec-head">
+        <h2>How an edition is made</h2>
+        <p>The same pipeline runs every two weeks. Each stage is written down as an instruction file in the repository, so anyone can rerun it, criticise it or improve it.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Harvest</h3><p>About 200 sources in 18 languages are collected continuously: news agencies, ministries, state and exile media, GDELT and primary data such as IMF PortWatch transits.</p></li>
+        <li><h3>Facts from three sides</h3><p>Every key event is sourced from a Western outlet, the actor's own side and a third party. Missing perspectives are recorded as gaps, not filled in.</p></li>
+        <li><h3>Analysis</h3><p>Key assumptions, competing hypotheses and warning indicators. Facts, assessments and forecasts are kept apart.</p></li>
+        <li><h3>Three blind lenses</h3><p>Great-power strategy, base rates and domestic constraints each forecast every question in a separate session, without seeing each other.</p></li>
+        <li><h3>Red team</h3><p>A fourth session attacks the analysis and may adjust a forecast by at most 15 points, only with evidence.</p></li>
+        <li><h3>Freeze</h3><p>The official forecast is committed to an append-only registry. Git history is the proof that nothing was edited later. Only then are prediction markets consulted for comparison.</p></li>
+        <li><h3>Score</h3><p>When questions resolve, Brier scores are computed against a status-quo baseline and the crowd, including the misses.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2>What makes it different</h2>
+        <p>Geopolitical commentary is plentiful. Commentary that can be wrong in public, and is measured when it is, is rare.</p>
+      </div>
+      <div class="principles">
+        <div><h3>Pre-registered</h3><p>Probabilities from 1% to 99%, written to a registry that is never edited, with dated resolution criteria and sources fixed in advance.</p></div>
+        <div><h3>Three perspectives per event</h3><p>A statement from Moscow, Washington, Beijing or Tehran is recorded as a fact about a statement, never as proof that the event happened.</p></div>
+        <div><h3>Measured against baselines</h3><p>Accuracy is compared with "nothing changes" and with forecasting crowds. No conclusions are drawn before 30 resolved questions.</p></div>
+        <div><h3>Open by default</h3><p>Methodology, prompts, code, forecasts and reports are public. Code under MIT, content under CC BY 4.0.</p></div>
+        <div><h3>Versioned</h3><p>Every report states the framework version, methodology version and AI models that produced it, so improvements can be told apart from luck.</p></div>
+        <div><h3>Honest about its limits</h3><p>This is an experiment run by one person with AI assistance. It is not a newsroom, a think tank or a trading signal.</p></div>
+      </div>
+    </section>
+
+    <section id="forecasts">
+      <div class="sec-head">
+        <h2>Open forecasts</h2>
+        <p>A selection from the latest edition, across all eight vectors. The full list with resolution criteria is in the registry.</p>
+      </div>
+      <div class="ledger" role="table" aria-label="Open forecasts">
+        <div class="row head" role="row"><span role="columnheader">ID</span><span role="columnheader">Question</span><span role="columnheader">Resolves</span><span role="columnheader">Official forecast</span><span role="columnheader">Vector</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0056</span><span class="qt" role="cell">Will Lula da Silva win more than 50% of valid votes in the first round of the presidential election on 04.10.2026?</span><span class="date" role="cell">05.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:6.3%"></i></span><b>6%</b></span><span class="vec" role="cell">DOM</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0006</span><span class="qt" role="cell">Will the settlement price of the ICE Brent front-month contract on 06.10.2026 exceed 100.00 USD/bbl?</span><span class="date" role="cell">06.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:40.0%"></i></span><b>40%</b></span><span class="vec" role="cell">ENE</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0048</span><span class="qt" role="cell">Will the settlement price of the TTF front-month contract on 06.10.2026 exceed 75.00 EUR/MWh?</span><span class="date" role="cell">06.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:37.3%"></i></span><b>37%</b></span><span class="vec" role="cell">ENE</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0037</span><span class="qt" role="cell">Will IMF PortWatch record at least 20 transits through the Strait of Hormuz on any day between 24.09 and 07.10.2026?</span><span class="date" role="cell">07.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:11.3%"></i></span><b>11%</b></span><span class="vec" role="cell">INF</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0041</span><span class="qt" role="cell">Will CENTCOM or the Pentagon announce a US strike on a target on Iranian land territory between 24.09 and 07.10.2026?</span><span class="date" role="cell">07.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:6.0%"></i></span><b>6%</b></span><span class="vec" role="cell">MIL</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0042</span><span class="qt" role="cell">Will another round of talks between representatives of the US and Iranian governments (direct or indirect) take place between 24.09 and 07.10.2026?</span><span class="date" role="cell">07.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:48.3%"></i></span><b>48%</b></span><span class="vec" role="cell">DIP</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0043</span><span class="qt" role="cell">Will Saudi Arabia confirm a missile or drone attack from Yemen aimed at Riyadh between 24.09 and 07.10.2026?</span><span class="date" role="cell">07.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:36.7%"></i></span><b>37%</b></span><span class="vec" role="cell">MIL</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0052</span><span class="qt" role="cell">Will the NBP average EUR/PLN rate of 07.10.2026 be higher than 4.3500?</span><span class="date" role="cell">07.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:45.7%"></i></span><b>46%</b></span><span class="vec" role="cell">FIN</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0053</span><span class="qt" role="cell">Does the draft Russian federal budget law for 2027 submitted to the Duma by 07.10.2026 provide for a deficit of at least 2.0% of GDP?</span><span class="date" role="cell">07.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:49.0%"></i></span><b>49%</b></span><span class="vec" role="cell">FIN</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0057</span><span class="qt" role="cell">Will the USA publish between 24.09 and 07.10.2026 an overcapacity report recommending tariffs on the PRC, or announce a new tariff rate on PRC goods?</span><span class="date" role="cell">07.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:13.0%"></i></span><b>13%</b></span><span class="vec" role="cell">ECO</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0058</span><span class="qt" role="cell">Will the governments of the USA and the PRC both announce by 07.10.2026 an extension of the trade (tariff) truce or a new trade agreement?</span><span class="date" role="cell">07.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:45.0%"></i></span><b>45%</b></span><span class="vec" role="cell">ECO</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0025</span><span class="qt" role="cell">Will PRC exports of rare-earth permanent magnets to the USA in September 2026 exceed 512 t?</span><span class="date" role="cell">20.10.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:50.0%"></i></span><b>50%</b></span><span class="vec" role="cell">TEC</span></div>
+      </div>
+      <p class="ledger-note">Official forecasts (aggregate of three blind lenses after red team) from edition 01, frozen in commit 32a635e. All 73 forecasts: <a href="https://github.com/pstepien-labs/worldstate-forecast/blob/main/registry/forecasts.csv">registry/forecasts.csv</a> · <a href="data/forecasts.json">forecasts.json</a>.</p>
+    </section>
+
+    <section id="record">
+      <div class="sec-head">
+        <h2>Track record</h2>
+        <p>Scoring uses the Brier score: the mean squared difference between forecast and outcome. 0 is perfect; always answering 50% scores 0.25.</p>
+      </div>
+      <div class="track-box"><p class="big">No question has resolved yet. The first scores arrive with the next edition (earliest 07.10.2026), when the questions due in early October are checked.</p><div><p>Misses will be published as prominently as hits. Below 30 resolved questions the scores are labelled indicative and no conclusions are drawn about the method.</p><p>Each edition's scores are in its <code class="mono">01_scores.md</code>, computed by <a href="https://github.com/pstepien-labs/worldstate-forecast/blob/main/tools/scores.py">tools/scores.py</a>.</p></div></div>
+    </section>
+
+    <section id="data">
+      <div class="sec-head">
+        <h2>Data &amp; access</h2>
+        <p>Everything the project produces itself is free. What it collects from others stays with its publishers.</p>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>What</th><th>Contents</th><th>Format</th><th>Access</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Reports</td><td>Every edition: facts with sources, analysis, scenarios, forecasts, quality control</td><td class="mono">Markdown</td><td><span class="pill free">free · CC BY 4.0</span> <a href="https://github.com/pstepien-labs/worldstate-forecast/blob/main/editions/2026-09-23_edition-01/07_report.md">latest</a> · <a href="https://github.com/pstepien-labs/worldstate-forecast/tree/main/editions">all</a></td></tr>
+            <tr><td class="k">Forecast registry</td><td>Questions with resolution criteria, every forecast by lens and official, resolutions, edition versions</td><td class="mono">CSV, JSON</td><td><span class="pill free">free · CC BY 4.0</span> <a href="data/forecasts.json">JSON</a> · <a href="https://github.com/pstepien-labs/worldstate-forecast/tree/main/registry">CSV</a></td></tr>
+            <tr><td class="k">Methodology and prompts</td><td>The method, every stage instruction, the source map and harvester configuration</td><td class="mono">Markdown, CSV</td><td><span class="pill free">free · CC BY 4.0</span> <a href="https://github.com/pstepien-labs/worldstate-forecast/blob/main/methodology/methodology_v1.0.md">method</a> · <a href="https://github.com/pstepien-labs/worldstate-forecast/tree/main/prompts">prompts</a></td></tr>
+            <tr><td class="k">For AI assistants</td><td>A guide that lets any AI assistant read and query the forecasts and reports</td><td class="mono">llms.txt, JSON</td><td><span class="pill free">free</span> <a href="llms.txt">llms.txt</a></td></tr>
+            <tr><td class="k">Software</td><td>Harvester, scoring, pipeline: run your own independent forecast series</td><td class="mono">Python</td><td><span class="pill free">free · MIT</span> <a href="https://github.com/pstepien-labs/worldstate-forecast">repository</a></td></tr>
+            <tr><td class="k">Harvested news</td><td>Headlines and snippets collected from about 200 publishers</td><td class="mono">—</td><td><span class="pill">not redistributed</span> copyright stays with the publishers; coverage statistics are published in each edition</td></tr>
+            <tr><td class="k">For organisations</td><td>Custom questions on your topic, a structured data feed, briefings</td><td class="mono">on request</td><td><span class="pill">planned</span> register interest via the contact below</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="contribute">
+      <div class="two">
+        <div>
+          <h2>Contribute</h2>
+          <p style="margin-top:12px">The project improves through criticism. The most useful help is specific: a better source, a flawed assumption, a bug.</p>
+          <ul>
+            <li><b>Sources in your language.</b> Official, state, independent or exile outlets the harvester is missing, especially from the actors' own side.</li>
+            <li><b>Challenge a forecast.</b> Open an issue with the evidence. It is weighed in the next edition; frozen forecasts are never changed.</li>
+            <li><b>Review the method.</b> Lenses, aggregation and scoring are open for the quarterly review.</li>
+            <li><b>Code.</b> The harvester and scoring tools are small, standard-library Python.</li>
+          </ul>
+          <div class="support-links"><a class="btn primary" href="https://github.com/pstepien-labs/worldstate-forecast">Open the repository</a><a class="btn" href="https://github.com/pstepien-labs/worldstate-forecast/blob/main/CONTRIBUTING.md">Contribution guide</a></div>
+        </div>
+        <div id="support">
+          <h2>Support</h2>
+          <p style="margin-top:12px">Running the harvester and the AI stages costs time and money. Support keeps the experiment independent and free to read.</p>
+          <p style="margin-top:16px">Donation options are being set up. Until then, the most useful support is a star on <a href="https://github.com/pstepien-labs/worldstate-forecast">GitHub</a> and sharing a report with someone who will argue with it.</p>
+          
+        </div>
+      </div>
+    </section>
+
+    <div class="disclaimer">
+      <p><b>Research, not advice.</b> Forecasts are probabilistic research outputs. Nothing here is investment, financial, legal or political advice.</p>
+      <p><b>AI-assisted.</b> Stages are carried out by AI models under written rules and human oversight; models are named in every report.</p>
+      <p><b>Independent.</b> No affiliation with any government, party, publisher or prediction market. Facts link to their original publishers.</p>
+    </div>
+  </main>
+
+  <footer>
+    <span>Framework 1.3.0 · methodology v1.0 · latest edition 01 (state 23.09.2026) · page built 05.10.2026</span>
+    <span>Code MIT · content CC BY 4.0 · <a href="https://github.com/pstepien-labs/worldstate-forecast">source</a></span>
+  </footer>
+</div>
+
+<script>
+document.querySelectorAll('[data-copy]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var t = b.getAttribute('data-copy');
+    var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, function () { selectCode(b); });
+    } else { selectCode(b); }
+  });
+});
+function selectCode(b) {
+  var c = b.parentNode.querySelector('code');
+  if (!c) return;
+  var r = document.createRange(); r.selectNodeContents(c);
+  var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+</script>
+</body>
+</html>
