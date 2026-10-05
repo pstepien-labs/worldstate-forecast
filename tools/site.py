@@ -233,7 +233,11 @@ def build():
         contact += (f'<p style="margin-top:22px" class="label">Contact</p><div class="copy"><code>{em}</code>'
                     f'<button type="button" data-copy="{em}">Copy</button></div>')
     if cfg.get('x_handle'):
-        h = cfg['x_handle'].lstrip('@')
+        h = cfg['x_handle'].strip().rstrip('/')
+        for prefix in ('https://', 'http://', 'www.', 'x.com/', 'twitter.com/', '@'):
+            if h.lower().startswith(prefix):
+                h = h[len(prefix):]
+        h = h.split('?')[0]
         contact += f'<p style="margin-top:12px">Signals between editions: <a href="https://x.com/{e(h)}">@{e(h)} on X</a></p>'
 
     footer = (f'Framework {e(framework)} · methodology {e(cur.get("METHODOLOGY", "v1.0"))} · latest edition {e(latest_ed)} '
