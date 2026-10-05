@@ -6,4 +6,4 @@ lists and primary numeric datasets into a local, resumable corpus
 
 Python standard library only. Entry point: `python3 -m tools.harvester --help`.
 """
-HARVESTER_VERSION = '1.1.0'
+HARVESTER_VERSION = '1.2.1'

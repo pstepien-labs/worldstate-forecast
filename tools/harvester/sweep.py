@@ -29,11 +29,24 @@ class Harvester:
         self.log = store.EventLog(echo=echo)
         self.state_path = store.path('state', 'sources.json')
         self.state = store.read_json(self.state_path, {})
+        self._migrate_rate_limit_failures()
         self.fetcher = Fetcher(log=lambda ev, **kw: self.log(ev, level='warn', **kw))
         self.ctx = {'forbidden': forbidden_domains()}
         self.stop_requested = False
         self.status = store.read_json(store.path('status.json'), {})
         self.seen = None
+
+    def _migrate_rate_limit_failures(self):
+        """Before 1.2.0, HTTP 429/503 counted as failures with long back-off.
+        Re-label such sources as throttled and make them due again in 15 minutes."""
+        soon = iso(now() + timedelta(minutes=15))
+        for e in self.state.values():
+            if e.get('status') in ('failing', 'retrying') and (e.get('last_error') or '') in ('HTTP 429', 'HTTP 503'):
+                e['status'] = 'throttled'
+                e['consecutive_failures'] = 0
+                e['last_error'] = 'rate limited (' + e['last_error'] + '), retry scheduled'
+                if (e.get('next_due') or '') > soon:
+                    e['next_due'] = soon
 
     # ----- state helpers -----
     def entry(self, sid):
