@@ -1,0 +1,18 @@
+{
+  "name": "Worldstate Forecast",
+  "tagline": "Calibrated balance-of-power forecasts. Frozen before the outcome. Scored after.",
+  "repo_url": "https://github.com/pstepien-labs/worldstate-forecast",
+  "site_url": "https://pstepien-labs.github.io/worldstate-forecast/",
+  "contact_email": "",
+  "x_handle": "",
+  "donate": {
+    "github_sponsors": "",
+    "open_collective": "",
+    "kofi": ""
+  },
+  "featured_question": "Q-0028",
+  "forecasts_on_page": 12,
+  "harvest_sources": 200,
+  "harvest_languages": 18,
+  "_help": "Fill contact_email, x_handle and any donate link you have opened, then run: python3 tools/site.py. Empty values are hidden on the page."
+}

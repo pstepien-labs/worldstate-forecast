@@ -30,8 +30,9 @@ Then, inside Claude Code:
 | `/edition` | every two weeks (on or after the date `/next` shows) — produces the whole edition and the report |
 | `/next` | whenever unsure |
 | `/learn` | optional, between editions — reviews past editions and proposes improvements |
+| `/social` | optional — drafts X posts (signals against frozen forecasts, release threads); you post them |
 
-Full procedure: **[RUNBOOK.md](RUNBOOK.md)**.
+Full procedure: **[RUNBOOK.md](RUNBOOK.md)**. Public site, contributions, support and X: **[LAUNCH.md](LAUNCH.md)**.
 
 ## Requirements
 
@@ -56,6 +57,8 @@ Full procedure: **[RUNBOOK.md](RUNBOOK.md)**.
 | `tools/pipeline.py` | Next step, provenance, edition register |
 | `tools/scores.py` | Brier, BSS, calibration, directional bias, bootstrap; filters by edition and framework version |
 | `scripts/harvest.sh` | Start / stop / status / tail of the background harvester |
+| `tools/site.py`, `site/`, `docs/` | Public landing page and open data pack (GitHub Pages from `/docs`), rebuilt after every edition |
+| `social/` | X post drafts and the log of signals against frozen forecasts |
 | `editions/` | Edition 00 (starting point) and edition 01 (first full edition) |
 
 ## How one edition runs

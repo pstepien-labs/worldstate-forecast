@@ -34,10 +34,15 @@ Never read `04_*`, `05_*`, `06_*`, `07_annex_benchmarks.md` or `registry/benchma
 
 ## 3. When stage 08 is done
 
+1. Rebuild the public page and open data: `python3 tools/site.py`, then commit `edition-NN site`.
+2. Launch one stage-runner for stage `S` with argument `release` (prompt file `prompts/S_social.md`) to draft the release thread; if stage 01 resolved questions, launch another for `resolved`.
+
+
 Tell the user, in at most 10 lines:
 - where the report is: `<DIRECTORY>/07_report.md` (and `07_report.pdf` if it was produced);
 - the provenance line of the report (framework, methodology, models, harvest coverage);
 - the number of questions resolved and the headline score from `01_scores.md` (if any were resolved);
 - open items: resolutions awaiting approval, quality-control discrepancies from `08_quality_control.md` (count and file);
 - that the harvester keeps running for the next edition, and the date it can start (`python3 tools/pipeline.py status`);
-- optional: `git push` publishes the commits (ask before running it).
+- the X drafts in `social/drafts/` to review and post by hand;
+- `git push` publishes the commits and updates the public site if GitHub Pages is on (ask before running it).

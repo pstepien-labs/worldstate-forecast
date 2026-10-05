@@ -41,6 +41,7 @@ STAGES = {
     '08': ('prompts/08_quality_control.md', 'Quality control'),
     'M': ('prompts/M_mini_retro.md', 'Mini-retrospective'),
     'Q': ('prompts/Q_quarterly_review.md', 'Quarterly review'),
+    'S': ('prompts/S_social.md', 'Social drafts (X)'),
     'L1': ('prompts/learning/L1_hindsight.md', 'Learning: hindsight audit of reports'),
     'L2': ('prompts/learning/L2_forecast_performance.md', 'Learning: forecast performance'),
     'L3': ('prompts/learning/L3_reasoning_trace.md', 'Learning: reasoning trace of hits and misses'),
@@ -104,6 +105,8 @@ def now():
 def prov_path(stage, cur):
     if stage.startswith('L') or stage in ('M', 'Q'):
         return os.path.join(ROOT, 'reviews', 'learning', 'provenance.jsonl')
+    if stage == 'S':
+        return os.path.join(ROOT, 'social', 'provenance.jsonl')
     return os.path.join(ROOT, cur['DIRECTORY'], 'provenance.jsonl')
 
 
