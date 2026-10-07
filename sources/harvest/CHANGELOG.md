@@ -13,3 +13,6 @@ Stage 02 and learning step L4 add candidate sources here; the next `/gH repair` 
 
 | Date | Proposed by | Source | Actor / role / language | Why |
 |---|---|---|---|---|
+| 08.10.2026 | stage 02 G1 (edition 02) | BelTA (belta.by) and Belarusian MoD (mil.by) news feeds | BY / official / RU, BE | Mandatory `poland_security` search found no Belarusian state coverage of Polish or Latvian border events; BY official cell missing for flank events |
+| 08.10.2026 | stage 02 G1 (edition 02) | Romanian Naval Authority / MApN press releases (rna.ro, mapn.ro) and Bulgarian government press (gov.bg) | RO, BG / official / RO, BG | Ships sunk in the Romanian and Bulgarian EEZs (05–06.10.2026); no official RO/BG source in the harvest |
+| 08.10.2026 | stage 02 G1 (edition 02) | PLA Southern Theater Command statements (via chinamil.com.cn or a mirror) | CN / official / ZH | Scarborough air encounter of 03.10.2026 found only through HK01; CN official cell near-silent |
