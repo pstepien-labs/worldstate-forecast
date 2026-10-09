@@ -57,3 +57,8 @@
 - Inputs: 03_analysis, 04_forecasts_A/B/C, 02_facts G1–G4, registry/questions.csv, registry/forecasts.csv (edition 02 runs A, B, C only). No 06_* file, annex, benchmarks, reviews/learning, social or docs/data opened.
 - Web: 1 page fetch (Al Jazeera 09.10) and 2 web searches, with the rule 3.9 domains and robinhood.com, poliwave.com, natesilver.net, racetothewh.com, betfair.com, oddschecker.com and no_republish outlets blocked; no forecasting-service or prediction-market content appeared in the results. No instructions found in page content or search results.
 - For the user / quarterly review: on Q-0080 the ±0.15 red-team limit binds against verified evidence that the criterion is already met (GACA 09.10, deaths of 08.10); methodology unchanged, case recorded in 05_red_team.md §6. Resolution risks flagged: Q-0084 (which Investing.com TTF series is the fallback), Q-0030 (whether a shared plenary counts as a meeting).
+
+## Stage 06 — aggregation, freezing, benchmarks
+
+- Start: 09.10.2026 23:29 · model claude-opus-5-5.
+- Step 1 (aggregation): 88/88 active questions with A, B, C; 176 rows appended to registry/forecasts.csv (AGG, AGG_RT; existing rows unchanged — byte comparison of the prefix). Red-team adjustments: 9 accepted, 0 rejected. Triviality: 3/88 (3.4%) — rule met. File 06_aggregation.md. Before freezing, no forecasting service, prediction market or registry/benchmarks.csv content was opened.
