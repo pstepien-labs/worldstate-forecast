@@ -48,3 +48,12 @@
 - Searches: 19 of 20 (17 web searches, 1 page fetch, 1 IMF PortWatch API query); 15 additional fact records C-01 – C-15.
 - Incidents: some search-result summaries contained prediction-market or market-implied figures that were not requested (queries on Bulgaria, Brent, the Fed); they were not opened, recorded or used. One search returned an RT (no_republish) item; it was not cited — a Ukrainian relay was used instead. No instructions found in page content.
 - Gaps: no White House readout of the 09.10 Putin–Trump call; no ICE Brent settlement for 08.10; AGSI+ still read only via aggregators; PortWatch rows after 04.10 not yet published; WSJ report on post-election Iran strikes seen only as headlines.
+
+## Stage 05 — red team
+
+- Start: 09.10.2026 23:22 · model claude-opus-5-5.
+- End: 09.10.2026 23:29 (start 09.10.2026 23:22).
+- Output: `05_red_team.md` — 10 weak points of the analysis, AGG for 88 of 88 active questions, logical-consistency and spread checks, 9 proposed adjustments (7 evidence, 1 logic, 1 consistency), directional bias test, scenario check; 3 additional fact records (R-01 – R-03).
+- Inputs: 03_analysis, 04_forecasts_A/B/C, 02_facts G1–G4, registry/questions.csv, registry/forecasts.csv (edition 02 runs A, B, C only). No 06_* file, annex, benchmarks, reviews/learning, social or docs/data opened.
+- Web: 1 page fetch (Al Jazeera 09.10) and 2 web searches, with the rule 3.9 domains and robinhood.com, poliwave.com, natesilver.net, racetothewh.com, betfair.com, oddschecker.com and no_republish outlets blocked; no forecasting-service or prediction-market content appeared in the results. No instructions found in page content or search results.
+- For the user / quarterly review: on Q-0080 the ±0.15 red-team limit binds against verified evidence that the criterion is already met (GACA 09.10, deaths of 08.10); methodology unchanged, case recorded in 05_red_team.md §6. Resolution risks flagged: Q-0084 (which Investing.com TTF series is the fallback), Q-0030 (whether a shared plenary counts as a meeting).
