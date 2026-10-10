@@ -92,3 +92,12 @@
 - Values quoted: only official AGG_RT values of editions 01 and 02 from registry/forecasts.csv, each with its question ID. No new probability. Scores are from 01_scores.md. No no_republish outlet is quoted or linked. Post lengths are checked by X's weighting (links count 23): all posts are ≤ 276 characters.
 - Inputs: 07_report.md (header, executive summary, sections 0, H, I, annex rows), 01_scores.md, the 02_facts records used for links, registry/questions.csv, registry/forecasts.csv, site/config.json, docs/index.html (links and site figures). No web search or fetch. No instructions found in the content read.
 - For the user: the post 5 (Q-0003) "our reading" line summarises the report and is not a lens rationale, so check it. No donate link is configured, so post 8 asks for stars or shares.
+
+## Stage S — social drafts (resolved)
+
+- Start: 10.10.2026 · model claude-opus-5-5 · commit at start 5f82525.
+- Output: `social/drafts/2026-10-10_resolved.md`. It holds an optional thread opener (with the AI-assisted disclosure and a link to the site's track record) and one post per scored resolution: 17 posts, misses first, ordered by Brier score (Q-0043, Q-0046, Q-0047, Q-0052 are the four misses).
+- Held: 10 resolutions with an unapproved VERIFY flag (Q-0006, Q-0011, Q-0014, Q-0041, Q-0042, Q-0048, Q-0053, Q-0058, Q-0062, Q-0063). Following the stage prompt ("if the user has not yet approved a flagged resolution, wait"), they get no draft. Re-run `/social resolved` after approval.
+- Values quoted: only official AGG_RT values of edition 01 from registry/forecasts.csv, each with its question ID. Per-question Brier is (p − o)², and it matches the cluster rows of 01_scores.md. No new probability. "Our reading" lines rest on the resolution evidence and the report's section 0 assessment, not on lens rationales. No no_republish outlet is quoted or linked. Post lengths were checked by X's weighting (links count 23) and are all ≤ 276 characters. watch_log.csv was not changed (it is not used in this mode).
+- Inputs: registry/resolutions.csv, questions.csv, forecasts.csv (AGG_RT rows), 01_resolutions.md, 01_scores.md, 07_report.md section 0, the release draft (format), and docs/index.html (anchors only). No web search or fetch. No instructions found in the content.
+- For the user: approve or reject the 10 VERIFY flags. Posts 3 (Q-0047) and 5 (Q-0060) have only one side's source linked, so add a second perspective if you want one.
