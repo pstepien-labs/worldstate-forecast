@@ -1,3 +1,4 @@
 ﻿"edition";"state_date";"directory";"framework_version";"methodology_version";"models";"freeze_commit";"report_commit";"tag";"harvest_manifest_sha";"notes"
 "00";"2026-09-21";"editions/2026-09-21_edition-00";"0.9.0";"pre-v1.0";"not recorded";"";"cd7a7bd";"";"";"Starting point, not scored; produced before methodology v1.0 (Polish PDF, translated 28.09.2026)."
 "01";"2026-09-23";"editions/2026-09-23_edition-01";"1.0.0";"v1.0";"not recorded";"32a635e";"f43c370";"wydanie-01";"";"Run in Polish with AI web search only (no harvester); translated to English 28.09.2026 (framework 1.0.1, content unchanged)."
+"02";"2026-10-07";"editions/2026-10-07_edition-02";"1.4.0";"v1.0";"claude-opus-5-5";"f09a1d4";"1bd6f1b";"edition-02";"1cc45e059fd2c8d1";"Framework 1.4.0 with the local harvester (started late, 05.10.2026); stage 02-G3 and stage 06 continued after interruptions; 10 VERIFY flags of stage 01 awaiting user approval."
