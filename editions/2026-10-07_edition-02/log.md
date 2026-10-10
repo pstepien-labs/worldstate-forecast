@@ -84,3 +84,11 @@
 - Corrections to the report: none. Discrepancies recorded only (registry and records unchanged): non-uniform `date` field across runs in forecasts.csv, records G1-036 / G4-038 with empty fields, unsupported record elements in G4-084 and G4-070, source mismatch in C-03, provenance gaps (dirty-file names at 00/H start, single 06 start record).
 - Web: 20 page fetches (6 failed: 4 × HTTP 403, folha.uol.com.br and thehindu.com not fetchable) and 4 web searches, with the rule 3.9 domains and robinhood.com blocked; no forecasting-service or prediction-market page opened. No instructions found in page content or search results.
 - For the user: 10 VERIFY flags of stage 01 still unapproved; process proposals in 08_quality_control.md (date convention, horizon boundary, URLs for negative checks, provenance of dirty files and resumed stages).
+
+## Stage S — social drafts (release)
+
+- Start: 10.10.2026 02:53 · End: 10.10.2026 02:57 · model claude-opus-5-5 · commit at start 9ef8f8c.
+- Output: `social/drafts/2026-10-10_release.md`. It is an 8-post release thread with replies: the opener with the AI-assisted disclosure, four official forecasts (Q-0065, Q-0028, Q-0077, Q-0003), changes since edition 01, the track record with misses (Q-0043, Q-0046) and the crowd comparison where we lag, and an invitation to contribute. Drafts only; nothing posted.
+- Values quoted: only official AGG_RT values of editions 01 and 02 from registry/forecasts.csv, each with its question ID. No new probability. Scores are from 01_scores.md. No no_republish outlet is quoted or linked. Post lengths are checked by X's weighting (links count 23): all posts are ≤ 276 characters.
+- Inputs: 07_report.md (header, executive summary, sections 0, H, I, annex rows), 01_scores.md, the 02_facts records used for links, registry/questions.csv, registry/forecasts.csv, site/config.json, docs/index.html (links and site figures). No web search or fetch. No instructions found in the content read.
+- For the user: the post 5 (Q-0003) "our reading" line summarises the report and is not a lens rationale, so check it. No donate link is configured, so post 8 asks for stars or shares.
