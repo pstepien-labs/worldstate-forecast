@@ -11,10 +11,15 @@ Usage:
   python3 tools/scores.py --editions 02,03,04         # only forecasts made in these editions
   python3 tools/scores.py --framework 1.1.0           # only editions produced with this framework version
                                                       # (mapping edition -> version: registry/editions.csv)
+
+Forecasts of an edition made on or after the question's resolution date are left out
+(the outcome was already known; framework 1.5). The "Diagnostics" section is not the
+official measure (methodology §1): it shows other reference baselines and lens diversity.
 """
 import argparse
 import csv
 import random
+import statistics
 from collections import defaultdict
 from datetime import date
 
@@ -54,6 +59,78 @@ def fmt(x, n=3):
     return 'n/a' if x != x else f'{x:.{n}f}'
 
 
+def corr(x, y):
+    mx, my = mean(x), mean(y)
+    sxy = sum((i - mx) * (j - my) for i, j in zip(x, y))
+    sxx, syy = sum((i - mx) ** 2 for i in x), sum((j - my) ** 2 for j in y)
+    return sxy / (sxx * syy) ** 0.5 if sxx > 0 and syy > 0 else float('nan')
+
+
+def diagnostics(pr, official, forecasts, questions, res, outcome, in_scope):
+    """Other reference baselines and lens diversity. Not the official measure (methodology §1)."""
+    pr('## Diagnostics (not the official measure)\n')
+    pr('Methodology §1 keeps BSS vs status quo and vs the crowd as the official measures. '
+       'These lines show how hard those baselines are and how independent the lenses are.\n')
+
+    pr('### YES rate by p_status_quo (scored questions)\n')
+    pr('| p_status_quo | N questions | YES rate |')
+    pr('|---|---|---|')
+    by_sq = defaultdict(list)
+    for qid in {w[0] for w in official}:
+        by_sq[questions[qid]['p_status_quo']].append(outcome[qid])
+    for k in sorted(by_sq):
+        pr(f'| {k} | {len(by_sq[k])} | {fmt(mean(by_sq[k]), 2)} |')
+    pr('')
+
+    pr('### AGG_RT against other reference baselines\n')
+    pr('| Reference | N forecasts | Brier AGG_RT | Brier reference | BSS |')
+    pr('|---|---|---|---|---|')
+
+    def line(name, pairs):
+        if not pairs:
+            pr(f'| {name} | 0 | n/a | n/a | n/a |')
+            return
+        bm, br = mean([x[0] for x in pairs]), mean([x[1] for x in pairs])
+        pr(f'| {name} | {len(pairs)} | {fmt(bm)} | {fmt(br)} | {fmt(1 - bm / br if br > 0 else float("nan"))} |')
+
+    line('status quo (official)', [((w[3] - w[4]) ** 2, (float(questions[w[0]]['p_status_quo']) - w[4]) ** 2) for w in official])
+    line('constant 0.50', [((w[3] - w[4]) ** 2, 0.25) for w in official])
+    # Prior YES rate: share of YES among questions resolved before the forecast date (at least 10).
+    resolved_dates = [(d(res[q]['resolution_date']), o) for q, o in outcome.items() if res[q].get('resolution_date')]
+    prior = []
+    for w in official:
+        past = [o for rd, o in resolved_dates if rd < d(w[5])]
+        if len(past) >= 10:
+            prior.append(((w[3] - w[4]) ** 2, (mean(past) - w[4]) ** 2))
+    line('YES rate of earlier resolutions (≥ 10)', prior)
+    # Persistence: the same question's AGG_RT in the previous edition (did updating help?).
+    agg = {(f['question_id'], f['edition']): float(f['p']) for f in forecasts if f['run'] == 'AGG_RT'}
+    pers = []
+    for w in official:
+        prev = agg.get((w[0], f"{int(w[1]) - 1:02d}"))
+        if prev is not None:
+            pers.append(((w[3] - w[4]) ** 2, (prev - w[4]) ** 2))
+    line("previous edition's AGG_RT", pers)
+    pr('')
+
+    pr('### Lens diversity by edition (all forecasts, resolved or not)\n')
+    pr('| Edition | N questions | corr A–B | corr A–C | corr B–C | median spread | spread > 0.30 |')
+    pr('|---|---|---|---|---|---|---|')
+    lens = defaultdict(dict)
+    for f in forecasts:
+        if f['run'] in ('A', 'B', 'C') and in_scope(f):
+            lens[(f['edition'], f['question_id'])][f['run']] = float(f['p'])
+    for ed in sorted({k[0] for k in lens}):
+        qs = [v for k, v in lens.items() if k[0] == ed and len(v) == 3]
+        if not qs:
+            continue
+        sp = [max(v.values()) - min(v.values()) for v in qs]
+        c = [corr([v[x] for v in qs], [v[y] for v in qs]) for x, y in (('A', 'B'), ('A', 'C'), ('B', 'C'))]
+        pr(f'| {ed} | {len(qs)} | {fmt(c[0], 2)} | {fmt(c[1], 2)} | {fmt(c[2], 2)} | '
+           f'{fmt(statistics.median(sp), 2)} | {sum(x > 0.30 for x in sp)} |')
+    pr('')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--to-edition', default=None, help='include forecasts up to and including this edition (e.g. 03)')
@@ -84,17 +161,36 @@ def main():
         if o in ('0', '1'):
             outcome[qid] = int(o)
 
+    def in_scope(p):
+        if a.to_edition and int(p['edition']) > int(a.to_edition):
+            return False
+        if only_editions and p['edition'].zfill(2) not in only_editions:
+            return False
+        if a.framework and fw_of.get(p['edition'].zfill(2), '') != a.framework:
+            return False
+        return True
+
+    # Latest forecast date of each (question, edition): the date the edition's information set closed.
+    latest = {}
+    for p in forecasts:
+        k = (p['question_id'], p['edition'])
+        try:
+            latest[k] = max(latest.get(k, d(p['date'])), d(p['date']))
+        except ValueError:
+            pass
+
     rows_all = []  # (qid, edition, run, p, o, date)
+    known = set()  # (qid, edition) forecast on or after the resolution date
     for p in forecasts:
         qid = p['question_id']
-        if qid not in outcome:
+        if qid not in outcome or not in_scope(p):
             continue
-        if a.to_edition and int(p['edition']) > int(a.to_edition):
-            continue
-        if only_editions and p['edition'].zfill(2) not in only_editions:
-            continue
-        if a.framework and fw_of.get(p['edition'].zfill(2), '') != a.framework:
-            continue
+        try:
+            if d(res[qid]['resolution_date']) <= latest[(qid, p['edition'])]:
+                known.add((qid, p['edition']))
+                continue
+        except (KeyError, ValueError):
+            pass
         rows_all.append((qid, p['edition'], p['run'], float(p['p']), outcome[qid], p['date']))
 
     out = []
@@ -196,6 +292,12 @@ def main():
     if pending:
         pr('## Awaiting user verification\n')
         pr(', '.join(sorted(pending)) + '\n')
+
+    if known:
+        pr('## Left out: forecast on or after the resolution date\n')
+        pr(', '.join(f'{q} (edition {e})' for q, e in sorted(known)) + '\n')
+
+    diagnostics(pr, official, forecasts, questions, res, outcome, in_scope)
 
     # Cluster bootstrap for the Brier difference between two runs.
     if a.bootstrap:

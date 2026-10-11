@@ -5,6 +5,7 @@
   python3 tools/pipeline.py stage-start 03 --model M  record the start of a stage (commit, versions, prompt hash, model)
   python3 tools/pipeline.py stage-start 02 --arg G1 --model M
   python3 tools/pipeline.py stage-end 03             record the end of a stage
+  python3 tools/pipeline.py stage-resume 03 --model M record that an interrupted stage is being continued
   python3 tools/pipeline.py provenance               render editions/<DIR>/provenance.md from provenance.jsonl
   python3 tools/pipeline.py register-edition         append the edition's row to registry/editions.csv (stage 08)
   python3 tools/pipeline.py versions                 framework, methodology, harvester versions and git state
@@ -98,6 +99,17 @@ def harvester_version():
     return m.group(1) if m else None
 
 
+def dirty_paths():
+    try:  # not sh(): stripping the output would cut the status column of the first line
+        out = subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT, capture_output=True, text=True, timeout=30).stdout
+    except Exception:
+        return []
+    return [x[3:] for x in out.splitlines() if x.strip()]
+
+
+SEQUENCE_STAGES = {'00', 'H', '01', '02', '03', '04', '05', '06', '07', '08'}
+
+
 def now():
     return datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
@@ -122,7 +134,8 @@ def record(event, stage, arg, model, note):
         'framework_version': framework_version(), 'methodology_version': methodology_version(cur),
         'harvester_version': harvester_version(),
         'commit': sh('git', 'rev-parse', '--short=12', 'HEAD') or None,
-        'dirty_files': len([x for x in sh('git', 'status', '--porcelain').splitlines() if x.strip()]),
+        'dirty_files': len(dirty_paths()),
+        'dirty_paths': dirty_paths()[:50],
         'prompt_file': prompt, 'prompt_sha': sha(prompt), 'claude_md_sha': sha('CLAUDE.md'),
         'methodology_sha': sha(f"methodology/methodology_{methodology_version(cur)}.md"),
         'claude_cli': sh('claude', '--version') or None,
@@ -134,7 +147,7 @@ def record(event, stage, arg, model, note):
     os.makedirs(os.path.dirname(p), exist_ok=True)
     with open(p, 'a', encoding='utf-8') as f:
         f.write(json.dumps(rec, ensure_ascii=False) + '\n')
-    if event == 'start' and not model:
+    if event in ('start', 'resume') and not model:
         print('WARNING: no --model given; record the model id (e.g. from /model) for provenance.')
     print(f"{event}: stage {stage}{' ' + arg if arg else ''} · framework {rec['framework_version']} · "
           f"methodology {rec['methodology_version']} · commit {rec['commit']} · model {rec['model']}")
@@ -163,16 +176,20 @@ def render_provenance(quiet=False):
             print('no provenance records yet')
         return
     starts = {}
+    resumes = {}
     rows = []
     for r in recs:
         key = (r['stage'], r.get('arg'))
         if r['event'] == 'start':
             starts[key] = r
+            resumes[key] = []
+        elif r['event'] == 'resume':
+            resumes.setdefault(key, []).append(r['ts'])
         elif r['event'] == 'end':
             s = starts.pop(key, None)
-            rows.append((s, r))
+            rows.append((s, r, resumes.pop(key, [])))
     for key, s in starts.items():
-        rows.append((s, None))
+        rows.append((s, None, resumes.pop(key, [])))
     fw = sorted({r['framework_version'] for r in recs})
     mv = sorted({r['methodology_version'] for r in recs})
     models = sorted({r['model'] for r in recs if r.get('model')})
@@ -181,13 +198,16 @@ def render_provenance(quiet=False):
     if len(fw) > 1 or len(mv) > 1:
         lines += ['**Warning:** more than one framework or methodology version was used within this edition. '
                   'Learning analyses must treat this edition as mixed.', '']
-    lines += ['| Stage | Arg | Start (UTC) | End (UTC) | Model | Framework | Commit at start | Prompt sha | Dirty files at start |',
-              '|---|---|---|---|---|---|---|---|---|']
-    for s, e in rows:
+    lines += ['| Stage | Arg | Start (UTC) | Resumed (UTC) | End (UTC) | Model | Framework | Commit at start | Prompt sha | Dirty files at start |',
+              '|---|---|---|---|---|---|---|---|---|---|']
+    for s, e, res in rows:
         s = s or {}
+        dirty = s.get('dirty_files')
+        if s.get('dirty_paths'):
+            dirty = f"{dirty}: {', '.join(s['dirty_paths'])}"
         lines.append(f"| {s.get('stage') or e.get('stage')} | {s.get('arg') or ''} | {s.get('ts', '—')} | "
-                     f"{e['ts'] if e else 'not finished'} | {s.get('model') or '—'} | {s.get('framework_version')} | "
-                     f"{s.get('commit')} | {s.get('prompt_sha')} | {s.get('dirty_files')} |")
+                     f"{', '.join(res) or '—'} | {e['ts'] if e else 'not finished'} | {s.get('model') or '—'} | "
+                     f"{s.get('framework_version')} | {s.get('commit')} | {s.get('prompt_sha')} | {dirty} |")
     p = os.path.join(ROOT, cur['DIRECTORY'], 'provenance.md')
     with open(p, 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines) + '\n')
@@ -198,13 +218,17 @@ def render_provenance(quiet=False):
 def edition_done_map(cur):
     """Which stages are complete in the current edition (provenance first, files as fallback)."""
     d = os.path.join(ROOT, cur.get('DIRECTORY', ''))
-    ended = {(r['stage'], r.get('arg')) for r in load_prov(cur) if r['event'] == 'end'}
+    recs = load_prov(cur)
+    ended = {(r['stage'], r.get('arg')) for r in recs if r['event'] == 'end'}
+    # Editions run before provenance existed are judged by their output files. Off-sequence records
+    # (e.g. a later "H repair") must not switch that fallback off.
+    file_fallback = not any(r['stage'] in SEQUENCE_STAGES and r.get('arg') != 'repair' for r in recs)
 
     def has(*files):
         return all(os.path.exists(os.path.join(d, f)) for f in files)
 
     def done(stage, arg=None, files=()):
-        return (stage, arg) in ended or (bool(files) and has(*files) and not load_prov(cur))
+        return (stage, arg) in ended or (bool(files) and has(*files) and file_fallback)
 
     nr = cur.get('NR', '00')
     tag = f'edition-{nr}'
@@ -372,7 +396,7 @@ def cmd_versions(a):
     print(json.dumps({'framework_version': framework_version(), 'methodology_version': methodology_version(cur),
                       'harvester_version': harvester_version(), 'commit': sh('git', 'rev-parse', '--short=12', 'HEAD'),
                       'branch': sh('git', 'rev-parse', '--abbrev-ref', 'HEAD'),
-                      'dirty_files': len([x for x in sh('git', 'status', '--porcelain').splitlines() if x.strip()]),
+                      'dirty_files': len(dirty_paths()), 'dirty_paths': dirty_paths()[:50],
                       'edition': cur.get('NR'), 'claude_cli': sh('claude', '--version') or None}, indent=1))
 
 
@@ -382,7 +406,7 @@ def main():
     stp = sub.add_parser('status')
     stp.add_argument('--json', action='store_true', help='machine-readable state (used by /edition)')
     stp.set_defaults(fn=cmd_status)
-    for ev in ('stage-start', 'stage-end'):
+    for ev in ('stage-start', 'stage-end', 'stage-resume'):
         s = sub.add_parser(ev)
         s.add_argument('stage')
         s.add_argument('--arg')

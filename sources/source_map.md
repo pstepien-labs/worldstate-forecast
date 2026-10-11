@@ -20,6 +20,16 @@ Three-perspective rule: for every key event — a Western source (W), a source f
 | Others | — | Telesur (voice of Caracas) | Dawn (Pakistan), Haaretz and INSS (Israel), Folha (Brazil), Jeune Afrique (francophone Africa) |
 | West | NATO, EU Council, OFAC, IEA, CRS, central banks | — | Reuters, AP, AFP, Bloomberg, FT; ISW, CSIS, RUSI, Chatham House, PISM, OSW |
 
+## Third-party (T) sources for PIR-1 (Ukraine front, Baltic, Black Sea)
+
+Editions 01 and 02 both lacked a third-party view of the front and the Baltic. Search these before recording the T gap. Third party means neither belligerent nor NATO for the event in question, and the lean of each outlet still has to be rated.
+
+| Event | Third-party sources | Caveat |
+|---|---|---|
+| Ukraine front (territory, offensives) | Al Jazeera English "Russia–Ukraine war: list of key events" (daily, Qatar); The Hindu and ThePrint (India); SCMP (Hong Kong); Xinhua and CGTN (China) | Al Jazeera and Indian outlets mostly relay both sides' claims, so record them as T only when they add their own reporting or compare the claims. Xinhua and CGTN lean towards Moscow; rate them accordingly and never use them as the only confirmation. |
+| Black Sea strikes and shipping | Anadolu Agency and TRT (Turkey, littoral state and Montreux guardian); Al Jazeera | Turkey is a NATO member: Anadolu is T for Russia–Ukraine exchanges, but W for incidents in Romanian or Bulgarian waters. |
+| Baltic (cables, shadow fleet, airspace) | Al Jazeera; SCMP; Xinhua (for incidents involving Chinese-flagged or Chinese-owned ships) | No non-NATO outlet covers the Baltic regularly. Record the gap when none of these reports the event. |
+
 ## Quantitative data (without interpretation)
 
 - IMF PortWatch — transits through chokepoints.

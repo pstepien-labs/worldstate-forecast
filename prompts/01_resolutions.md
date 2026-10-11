@@ -23,7 +23,8 @@ In edition 01 there is usually nothing to resolve. In that case create `01_resol
    - scores with a weight of 1 per cluster,
    - breakdown by vector and horizon.
 
-   The script takes the row with the highest `version` for each question, and skips questions flagged VERIFY without user approval, listing them separately.
+   The script takes the row with the highest `version` for each question, and skips questions flagged VERIFY without user approval, listing them separately. From framework 1.5 it also leaves out the forecasts of an edition made on or after the question's resolution date (the outcome was already known), lists them, and adds a diagnostics section (other reference baselines, lens diversity). The diagnostics are not the official measure (methodology §1).
+   - **Resolution date** = the date the YES event occurred, or the deadline for NO. Never the date you found the evidence.
 
 ## Output
 

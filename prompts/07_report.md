@@ -6,7 +6,10 @@
 
 1. **`07_report.md`** — report following the structure in methodology §11.
    - **Provenance line** directly under the title (from framework 1.1): `Framework <VERSION> · methodology <METHODOLOGY> · commit <short hash at stage 07 start> · models: <from provenance.md> · harvest: <items in window>, <languages>, <countries>, Western share <x>% (02_harvest/manifest.json)`. Run `python3 tools/pipeline.py provenance` first. The same values go into section J.5 (process quality).
-   - Section **0 (Accuracy scores)**, from edition 02: the key numbers from `01_scores.md` — number of resolved questions, Brier and BSS for AGG_RT vs status quo, best and worst lens (marked "indicative" below 30 questions), directional bias.
+   - Section **0 (Accuracy scores)**, from edition 02: the key numbers from `01_scores.md` — number of resolved questions, Brier and BSS for AGG_RT vs status quo, best and worst lens (marked "indicative" below 30 questions), directional bias. From framework 1.5 also give, labelled "diagnostic, not the official measure", one line each from the diagnostics section:
+     - BSS vs the other reference baselines, and the YES rate by `p_status_quo` value;
+     - lens diversity: correlation and median spread of A, B and C;
+     - forecasts left out because the question had already resolved.
    - Section **H**:
      - scenarios in three horizons with probabilities, triggers and dated signals;
      - full list of AGG_RT forecasts grouped by vector: ID, question, deadline, AGG_RT, lens spread (min–max), change vs the previous edition.

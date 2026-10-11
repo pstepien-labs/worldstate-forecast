@@ -6,6 +6,8 @@ Run in a new session. Your role: to refute, not to confirm.
 
 **Forbidden:** `06_*` files, `07_annex_benchmarks.md`, `registry/benchmarks.csv`, domains from CLAUDE.md item 9.
 
+**Information cutoff:** evidence for adjustments must be dated on or before INFO_CUTOFF (first line of `03_analysis.md`). A fact on or before the cutoff that a lens missed is valid evidence. A later fact is not used; count it in the log as "post-cutoff facts seen: N".
+
 ## Tasks
 
 1. **Ten weakest points of the analysis.** Look in particular for:
@@ -23,6 +25,7 @@ Run in a new session. Your role: to refute, not to confirm.
 3. **Proposed AGG adjustments.** Every adjustment must rest on specific evidence or an identified logical error. Limit: ±0.15 per question. No adjustments "to be safe" and no pulling towards 0.5 without a reason.
 4. **Directional bias test.** Compare mean AGG with `p_status_quo` within `who_benefits` groups. Do the forecasts systematically favour one side? Identify the questions responsible.
 5. **Consistency with scenarios.** Are the question forecasts consistent with the scenario probabilities the analysis anticipates?
+6. **Determined before the cutoff.** List active questions whose YES criterion was already met by an event dated on or before INFO_CUTOFF but which stage 03 did not resolve. Give the evidence. Do not adjust them: `tools/scores.py` leaves a forecast out of the scores when the question resolved on or before the forecast date, and the next stage 01 resolves them with that event date.
 
 ## Output
 

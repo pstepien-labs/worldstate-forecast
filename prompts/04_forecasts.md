@@ -5,7 +5,7 @@ Parameter: `LENS` = A, B or C (from the command argument). Run each lens in a **
 ## Permitted input
 
 - `CLAUDE.md`, `methodology/methodology_v1.0.md` (especially §4),
-- `02_facts/*.md`, `03_analysis.md` of the current edition,
+- `02_facts/*.md`, `03_analysis.md` of the current edition (including its INFO_CUTOFF line and the post-state-date records LT-01…),
 - `registry/questions.csv` (ACTIVE questions),
 - `registry/forecasts.csv` — **only rows whose run equals your lens** (for continuity of your own forecasts).
 
@@ -14,7 +14,8 @@ Parameter: `LENS` = A, B or C (from the command argument). Run each lens in a **
 - other lenses' `04_forecasts_*` files, `05_*`, `06_*`, `07_annex_benchmarks.md` of any edition,
 - `registry/benchmarks.csv`, AGG and AGG_RT rows in `forecasts.csv`,
 - domains from CLAUDE.md item 9 and searches for phrases like "odds", "prediction market", "market-implied probability",
-- other lenses' stage 04 entries in `log.md` — append your own entry at the end of the file without displaying its contents.
+- other lenses' stage 04 entries in `log.md` — append your own entry at the end of the file without displaying its contents,
+- facts dated after INFO_CUTOFF (first line of `03_analysis.md`). If a search shows one, do not use it in a forecast or a rationale and do not record it; count it in your log entry as "post-cutoff facts seen: N". This keeps all three lenses on the same information set.
 
 ## Lens instructions
 
@@ -49,9 +50,10 @@ Do not mix lenses. If your lens says nothing about a question, note that and giv
    - a key indicator,
    - analytic confidence,
    - the change relative to your own previous forecast and its reason.
-2. You may fetch missing facts (at most 20 searches). Record them in the file in a section "Additional facts" as full records per CLAUDE.md item 2 (date, actor, action, target, vector, region, status, publisher, URL, source rating, perspective, PIR), numbered `<LENS>-01`, `<LENS>-02`…
-3. Save `04_forecasts_<LENS>.md` (table) every 10 questions.
-4. At the end append rows to `registry/forecasts.csv` with run `<LENS>`.
+2. You may fetch missing facts dated on or before INFO_CUTOFF (at most 20 searches). Spend them first on questions due on or before STATE_DATE + 28 days, then on questions where your lens's confidence is low. Record them in the file in a section "Additional facts" as full records per CLAUDE.md item 2 (date, actor, action, target, vector, region, status, publisher, URL, source rating, perspective, PIR), numbered `<LENS>-01`, `<LENS>-02`… Every record has at least one URL, and every named publisher has its own URL. For a negative check ("no statement found"), give the URL of the place searched (release list, search page) and the date it was checked.
+3. **Consistency of rationale and p.** Before saving each batch, re-read every rationale against its p. If all the arguments you give point one way, p must move that way relative to your base rate or previous forecast. If you keep an outlying value, say why in the rationale. The red team found such a contradiction in the same lens in editions 01 and 02.
+4. Save `04_forecasts_<LENS>.md` (table) every 10 questions.
+5. At the end append rows to `registry/forecasts.csv` with run `<LENS>`. Set `date` to the date of INFO_CUTOFF (YYYY-MM-DD), not the state date and not the run date.
 
 **Log:** the stage entry gives the start and end time (dd.mm.yyyy hh:mm), number of forecasts, number of searches, incidents and gaps. No p ranges and no search topics.
 

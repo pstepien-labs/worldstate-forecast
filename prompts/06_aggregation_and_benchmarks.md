@@ -6,7 +6,7 @@ The order of the steps is mandatory.
 
 1. For every active question compute AGG = mean of A, B, C from this edition. If a lens is missing — stop and report it (do not compute from two).
 2. Apply the adjustments from `05_red_team.md`. Reject adjustments exceeding ±0.15 or lacking evidence and list them with the reason. AGG_RT = AGG + accepted adjustment; without an adjustment AGG_RT = AGG. Clip to the range 0.01–0.99.
-3. Append rows with runs AGG and AGG_RT to `registry/forecasts.csv`.
+3. Append rows with runs AGG and AGG_RT to `registry/forecasts.csv`, with `date` = the date of INFO_CUTOFF (first line of `03_analysis.md`), the same date as the lens rows.
 4. Check the triviality rule (§3.8) and record the result.
 
 ## Step 2: Freezing
