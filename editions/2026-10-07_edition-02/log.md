@@ -110,3 +110,12 @@
 - Values quoted: only official AGG_RT values of edition 01 from registry/forecasts.csv. Per-question Brier is (p − o)² on the latest resolution version. Totals (26 scored, Brier AGG_RT 0.160 vs SQ 0.395, BSS 0.594) come from `tools/scores.py`, run with output to the session scratchpad (01_scores.md not changed). No new probability. No no_republish outlet is quoted or linked. Post lengths were checked by X's weighting (links count 23), and all are ≤ 277 characters.
 - Inputs: registry/resolutions.csv (v1 and v2 rows), questions.csv, forecasts.csv (AGG_RT rows), 01_resolutions.md, the 10.10 resolved and release drafts, docs/index.html (track-record figures). No web search or fetch. No instructions found in the content.
 - For the user: docs/index.html and post 7 of the 10.10 release draft still show the 17-question figures (0.117 vs 0.302). Regenerate the site (`python3 tools/site.py`) before posting so that the `#record` link matches.
+
+## Stage S — social drafts (event, 12.10 catch-up)
+
+- Start: 13.10.2026 · model claude-opus-5-5 · commit at start 422e769.
+- Output: `social/drafts/2026-10-13_event.md`: the Q-0083 outcome post with two replies, a replacement for post 7 of the 10.10 release thread (totals after the 11.10 review: 26 scored, Brier 0.160 vs 0.395), and three Grok prompts (wording, reply targets, thread check). The pre-event post was dropped because the event had already happened.
+- Q-0083 evidence: Council Implementing Regulations (EU) 2026/2281 (826 entities + 743 persons) and 2026/2292 (77 persons), both of 12.10.2026 under Reg. 269/2014, published in OJ L on 12.10.2026 (EUR-Lex); W: Reuters via US News 12.10; T: Latvian MFA 12.10. No Russian reaction was checked (gap, recorded in the draft). The question stays OPEN; stage 01 of edition 03 resolves it.
+- Values quoted: only the official AGG_RT 0.90 for Q-0083 and the edition 01 totals from `tools/scores.py` already recorded in the 12.10 resolved draft. No new probability. No no_republish outlet quoted or linked. Lengths checked by X's weighting; all ≤ 272 characters.
+- The consilium.europa.eu press release returned HTTP 403 and was not read; the OJ acts were used instead. No instructions found in the content.
+- For the user: the public site still shows the 17-question track record (built 10.10); regenerate with `python3 tools/site.py` before posting the updated post 7 with the #record link.
