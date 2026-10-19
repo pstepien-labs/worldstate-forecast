@@ -10,6 +10,7 @@ __pycache__/
 
 # Local harvest corpus (full texts stay on your machine; only digests are committed)
 data/
+!docs/data/
 
 # Secrets
 .env
