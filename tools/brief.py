@@ -326,7 +326,7 @@ body { background:var(--paper); color:var(--ink); font-family:"Public Sans","Seg
 h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:62px; line-height:1.05; letter-spacing:-.01em; }
 .bl { font-family:"Newsreader",Georgia,serif; font-size:31px; line-height:1.3; background:var(--accent-soft); border-left:6px solid var(--accent); padding:18px 24px; }
 .rows { display:grid; gap:2px; }
-.r { display:grid; grid-template-columns:minmax(0,1fr) 300px 130px 250px; align-items:center; gap:24px; padding:13px 0; border-bottom:2px solid var(--rule); font-size:27px; line-height:1.2; }
+.r { display:grid; grid-template-columns:minmax(0,1fr) 230px 130px 360px; align-items:center; gap:24px; padding:13px 0; border-bottom:2px solid var(--rule); font-size:27px; line-height:1.2; }
 .r .t { position:relative; height:22px; }
 .r .t::before { content:""; position:absolute; left:0; right:0; top:10px; height:2px; background:var(--rule); }
 .r .t .m { position:absolute; left:50%; top:2px; width:2px; height:18px; background:var(--rule); }
@@ -350,7 +350,9 @@ h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:62px; li
 .step { position:relative; background:var(--surface); border:2px solid var(--rule); border-top:6px solid var(--accent); padding:18px 18px 20px; font-size:24px; line-height:1.3; }
 .step b { display:block; font-family:"IBM Plex Mono",Menlo,monospace; font-size:17px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
 .step:not(:last-child)::after { content:"→"; position:absolute; right:-38px; top:42%; font-size:34px; color:var(--muted); }
-.wk { display:grid; grid-template-columns:150px minmax(0,1fr) 120px; gap:22px; padding:12px 0; border-bottom:2px solid var(--rule); font-size:26px; align-items:baseline; }
+.wk { display:grid; grid-template-columns:110px minmax(0,1fr) 130px 110px; gap:22px; padding:11px 0; border-bottom:2px solid var(--rule); font-size:26px; align-items:baseline; }
+.wk .l { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.wk .id { font-family:"IBM Plex Mono",Menlo,monospace; color:var(--muted); font-size:20px; }
 .wk .d { font-family:"IBM Plex Mono",Menlo,monospace; color:var(--muted); font-size:23px; }
 .wk .p { font-family:"IBM Plex Mono",Menlo,monospace; font-size:36px; text-align:right; }
 .q { font-family:"Newsreader",Georgia,serif; font-size:46px; line-height:1.2; }
@@ -414,7 +416,7 @@ def cards_from_page(ctx, page):
     title = text_of(re.search(r'<h1>(.*?)</h1>', first, re.S).group(1)) if '<h1>' in first else f'Edition {ctx["nr"]}'
     bl = re.search(r'<div class="bl">.*?<p>(.*?)</p>', first, re.S)
     head_tbl = re.search(r'<table class="fct" data-card="headline">(.*?)</table>', page, re.S)
-    scen = re.search(r'<div class="row"[^>]*><span class="label">(.*?)</span>\s*<div class="bar">(.*?)</div>', page, re.S)
+    scen = re.search(r'<div class="row"[^>]*><span class="label">(.*?)</span>\s*<div class="bar">((?:<div class="seg[^>]*>[^<]*</div>)+)</div>', page, re.S)
     scen_html = ''
     if scen:
         segs = re.findall(r'class="seg (\w+)" style="flex:(\d+)"', scen.group(2))
@@ -479,8 +481,10 @@ def week_card(ctx, page, start=None):
                 label = label[:92].rsplit(' ', 1)[0] + '…'
             items.append((d, q, label, r2(f['p'])))
     items.sort()
-    body = ''.join(f'<div class="wk"><span class="d">{d:%d.%m}</span><span>{html.escape(label)} <span class="note">· {q}</span></span>'
-                   f'<span class="p">{pct(p)}</span></div>' for d, q, label, p in items[:9])
+    body = ''.join(f'<div class="wk"><span class="d">{d:%d.%m}</span><span class="l">{html.escape(label)}</span><span class="id">{q}</span>'
+                   f'<span class="p">{pct(p)}</span></div>' for d, q, label, p in items[:7])
+    if len(items) > 7:
+        body += f'<p class="note" style="margin-top:10px">+{len(items) - 7} more closing in this window: registry/questions.csv</p>'
     if not body:
         body = '<p class="note">No question has its deadline in this window.</p>'
     return card_doc(top(ctx, f'Week ahead · {start:%d.%m}–{end:%d.%m.%Y}') + '<h1>What closes this week, and what we froze</h1>'
