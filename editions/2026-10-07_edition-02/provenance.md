@@ -1,6 +1,8 @@
 # Provenance — edition 02
 
-Framework version(s): 1.4.0 · methodology: v1.0 · models: claude-opus-5-5
+Framework version(s): 1.4.0, 1.6.0 · methodology: v1.0 · models: claude-opus-5-5
+
+**Warning:** more than one framework or methodology version was used within this edition. Learning analyses must treat this edition as mixed.
 
 | Stage | Arg | Start (UTC) | Resumed (UTC) | End (UTC) | Model | Framework | Commit at start | Prompt sha | Dirty files at start |
 |---|---|---|---|---|---|---|---|---|---|
@@ -20,3 +22,4 @@ Framework version(s): 1.4.0 · methodology: v1.0 · models: claude-opus-5-5
 | 06 |  | 2026-10-09T21:29:43Z | — | 2026-10-10T00:28:06Z | claude-opus-5-5 | 1.4.0 | 9ec53b70d287 | fe7a5b9ffc7d78c8 | 0 |
 | 07 |  | 2026-10-10T00:28:34Z | — | 2026-10-10T00:42:57Z | claude-opus-5-5 | 1.4.0 | 75c4c517162f | 4f22beee50f4c9ef | 0 |
 | 08 |  | 2026-10-10T00:43:26Z | — | 2026-10-10T00:52:32Z | claude-opus-5-5 | 1.4.0 | 1bd6f1b2bd4c | 8fe2344f8e45769a | 0 |
+| E |  | 2026-10-19T11:32:15Z | — | 2026-10-19T14:40:38Z | claude-opus-5-5 | 1.6.0 | abdd759d8a31 | 556e25b32df23584 | 1: editions/2026-10-07_edition-02/E_brief_body.html |
