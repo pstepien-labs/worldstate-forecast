@@ -1,4 +1,4 @@
-"""Executive brief and social cards of the current edition (stage E, prompts/E_brief.md).
+"""Executive brief and X cards (stage E, prompts/E_brief.md; voice: social/STRATEGY.md).
 
 The brief is a derived view of the edition report: it adds no facts, assessments or
 forecasts. Stage E writes the body (<edition>/E_brief_body.html) from 07_report.md;
@@ -8,12 +8,18 @@ report, and renders the PDF and the PNG cards with headless Google Chrome.
 Nothing is written to docs/briefs/ unless the check passes.
 
 Usage:
-  python3 tools/brief.py check            check only, writes nothing
-  python3 tools/brief.py build            brief (HTML, PDF) and all cards
-  python3 tools/brief.py cards            cards only (e.g. a fresh week-ahead window)
-  python3 tools/brief.py ticket Q-0083    forecast ticket card for one question
+  python3 tools/brief.py check              check only, writes nothing
+  python3 tools/brief.py build              brief (HTML, PDF), edition, region and score cards
+  python3 tools/brief.py cards              those cards only
+  python3 tools/brief.py card call   --q Q-0066 --title "Will the Fed raise rates on Wednesday?" --when "Decided: Wed 28 Oct"
+  python3 tools/brief.py card result --q Q-0066 --title "Did the Fed raise rates?" --outcome no --note "Rates held."
+  python3 tools/brief.py card week   --item "Q-0020|Bank of Russia cuts rates|Fri" --item "…" --item "…"
+  python3 tools/brief.py card chain  --title "…" --step "Red Sea|…" --step "Oil|…" [--q Q-0007 --label "Brent above $120 by 31 Dec"]
+  python3 tools/brief.py card score  [--best "…"] [--worst "…"]
+  python3 tools/brief.py card edition --title "One-sentence state of the world"
 
-Standard library only. Chrome: BRIEF_CHROME, or the usual install locations.
+Post cards go to social/cards/posts/ and are shown in Finder. Standard library only.
+Chrome: BRIEF_CHROME, or the usual install locations.
 """
 import csv
 import hashlib
@@ -315,198 +321,219 @@ def png(card_html, png_file, width=1600, height=900):
 
 
 # ---------------------------------------------------------------- cards
+# One message per image (social/STRATEGY.md): a short headline, one big number or at most
+# three rows, one context line, and a footer with the lock date and the site. No IDs,
+# no hashes, no file paths. Every probability comes from the registry.
 
 CARD_CSS = '''
 :root { --paper:#f2f5f5; --surface:#ffffff; --ink:#15232b; --muted:#56666f; --rule:#d3dcdf; --accent:#0b6970; --accent-soft:#dcecec;
-  --fav:#0a7fa6; --base:#a3afb4; --crisis:#b4462c; }
+  --yes:#0b6970; --no:#8c3a2b; }
 * { box-sizing:border-box; margin:0; }
 html, body { width:1600px; height:900px; overflow:hidden; }
-body { background:var(--paper); color:var(--ink); font-family:"Public Sans","Segoe UI",system-ui,sans-serif; padding:56px 76px 44px; display:flex; flex-direction:column; gap:26px; }
-.top { display:flex; justify-content:space-between; font-family:"IBM Plex Mono",Menlo,monospace; font-size:19px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border-bottom:3px solid var(--ink); padding-bottom:14px; }
-h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:62px; line-height:1.05; letter-spacing:-.01em; }
-.bl { font-family:"Newsreader",Georgia,serif; font-size:31px; line-height:1.3; background:var(--accent-soft); border-left:6px solid var(--accent); padding:18px 24px; }
-.rows { display:grid; gap:2px; }
-.r { display:grid; grid-template-columns:minmax(0,1fr) 230px 130px 360px; align-items:center; gap:24px; padding:13px 0; border-bottom:2px solid var(--rule); font-size:27px; line-height:1.2; }
-.r .t { position:relative; height:22px; }
-.r .t::before { content:""; position:absolute; left:0; right:0; top:10px; height:2px; background:var(--rule); }
-.r .t .m { position:absolute; left:50%; top:2px; width:2px; height:18px; background:var(--rule); }
-.r .t .n { position:absolute; top:1px; width:20px; height:20px; margin-left:-10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--paper); }
-.r .t .o { position:absolute; top:2px; width:18px; height:18px; margin-left:-9px; border-radius:50%; border:3px solid var(--muted); background:var(--paper); }
-.r .p { font-family:"IBM Plex Mono",Menlo,monospace; font-size:44px; font-weight:500; text-align:right; }
-.r .w { font-size:21px; color:var(--muted); line-height:1.3; }
-.r .w b { color:var(--ink); font-weight:500; }
-.foot { margin-top:auto; display:flex; justify-content:space-between; gap:20px; font-family:"IBM Plex Mono",Menlo,monospace; font-size:17px; color:var(--muted); }
-.bar { display:flex; gap:4px; height:46px; }
-.seg { display:flex; align-items:center; justify-content:center; font-family:"IBM Plex Mono",Menlo,monospace; font-size:22px; font-weight:500; }
-.seg:first-child { border-radius:8px 0 0 8px; } .seg:last-child { border-radius:0 8px 8px 0; }
-.fav { background:var(--fav); color:#fff; } .base { background:var(--base); color:var(--ink); } .crisis { background:var(--crisis); color:#fff; }
-.scen { display:grid; grid-template-columns:230px minmax(0,1fr); gap:20px; align-items:center; font-family:"IBM Plex Mono",Menlo,monospace; font-size:19px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
-.tiles { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:36px; margin-top:20px; }
-.tile { border-top:5px solid var(--ink); padding-top:14px; }
-.tile b { display:block; font-family:"IBM Plex Mono",Menlo,monospace; font-size:96px; font-weight:500; line-height:1; }
-.tile span { display:block; margin-top:14px; font-size:27px; color:var(--muted); line-height:1.3; }
-.note { font-size:24px; color:var(--muted); line-height:1.4; }
-.chain { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:44px; margin-top:16px; }
-.step { position:relative; background:var(--surface); border:2px solid var(--rule); border-top:6px solid var(--accent); padding:18px 18px 20px; font-size:24px; line-height:1.3; }
-.step b { display:block; font-family:"IBM Plex Mono",Menlo,monospace; font-size:17px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
-.step:not(:last-child)::after { content:"→"; position:absolute; right:-38px; top:42%; font-size:34px; color:var(--muted); }
-.wk { display:grid; grid-template-columns:110px minmax(0,1fr) 130px 110px; gap:22px; padding:11px 0; border-bottom:2px solid var(--rule); font-size:26px; align-items:baseline; }
-.wk .l { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.wk .id { font-family:"IBM Plex Mono",Menlo,monospace; color:var(--muted); font-size:20px; }
-.wk .d { font-family:"IBM Plex Mono",Menlo,monospace; color:var(--muted); font-size:23px; }
-.wk .p { font-family:"IBM Plex Mono",Menlo,monospace; font-size:36px; text-align:right; }
-.q { font-family:"Newsreader",Georgia,serif; font-size:46px; line-height:1.2; }
-.big { font-family:"IBM Plex Mono",Menlo,monospace; font-size:150px; font-weight:500; line-height:1; color:var(--accent); }
-.stamp { font-family:"IBM Plex Mono",Menlo,monospace; font-size:22px; letter-spacing:.16em; color:#8c3a2b; border:3px solid #8c3a2b; padding:6px 14px; align-self:flex-start; }
+body { background:var(--paper); color:var(--ink); font-family:"Public Sans","Segoe UI",system-ui,sans-serif; padding:60px 84px 48px; display:flex; flex-direction:column; gap:34px; }
+.top { display:flex; justify-content:space-between; font-family:"IBM Plex Mono",Menlo,monospace; font-size:21px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); border-bottom:3px solid var(--ink); padding-bottom:16px; }
+.top b { color:var(--accent); font-weight:500; }
+h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:76px; line-height:1.06; letter-spacing:-.012em; text-wrap:balance; }
+h1.mid { font-size:64px; }
+.lead { font-family:"Newsreader",Georgia,serif; font-size:36px; line-height:1.3; color:var(--ink); max-width:1300px; }
+.ctx { font-size:30px; color:var(--muted); line-height:1.35; }
+.big { font-family:"IBM Plex Mono",Menlo,monospace; font-size:230px; font-weight:500; line-height:.9; color:var(--accent); letter-spacing:-.04em; }
+.hero { display:flex; align-items:flex-end; gap:56px; }
+.hero .side { display:flex; flex-direction:column; gap:16px; padding-bottom:18px; }
+.hero .side .k { font-family:"IBM Plex Mono",Menlo,monospace; font-size:24px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+.scale { position:relative; width:640px; height:30px; }
+.scale::before { content:""; position:absolute; left:0; right:0; top:13px; height:4px; background:var(--rule); border-radius:2px; }
+.scale .fill { position:absolute; left:0; top:13px; height:4px; background:var(--accent); border-radius:2px; }
+.scale .dot { position:absolute; top:2px; width:26px; height:26px; margin-left:-13px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 5px var(--paper); }
+.scale .tk { position:absolute; top:38px; font-family:"IBM Plex Mono",Menlo,monospace; font-size:18px; color:var(--muted); transform:translateX(-50%); }
+.rows { display:grid; }
+.r { display:grid; grid-template-columns:minmax(0,1fr) 260px 210px; align-items:baseline; gap:30px; padding:20px 0; border-bottom:2px solid var(--rule); }
+.r:first-child { border-top:2px solid var(--rule); }
+.r .l { font-size:38px; line-height:1.2; }
+.r .d { font-size:26px; color:var(--muted); }
+.r .p { font-family:"IBM Plex Mono",Menlo,monospace; font-size:68px; font-weight:500; text-align:right; color:var(--accent); line-height:1; }
+.stamp { display:inline-block; font-family:"IBM Plex Mono",Menlo,monospace; font-size:44px; letter-spacing:.08em; font-weight:500; padding:14px 26px; border:5px solid currentColor; }
+.stamp.yes { color:var(--yes); } .stamp.no { color:var(--no); }
+.verdict { font-family:"Newsreader",Georgia,serif; font-size:56px; font-weight:600; }
+.chain { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:70px; }
+.step { position:relative; background:var(--surface); border:2px solid var(--rule); border-top:8px solid var(--accent); padding:26px 28px 30px; font-size:32px; line-height:1.3; }
+.step b { display:block; font-family:"IBM Plex Mono",Menlo,monospace; font-size:21px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; font-weight:500; }
+.step:not(:last-child)::after { content:"→"; position:absolute; right:-58px; top:40%; font-size:46px; color:var(--muted); }
+.pair { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+.pair div { border-top:6px solid var(--ink); padding-top:18px; }
+.pair div.us { border-color:var(--accent); }
+.pair b { display:block; font-family:"IBM Plex Mono",Menlo,monospace; font-size:150px; font-weight:500; line-height:1; }
+.pair div.us b { color:var(--accent); }
+.pair span { display:block; margin-top:16px; font-size:32px; color:var(--muted); }
+.foot { margin-top:auto; display:flex; justify-content:space-between; gap:20px; font-family:"IBM Plex Mono",Menlo,monospace; font-size:20px; color:var(--muted); }
+.foot b { color:var(--ink); font-weight:500; }
 '''
 FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600'
          '&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">')
+MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 
-def card_doc(inner):
-    return f'<!doctype html><html lang="en"><head><meta charset="utf-8">{FONTS}<style>{CARD_CSS}</style></head><body>{inner}</body></html>'
+def human_date(s, year=True):
+    """'31.12.2026' or '2026-12-31' -> '31 Dec 2026' (or '31 Dec')."""
+    for fmt in ('%d.%m.%Y', '%Y-%m-%d'):
+        try:
+            d = datetime.strptime(s.strip(), fmt)
+            return f'{d.day} {MONTHS[d.month - 1]}' + (f' {d.year}' if year else '')
+        except (ValueError, AttributeError):
+            continue
+    return s
 
 
-def first_sentences(t, limit=230):
-    parts = re.split(r'(?<=[.!?])\s+', t)
-    out = ''
-    for s in parts:
-        if out and len(out) + len(s) + 1 > limit:
-            break
-        out = (out + ' ' + s).strip()
+def card_doc(kind, inner, foot_left, ctx):
+    site = ctx['site'].replace('https://', '').rstrip('/')
+    return (f'<!doctype html><html lang="en"><head><meta charset="utf-8">{FONTS}<style>{CARD_CSS}</style></head><body>'
+            f'<div class="top"><span>World State Forecast</span><b>{html.escape(kind)}</b></div>{inner}'
+            f'<div class="foot"><span>{html.escape(foot_left)}</span><b>{html.escape(site)}</b></div></body></html>')
+
+
+def official(ctx, q):
+    """Latest official value of a question, its edition and the lock date of that edition."""
+    eds = sorted(e for (e, qq) in ctx['agg'] if qq == q)
+    if not eds:
+        sys.exit(f'{q}: no official forecast in registry/forecasts.csv')
+    ed = eds[-1]
+    ed_row = next((r for r in read_csv('editions.csv') if r['edition'] == ed), {})
+    locked = git_date(ed_row.get('freeze_commit', ''))
+    return r2(ctx['agg'][(ed, q)]['p']), ed, human_date(locked) if locked else 'date not recorded'
+
+
+def first_sentence(t, limit=90):
+    parts = re.split(r'(?<=[.!?])\s+', t.strip())
+    out = parts[0] if parts else t
+    if len(out) > limit:
+        cut = re.split(r'(?<=[:;])\s+', out)[0]
+        out = cut.rstrip(':;') + '.' if len(cut) <= limit else out[:limit].rsplit(' ', 1)[0] + '…'
     return out
 
 
-def fc_rows(fragment, n=4):
-    rows = []
+def rows_html(rows):
+    return '<div class="rows">' + ''.join(
+        f'<div class="r"><span class="l">{html.escape(lbl)}</span><span class="d">{html.escape(when)}</span>'
+        f'<span class="p">{pct(p)}</span></div>' for lbl, when, p in rows) + '</div>'
+
+
+def brief_rows(fragment, n):
+    out = []
     for q, p, inner in re.findall(r'<tr data-q="(Q-\d{4})" data-p="([\d.]+)"[^>]*>(.*?)</tr>', fragment, flags=re.S):
         cells = re.findall(r'<td[^>]*>(.*?)</td>', inner, flags=re.S)
-        prev = re.search(r'class="prev" style="left:([\d.]+)%"', inner)
-        rows.append({'q': q, 'p': Decimal(p), 'label': text_of(cells[0]), 'deadline': text_of(cells[1]),
-                     'verbal': text_of(cells[4]), 'change': text_of(cells[5]), 'prev': float(prev.group(1)) if prev else None})
-    return rows[:n]
+        out.append((text_of(cells[0]), 'by ' + human_date(text_of(cells[1]), year=False), Decimal(p)))
+    return out[:n]
 
 
-def rows_html(rows):
-    out = []
-    for r in rows:
-        prev = f'<span class="o" style="left:{r["prev"]:.1f}%"></span>' if r['prev'] is not None else ''
-        out.append(f'<div class="r"><div>{html.escape(r["label"])}</div>'
-                   f'<div class="t"><span class="m"></span>{prev}<span class="n" style="left:{float(r["p"]) * 100:.1f}%"></span></div>'
-                   f'<div class="p">{pct(r["p"])}</div>'
-                   f'<div class="w"><b>{html.escape(r["verbal"])}</b> · by {html.escape(r["deadline"])}<br>{html.escape(r["q"])} · {html.escape(r["change"])}</div></div>')
-    return '<div class="rows">' + ''.join(out) + '</div>'
-
-
-def foot(ctx, left=None):
-    site = ctx['site'].replace('https://', '')
-    left = left or f'Official forecasts (AGG_RT) · frozen {ctx["freeze_date"]} · commit {ctx["freeze"]}'
-    return f'<div class="foot"><span>{html.escape(left)}</span><span>{html.escape(site)}</span></div>'
-
-
-def top(ctx, right):
-    return (f'<div class="top"><span>Worldstate Forecast · Edition {ctx["nr"]} · state {ctx["state"]}</span>'
-            f'<span>{html.escape(right)}</span></div>')
-
-
-def cards_from_page(ctx, page):
+def cards_from_page(ctx, page, headline=None):
+    """Cards rendered with the brief: the edition card, one per region, and the scorecard."""
     cards = {}
+    locked = f'Forecasts locked {human_date(ctx["freeze_date"])}'
     sections = re.findall(r'<section class="chapter[^"]*"[^>]*>(.*?)</section>', page, flags=re.S)
-    first = sections[0] if sections else ''
-    title = text_of(re.search(r'<h1>(.*?)</h1>', first, re.S).group(1)) if '<h1>' in first else f'Edition {ctx["nr"]}'
-    bl = re.search(r'<div class="bl">.*?<p>(.*?)</p>', first, re.S)
     head_tbl = re.search(r'<table class="fct" data-card="headline">(.*?)</table>', page, re.S)
-    scen = re.search(r'<div class="row"[^>]*><span class="label">(.*?)</span>\s*<div class="bar">((?:<div class="seg[^>]*>[^<]*</div>)+)</div>', page, re.S)
-    scen_html = ''
-    if scen:
-        segs = re.findall(r'class="seg (\w+)" style="flex:(\d+)"', scen.group(2))
-        scen_html = (f'<div class="scen"><span>Scenarios · {html.escape(text_of(scen.group(1)))}</span><div class="bar">'
-                     + ''.join(f'<div class="seg {c}" style="flex:{v}">{v}%</div>' for c, v in segs) + '</div></div>')
-    cards['edition'] = card_doc(top(ctx, 'Executive brief') + f'<h1>{html.escape(title)}</h1>'
-                                + (f'<div class="bl">{html.escape(first_sentences(text_of(bl.group(1)), 260))}</div>' if bl else '')
-                                + (rows_html(fc_rows(head_tbl.group(1), 3)) if head_tbl else '') + scen_html + foot(ctx))
+    title = headline or f'The world on {human_date(ctx["state"])}'
+    cards['edition'] = card_doc('Big picture', f'<h1>{html.escape(title)}</h1>'
+                                + (rows_html(brief_rows(head_tbl.group(1), 3)) if head_tbl else ''), locked, ctx)
     for sec in sections:
         k = re.search(r'Region (\d+) of (\d+)', sec)
         if not k:
             continue
         name = text_of(re.search(r'<h2>(.*?)</h2>', sec, re.S).group(1))
-        sbl = re.search(r'<div class="bl">.*?<p>(.*?)</p>', sec, re.S)
+        bl = re.search(r'<div class="bl">.*?<p>(.*?)</p>', sec, re.S)
         cards[f'region-{int(k.group(1)):02d}'] = card_doc(
-            top(ctx, f'Region {k.group(1)} of {k.group(2)}') + f'<h1>{html.escape(name)}</h1>'
-            + (f'<div class="bl">{html.escape(first_sentences(text_of(sbl.group(1))))}</div>' if sbl else '')
-            + rows_html(fc_rows(sec, 3)) + foot(ctx))
-    chain = re.search(r'<ol class="chain" data-card="crosslink">(.*?)</ol>(.*?)</p>', page, re.S)
-    if chain:
-        steps = []
-        for li in re.findall(r'<li>(.*?)</li>', chain.group(1), re.S):
-            li = re.sub(r'<span class="ref">.*?</span>', '', li, flags=re.S)
-            m = re.match(r'\s*<span>\s*<b>(.*?)</b>(.*)', li, re.S)
-            head_, rest = (text_of(m.group(1)).rstrip('.'), text_of(m.group(2))) if m else ('', text_of(li))
-            steps.append(f'<div class="step"><b>{html.escape(head_)}</b>{html.escape(rest)}</div>')
-        qs = re.findall(r'<b class="pv" data-q="(Q-\d{4})" data-p="([\d.]+)">', chain.group(2))
-        tail = ' · '.join(f'{q}: {pct(p)}' for q, p in qs)
-        cards['crosslink'] = card_doc(top(ctx, 'How the regions connect') + '<h1>One chain, several regions</h1>'
-                                      + '<p class="note">Assessment: each step is a dated fact in the report; the links are the report\'s reading.</p>'
-                                      + '<div class="chain">' + ''.join(steps) + '</div>'
-                                      + (f'<p class="note" style="margin-top:12px">Questions that register it: {html.escape(tail)}</p>' if tail else '')
-                                      + foot(ctx))
-    tiles = re.search(r'<div class="tiles" data-check="track">(.*?)</div>\s*<p', page, re.S)
-    if tiles:
-        ts = re.findall(r'<div class="tile"><b>(.*?)</b><span>(.*?)</span></div>', tiles.group(1), re.S)
-        cards['scorecard'] = card_doc(top(ctx, 'Track record') + '<h1>How the forecasts have scored</h1>'
-                                      + '<div class="tiles">' + ''.join(f'<div class="tile"><b>{html.escape(text_of(a))}</b><span>{html.escape(text_of(b))}</span></div>' for a, b in ts) + '</div>'
-                                      + '<p class="note" style="margin-top:24px">Brier score: lower is better. Below 30 resolved questions the numbers are indicative only. Misses are published with the same prominence as hits.</p>'
-                                      + foot(ctx, f'Scores from {ctx["dir"]}/01_scores.md · tools/scores.py'))
-    cards['week-ahead'] = week_card(ctx, page)
+            name, f'<h1 class="mid">{html.escape(first_sentence(text_of(bl.group(1)))) if bl else html.escape(name)}</h1>'
+            + rows_html(brief_rows(sec, 2)), locked, ctx)
+    cards['scorecard'] = score_card(ctx)
     return cards
 
 
-def short_labels(page):
-    return {q: text_of(lbl) for q, lbl in re.findall(r'<tr data-q="(Q-\d{4})"[^>]*><td>(.*?)</td>', page, re.S)}
+def scores_summary(ctx):
+    m = re.search(r'^\| AGG_RT \| (\d+) \| ([\d.]+) \| ([\d.]+) \|', ctx['scores'], flags=re.M)
+    if not m:
+        return None
+    return int(m.group(1)), m.group(2), m.group(3)
 
 
-def week_card(ctx, page, start=None):
-    start = start or date.today()
-    end = start + timedelta(days=7)
-    labels = short_labels(page)
-    items = []
-    for q, row in ctx['questions'].items():
-        if row.get('status') != 'ACTIVE' or not row.get('deadline'):
-            continue
-        d = datetime.strptime(row['deadline'], '%Y-%m-%d').date()
-        f = ctx['agg'].get((ctx['nr'], q))
-        if f and start <= d <= end:
-            label = labels.get(q) or row['question']
-            if len(label) > 95:
-                label = label[:92].rsplit(' ', 1)[0] + '…'
-            items.append((d, q, label, r2(f['p'])))
-    items.sort()
-    body = ''.join(f'<div class="wk"><span class="d">{d:%d.%m}</span><span class="l">{html.escape(label)}</span><span class="id">{q}</span>'
-                   f'<span class="p">{pct(p)}</span></div>' for d, q, label, p in items[:7])
-    if len(items) > 7:
-        body += f'<p class="note" style="margin-top:10px">+{len(items) - 7} more closing in this window: registry/questions.csv</p>'
-    if not body:
-        body = '<p class="note">No question has its deadline in this window.</p>'
-    return card_doc(top(ctx, f'Week ahead · {start:%d.%m}–{end:%d.%m.%Y}') + '<h1>What closes this week, and what we froze</h1>'
-                    + f'<div>{body}</div>' + foot(ctx))
+def score_card(ctx, best=None, worst=None):
+    sm = scores_summary(ctx)
+    if not sm:
+        inner = '<h1>Our track record starts with the next edition</h1>'
+    else:
+        n, ours, sq = sm
+        lines = ''.join(f'<p class="ctx">{html.escape(t)}</p>' for t in (best, worst) if t)
+        inner = (f'<h1 class="mid">{n} forecasts settled so far</h1>'
+                 f'<div class="pair"><div class="us"><b>{ours}</b><span>our accuracy score</span></div>'
+                 f'<div><b>{sq}</b><span>a “nothing changes” guess</span></div></div>'
+                 f'<p class="ctx">Lower is better.{" Early numbers: fewer than 30 settled." if n < 30 else ""}</p>{lines}')
+    return card_doc('Scorecard', inner, f'Scores from edition {ctx["nr"]}', ctx)
 
 
-def ticket_card(ctx, q):
-    row = ctx['questions'].get(q)
-    eds = sorted(e for (e, qq) in ctx['agg'] if qq == q)
-    if not row or not eds:
-        sys.exit(f'{q}: no such question with an official forecast')
-    ed = eds[-1]
-    p = r2(ctx['agg'][(ed, q)]['p'])
-    ed_row = next((r for r in read_csv('editions.csv') if r['edition'] == ed), {})
-    freeze = ed_row.get('freeze_commit', '')
-    inner = (top(ctx, f'{q} · {row.get("vector", "")}') + '<span class="stamp">FROZEN</span>'
-             + f'<p class="q">{html.escape(row["question"])}</p>'
-             + f'<div style="display:flex;align-items:flex-end;gap:40px"><span class="big">{pct(p)}</span>'
-             + f'<span class="note">official forecast, edition {ed}<br>resolves {ddmmyyyy(row["deadline"])}<br>'
-             + f'source: {html.escape(row.get("resolution_source", "")[:70])}</span></div>'
-             + foot(ctx, f'Frozen {git_date(freeze) or "date not recorded"} · commit {freeze} · registry/forecasts.csv'))
-    return card_doc(inner)
+def no_percent(*texts):
+    for t in texts:
+        if t and '%' in t:
+            sys.exit('A probability on a card always comes from the registry. Write other percentages as "percent" '
+                     f'(found "%" in: {t!r}).')
+
+
+def call_card(ctx, q, title, when):
+    no_percent(title, when)
+    p, ed, locked = official(ctx, q)
+    x = float(p) * 100
+    inner = (f'<h1>{html.escape(title)}</h1>'
+             f'<div class="hero"><span class="big">{pct(p)}</span><div class="side"><span class="k">Our forecast</span>'
+             f'<div class="scale"><span class="fill" style="width:{x:.1f}%"></span><span class="dot" style="left:{x:.1f}%"></span>'
+             f'<span class="tk" style="left:0">0</span><span class="tk" style="left:50%">50</span><span class="tk" style="left:100%">100</span></div>'
+             + (f'<span class="ctx" style="margin-top:26px">{html.escape(when)}</span>' if when else '') + '</div></div>')
+    return card_doc('The call', inner, f'Forecast locked {locked}', ctx)
+
+
+def result_card(ctx, q, title, outcome, note):
+    no_percent(title)
+    p, ed, locked = official(ctx, q)
+    happened = outcome == 'yes'
+    if p == Decimal('0.50'):
+        verdict = 'A coin flip.'
+    else:
+        verdict = 'Called it.' if (p > Decimal('0.5')) == happened else 'Missed.'
+    inner = (f'<h1 class="mid">{html.escape(title)}</h1>'
+             f'<div class="hero"><span class="big">{pct(p)}</span><div class="side"><span class="k">What we had</span>'
+             f'<span class="stamp {"yes" if happened else "no"}">{"IT HAPPENED" if happened else "IT DID NOT HAPPEN"}</span></div></div>'
+             f'<p class="verdict">{verdict}</p>' + (f'<p class="ctx">{html.escape(note)}</p>' if note else ''))
+    return card_doc('Result', inner, f'Forecast locked {locked} · formal score with the next edition', ctx)
+
+
+def week_card(ctx, title, items):
+    if not 1 <= len(items) <= 3:
+        sys.exit('week: give 1 to 3 --item "Q-XXXX|label|day"')
+    rows, locks = [], set()
+    for it in items:
+        parts = [x.strip() for x in it.split('|')]
+        if len(parts) != 3:
+            sys.exit(f'week: item must be "Q-XXXX|label|day", got {it!r}')
+        q, label, day = parts
+        no_percent(label, day)
+        p, ed, locked = official(ctx, q.upper())
+        rows.append((label, day, p))
+        locks.add(locked)
+    return card_doc('This week', f'<h1>{html.escape(title)}</h1>' + rows_html(rows),
+                    'Forecasts locked ' + ', '.join(sorted(locks)), ctx)
+
+
+def chain_card(ctx, title, steps, q=None, label=None):
+    if not 2 <= len(steps) <= 3:
+        sys.exit('chain: give 2 or 3 --step "Heading|text"')
+    no_percent(title, label, *steps)
+    boxes = []
+    for st in steps:
+        head_, _, rest = st.partition('|')
+        boxes.append(f'<div class="step"><b>{html.escape(head_.strip())}</b>{html.escape(rest.strip())}</div>')
+    tail, foot_left = '', 'Facts from our latest report'
+    if q:
+        p, ed, locked = official(ctx, q.upper())
+        tail = rows_html([(label or '', 'our forecast', p)])
+        foot_left = f'Forecast locked {locked}'
+    return card_doc('Why it connects', f'<h1 class="mid">{html.escape(title)}</h1><div class="chain">{"".join(boxes)}</div>{tail}',
+                    foot_left, ctx)
 
 
 # ---------------------------------------------------------------- commands
@@ -532,24 +559,66 @@ def checked_page(ctx):
     return page
 
 
-def render_cards(ctx, page, cards_dir):
+def render_cards(ctx, page, cards_dir, headline=None):
     written = []
-    for name, doc in cards_from_page(ctx, page).items():
+    for name, doc in cards_from_page(ctx, page, headline).items():
         target = os.path.join(cards_dir, f'{name}.png')
         png(doc, target)
         written.append(os.path.relpath(target, ROOT))
     return written
 
 
+def post_card(ctx, a):
+    slug = re.sub(r'[^a-z0-9]+', '-', (a.title or a.type).lower()).strip('-')[:40]
+    target = path('social', 'cards', 'posts', f'{date.today():%Y-%m-%d}-{a.type}-{slug}.png')
+    os.makedirs(os.path.dirname(target), exist_ok=True)
+    if a.type == 'call':
+        doc = call_card(ctx, a.q.upper(), a.title, a.when)
+    elif a.type == 'result':
+        doc = result_card(ctx, a.q.upper(), a.title, a.outcome, a.note)
+    elif a.type == 'week':
+        doc = week_card(ctx, a.title or 'Three things to watch this week', a.item)
+    elif a.type == 'chain':
+        doc = chain_card(ctx, a.title, a.step, a.q, a.label)
+    elif a.type == 'score':
+        doc = score_card(ctx, a.best, a.worst)
+    else:  # edition: the brief's edition card with a news headline
+        page = checked_page(ctx)
+        doc = cards_from_page(ctx, page, a.title)['edition']
+    png(doc, target)
+    print('wrote', os.path.relpath(target, ROOT))
+    if sys.platform == 'darwin' and not a.no_reveal:
+        subprocess.run(['open', '-R', target], check=False)
+
+
 def main(argv):
-    cmd = argv[1] if len(argv) > 1 else 'check'
+    import argparse
+    ap = argparse.ArgumentParser(prog='tools/brief.py', description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = ap.add_subparsers(dest='cmd')
+    sub.add_parser('check')
+    sub.add_parser('build')
+    sub.add_parser('cards')
+    c = sub.add_parser('card')
+    c.add_argument('type', choices=['call', 'result', 'week', 'chain', 'score', 'edition'])
+    c.add_argument('--q', help='question ID (the number is taken from the registry)')
+    c.add_argument('--title', help='the headline, in plain words')
+    c.add_argument('--when', help='call: when we will know, e.g. "Decided: Wed 28 Oct"')
+    c.add_argument('--outcome', choices=['yes', 'no'], help='result: did it happen')
+    c.add_argument('--note', help='result: one line on what happened')
+    c.add_argument('--item', action='append', default=[], help='week: "Q-XXXX|label|day" (1-3 times)')
+    c.add_argument('--step', action='append', default=[], help='chain: "Heading|text" (2-3 times)')
+    c.add_argument('--label', help='chain: label of the question that would move')
+    c.add_argument('--best', help='score: best call, one line')
+    c.add_argument('--worst', help='score: worst miss, one line')
+    c.add_argument('--no-reveal', action='store_true', help='do not show the file in Finder')
+    a = ap.parse_args(argv[1:] or ['check'])
     ctx = context()
-    if cmd == 'check':
+    if a.cmd == 'check':
         checked_page(ctx)
-    elif cmd in ('build', 'cards'):
+    elif a.cmd in ('build', 'cards'):
         page = checked_page(ctx)
         briefs, cards_dir = out_dirs(ctx)
-        if cmd == 'build':
+        if a.cmd == 'build':
             html_file = os.path.join(briefs, f'edition-{ctx["nr"]}.html')
             with open(html_file, 'w', encoding='utf-8') as f:
                 f.write(page)
@@ -557,14 +626,12 @@ def main(argv):
             print('wrote', os.path.relpath(html_file, ROOT), 'and', f'docs/briefs/edition-{ctx["nr"]}.pdf')
         for w in render_cards(ctx, page, cards_dir):
             print('wrote', w)
-    elif cmd == 'ticket' and len(argv) > 2:
-        q = argv[2].upper()
-        _, cards_dir = out_dirs(ctx)
-        target = os.path.join(cards_dir, f'ticket-{q}.png')
-        png(ticket_card(ctx, q), target)
-        print('wrote', os.path.relpath(target, ROOT))
-    else:
-        sys.exit(__doc__)
+    elif a.cmd == 'card':
+        need = {'call': ['q', 'title'], 'result': ['q', 'title', 'outcome'], 'chain': ['title'], 'week': []}.get(a.type, [])
+        missing = [n for n in need if not getattr(a, n)]
+        if missing:
+            ap.error(f'card {a.type} needs ' + ', '.join('--' + m for m in missing))
+        post_card(ctx, a)
 
 
 if __name__ == '__main__':

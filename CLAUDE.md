@@ -28,12 +28,12 @@ editions/CURRENT.md              parameters of the current edition
 editions/YYYY-MM-DD_edition-NN/  all outputs of a given edition (incl. 02_harvest/, provenance.md)
 reviews/                         quarterly reviews; reviews/learning/ learning-loop outputs
 site/, docs/                     landing page template and config; generated public site + open data + executive briefs (docs/briefs/, GitHub Pages)
-social/                          X post drafts, cards (social/cards/) and the log of signals against frozen forecasts (posted by hand)
+social/                          STRATEGY.md (voice and formats on X), post drafts, cards (social/cards/) and the log of signals against frozen forecasts (posted by hand)
 ```
 
 ## 3. Absolute rules
 
-1. **Fact ≠ assessment ≠ forecast.** A fact has a date (dd.mm.yyyy), a publisher and a URL. An assessment is marked with the word ASSESSMENT. Numerical probabilities appear only in stages 04–06, in section H of the report and in the registry; the public site (`docs/`) and social drafts (`social/`) may only quote published official values with question ID and edition, and the scenario shares of section H.1 of a published report with the edition, never new ones.
+1. **Fact ≠ assessment ≠ forecast.** A fact has a date (dd.mm.yyyy), a publisher and a URL. An assessment is marked with the word ASSESSMENT. Numerical probabilities appear only in stages 04–06, in section H of the report and in the registry; the public site (`docs/`) and social drafts (`social/`) may only quote published official values (in social drafts the question ID and edition are recorded in the draft, while the post itself uses plain words — `social/STRATEGY.md`) and the scenario shares of section H.1 of a published report, never new ones.
 2. **A fact record** contains: date, actor, action, target, vector, region, status (DECL / DONE / DISP), publisher, URL, source rating (A–F and 1–6), perspective (W / A / T), link to a PIR. Every named publisher has its URL; a negative check gives the URL of the place searched and the date of the check.
 3. **Three-perspective rule.** Describe every key event (linked to a PIR) with a Western source (W), a source from the actor's side (A) and a third-party source (T). If one is missing — record the gap.
 4. **A government statement is a fact about a statement**, not about an event. This applies equally to Washington, Moscow, Beijing, Tehran, Brussels and Warsaw.

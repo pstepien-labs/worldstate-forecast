@@ -1,6 +1,6 @@
 # Stage E — Executive brief and social cards
 
-Runs after stage 08 of an edition (from `/edition`, or `/gE`). Output: `<DIRECTORY>/E_brief_body.html` (written by you), and from `tools/brief.py`: `docs/briefs/edition-NN.html`, `docs/briefs/edition-NN.pdf` and the cards in `social/cards/edition-NN/`. Commit: `edition-NN brief`.
+Runs after stage 08 of an edition (from `/edition`, or `/gE`). Output: `<DIRECTORY>/E_brief_body.html` (written by you), and from `tools/brief.py`: `docs/briefs/edition-NN.html`, `docs/briefs/edition-NN.pdf` and the cards in `social/cards/edition-NN/` (edition, one per region, scorecard; designed by `social/STRATEGY.md`: one message per image, no internal vocabulary). Commit: `edition-NN brief`.
 
 Provenance: `python3 tools/pipeline.py stage-start E --model "<your model id>"` … `stage-end E`.
 
@@ -16,7 +16,7 @@ An easier-to-read view of the edition report for readers outside the project, ab
 
 1. Copy the structure of the previous edition's `E_brief_body.html` into `<DIRECTORY>/E_brief_body.html` and rewrite every text from the current report. Keep the placeholders (`{{EDITION}}`, `{{PREV}}`, `{{STATE_DATE}}`, `{{FREEZE_DATE}}`, `{{FREEZE_COMMIT}}`, `{{NEXT_EDITION}}` and those in the provenance note); the tool fills them.
 2. Run `python3 tools/brief.py check`. Fix what it reports by changing **the brief**, never the report or the registry: a number it cannot find in the report is reworded to the report's figure or removed.
-3. Run `python3 tools/brief.py build` (writes the HTML, the PDF and the cards). Open the PDF's page count in the output if you can; each chapter should fit on one A4 page — shorten facts or forecast rows where one spills.
+3. Run `python3 tools/brief.py build` (writes the HTML, the PDF and the cards). Each region card shows the first clause of the region's bottom line and its first two forecast rows, so write the bottom line's first clause as a news headline and put the two most newsworthy forecasts first. Open the PDF's page count in the output if you can; each chapter should fit on one A4 page — shorten facts or forecast rows where one spills.
 4. `stage-end E`, then `git add -A` and commit `edition-NN brief`.
 
 ## Structure (one `<section class="chapter">` per page)
