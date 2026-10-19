@@ -142,6 +142,9 @@ def build():
     report_dir = ed_row.get('directory') or cur.get('DIRECTORY', '')
     latest_report_url = f'{repo}/blob/main/{report_dir}/07_report.md'
     sc = scores(forecasts, questions, outcomes)
+    # executive brief of the latest edition (stage E, tools/brief.py), linked when published
+    brief_rel = f'briefs/edition-{latest_ed}.pdf'
+    has_brief = os.path.exists(os.path.join(ROOT, 'docs', brief_rel))
 
     # featured ticket
     fq = cfg.get('featured_question')
@@ -210,7 +213,9 @@ def build():
                  f'<p>Below 30 resolved questions the numbers are indicative only.</p></div></div>')
 
     # data & access
-    data_rows = [
+    data_rows = ([('Executive brief', f'Edition {latest_ed} in about 11 pages, by region: key facts, key forecasts, scenarios, dates to watch', 'PDF, HTML',
+                   f'<span class="pill free">free · CC BY 4.0</span> <a href="{e(brief_rel)}">PDF</a> · <a href="{e(brief_rel[:-4])}.html">web</a>')]
+                 if has_brief else []) + [
         ('Reports', 'Every edition: facts with sources, analysis, scenarios, forecasts, quality control', 'Markdown',
          f'<span class="pill free">free · CC BY 4.0</span> <a href="{e(latest_report_url)}">latest</a> · <a href="{e(repo)}/tree/main/editions">all</a>'),
         ('Forecast registry', 'Questions with resolution criteria, every forecast by lens and official, resolutions, edition versions', 'CSV, JSON',
@@ -328,7 +333,7 @@ Current: framework {framework}, methodology {cur.get('METHODOLOGY', 'v1.0')}, la
 
 ## Reports
 - [Latest report]({latest_report_url})
-- [All editions]({repo}/tree/main/editions)
+{f"- [Latest executive brief, PDF]({site}/{brief_rel}): the report in about 11 pages by region; derived from the report, adds nothing to it" + chr(10) if has_brief else ""}- [All editions]({repo}/tree/main/editions)
 
 ## Method
 - [Methodology]({repo}/blob/main/methodology/methodology_v1.0.md)

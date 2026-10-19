@@ -34,12 +34,13 @@ Never read `04_*`, `05_*`, `06_*`, `07_annex_benchmarks.md` or `registry/benchma
 
 ## 3. When stage 08 is done
 
-1. Rebuild the public page and open data: `python3 tools/site.py`, then commit `edition-NN site`.
-2. Launch one stage-runner for stage `S` with argument `release` (prompt file `prompts/S_social.md`) to draft the release thread; if stage 01 resolved questions, launch another for `resolved`.
+1. Launch one stage-runner for stage `E` (prompt file `prompts/E_brief.md`): the executive brief (`docs/briefs/edition-NN.html` and `.pdf`) and the social cards (`social/cards/edition-NN/`). It commits `edition-NN brief`. If `brief_done` in `status --json` is still false after a second attempt, stop and show the user the sub-agent's blocker (the brief checker must pass; nothing is published without it).
+2. Rebuild the public page and open data (it links the brief): `python3 tools/site.py`, then commit `edition-NN site`.
+3. Launch one stage-runner for stage `S` with argument `release` (prompt file `prompts/S_social.md`) to draft the release thread; if stage 01 resolved questions, launch another for `resolved`.
 
 
 Tell the user, in at most 10 lines:
-- where the report is: `<DIRECTORY>/07_report.md` (and `07_report.pdf` if it was produced);
+- where the report is: `<DIRECTORY>/07_report.md` (and `07_report.pdf` if it was produced), and the brief: `docs/briefs/edition-NN.pdf`;
 - the provenance line of the report (framework, methodology, models, harvest coverage);
 - the number of questions resolved and the headline score from `01_scores.md` (if any were resolved);
 - open items: resolutions awaiting approval, quality-control discrepancies from `08_quality_control.md` (count and file);

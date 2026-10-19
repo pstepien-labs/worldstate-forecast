@@ -43,12 +43,15 @@ STAGES = {
     'M': ('prompts/M_mini_retro.md', 'Mini-retrospective'),
     'Q': ('prompts/Q_quarterly_review.md', 'Quarterly review'),
     'S': ('prompts/S_social.md', 'Social drafts (X)'),
+    'E': ('prompts/E_brief.md', 'Executive brief and social cards'),
     'L1': ('prompts/learning/L1_hindsight.md', 'Learning: hindsight audit of reports'),
     'L2': ('prompts/learning/L2_forecast_performance.md', 'Learning: forecast performance'),
     'L3': ('prompts/learning/L3_reasoning_trace.md', 'Learning: reasoning trace of hits and misses'),
     'L4': ('prompts/learning/L4_sources_coverage.md', 'Learning: sources and coverage'),
     'L5': ('prompts/learning/L5_framework_proposals.md', 'Learning: framework proposals'),
 }
+S_MODES = ('watch', 'release', 'resolved', 'weekahead', 'event-pre', 'event-post', 'region', 'crosslink',
+           'reply', 'bench', 'explainer')
 EDITIONS_HEADER = ['edition', 'state_date', 'directory', 'framework_version', 'methodology_version', 'models',
                    'freeze_commit', 'report_commit', 'tag', 'harvest_manifest_sha', 'notes']
 
@@ -126,6 +129,8 @@ def record(event, stage, arg, model, note):
     stage = stage.upper() if stage.upper() in STAGES else stage
     if stage not in STAGES:
         sys.exit(f'unknown stage {stage}; known: {", ".join(STAGES)}')
+    if stage == 'S' and (arg or 'watch').split()[0] not in S_MODES:
+        sys.exit(f'unknown social mode {arg!r}; known: {", ".join(S_MODES)} (a target may follow, e.g. "event-pre Q-0083")')
     cur = current()
     prompt = STAGES[stage][0]
     rec = {
@@ -309,6 +314,10 @@ def compute_state():
             st['next'] = {'stage': stage, 'arg': arg, 'cmd': cmd, 'prompt': STAGES[stage][0], 'what': STAGE_TEXT.get(stage, '')}
     if st['next'] is None:
         st['edition_closed'] = True
+        # after stage 08: executive brief and social cards (stage E), before the release drafts
+        nr_ = cur.get('NR', '00')
+        st['brief_done'] = all(os.path.exists(os.path.join(ROOT, 'docs', 'briefs', f'edition-{nr_}.{x}')) for x in ('html', 'pdf')) \
+            and os.path.isdir(os.path.join(ROOT, 'social', 'cards', f'edition-{nr_}'))
         prev = datetime.strptime(cur['STATE_DATE'], '%Y-%m-%d').date()
         earliest = prev + timedelta(days=MIN_GAP_DAYS)
         nr = f"{int(cur.get('NR', '0')) + 1:02d}"
@@ -346,6 +355,8 @@ def cmd_status(a):
     if st['edition_closed']:
         e, nr = st['earliest_state_date'], st['next_edition']
         print(f"Edition {st['edition']} is finished (report: {st['directory']}/07_report.md).")
+        if not st['brief_done']:
+            print(f"Executive brief and cards of edition {st['edition']} are missing: run /gE (prompts/E_brief.md).")
         if st['can_start_next_edition']:
             print(f"You can produce edition {nr} now. Type: /edition   (it uses today, {fmt_date(st['today'])}, as the state date)")
         else:

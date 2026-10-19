@@ -127,6 +127,7 @@ Practical notes:
 - **Permissions:** Claude Code may ask you to approve some actions the first time. Choose "Yes, and don't ask again" for web search, web fetch and the project's own commands. File edits inside the project are pre-approved in `.claude/settings.json`.
 - **Interrupted?** Closed window, lost connection, budget limit, Esc: just type `/edition` again. It continues from the first unfinished stage, and an interrupted stage continues from its gaps.
 - **Result:** `editions/<date>_edition-NN/07_report.md`. The line under its title shows which framework version, methodology, models and harvest coverage produced it. The full stage-by-stage record is in `provenance.md` in the same folder.
+- **Executive brief:** after stage 08, `/edition` also writes the brief (`docs/briefs/edition-NN.pdf` and `.html`) and the X cards (`social/cards/edition-NN/`). If it was skipped: `/gE`. It needs Google Chrome installed (used headless to render the PDF and the images).
 - **Publishing (optional):** `git push` sends your commits to GitHub.
 
 ### Why so many stages
