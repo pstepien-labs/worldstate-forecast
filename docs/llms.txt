@@ -4,7 +4,7 @@
 
 An open research experiment: an AI-assisted process forecasts great-power moves every two weeks, freezes every forecast in an append-only registry before the outcome, and scores itself with Brier scores against a status-quo baseline and forecasting crowds. Facts are sourced from three perspectives (Western, the actor's side, a third party). Not investment or political advice.
 
-Current: framework 1.5.0, methodology v1.0, latest edition 02 (state date 2026-10-07), 88 open questions, 26 resolved.
+Current: framework 1.6.0, methodology v1.0, latest edition 02 (state date 2026-10-07), 88 open questions, 26 resolved.
 
 ## Data (CC BY 4.0)
 - [Latest official forecasts, JSON](https://pstepien-labs.github.io/worldstate-forecast/data/forecasts.json): id, question, resolution criterion and source, deadline, p (0.01-0.99), lens range, outcome if resolved
@@ -12,6 +12,7 @@ Current: framework 1.5.0, methodology v1.0, latest edition 02 (state date 2026-1
 
 ## Reports
 - [Latest report](https://github.com/pstepien-labs/worldstate-forecast/blob/main/editions/2026-10-07_edition-02/07_report.md)
+- [Latest executive brief, PDF](https://pstepien-labs.github.io/worldstate-forecast/briefs/edition-02.pdf): the report in about 11 pages by region; derived from the report, adds nothing to it
 - [All editions](https://github.com/pstepien-labs/worldstate-forecast/tree/main/editions)
 
 ## Method
