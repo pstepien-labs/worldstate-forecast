@@ -25,14 +25,14 @@ This file governs every public post, reply and image. It overrides older drafts,
 | Format | When | Post shape | Image |
 |---|---|---|---|
 | **Call** | 1–3 days before a decision, vote or deadline people are watching | Question · "Our forecast: NN%." · one-line reason · when we'll know | `call` card: the question, the big number, "Decided: <day>" |
-| **Result** | As soon as the outcome is official | **Quote-post your own Call** (the timestamp is the proof). What happened · what we had · "Called it." or "Missed." | `result` card: question, our number, HAPPENED / DID NOT HAPPEN |
+| **Result** | At the first session after the outcome is official (posted live, not scheduled) | **Quote-post your own Call** (the timestamp is the proof). What happened · what we had · "Called it." or "Missed." | `result` card: question, our number, HAPPENED / DID NOT HAPPEN |
 | **Shift** | A verified new fact cuts against one of our numbers | The fact (dated) · our current number · which way it pushes · when we update | none, or the `call` card of that question |
-| **Week ahead** | Monday | "Three things to watch this week:" · three lines "<event>, <day>: NN%" | `week` card, the same three lines |
-| **Connection** | Thursday, at most weekly | A "why" headline · 2–3 dated steps · the number that would move | `chain` card, the same steps |
-| **Big picture** | Friday after an edition | One-sentence state of the world · three numbers to 31 Dec · up to 3 replies, one storyline each with its region card · last reply: the brief | `edition` card, then the region cards |
-| **Scorecard** | Tuesday after a release | Settled so far · our accuracy score vs a "nothing changes" guess (lower is better) · best call · worst miss | `score` card |
+| **Week ahead** | Monday (scheduled on Sunday) | "Three things to watch this week:" · three lines "<event>, <day>: NN%" | `week` card, the same three lines |
+| **Connection** | Thursday (scheduled on Sunday), at most weekly, only in a week without an edition | A "why" headline · 2–3 dated steps · the number that would move | `chain` card, the same steps |
+| **Big picture** | Tuesday evening of an edition week, right after publishing (posted live) | One-sentence state of the world · three numbers to 31 Dec · up to 3 replies, one storyline each with its region card · last reply: the brief | `edition` card, then the region cards |
+| **Scorecard** | Tuesday of the week after a release (scheduled on Sunday) | Settled so far · our accuracy score vs a "nothing changes" guess (lower is better) · best call · worst miss | `score` card |
 
-**Replies** (10 minutes a day under bigger accounts) follow the same rule: one fact with its date, or our number in plain words, in one or two lines. No link unless asked, never our site unprompted, never "great point", never an argument.
+**Replies** under bigger accounts are not part of the weekly plan (they need someone online). When the user replies on their own, the same rule holds: one fact with its date, or our number in plain words, in one or two lines. No link unless asked, never our site unprompted, never "great point", never an argument.
 
 ## What we post about
 
@@ -80,15 +80,14 @@ Rendered by `tools/brief.py card …` (or by stage E for the edition and region 
 
 ## Rhythm
 
-One slot, weekdays at 20:30 Warsaw (US midday): one own post and 10 minutes of replies. Nothing at weekends. Results go out the first evening after the outcome.
+The user works on the project in two sessions a week. Nothing is done on the other days, so own posts are prepared in a session and **scheduled** on X (the Schedule button in the x.com composer); Results and the Big picture thread are posted live. At most 4 own posts a week (Monday to Sunday), Results included; a Big picture thread counts as one. No reply rounds.
 
-| | Normal week | Edition week |
+| Session | Normal week | Edition week (every second Sunday) |
 |---|---|---|
-| Mon | Week ahead | Week ahead |
-| Tue | Call (the week's biggest event) | Scorecard of the last edition, or a Call |
-| Wed | Shift or Result | Start the edition; a Result only if one is due |
-| Thu | Connection or Call | Verify and publish; no post unless a Result is due |
-| Fri | Result, or the weekly review | Big picture |
+| **Sunday from 10:00 Warsaw, 45–60 min** | Results since Tuesday · schedule Week ahead (Mon) and one Call or Connection (Thu), or the Scorecard (Tue) in the week after a release · weekly review every second Sunday | Results · schedule Week ahead and one Call · then, as the last step, start the edition (it runs unattended into Monday; the Mac stays on power and awake) |
+| **Tuesday at 20:30 Warsaw, 15–20 min** | Results since Sunday · one Call for an event before Sunday that was not scheduled yet · nothing else; an empty evening is fine | Finish, verify and publish the edition · post the Big picture thread and pin it |
+
+Scheduled posts go out at 18:30 Warsaw (US midday) unless a Call must land earlier before its event. Edition Sundays fall on the first Sunday on or after the date `/next` gives (14 days after the previous state date). If a Sunday is missed, the Tuesday evening takes its most urgent step only (starting the edition outranks any post), and the rest is dropped.
 
 ## Rules that never bend
 
@@ -101,4 +100,4 @@ One slot, weekdays at 20:30 Warsaw (US midday): one own post and 10 minutes of r
 
 ## Measuring
 
-Every Friday without a release, compare views, replies, profile visits and follows by format. After four weeks, keep the two best formats at full weight and halve the weakest.
+Every second Sunday (the one without an edition), compare views, replies, profile visits and follows by format. After four weeks, keep the two best formats at full weight and halve the weakest.
