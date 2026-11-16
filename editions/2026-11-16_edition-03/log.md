@@ -1,0 +1,8 @@
+# Log — edition 03 (state 16.11.2026)
+
+| Date and time | Stage | Entry |
+|---|---|---|
+| 16.11.2026 23:01 | 00 | Start of stage 00 (state date 16.11.2026, edition 03; AUTO mode, autopilot). |
+| 16.11.2026 23:01 | 00 | Previous edition closed: `pipeline.py status` shows all stages of edition 02 done; tag `edition-02` → e7d4c9e ("edition-02 stage-08"). CURRENT.md updated (NR 03, STATE_DATE 2026-11-16, PERIOD_FROM 2026-10-07, PREVIOUS edition 02, PREV_TAG edition-02, REGISTRY_BASELINE edition-02 — methodology_changes.md names no other baseline for edition 03, METHODOLOGY v1.0). Provenance: stage-start 00 recorded after the directory existed. |
+| 16.11.2026 23:02 | H digest | Start of stage H, mode digest (run within stage 00, item 5). |
+| 16.11.2026 23:05 | H digest | Stage H, mode digest, start 16.11.2026 23:02, end 16.11.2026 23:05. 188,978 items in window 07.10–16.11 (83,759 matched), 53 languages, 125 countries, Western share 26%. Harvester ran every day of the window (no late start). Flagged: Poland fuels (W>80%). Silent cells: PL, SA, IN, TW, JP official; TR western; YE state/loyal; GL independent. Resolution-relevant gaps: AGSI and EIA keys missing, no TTF/e-petrol datasets, PortWatch only 13 daily rows in the window (ArcGIS quota 429), ECB rate series not refetched after 05.10, ISW 403, PressTV TLS error, Saba 403; 30 GDELT queries throttled, 15 of them with no items. Details: 02_harvest/harvest_notes.md. Digest item text not opened in this stage (coverage, indicators, health, manifest, raw CBR snapshot and item counts only); no instructions found in the content viewed. |
