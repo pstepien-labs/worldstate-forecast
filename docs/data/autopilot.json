@@ -1,0 +1,14 @@
+{
+ "edition": "03",
+ "state_date": "2026-11-16",
+ "edition_closed": false,
+ "next_stage": "/g01",
+ "earliest_next_edition": null,
+ "last_result": "2026-11-16 23:29 AUTOPILOT: exit 1 (no result line; see /Users/digitalbear/Projects/09_worldstate_forecast_01/worldstate-forecast/data/autopilot/runs/20261116-230126-edition.log)",
+ "consecutive_failures": 0,
+ "open_blockers": 0,
+ "resolutions_disputed": 0,
+ "harvester": "Harvester: RUNNING \u00b7 state sleeping \u00b7 heartbeat 2026-11-16T22:29:50Z \u00b7 sources ok 159/202 \u00b7 failing 3 \u00b7 items 205771",
+ "framework_version": "1.8.0",
+ "updated": "2026-11-16T22:29:51Z"
+}
