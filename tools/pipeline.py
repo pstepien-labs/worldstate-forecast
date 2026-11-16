@@ -44,6 +44,7 @@ STAGES = {
     'Q': ('prompts/Q_quarterly_review.md', 'Quarterly review'),
     'S': ('prompts/S_social.md', 'Social drafts (X)'),
     'E': ('prompts/E_brief.md', 'Executive brief and social cards'),
+    'V': ('prompts/V_autoverify.md', 'Independent re-check of resolutions awaiting verification (autopilot)'),
     'L1': ('prompts/learning/L1_hindsight.md', 'Learning: hindsight audit of reports'),
     'L2': ('prompts/learning/L2_forecast_performance.md', 'Learning: forecast performance'),
     'L3': ('prompts/learning/L3_reasoning_trace.md', 'Learning: reasoning trace of hits and misses'),
@@ -316,6 +317,9 @@ def compute_state():
         st['edition_closed'] = True
         # after stage 08: executive brief and social cards (stage E), before the release drafts
         nr_ = cur.get('NR', '00')
+        # autopilot (framework 1.8): the public page rebuilt for this edition, and resolutions still awaiting a check
+        st['site_done'] = bool(sh('git', 'log', '-1', '--format=%h', '--extended-regexp',
+                                  f'--grep=^edition-{nr_} site'))
         st['brief_done'] = all(os.path.exists(os.path.join(ROOT, 'docs', 'briefs', f'edition-{nr_}.{x}')) for x in ('html', 'pdf')) \
             and os.path.isdir(os.path.join(ROOT, 'social', 'cards', f'edition-{nr_}'))
         prev = datetime.strptime(cur['STATE_DATE'], '%Y-%m-%d').date()
@@ -328,9 +332,37 @@ def compute_state():
         st['days_to_wait'] = max(0, (earliest - today).days)
         st['next'] = {'stage': '00', 'arg': f"{st['suggested_state_date']} {nr}", 'cmd': f"/g00 {st['suggested_state_date']} {nr}",
                       'prompt': STAGES['00'][0], 'what': STAGE_TEXT['00']}
-    elif st['next']['stage'] == 'H' and cur.get('STATE_DATE', '9999') > today.isoformat():
+    pend = pending_verification()
+    st['pending_verification'] = pend['unchecked']
+    st['verification_disputed'] = pend['disputed']
+    st['unpushed_commits'] = int(sh('git', 'rev-list', '--count', '@{u}..HEAD') or 0)
+    if st['next'] is not None and not st['edition_closed'] and st['next']['stage'] == 'H' \
+            and cur.get('STATE_DATE', '9999') > today.isoformat():
         st['waiting_reason'] = f"the state date {cur['STATE_DATE']} is in the future; keep harvesting until then"
     return st
+
+
+def pending_verification():
+    """Resolutions flagged VERIFY whose latest row is neither approved (Y) nor auto-verified (A).
+    'unchecked': no stage V row yet (stage V may check them); 'disputed': stage V disagreed (user decides)."""
+    path = os.path.join(ROOT, 'registry', 'resolutions.csv')
+    if not os.path.exists(path):
+        return {'unchecked': [], 'disputed': []}
+    with open(path, encoding='utf-8-sig', newline='') as f:
+        rows = list(csv.DictReader(f, delimiter=';'))
+    latest, checked = {}, set()
+    for r in rows:
+        q = r['question_id']
+        if 'autoverify' in (r.get('notes') or '').lower():
+            checked.add(q)
+        if q not in latest or int(r['version']) > int(latest[q]['version']):
+            latest[q] = r
+    out = {'unchecked': [], 'disputed': []}
+    for q, r in sorted(latest.items()):
+        if r.get('verify', '').strip().upper() == 'Y' and r.get('user_approved', '').strip().upper() not in ('Y', 'A') \
+                and r['outcome'].strip().upper() != 'VOID':
+            out['disputed' if q in checked else 'unchecked'].append(q)
+    return out
 
 
 def fmt_date(iso_date):

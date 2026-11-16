@@ -86,7 +86,7 @@ def load():
     outcomes = {}
     for q, r in final.items():
         o = r['outcome'].strip().upper()
-        if o in ('0', '1') and not (r.get('verify', '').upper() == 'Y' and r.get('user_approved', '').upper() != 'Y'):
+        if o in ('0', '1') and not (r.get('verify', '').upper() == 'Y' and r.get('user_approved', '').strip().upper() not in ('Y', 'A')):
             outcomes[q] = int(o)
     return questions, forecasts, editions, official, spread, outcomes, latest_ed
 

@@ -149,17 +149,22 @@ def main():
     bench = read('benchmarks.csv')
 
     # Scored resolutions: outcome 0/1; those awaiting verification kept separately.
-    outcome, pending, void = {}, [], []
+    outcome, pending, void, auto_verified = {}, [], [], []
     for qid, r in res.items():
         o = r['outcome'].strip().upper()
         if o == 'VOID':
             void.append(qid)
             continue
-        if r.get('verify', '').strip().upper() == 'Y' and r.get('user_approved', '').strip().upper() != 'Y':
+        # user_approved: Y = the user approved; A = confirmed by an independent automatic re-check (stage V,
+        # framework 1.8); anything else = still awaiting verification and left out of the scores.
+        appr = r.get('user_approved', '').strip().upper()
+        if r.get('verify', '').strip().upper() == 'Y' and appr not in ('Y', 'A'):
             pending.append(qid)
             continue
         if o in ('0', '1'):
             outcome[qid] = int(o)
+            if appr == 'A':
+                auto_verified.append(qid)
 
     def in_scope(p):
         if a.to_edition and int(p['edition']) > int(a.to_edition):
@@ -196,7 +201,7 @@ def main():
     out = []
     pr = out.append
     pr('# Accuracy scores\n')
-    pr(f'Resolved and scored questions: **{len(outcome)}** · awaiting user verification: {len(pending)} · void: {len(void)}\n')
+    pr(f'Resolved and scored questions: **{len(outcome)}** (of which auto-verified: {len(auto_verified)}) · awaiting verification: {len(pending)} · void: {len(void)}\n')
     if len(outcome) < 30:
         pr('> Fewer than 30 resolved questions — indicative scores, no conclusions about the method.\n')
 
@@ -292,6 +297,9 @@ def main():
     if pending:
         pr('## Awaiting user verification\n')
         pr(', '.join(sorted(pending)) + '\n')
+    if auto_verified:
+        pr('## Auto-verified (independent automatic re-check, not reviewed by the user)\n')
+        pr(', '.join(sorted(auto_verified)) + '\n')
 
     if known:
         pr('## Left out: forecast on or after the resolution date\n')

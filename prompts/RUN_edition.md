@@ -4,6 +4,24 @@ You are the **orchestrator**. You produce a complete edition — from the start 
 
 Optional argument `STATE_DATE` (YYYY-MM-DD). The run is resumable: if it stops for any reason, the user types `/edition` again and you continue from the first unfinished stage.
 
+## 0. AUTO mode (framework 1.8, autopilot)
+
+If the arguments contain `--auto`, nobody is watching: the run was started by `scripts/autopilot.sh`, which resumes it every hour until it is done and then pushes it to GitHub. In AUTO mode the rules below change, and everything else stays as written.
+- **Never ask the user anything**, and never wait for an answer. Item 1.4 is answered "Continue, I'll review later". Skip item 1.5.
+- **Item 1.3:** if `can_start_next_edition` is false, print `AUTOPILOT: not-due <earliest_state_date>` and stop.
+- **Before item 1.3:** if `edition_closed` is true but `brief_done` or `site_done` is false, do section 3 (items 1–2 only) for the closed edition first.
+- **Item 2.4 (a stage asks the user):**
+  - If the stage prompt or the question names a default or conservative option, choose it. Record the question and your choice in the edition's `log.md` and under `## Decisions taken without the user` in `AUTOPILOT_INBOX.md` (repository root; create it if it is missing). Then rerun the stage with the answer.
+  - If there is no safe default, treat it as `STATUS: blocked`.
+- **Item 2.5:** after stage 01, if `pending_verification` in `status --json` is not empty, run one stage-runner for stage `V` (prompt file `prompts/V_autoverify.md`). It re-checks the flagged resolutions independently. Nothing is asked of the user.
+- **Section 3 item 3 (X drafts):** skip it. X is not automated yet.
+- **Blocked:** stop as in item 2.3. Add the blocker, with date and stage, under `## Blockers` in `AUTOPILOT_INBOX.md` and commit `autopilot: blocker`.
+- **Never run `git push`.** The autopilot script publishes.
+- **Final message:** the last line is exactly one of these:
+  - `AUTOPILOT: complete edition-NN`
+  - `AUTOPILOT: blocked <stage> <one-line reason>`
+  - `AUTOPILOT: not-due <date>`
+
 ## 1. Before the first stage
 
 1. `python3 tools/pipeline.py status --json`. Keep only what you need from it; do not read edition content files (blindness — you are the link between stages).

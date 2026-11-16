@@ -8,6 +8,7 @@ You type only a handful of commands. Everything else runs by itself, and anythin
 | `/edition` | every two weeks, on or after the date `/next` shows | The whole edition runs, about 15 stages and 10–20 hours unattended, and ends with the report |
 | `/next` | whenever you are unsure | Tells you what is running, what is finished, and what to type next |
 | `/learn` | optional, between editions | Reviews past editions and proposes improvements for you to approve |
+| `scripts/autopilot.sh install` | once (framework 1.8) | **Autopilot:** from now on editions run, are verified and are published without you (section 5) |
 
 ---
 
@@ -166,7 +167,39 @@ Run it when questions have resolved: after edition 03 at the earliest, ideally w
 
 ---
 
-## 5. Troubleshooting
+## 5. Autopilot (framework 1.8): the cycle without you
+
+```bash
+scripts/autopilot.sh install     # once: an hourly macOS launchd job, starting with one run now
+```
+
+From then on, every hour the job does at most one of these, then publishes:
+- **An edition is open, or its brief or site is missing:** it continues `/edition --auto` in headless Claude Code (`claude -p`, permission mode `auto`). An interrupted stage, a usage limit or a sleeping Mac only delays it.
+- **The next edition is due:** it starts on the Sunday from 20:00, or at once if it is 7 or more days late. Editions stay two weeks apart.
+- **Sunday of an off-week:** if 3 or more sources fail, it runs a harvest source repair.
+- **Publishing:** after every run it pushes `main` and the tags to GitHub, and GitHub Pages updates the site. Claude never pushes; only this script does.
+- **Flagged resolutions:** stage V re-checks them blind. If it agrees, the resolution is scored and labelled "auto-verified". If it disagrees, it goes to `AUTOPILOT_INBOX.md` for you.
+- **Failed runs:** it waits 1, 2, 4… up to 24 hours before trying again. You get a macOS notification, and the cloud watchdog reads `docs/data/autopilot.json` and alerts your phone.
+
+What you may do (all optional):
+
+| Command | Effect |
+|---|---|
+| `scripts/autopilot.sh status` | next action, last runs, inbox |
+| `scripts/autopilot.sh tail` | live log |
+| `scripts/autopilot.sh pause` / `resume` | stop and restart acting (the harvester keeps running) |
+| `scripts/autopilot.sh uninstall` | remove the job |
+| read `AUTOPILOT_INBOX.md` | blockers, disputed resolutions, defaults it took |
+
+Settings (environment variables in the launchd plist, or when running `tick` by hand):
+- `AUTOPILOT_START_DOW` (7 = Sunday) and `AUTOPILOT_START_HOUR` (20);
+- `AUTOPILOT_MODEL` (empty = the Claude Code default);
+- `AUTOPILOT_PERMISSION_MODE` (`auto`);
+- `AUTOPILOT_MAX_RUN_HOURS` (12).
+
+Logs and runs: `data/autopilot/` (not in git). The Mac must stay on, as it already must for harvesting.
+
+## 6. Troubleshooting
 
 | Symptom | Fix |
 |---|---|

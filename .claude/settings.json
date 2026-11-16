@@ -26,13 +26,17 @@
       "Bash(sort:*)",
       "Bash(date:*)",
       "Bash(git ls-files:*)",
-      "Bash(git fetch:*)"
+      "Bash(git fetch:*)",
+      "Bash(python3 tools/site.py:*)",
+      "Bash(python3 tools/brief.py:*)"
     ],
     "deny": [
       "Read(./.env)",
       "Bash(git push --force:*)",
       "Bash(git reset --hard:*)",
-      "Bash(git rebase:*)"
+      "Bash(git rebase:*)",
+      "Bash(git push:*)",
+      "Bash(git push)"
     ],
     "defaultMode": "acceptEdits"
   }
