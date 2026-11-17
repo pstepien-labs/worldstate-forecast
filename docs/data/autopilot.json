@@ -2,13 +2,13 @@
  "edition": "03",
  "state_date": "2026-11-16",
  "edition_closed": false,
- "next_stage": "/g03",
+ "next_stage": "/g04 C",
  "earliest_next_edition": null,
- "last_result": "2026-11-17 19:28 AUTOPILOT: exit 1 (no result line; see /Users/digitalbear/Projects/09_worldstate_forecast_01/worldstate-forecast/data/autopilot/runs/20261117-192848-edition.log)",
- "consecutive_failures": 3,
+ "last_result": "2026-11-18 00:09 AUTOPILOT: exit 1 (no result line; see /Users/digitalbear/Projects/09_worldstate_forecast_01/worldstate-forecast/data/autopilot/runs/20261117-232856-edition.log)",
+ "consecutive_failures": 0,
  "open_blockers": 0,
  "resolutions_disputed": 1,
- "harvester": "Harvester: RUNNING \u00b7 state sleeping \u00b7 heartbeat 2026-11-17T18:28:47Z \u00b7 sources ok 160/202 \u00b7 failing 3 \u00b7 items 209669",
+ "harvester": "Harvester: RUNNING \u00b7 state sleeping \u00b7 heartbeat 2026-11-17T23:09:08Z \u00b7 sources ok 161/202 \u00b7 failing 3 \u00b7 items 210772",
  "framework_version": "1.8.0",
- "updated": "2026-11-17T18:28:50Z"
+ "updated": "2026-11-17T23:09:08Z"
 }
