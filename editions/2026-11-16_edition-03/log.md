@@ -28,3 +28,13 @@
 - Incident: while checking the CSV line format with `tail` on `registry/forecasts.csv`, the last two registry lines were displayed; they were edition-02 AGG and AGG_RT rows for one question (with the edition-02 lens values in the rationale text). Seen after all forecasts of this lens had been written to `04_forecasts_A.md`; no forecast was changed afterwards. Future runs should inspect the CSV format with a run-filtered read only.
 - Gaps: no Rada calendar read for the 2027 budget vote (MP statement only); Serbian presidency status differs between G4-039 and RFE/RL (A-02); no conference or Senate-passage record found for the FY2027 NDAA; no economists' consensus for the Polish November CPI found.
 - No instructions found in web content; no forbidden domain opened.
+
+## Stage 04B — lens B "Outside view" (AUTO mode, model claude-opus-5-5)
+
+- Start 17.11.2026 23:55, end 18.11.2026 00:07 (CET).
+- Forecasts: 83 of 83 ACTIVE questions; 83 rows appended to `registry/forecasts.csv` (run B, date 2026-11-17 = INFO_CUTOFF date). Output: `04_forecasts_B.md`.
+- Searches: 12 of 20 (6 web searches, 6 page/API fetches); additional facts B-01 – B-08, all dated on or before INFO_CUTOFF.
+- Post-cutoff facts seen: 0.
+- Continuity: own edition-02 lens B forecasts taken from `editions/2026-10-07_edition-02/04_forecasts_B.md`; existing rows of `registry/forecasts.csv` were not displayed (only the header line was read), following the orchestrator's process caution.
+- Incidents: (1) one fetched news page carried a third-party bullet with a futures-implied figure; it was not used or recorded (CLAUDE.md 3.1, 3.8). (2) One search result listing showed a third-party repository page framed as a forecast on a central-bank decision; it was not opened or used. No forbidden domain visited; no instructions found in content.
+- Gaps: no Polish economists' forecast for the November CPI flash found; no FRED Brent spot value after 11.11; Bank of Russia signals after 23.10 not read; Serbian, Israeli and Spanish base rates rest on historical patterns without a fresh search.
