@@ -291,6 +291,16 @@ def build():
     head, body = tpl[:split], tpl[split:]
     desc = e(cfg.get('tagline', ''))
     page = page_head(cfg, desc) + f'{head}</head>\n<body>\n{body}</body>\n</html>\n'
+    # framework 1.9 (WP-17): refuse to publish active content other than the template's own script
+    import re as _re
+    import sys as _sys
+    _sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import safehtml
+    with open(os.path.join(ROOT, 'site', 'template.html'), encoding='utf-8') as f:
+        own = _re.findall(r'<script>.*?</script>', f.read(), _re.S)
+    unsafe = safehtml.problems(page, allow_scripts=own) + safehtml.problems(legal, allow_scripts=own)
+    if unsafe:
+        raise SystemExit('site.py: refusing to publish, unsafe markup: ' + '; '.join(sorted(set(unsafe))))
     docs = os.path.join(ROOT, 'docs')
     os.makedirs(os.path.join(docs, 'data'), exist_ok=True)
     with open(os.path.join(docs, 'index.html'), 'w', encoding='utf-8') as f:

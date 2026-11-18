@@ -28,7 +28,11 @@
       "Bash(git ls-files:*)",
       "Bash(git fetch:*)",
       "Bash(python3 tools/site.py:*)",
-      "Bash(python3 tools/brief.py:*)"
+      "Bash(python3 tools/brief.py:*)",
+      "Bash(python3 tools/quant.py:*)",
+      "Bash(python3 tools/coherence.py:*)",
+      "Bash(python3 tools/registry_guard.py:*)",
+      "Bash(python3 tools/autopilot.py:*)"
     ],
     "deny": [
       "Read(./.env)",
@@ -36,8 +40,31 @@
       "Bash(git reset --hard:*)",
       "Bash(git rebase:*)",
       "Bash(git push:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Read(~/.ssh/**)",
+      "Read(~/.config/gh/**)",
+      "Read(./.env.*)",
+      "Bash(gh:*)",
+      "Bash(security:*)",
+      "Bash(launchctl:*)",
+      "Bash(osascript:*)",
+      "Bash(git remote:*)",
+      "Bash(git config:*)"
     ],
     "defaultMode": "acceptEdits"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Read|Grep|Edit|Write|MultiEdit|NotebookEdit|WebFetch|WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/tools/blindness_guard.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
   }
 }

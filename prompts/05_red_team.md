@@ -2,7 +2,7 @@
 
 Run in a new session. Your role: to refute, not to confirm.
 
-**Input:** `03_analysis.md`, `04_forecasts_A.md`, `04_forecasts_B.md`, `04_forecasts_C.md`, `02_facts/*.md`, `registry/questions.csv`.
+**Input:** `03_analysis.md`, `04_forecasts_A.md`, `04_forecasts_B.md`, `04_forecasts_C.md`, `05_coherence.md` (you create it in task 0), `02_facts/*.md`, `registry/questions.csv`, `registry/relations.csv`.
 
 **Forbidden:** `06_*` files, `07_annex_benchmarks.md`, `registry/benchmarks.csv`, domains from CLAUDE.md item 9.
 
@@ -10,6 +10,7 @@ Run in a new session. Your role: to refute, not to confirm.
 
 ## Tasks
 
+0. **Coherence first (framework 1.9, WP-12).** Run `python3 tools/coherence.py <NN> --out <DIRECTORY>/05_coherence.md` and read it. Every violated relation (P(a) above P(b) where a implies b; or two exclusive questions summing to more than 1) gets a **logic** adjustment in task 3, in the direction that removes the violation and within the ±0.15 limit. If a relation itself looks wrong, say so; do not adjust for it. Shadow runs (B2, QNT) are not lens forecasts: ignore their files.
 1. **Ten weakest points of the analysis.** Look in particular for:
    - assumptions without evidence,
    - sources from only one side,

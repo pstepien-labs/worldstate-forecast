@@ -1,0 +1,8 @@
+﻿"question_id";"indicator";"history_indicator";"condition";"threshold";"window_start";"window_end";"notes";"created"
+"Q-0006";"Brent_spot";"";"last_above";"100";"2026-10-06";"2026-10-06";"proxy: FRED Brent spot (DCOILBRENTEU) for the ICE front-month settlement";"2026-11-18"
+"Q-0007";"Brent_spot";"";"any_above";"120";"2026-09-24";"2026-12-31";"proxy: FRED Brent spot for the ICE front-month settlement";"2026-11-18"
+"Q-0008";"Brent_spot";"";"any_below";"80";"2026-09-24";"2026-12-31";"proxy: FRED Brent spot for the ICE front-month settlement";"2026-11-18"
+"Q-0074";"Brent_spot";"";"last_above";"100";"2026-10-20";"2026-10-20";"proxy: FRED Brent spot for the ICE front-month settlement";"2026-11-18"
+"Q-0115";"Brent_spot";"";"any_below";"70";"2026-10-08";"2027-06-30";"proxy: FRED Brent spot for the ICE front-month settlement";"2026-11-18"
+"Q-0052";"EUR/PLN";"EUR/PLN_ecb";"last_above";"4.35";"2026-10-07";"2026-10-07";"NBP fixing; daily changes from the ECB reference rate";"2026-11-18"
+"Q-0086";"EUR/PLN";"EUR/PLN_ecb";"last_above";"4.40";"2026-10-21";"2026-10-21";"NBP fixing; daily changes from the ECB reference rate";"2026-11-18"

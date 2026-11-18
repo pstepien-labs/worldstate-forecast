@@ -97,7 +97,11 @@ def make_item(task, url, title, summary='', published=None, **extra):
 
 def expand(template, task, entry, ctx):
     """Placeholders: {start} {end} {start_compact} {end_compact} {date_ddmmyyyy} {days} {key:ENV}."""
-    start = window_start_for(entry)
+    try:
+        bf = int(params(task).get('backfill_days', '0')) or None
+    except ValueError:
+        bf = None
+    start = window_start_for(entry, bf)
     end = now().date()
     if (end - start).days > 92 and '{start}' in template and 'nbp.pl' in template:
         start = end - timedelta(days=92)  # NBP API range limit
@@ -381,6 +385,8 @@ def obs(task, indicator, day, value, unit='', **extra):
     except (TypeError, ValueError):
         return None
     if math.isnan(v):
+        return None
+    if not re.match(r'^\d{4}-\d{2}-\d{2}$', str(day)[:10]):  # e.g. an HTML page parsed as CSV (FRED, 21.10.2026)
         return None
     o = {'source_id': task['id'], 'indicator': indicator, 'date': str(day)[:10], 'value': v,
          'unit': unit or task.get('unit', ''), 'fetched': iso(now())}

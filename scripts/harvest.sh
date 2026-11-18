@@ -25,6 +25,10 @@ running_pid() {
 
 case "${1:-status}" in
   start)
+    if launchctl print "gui/$(id -u)/com.worldstate-forecast.harvester" >/dev/null 2>&1; then
+      launchctl kickstart "gui/$(id -u)/com.worldstate-forecast.harvester" 2>/dev/null
+      echo "The harvester runs under launchd (com.worldstate-forecast.harvester, kept alive). Status: scripts/harvest.sh status"; exit 0
+    fi
     if pid=$(running_pid); then
       echo "Harvester already running (pid $pid)."; "$PY" -m tools.harvester status | tail -3; exit 0
     fi
@@ -43,7 +47,13 @@ case "${1:-status}" in
       echo "Harvester did not start; last lines of $DATA/logs/console.log:"; tail -20 "$DATA/logs/console.log"; exit 1
     fi
     ;;
-  stop)   "$PY" -m tools.harvester stop --wait ;;
+  stop)
+    if launchctl print "gui/$(id -u)/com.worldstate-forecast.harvester" >/dev/null 2>&1; then
+      echo "The harvester is kept alive by launchd; stopping it removes the job until 'scripts/autopilot.sh install'."
+      launchctl bootout "gui/$(id -u)/com.worldstate-forecast.harvester"
+    else
+      "$PY" -m tools.harvester stop --wait
+    fi ;;
   status) "$PY" -m tools.harvester status ;;
   tail)   tail -n 30 -f "$DATA/logs/console.log" ;;
   check)  "$PY" -m tools.harvester check "${@:2}" ;;

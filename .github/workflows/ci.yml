@@ -1,0 +1,32 @@
+# Framework 1.9 (WP-05): tests and the append-only guard of the public track record on every push.
+name: ci
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: unit tests
+        run: python -m unittest discover -s tests -v
+      - name: harvester selftest
+        run: python -m tools.harvester selftest
+      - name: registry guard (append-only track record)
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          base="$BEFORE"
+          if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+            base=edition-02
+          fi
+          python tools/registry_guard.py "$base" "$GITHUB_SHA"
+          python tools/registry_guard.py edition-02 "$GITHUB_SHA"

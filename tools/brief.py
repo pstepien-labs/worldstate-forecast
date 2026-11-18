@@ -264,6 +264,13 @@ def build_page(ctx):
     with open(body_path, encoding='utf-8') as f:
         body = f.read()
     page, problems = inject(ctx, fill(ctx, body))
+    # framework 1.9 (WP-17): no active content and no links outside the project in published HTML
+    from urllib.parse import urlparse
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import safehtml
+    allowed = {'fonts.googleapis.com', 'fonts.gstatic.com', 'github.com',
+               (urlparse(ctx.get('site') or '').hostname or 'pstepien-labs.github.io')}
+    problems += [f'unsafe markup: {x}' for x in safehtml.problems(page, allowed_hosts=allowed)]
     return page, problems + verify(ctx, page)
 
 
