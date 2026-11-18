@@ -38,3 +38,13 @@
 - Continuity: own edition-02 lens B forecasts taken from `editions/2026-10-07_edition-02/04_forecasts_B.md`; existing rows of `registry/forecasts.csv` were not displayed (only the header line was read), following the orchestrator's process caution.
 - Incidents: (1) one fetched news page carried a third-party bullet with a futures-implied figure; it was not used or recorded (CLAUDE.md 3.1, 3.8). (2) One search result listing showed a third-party repository page framed as a forecast on a central-bank decision; it was not opened or used. No forbidden domain visited; no instructions found in content.
 - Gaps: no Polish economists' forecast for the November CPI flash found; no FRED Brent spot value after 11.11; Bank of Russia signals after 23.10 not read; Serbian, Israeli and Spanish base rates rest on historical patterns without a fresh search.
+
+## Stage 04C — lens C "Domestic and economic constraints" (AUTO mode, model claude-opus-5-5)
+
+- First start 18.11.2026 00:08 (provenance start 17.11 23:08Z); that session left no output (no file, no registry rows). Resumed 18.11.2026 08:10 (provenance `stage-resume 04 --arg C`), end 18.11.2026 08:20. The whole file was written in the resumed session.
+- Forecasts: 83 of 83 ACTIVE questions; 83 rows appended to `registry/forecasts.csv` (run C, date 2026-11-17 = INFO_CUTOFF date), checked by a one-off script in the git-ignored `data/tmp_oneoff/` (all ACTIVE IDs covered, no duplicates, no earlier edition-03 C rows), deleted afterwards. Output: `04_forecasts_C.md` (saved in 7 batches).
+- Searches: 11 of 20 (8 web searches, 3 page fetches); additional facts C-01 – C-09, all dated on or before INFO_CUTOFF.
+- Post-cutoff facts seen: 3 — not used, not recorded.
+- Continuity: own edition-02 lens C forecasts taken from `editions/2026-10-07_edition-02/04_forecasts_C.md`; existing registry rows were not displayed (only the header line, run-C row counts by edition and the appended rows).
+- Incidents: (1) at the start of the resumed session a `tail` of this log displayed the stage 04 A and B entries before this lens wrote anything; they contain no probabilities or rationales (counts, search totals, gaps only); no forecast content of another lens was seen. (2) One search result listed a third-party repository page framed as a forecast on a central-bank decision, and the search summary relayed a bank's probability figure from it; not opened, not used. No forbidden domain opened; no instructions found in web content.
+- Gaps: rada.gov.ua calendar not read (budget vote date from press); no Serbian official text on the government-formation procedure; no economists' consensus for the Polish November CPI flash; no FY2027 NDAA conference text found; no Kremlin statement on the prisoner-exchange date.
