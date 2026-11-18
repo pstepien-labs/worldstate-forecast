@@ -79,3 +79,11 @@
 - Editorial: no_republish outlets (TASS, RIA Novosti, Press TV) appear only as "a statement by …", paraphrased, without quotation or link; one quotation relayed by Press TV and one by Lenta.ru/RIA were rewritten as paraphrase.
 - Searches: none (the stage works from edition files). No forbidden domain opened; no instructions found in content. `06_*` files, `registry/benchmarks.csv` and the lens files were read only as permitted for stage 07 (lens files not opened; lens records A-01, A-02, C-01, C-07 cited through `05_red_team.md`).
 - Housekeeping: the stage 07 scratch files in `data/tmp_oneoff/` were deleted; four older scratch files from stages 01 and 03 (`add_q.py`, `draw.py`, `rows.csv`, `upd.py`) are still there (git-ignored; left untouched, not this stage's files).
+
+## Stage 08 — quality control and closing (AUTO mode, model claude-opus-5-5)
+
+- Start 18.11.2026 17:01, end 18.11.2026 17:13 (CET); single session; provenance `stage-start 08` / `stage-end 08`.
+- Output: `08_quality_control.md` (items 1–10). Results: facts OK with notes (242 records complete; sample of 15 drawn with seed 3 — 15 confirmed, 6 with notes, 0 contradicted); separation OK after one correction; completeness OK (415 rows, all dated 2026-11-17); append-only OK; blindness OK with reservations (04-A incident); question bank OK; perspectives 28 of 36 key events complete (78%); coverage OK with gaps; log OK; provenance OK with notes.
+- Corrections to `07_report.md`: (1) the conventions line now names the aggregate "BSS vs the crowd" score of section 0 as the only exception to "no crowd comparisons in this report"; (2) six rows added to J.3 for key events missing a perspective (from the Coverage sections of G1–G4). `07_state_block.md` and `07_annex_benchmarks.md` unchanged. Registry and files 00–06 not changed.
+- Default taken without the user (also in AUTOPILOT_INBOX.md): the crowd score in section 0 was kept and the conventions line clarified, rather than removing the score.
+- Searches: 0 web searches, 23 page fetches (2 failed: kremlin.ru, congress.gov HTTP 403). No forbidden domain opened; no instructions found in fetched content. One-off check scripts kept in git-ignored `data/tmp_oneoff/` (inline Python refused by the permission settings) and deleted afterwards.

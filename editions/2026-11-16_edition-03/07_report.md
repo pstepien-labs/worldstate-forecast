@@ -13,7 +13,7 @@ Framework 1.8.0 · methodology v1.0 · commit 045c4fa · models: claude-opus-5-5
 - Disputed events: two interpretations, marked (1) and (2), not decided without evidence.
 - Facts carried over from edition 02 after confirmation in stage 02 carry the note "confirmed unchanged, dd.mm.yyyy".
 - Outlets on the no-republish list (Russian state media, sanctioned outlets) are paraphrased as "according to state agency X" or "a statement by X" and never quoted.
-- Comparisons with the crowd and prediction markets are not part of this report (methodology §6); they are in the separate file `07_annex_benchmarks.md`.
+- Comparisons with the crowd and prediction markets are not part of this report (methodology §6); they are in the separate file `07_annex_benchmarks.md`. The one exception is the aggregate score "BSS vs the crowd" in section 0, an official measure of methodology §1 computed only on questions already resolved (`01_scores.md`); it carries no crowd value for any open question.
 
 ---
 
@@ -378,6 +378,14 @@ The full list of 83 AGG_RT forecasts by vector, with the lens spread and the cha
 | Shenzhen trilateral (G4-025) | White House | PRC MFA; Kremlin | Dawn, Anadolu | A common agenda text |
 | Ethiopia's accusations (G4-057) | DW, BBC | Ethiopian army | Anadolu, Al Jazeera | Eritrea, Egypt, the African Union |
 | Venezuela talks (G4-061) | CNN | a statement by TASS (delegations' gold request) | Latin Times (EFE) | The Venezuelan government's own statement |
+| Strike on a Russian warship in the Gulf of Finland (G1-024) | Reuters via gCaptain | — | Finnish Defence Forces (as observer) | A Russian statement; the attacker |
+| Estonia's border closure after the arson attack (G1-025) | CNN, ERR | only via a search summary (G1 coverage) | Al Jazeera | An actor-side statement read at source |
+| EU gas storage deficit (G2-012) | ENGIE EnergyScan | — | Global Energy Flow (AGSI+ data) | An EU actor-side statement (Commission, GIE) |
+| Russia's 2027–2029 budget (G3-016, G3-017) | Bloomberg | Kommersant; Ministry of Finance via Interfax | — | A third-party assessment |
+| Poland's public finances and ratings (G3-046) | S&P (Notes from Poland) | Domański, NBP, GUS via Polish press | — | A third-party (non-Western, non-Polish) assessment; the Polish official channels read at source |
+| Sudan: the army's advance in Kordofan (G4-058) | — | the army's claims (Anadolu) | Al Jazeera, Anadolu, Arab News | A Western source; an RSF statement |
+
+Rows from "Gulf of Finland" onward were added in stage 08 from the "Coverage" sections of `02_facts/G1–G4.md`, which list these key events as missing a perspective.
 
 Silent cells of the harvester's source universe in this window: PL:official, SA:official, TR:western, IN:official, TW:official, JP:official, YE:state_loyal, GL:independent_exile (`02_harvest/manifest.json`); stage 02 closed TW:official directly (mnd.gov.tw) and PL:official partly (through Defence24 and Defense News).
 
