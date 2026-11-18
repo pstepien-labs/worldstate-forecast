@@ -48,3 +48,12 @@
 - Continuity: own edition-02 lens C forecasts taken from `editions/2026-10-07_edition-02/04_forecasts_C.md`; existing registry rows were not displayed (only the header line, run-C row counts by edition and the appended rows).
 - Incidents: (1) at the start of the resumed session a `tail` of this log displayed the stage 04 A and B entries before this lens wrote anything; they contain no probabilities or rationales (counts, search totals, gaps only); no forecast content of another lens was seen. (2) One search result listed a third-party repository page framed as a forecast on a central-bank decision, and the search summary relayed a bank's probability figure from it; not opened, not used. No forbidden domain opened; no instructions found in web content.
 - Gaps: rada.gov.ua calendar not read (budget vote date from press); no Serbian official text on the government-formation procedure; no economists' consensus for the Polish November CPI flash; no FY2027 NDAA conference text found; no Kremlin statement on the prisoner-exchange date.
+
+## Stage 05 — red team (AUTO mode, model claude-opus-5-5)
+
+- Start 18.11.2026 08:19, end 18.11.2026 08:27 (CET); single session; provenance `stage-start 05` / `stage-end 05`.
+- Output: `05_red_team.md` — 10 weak points of the analysis, AGG for 83 of 83 ACTIVE questions (registry rows of runs A, B, C equal to the lens files, 249 rows, 0 mismatches), 4 proposed adjustments (evidence type), directional bias test, scenario check, determined-before-cutoff check (none found). No registry row written (AGG_RT is set in stage 06).
+- Verification: 1 page fetch (Reuters poll story of 12.11 via Investing.com, record R-01), 0 web searches. Post-cutoff facts seen: 0.
+- One-off scripts for AGG and the bias test kept in git-ignored `data/tmp_oneoff/` (inline Python refused by the permission settings) and deleted afterwards.
+- Blindness: no `06_*` file, `07_annex_benchmarks.md`, `registry/benchmarks.csv`, `reviews/learning/`, `social/`, `docs/data/` or `docs/briefs/` opened; no forecasting service or prediction market visited; no instructions found in web content.
+- For stage 01 of edition 04: Q-0144 — check whether a re-announced May-2026 cut counts as a decision "between 18.11 and 31.12"; Q-0129 — apply the "US military installation" wording strictly.
