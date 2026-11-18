@@ -4,11 +4,11 @@
  "edition_closed": false,
  "next_stage": "/g07",
  "earliest_next_edition": null,
- "last_result": "2026-11-18 10:45 AUTOPILOT: exit 1 (no result line; see /Users/digitalbear/Projects/09_worldstate_forecast_01/worldstate-forecast/data/autopilot/runs/20261118-104537-edition.log)",
- "consecutive_failures": 2,
+ "last_result": "2026-11-18 12:45 AUTOPILOT: exit 1 (no result line; see /Users/digitalbear/Projects/09_worldstate_forecast_01/worldstate-forecast/data/autopilot/runs/20261118-124544-edition.log)",
+ "consecutive_failures": 3,
  "open_blockers": 0,
  "resolutions_disputed": 1,
- "harvester": "Harvester: RUNNING \u00b7 state sleeping \u00b7 heartbeat 2026-11-18T09:45:35Z \u00b7 sources ok 159/202 \u00b7 failing 4 \u00b7 items 212383",
+ "harvester": "Harvester: RUNNING \u00b7 state sleeping \u00b7 heartbeat 2026-11-18T11:45:45Z \u00b7 sources ok 159/202 \u00b7 failing 4 \u00b7 items 213004",
  "framework_version": "1.8.0",
- "updated": "2026-11-18T09:45:40Z"
+ "updated": "2026-11-18T11:45:46Z"
 }
