@@ -57,3 +57,9 @@
 - One-off scripts for AGG and the bias test kept in git-ignored `data/tmp_oneoff/` (inline Python refused by the permission settings) and deleted afterwards.
 - Blindness: no `06_*` file, `07_annex_benchmarks.md`, `registry/benchmarks.csv`, `reviews/learning/`, `social/`, `docs/data/` or `docs/briefs/` opened; no forecasting service or prediction market visited; no instructions found in web content.
 - For stage 01 of edition 04: Q-0144 — check whether a re-announced May-2026 cut counts as a decision "between 18.11 and 31.12"; Q-0129 — apply the "US military installation" wording strictly.
+
+## Stage 06 — aggregation, freezing, benchmarks (AUTO mode, model claude-opus-5-5)
+
+- Start 18.11.2026 08:27 (CET); provenance `stage-start 06`.
+- Step 1: AGG and AGG_RT for 83 of 83 ACTIVE questions (all three lenses present); 166 rows appended to `registry/forecasts.csv` (date 2026-11-17 = INFO_CUTOFF date; existing rows unchanged, byte-checked). 4 red-team adjustments accepted (Q-0017, Q-0136, Q-0040, Q-0145), 0 rejected. Triviality test: 7 of 83 (8.4%) — rule met. Output: `06_aggregation.md`. One-off script in git-ignored `data/tmp_oneoff/`.
+- Step 2: forecasts frozen by the commit "edition-03 forecasts frozen" (hash recorded in the next entry).
