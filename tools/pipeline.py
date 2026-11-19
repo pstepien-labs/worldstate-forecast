@@ -352,6 +352,7 @@ def compute_state():
                       'prompt': STAGES['00'][0], 'what': STAGE_TEXT['00']}
     pend = pending_verification()
     st['pending_verification'] = pend['unchecked']
+    st['verification_retry'] = pend['retry']
     st['verification_disputed'] = pend['disputed']
     st['unpushed_commits'] = int(sh('git', 'rev-list', '--count', '@{u}..HEAD') or 0)
     if st['next'] is not None and not st['edition_closed'] and st['next']['stage'] == 'H' \
@@ -370,6 +371,10 @@ def critical_open(path):
     return bool(m and int(m.group(1)) > 0)
 
 
+SOURCE_UNREAD = re.compile(r'UNDETERMINED|UNREAD|not readable|could not (re-?)?read|HTTP [45]\d\d|quota', re.I)
+MAX_V_ATTEMPTS = 3
+
+
 def pending_verification():
     """Resolutions flagged VERIFY whose latest row is neither approved (Y) nor auto-verified (A).
     'unchecked': no stage V row yet (stage V may check them); 'disputed': stage V disagreed (user decides)."""
@@ -378,18 +383,24 @@ def pending_verification():
         return {'unchecked': [], 'disputed': []}
     with open(path, encoding='utf-8-sig', newline='') as f:
         rows = list(csv.DictReader(f, delimiter=';'))
-    latest, checked = {}, set()
+    latest, checked, attempts = {}, set(), {}
     for r in rows:
         q = r['question_id']
         if 'autoverify' in (r.get('notes') or '').lower():
             checked.add(q)
+            attempts[q] = attempts.get(q, 0) + 1
         if q not in latest or int(r['version']) > int(latest[q]['version']):
             latest[q] = r
-    out = {'unchecked': [], 'disputed': []}
+    out = {'unchecked': [], 'disputed': [], 'retry': []}
     for q, r in sorted(latest.items()):
         if r.get('verify', '').strip().upper() == 'Y' and r.get('user_approved', '').strip().upper() not in ('Y', 'A') \
                 and r['outcome'].strip().upper() != 'VOID':
-            out['disputed' if q in checked else 'unchecked'].append(q)
+            if q not in checked:
+                out['unchecked'].append(q)
+            elif SOURCE_UNREAD.search(r.get('notes') or '') and attempts.get(q, 0) < MAX_V_ATTEMPTS:
+                out['retry'].append(q)  # the source could not be read: not a disagreement, check again (1.9.2)
+            else:
+                out['disputed'].append(q)
     return out
 
 
@@ -531,6 +542,125 @@ def cmd_cutoff(a):
     print(f'{m.group(3)}-{m.group(2)}-{m.group(1)}')
 
 
+METRICS_HEADER = ['edition', 'state_date', 'framework_version', 'days_after_due', 'hours_start_to_site', 'stage_resumes',
+                  'lens_minutes_A', 'lens_minutes_B', 'lens_minutes_C', 'lens_searches_A', 'lens_searches_B', 'lens_searches_C',
+                  'corr_AB', 'corr_AC', 'corr_BC', 'median_spread', 'rows_B2', 'rows_QNT', 'critical_qc_open',
+                  'hook_blocks_logged', 'new_questions', 'new_with_exact_benchmark', 'scored_total', 'auto_verified_total',
+                  'disputed_total', 'brier_agg_rt_closed', 'n_closed', 'computed']
+
+
+def edition_metrics(nr):
+    """Mechanical measures of one closed edition (framework 1.9.2): the plan §5 table, filled automatically."""
+    import statistics
+    nr = f'{int(nr):02d}'
+    eds = {}
+    with open(os.path.join(ROOT, 'registry', 'editions.csv'), encoding='utf-8-sig', newline='') as f:
+        for r in csv.DictReader(f, delimiter=';'):
+            eds[r['edition']] = r
+    e = eds.get(nr)
+    if not e:
+        return None
+    d = os.path.join(ROOT, e['directory'])
+    m = {k: '' for k in METRICS_HEADER}
+    m.update(edition=nr, state_date=e['state_date'], framework_version=e.get('framework_version', ''))
+    prev = eds.get(f'{int(nr) - 1:02d}')
+    if prev:
+        due = datetime.strptime(prev['state_date'], '%Y-%m-%d') + timedelta(days=MIN_GAP_DAYS)
+        m['days_after_due'] = (datetime.strptime(e['state_date'], '%Y-%m-%d') - due).days
+    recs = []
+    if os.path.exists(os.path.join(d, 'provenance.jsonl')):
+        with open(os.path.join(d, 'provenance.jsonl'), encoding='utf-8') as f:
+            for line in f:
+                try:
+                    recs.append(json.loads(line))
+                except ValueError:
+                    pass
+    ts = lambda x: datetime.strptime(x, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
+    if recs:
+        site = sh('git', 'log', '-1', '--format=%cI', '--extended-regexp', f'--grep=^edition-{nr} site')
+        if site:
+            m['hours_start_to_site'] = round((datetime.fromisoformat(site) - ts(recs[0]['ts'])).total_seconds() / 3600, 1)
+        m['stage_resumes'] = sum(1 for r in recs if r['event'] == 'resume')
+        for lens in 'ABC':
+            st_ = [ts(r['ts']) for r in recs if r['stage'] == '04' and r.get('arg') == lens and r['event'] == 'start']
+            en_ = [ts(r['ts']) for r in recs if r['stage'] == '04' and r.get('arg') == lens and r['event'] == 'end']
+            if st_ and en_ and not any(r['stage'] == '04' and r.get('arg') == lens and r['event'] == 'resume' for r in recs):
+                m[f'lens_minutes_{lens}'] = round((en_[-1] - st_[0]).total_seconds() / 60)
+    log = open(os.path.join(d, 'log.md'), encoding='utf-8').read() if os.path.exists(os.path.join(d, 'log.md')) else ''
+    for lens in 'ABC':  # lens log entries name their search count (stage 04 "Log" rule)
+        mm = re.search(r'(?:stage 04\W*%s|04%s)\b.{0,600}?(\d+)\s+(?:web\s+)?searches' % (lens, lens), log, re.S | re.I)
+        m[f'lens_searches_{lens}'] = mm.group(1) if mm else ''
+    m['hook_blocks_logged'] = log.count('BLOCKED by tools/blindness_guard.py')
+    with open(os.path.join(ROOT, 'registry', 'forecasts.csv'), encoding='utf-8-sig', newline='') as f:
+        fc = [r for r in csv.DictReader(f, delimiter=';') if r['edition'] == nr]
+    by = {}
+    for r in fc:
+        by.setdefault(r['question_id'], {})[r['run']] = float(r['p'])
+    trip = [v for v in by.values() if all(k in v for k in 'ABC')]
+    if len(trip) > 2:
+        def corr(x, y):
+            mx, my = statistics.mean(x), statistics.mean(y)
+            sxy = sum((i - mx) * (j - my) for i, j in zip(x, y))
+            den = (sum((i - mx) ** 2 for i in x) * sum((j - my) ** 2 for j in y)) ** 0.5
+            return round(sxy / den, 2) if den else ''
+        for a_, b_ in (('A', 'B'), ('A', 'C'), ('B', 'C')):
+            m[f'corr_{a_}{b_}'] = corr([v[a_] for v in trip], [v[b_] for v in trip])
+        m['median_spread'] = round(statistics.median([max(v[k] for k in 'ABC') - min(v[k] for k in 'ABC') for v in trip]), 3)
+    m['rows_B2'] = sum(1 for r in fc if r['run'] == 'B2')
+    m['rows_QNT'] = sum(1 for r in fc if r['run'] == 'QNT')
+    qc = os.path.join(d, '08_quality_control.md')
+    if os.path.exists(qc):
+        mm = re.search(r'Critical discrepancies open:\s*\**\s*(\d+)', open(qc, encoding='utf-8').read(), re.I)
+        m['critical_qc_open'] = mm.group(1) if mm else 'not reported'
+    with open(os.path.join(ROOT, 'registry', 'questions.csv'), encoding='utf-8-sig', newline='') as f:
+        qs = list(csv.DictReader(f, delimiter=';'))
+    new = {q['id'] for q in qs if q.get('edition_created', '').zfill(2) == nr}
+    m['new_questions'] = len(new)
+    with open(os.path.join(ROOT, 'registry', 'benchmarks.csv'), encoding='utf-8-sig', newline='') as f:
+        m['new_with_exact_benchmark'] = len({b['question_id'] for b in csv.DictReader(f, delimiter=';')
+                                             if b['question_id'] in new and b.get('match', '').upper() == 'EXACT'})
+    with open(os.path.join(ROOT, 'registry', 'resolutions.csv'), encoding='utf-8-sig', newline='') as f:
+        latest = {}
+        for r in csv.DictReader(f, delimiter=';'):
+            if r['question_id'] not in latest or int(r['version']) > int(latest[r['question_id']]['version']):
+                latest[r['question_id']] = r
+    ok = {q: int(r['outcome']) for q, r in latest.items() if r['outcome'] in ('0', '1')
+          and not (r.get('verify') == 'Y' and r.get('user_approved') not in ('Y', 'A'))}
+    m['scored_total'] = len(ok)
+    m['auto_verified_total'] = sum(1 for r in latest.values() if r.get('user_approved') == 'A')
+    m['disputed_total'] = len(pending_verification()['disputed'])
+    today = datetime.now(timezone.utc).date().isoformat()
+    deadline = {q['id']: q['deadline'] for q in qs}
+    closed = [(by[q]['AGG_RT'] - o) ** 2 for q, o in ok.items()
+              if q in by and 'AGG_RT' in by[q] and deadline.get(q, '9999') < today and latest[q]['resolution_date'] > e['state_date']]
+    m['n_closed'] = len(closed)
+    m['brier_agg_rt_closed'] = round(sum(closed) / len(closed), 3) if closed else ''
+    m['computed'] = today
+    return m
+
+
+def cmd_edition_metrics(a):
+    nrs = [a.edition] if a.edition else []
+    if a.all:
+        with open(os.path.join(ROOT, 'registry', 'editions.csv'), encoding='utf-8-sig', newline='') as f:
+            nrs = [r['edition'] for r in csv.DictReader(f, delimiter=';') if r['edition'] != '00']
+    rows = [x for x in (edition_metrics(n) for n in nrs) if x]
+    out = os.path.join(ROOT, 'reviews', 'edition_metrics.csv')
+    if a.append:
+        old = []
+        if os.path.exists(out):
+            with open(out, encoding='utf-8-sig', newline='') as f:
+                old = [r for r in csv.DictReader(f, delimiter=';') if r['edition'] not in {x['edition'] for x in rows}]
+        allr = sorted(old + rows, key=lambda r: r['edition'])
+        with open(out, 'w', encoding='utf-8-sig', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=METRICS_HEADER, delimiter=';', quoting=csv.QUOTE_ALL, extrasaction='ignore')
+            w.writeheader()
+            w.writerows(allr)
+        print(f'reviews/edition_metrics.csv: {len(rows)} edition(s) written')
+    for r in rows:
+        print(json.dumps(r, ensure_ascii=False))
+
+
 def cmd_versions(a):
     cur = current()
     print(json.dumps({'framework_version': framework_version(), 'methodology_version': methodology_version(cur),
@@ -559,6 +689,11 @@ def main():
     r.set_defaults(fn=cmd_register)
     sub.add_parser('versions').set_defaults(fn=cmd_versions)
     sub.add_parser('cutoff', help='INFO_CUTOFF date of the current edition').set_defaults(fn=cmd_cutoff)
+    em = sub.add_parser('edition-metrics', help='mechanical measures of closed editions (reviews/edition_metrics.csv)')
+    em.add_argument('edition', nargs='?')
+    em.add_argument('--all', action='store_true')
+    em.add_argument('--append', action='store_true', help='write/replace the rows in reviews/edition_metrics.csv')
+    em.set_defaults(fn=cmd_edition_metrics)
     lr = sub.add_parser('lens-rows', help='header + rows of one run of registry/forecasts.csv (rule 3.8)')
     lr.add_argument('run')
     lr.set_defaults(fn=cmd_lens_rows)

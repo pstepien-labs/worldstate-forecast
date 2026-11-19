@@ -9,7 +9,7 @@ Provenance: `python3 tools/pipeline.py stage-start I --model "<your model id>"` 
 1. `python3 tools/pipeline.py status --json` must show `edition_closed: true`. Otherwise print `AUTOPILOT: blocked interim edition not closed` and stop.
 2. **The list.** Take ACTIVE questions in `registry/questions.csv` whose deadline is before today, plus those whose YES event may already have happened (check at most 15 of these with one search each, starting with the nearest deadlines).
 3. **Resolve** each one as `prompts/01_resolutions.md` tasks 1–3 describe: evidence, resolution date and confidence; VERIFY flags (ambiguous or disputed, plus a random 20%, with seed = edition number × 100 + day of month); new rows in `registry/resolutions.csv` (version 1); status in `registry/questions.csv`. Rule 3.9 applies: no forecasting or betting sites.
-4. If any resolution has `verify = Y`, carry out stage V (`prompts/V_autoverify.md`) in this same session, with its own provenance records.
+4. If any resolution of this stage has `verify = Y`, or `verification_retry` in `status --json` is not empty, carry out stage V (`prompts/V_autoverify.md`) in this same session, with its own provenance records. If a retried question is now confirmed, remove its line from `## Waiting for the user` in `AUTOPILOT_INBOX.md`.
 5. `python3 tools/scores.py --out <DIRECTORY>/01_scores_interim.md`. Then `python3 tools/site.py` to rebuild the public page.
 6. Commit `edition-NN interim resolutions` (registry, the two files, `docs/`). Never push.
 7. The last line of your final message is `AUTOPILOT: complete interim <N resolved>` or `AUTOPILOT: blocked interim <reason>`.

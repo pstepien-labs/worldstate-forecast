@@ -159,6 +159,20 @@ backup() {  # WP-18: weekly archive of the harvest data (skipped if BACKUP_DIR i
   fi
 }
 
+metrics() {  # 1.9.2: plan §5 measures, mechanically, after each published edition and weekly (Sundays)
+  local ed closed site
+  read -r ed closed site < <("$PY" -c "import json;d=json.load(open('$DATA/status.json'));print(d.get('edition'),d.get('edition_closed'),d.get('site_done'))")
+  local want=""
+  [ "$closed" = True ] && [ "$site" = True ] && [ "$(sget metrics_done_for)" != "$ed" ] && want="$ed"
+  [ "$(date '+%u')" = 7 ] && [ "$(sget metrics_week)" != "$(date '+%G-W%V')" ] && want="all"
+  [ -n "$want" ] || return 0
+  if "$PY" tools/pipeline.py edition-metrics --all --append >/dev/null 2>>"$LOG"; then
+    git add reviews/edition_metrics.csv && git commit -q -m "autopilot: edition metrics" -- reviews/edition_metrics.csv >/dev/null 2>&1 && log "edition metrics updated"
+    [ "$want" = all ] && sset metrics_week "\"$(date '+%G-W%V')\""
+    [ "$closed" = True ] && [ "$site" = True ] && sset metrics_done_for "\"$ed\""
+  fi
+}
+
 harvester_check() {
   "$PY" -m tools.harvester status 2>/dev/null | grep -q 'LIVENESS: running' && return
   if launchctl print "gui/$(id -u)/$HLABEL" >/dev/null 2>&1; then
@@ -219,6 +233,7 @@ tick() {
     *) case "$reason" in model\ mismatch*|publication*) [ "$(sget last_notice)" != "$reason" ] && { notify "$reason"; sset last_notice "\"$reason\""; } ;; esac ;;
   esac
   status_json
+  metrics
   if $AP heartbeat; then
     git add docs/data/autopilot.json && git commit -q -m "autopilot: heartbeat" -- docs/data/autopilot.json >/dev/null 2>&1 && log "heartbeat committed"
   fi

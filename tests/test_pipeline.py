@@ -28,7 +28,23 @@ class PipelineTest(unittest.TestCase):
         old = pipeline.ROOT
         pipeline.ROOT = root
         try:
-            self.assertEqual(pipeline.pending_verification(), {'unchecked': ['Q-0001'], 'disputed': ['Q-0002']})
+            self.assertEqual(pipeline.pending_verification(), {'unchecked': ['Q-0001'], 'disputed': ['Q-0002'], 'retry': []})
+        finally:
+            pipeline.ROOT = old
+
+    def test_unreadable_source_is_retried_three_times(self):
+        unread = lambda v: dict(r(4, 1, '2026-10-01', version=v, verify='Y', approved='N'),
+                                notes='autoverify 17.11: DISPUTED, re-check says UNDETERMINED, HTTP 429 quota exceeded')
+        rows = [r(4, 1, '2026-10-01', verify='Y'), unread(2)]
+        root = registry([q(4, '2026-10-01')], [], rows)
+        old = pipeline.ROOT
+        pipeline.ROOT = root
+        try:
+            self.assertEqual(pipeline.pending_verification()['retry'], ['Q-0004'])
+            root2 = registry([q(4, '2026-10-01')], [], rows + [unread(3), unread(4)])
+            pipeline.ROOT = root2
+            p = pipeline.pending_verification()
+            self.assertEqual((p['retry'], p['disputed']), ([], ['Q-0004']))  # third failed attempt goes to the user
         finally:
             pipeline.ROOT = old
 

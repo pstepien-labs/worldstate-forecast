@@ -210,6 +210,7 @@ A cloud watchdog reads the heartbeat every morning and sends a one-line report t
 | `scripts/autopilot.sh uninstall` | remove both jobs; the harvester stops |
 | `scripts/replay.sh 02 B label` | re-run a lens prompt on a closed edition, offline, to test a prompt change |
 | `python3 -m unittest discover -s tests -t .` | the test suite |
+| `python3 tools/pipeline.py edition-metrics --all` | the per-edition measures (also kept in `reviews/edition_metrics.csv`, refreshed by the autopilot after each edition and on Sundays) |
 | read `AUTOPILOT_INBOX.md` | blockers, disputed resolutions, learning proposals, defaults it took |
 
 **Settings** are in `autopilot.conf`:
@@ -218,14 +219,15 @@ A cloud watchdog reads the heartbeat every morning and sends a one-line report t
 - `BACKUP_DIR`.
 
 **One-time actions only you can do** (recommended before travelling):
-1. `sudo pmset -a autorestart 1`, so the Mac restarts after a power cut.
-2. System Settings → General → Software Update → Automatic Updates: turn off "Install macOS updates". With FileVault on, an update restart waits for your password, and nothing runs until you enter it.
-3. A backup folder (an external disk or a synced folder): set `BACKUP_DIR=` in `autopilot.conf`.
-4. Optional remote access: Tailscale with Remote Login, or Claude Remote Control.
-5. A GitHub token limited to this repository, used only for publishing:
+1. `sudo scripts/owner_setup.sh --backup <folder>` (items 1–3 in one command, password once):
+   1. restart after a power cut (`pmset autorestart 1`);
+   2. no automatic installation of macOS updates (with FileVault on, an update restart would wait for your password);
+   3. `BACKUP_DIR` for the weekly harvest backup. Use an external disk or a synced folder; without `--backup` there is no backup.
+2. Optional remote access: Tailscale with Remote Login, or Claude Remote Control.
+3. A GitHub token limited to this repository, used only for publishing:
    - On github.com go to Settings → Developer settings → Fine-grained tokens. Choose repository `worldstate-forecast` and permission **Contents: read and write**.
    - Run `git remote add publish https://autopilot@github.com/pstepien-labs/worldstate-forecast.git`, then push once by hand with `git push publish main` and paste the token as the password. The keychain keeps it for the user `autopilot`.
-6. zenodo.org → GitHub → switch the repository on. Each edition release then gets a DOI.
+4. zenodo.org → GitHub → switch the repository on. Each edition release then gets a DOI.
 
 **X is parked.** `social/STRATEGY.md` and the social stage stay as they are, but nothing posts and no X routine runs. Automating X needs X API keys and a separate decision.
 
