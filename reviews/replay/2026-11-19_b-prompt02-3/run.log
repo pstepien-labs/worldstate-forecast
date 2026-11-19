@@ -1,0 +1,12 @@
+The replay is finished: lens B has a forecast for all 88 questions of edition 02. I did not commit anything or run the scoring; `scripts/replay.sh` runs the scoring after this session ends.
+
+- **Validity:** the run is valid. My training data ends in June 2026, before the edition's cutoff of 07.10.2026. The first line of `03_analysis.md` has no `INFO_CUTOFF` marker, because edition 02 is older than that rule. I used the state date 07.10.2026 from that line, which is also the date `replay.sh` reads from it. I didn't recognise any outcome, so no question is marked possibly contaminated.
+- **Forecasts:** `forecasts.csv` follows the registry format, with run `B@b-prompt02-3`, edition `02` and date `2026-10-07`. It was saved in batches of about 10. Each rationale names its reference class and base rate, uses p ≈ 1 − (1 − r)^t where a constant rate applies, and adjusts for the case only at the end. Market questions use a random-walk model with the realised volatility from the facts. For Brent this includes the drop in the front-month price at each contract roll.
+- **Inputs:** I used only the questions file, the edition's fact files G1–G4, `03_analysis.md` and the lens B section of the prompt. There were no web searches, and I did not open the registry, any other edition or any earlier forecasts. Some base rates come from general knowledge of events before the cutoff, such as past defence-bill (NDAA) enactment dates and Brazil's runoff record; each rationale names them.
+- **Not applicable:** the prompt asks for the change against the lens's previous forecast. A replay reads no earlier rows, so I noted this in `validity.md` and left it out.
+
+Files are in `reviews/replay/2026-11-19_b-prompt02-3/`:
+- validity.md
+- forecasts.csv
+
+AUTOPILOT: complete replay b-prompt02-3

@@ -1,0 +1,19 @@
+I ran the replay of lens B on edition 02. It produced forecasts for all 88 questions in `reviews/replay/2026-11-19_b-prompt02-1/`. I didn't score it, because scoring reads the outcomes; `scripts/replay.sh` does that when the session ends.
+
+**Is the replay valid?** Yes. My training data ends in June 2026, which is before the edition's information cutoff (07.10.2026). I didn't recognise any outcome while forecasting, so no question is marked as possibly contaminated.
+
+**One problem with the cutoff:** the first line of `03_analysis.md` is a heading, not an `INFO_CUTOFF` line, because edition 02 is older than that rule. I used the date in that heading, 2026-10-07, as the `date` of every row. That is also the date `replay.sh` reads from the same line. Some facts dated 08–09.10 appear in the inputs; I counted them as part of the edition's information.
+
+**Output files:**
+- `forecasts.csv` has one row per question, run `B@b-prompt02-1`. Each row names a reference class and base rate, adjusts for the time left to the deadline, and ends with a small case-specific correction, as the lens B instructions require. The file is in the registry format and was saved every 10 questions.
+- `validity.md` records the model, the cutoffs and these run notes.
+
+**What differs from a normal stage 04B run:**
+- No web searches were made. Nothing was read from or written to the registry.
+- Because I couldn't read my earlier rows, the "change since your previous forecast" field is empty.
+
+**One blocked read:** at the start, the blindness hook blocked a combined command because it included `editions/CURRENT.md`. I didn't retry it and used only the permitted inputs. The block is noted in `validity.md`.
+
+Nothing is committed.
+
+AUTOPILOT: complete replay b-prompt02-1

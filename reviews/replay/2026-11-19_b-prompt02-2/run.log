@@ -1,0 +1,19 @@
+The lens B replay of edition 02 is finished: all 88 questions have a forecast in `reviews/replay/2026-11-19_b-prompt02-2/forecasts.csv`.
+
+**Validity (`validity.md`):** the replay is valid. My training cutoff (June 2026) is before the edition's information cutoff.
+- The first line of `03_analysis.md` has no `INFO_CUTOFF` marker, because edition 02 predates that rule. I took 09.10.2026 as the cutoff, the date the file says stage 03 ran (the state date is 07.10). All rows carry `date` = 2026-10-09.
+- I didn't recognise the outcome of any question, so none is marked as possibly contaminated.
+
+**The forecasts:**
+- Every row uses run `B@b-prompt02-2` and edition `02`, with all fields quoted. I saved every 10 rows.
+- A check confirmed each question has exactly one row, with no extras, every p between 0.01 and 0.99, and 8 fields per row.
+- Each rationale names a reference class and base rate, scales it to the time left before the deadline, and then adjusts for case specifics. Questions with no usable reference class rely on price volatility or the latest data instead.
+- I used no web access and no searches. I read only the edition's `02_facts/G1–G4.md`, its `03_analysis.md`, the replay's `questions.csv` and the lens B section of the prompt.
+- Two questions closed before the cutoff (Q-0049 on 06.10 and Q-0037 on 07.10). I forecast them anyway from the facts as of 05–07.10; `scores.py` may leave them out as already known.
+- The lens prompt asks for the change against the lens's previous forecast. A replay may not read earlier forecasts, so none is recorded; `validity.md` says so.
+
+**Provenance:** I recorded `stage-start R` and `stage-end R` with `pipeline.py`; `replay.sh` doesn't record them itself. The stage-end line prints `model None`; the start line has the model id.
+
+**Not committed:** rule 11 calls for a commit after a stage, but `git add -A` would also sweep in the other replay folder (`2026-11-19_b-prompt02-1/`) and your uncommitted edit to `reviews/improvement_plan_log.md`. Tell me if you want a commit of just this folder.
+
+AUTOPILOT: complete replay b-prompt02-2
