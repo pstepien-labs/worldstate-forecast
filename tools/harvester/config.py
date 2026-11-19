@@ -165,9 +165,10 @@ def backfill_days():
         return 14
 
 
-def window_start_for(state_entry):
-    """Start date for incremental queries: last success minus overlap, else backfill."""
+def window_start_for(state_entry, backfill=None):
+    """Start date for incremental queries: last success minus overlap, else backfill
+    (a source may ask for a longer first backfill with the parameter backfill_days=N, framework 1.9)."""
     last = parse_iso((state_entry or {}).get('last_success'))
     if last:
         return (last - timedelta(days=3)).date()
-    return (now() - timedelta(days=backfill_days())).date()
+    return (now() - timedelta(days=backfill or backfill_days())).date()

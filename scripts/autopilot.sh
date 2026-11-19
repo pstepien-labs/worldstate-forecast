@@ -1,223 +1,247 @@
 #!/usr/bin/env bash
-# Autopilot (framework 1.8, P-0012): the whole cycle without the user.
-# launchd runs `tick` every hour. Each tick does at most one thing:
-#   - an edition is open, or its brief/site is missing  -> resume `/edition --auto` (Claude Code, headless)
-#   - the next edition is due                            -> start it (Sunday from AUTOPILOT_START_HOUR,
-#                                                           or at once if it is more than 7 days late)
-#   - Sunday of an off-week with failing sources         -> harvest source repair (/gH repair)
-# Then it publishes: `git push origin main` and tags (GitHub Pages serves docs/), and a
-# heartbeat in docs/data/autopilot.json that the cloud watchdog reads.
-# Agents never push (denied in .claude/settings.json); only this script does.
+# Autopilot (framework 1.9): the whole cycle without the user.
+# Two launchd jobs (macOS):
+#   com.worldstate-forecast.harvester   the harvester, kept alive by launchd (KeepAlive)
+#   com.worldstate-forecast.autopilot   `tick` every hour
+# Each tick asks tools/autopilot.py what to do (edition / learn / interim / repair / qprep / none), runs at most
+# one headless Claude Code session for it, then publishes: push to GitHub (GitHub Pages serves docs/),
+# a GitHub release per edition, and the heartbeat docs/data/autopilot.json read by the cloud watchdog.
+# Agents never push: origin's push URL is DISABLED for them; only this script pushes, to the `publish` remote.
 #
-#   scripts/autopilot.sh install     install the hourly launchd job (macOS) and run one tick now
-#   scripts/autopilot.sh uninstall   remove the launchd job
+#   scripts/autopilot.sh install     install both launchd jobs and run one tick now
+#   scripts/autopilot.sh uninstall   remove both jobs (the harvester stops)
 #   scripts/autopilot.sh tick        one step now (what launchd runs)
-#   scripts/autopilot.sh status      next action, last runs, inbox
+#   scripts/autopilot.sh status      next action, jobs, last runs, inbox
 #   scripts/autopilot.sh pause       stop acting (ticks exit at once) · resume: undo
+#   scripts/autopilot.sh backup      archive the harvest data to BACKUP_DIR now
 #   scripts/autopilot.sh tail        follow the autopilot log
+# Settings: autopilot.conf (KEY=value); environment variables of the same name win.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 ROOT=$(pwd)
 export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 PY="${PYTHON:-python3}"
+AP="$PY $ROOT/tools/autopilot.py"
 DATA="$ROOT/data/autopilot"
 LOG="$DATA/autopilot.log"
-STATE="$DATA/state.json"
 LOCK="$DATA/lock"
 LABEL="com.worldstate-forecast.autopilot"
+HLABEL="com.worldstate-forecast.harvester"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
-START_DOW="${AUTOPILOT_START_DOW:-7}"         # day editions start: 1=Mon … 7=Sun (date +%u)
-START_HOUR="${AUTOPILOT_START_HOUR:-20}"      # local hour from which they start that day
-MAX_RUN_HOURS="${AUTOPILOT_MAX_RUN_HOURS:-12}"  # one headless run is stopped after this; the next tick resumes it
-PERMISSION_MODE="${AUTOPILOT_PERMISSION_MODE:-auto}"
-MODEL="${AUTOPILOT_MODEL:-}"                  # empty = Claude Code's default model
+HPLIST="$HOME/Library/LaunchAgents/$HLABEL.plist"
 mkdir -p "$DATA/runs"
 
-log() { echo "$(date '+%Y-%m-%d %H:%M:%S') $*" | tee -a "$LOG"; }
+conf() { $AP conf "$1" "${2:-}"; }
+MODEL=$(conf AUTOPILOT_MODEL)
+PERMISSION_MODE=$(conf AUTOPILOT_PERMISSION_MODE auto)
+MAX_RUN_HOURS=$(conf AUTOPILOT_MAX_RUN_HOURS 12)
+BACKUP_DIR=$(conf BACKUP_DIR "")
 
-notify() {  # local macOS notification + inbox line (the cloud watchdog reaches the phone)
+log() { echo "$(date '+%Y-%m-%d %H:%M:%S') $*" | tee -a "$LOG"; }
+notify() {
   log "NOTIFY: $1"
   command -v osascript >/dev/null 2>&1 && osascript -e "display notification \"${1//\"/\'}\" with title \"Worldstate autopilot\"" >/dev/null 2>&1 || true
 }
-
-jget() {  # jget <file> <key> [default]
-  "$PY" - "$1" "$2" "${3:-}" <<'EOF'
-import json, sys
-try:
-    v = json.load(open(sys.argv[1])).get(sys.argv[2], sys.argv[3])
-except Exception:
-    v = sys.argv[3]
-print(json.dumps(v) if isinstance(v, (list, dict, bool)) else v)
-EOF
-}
-
-state_set() {  # state_set key value  (value as JSON or plain string)
-  "$PY" - "$STATE" "$1" "$2" <<'EOF'
-import json, os, sys
-p, k, v = sys.argv[1:]
-d = json.load(open(p)) if os.path.exists(p) else {}
-try:
-    d[k] = json.loads(v)
-except ValueError:
-    d[k] = v
-json.dump(d, open(p, 'w'), indent=1)
-EOF
-}
+sset() { $AP state-set "$1" "$2"; }
+sget() { $AP state-get "$1" "${2:-}"; }
 
 take_lock() {
   if ! mkdir "$LOCK" 2>/dev/null; then
     local pid; pid=$(cat "$LOCK/pid" 2>/dev/null || echo 0)
-    if [ "$pid" != 0 ] && kill -0 "$pid" 2>/dev/null; then exit 0; fi  # a run is in progress
+    if [ "$pid" != 0 ] && kill -0 "$pid" 2>/dev/null; then exit 0; fi
     rm -rf "$LOCK"; mkdir "$LOCK" || exit 0
   fi
   echo $$ > "$LOCK/pid"
   trap 'rm -rf "$LOCK"' EXIT
 }
 
-status_json() { "$PY" tools/pipeline.py status --json > "$DATA/status.json" 2>>"$LOG"; }
+status_json() { "$PY" tools/pipeline.py status --json > "$DATA/status.json.tmp" 2>>"$LOG" && mv "$DATA/status.json.tmp" "$DATA/status.json"; }
+next_stage() { "$PY" -c "import json;print(json.dumps(json.load(open('$DATA/status.json')).get('next')))"; }
 
-decide() {  # prints: edition | repair | none, with a reason
-  "$PY" - "$DATA/status.json" "$STATE" "$START_DOW" "$START_HOUR" <<'EOF'
-import json, os, sys
-from datetime import date, datetime
-st = json.load(open(sys.argv[1]))
-state = json.load(open(sys.argv[2])) if os.path.exists(sys.argv[2]) else {}
-dow, hour = int(sys.argv[3]), int(sys.argv[4])
-now = datetime.now()
-# back-off after failures: 1, 2, 4, 8, 16, 24 hours
-fails = int(state.get('consecutive_failures', 0))
-if fails:
-    wait_h = min(24, 2 ** (fails - 1))
-    last = datetime.fromisoformat(state.get('last_run_end', '2000-01-01T00:00:00'))
-    if (now - last).total_seconds() < wait_h * 3600 - 300:
-        print(f'none backing off {wait_h}h after {fails} failed run(s)'); sys.exit()
-if not st.get('edition_closed'):
-    print(f"edition resume edition {st.get('edition')} at stage {st['next']['stage']} {st['next'].get('arg') or ''}"); sys.exit()
-if not st.get('brief_done') or not st.get('site_done'):
-    print(f"edition finish brief/site of edition {st.get('edition')}"); sys.exit()
-if st.get('can_start_next_edition'):
-    late = (date.today() - date.fromisoformat(st['earliest_state_date'])).days
-    if late >= 7 or (now.isoweekday() == dow and now.hour >= hour):
-        print(f"edition start edition {st['next_edition']} ({late} day(s) after the earliest date)"); sys.exit()
-week = now.strftime('%G-W%V')
-if now.isoweekday() == dow and now.hour >= hour and state.get('repair_week') != week:
-    print(f'repair weekly source check {week}'); sys.exit()
-print('none nothing due')
+inbox_add() {  # inbox_add "<section>" "<line>"
+  "$PY" - "$ROOT/AUTOPILOT_INBOX.md" "$1" "$2" <<'EOF'
+import sys
+p, sec, line = sys.argv[1:]
+t = open(p, encoding='utf-8').read() if __import__('os').path.exists(p) else '# Autopilot inbox\n\n## Blockers\n\n## Waiting for the user\n\n## Decisions taken without the user\n'
+h = f'## {sec}\n'
+if h not in t:
+    t = t.rstrip('\n') + f'\n\n{h}'
+i = t.index(h) + len(h)
+t = t[:i] + f'- {line}\n' + t[i:]
+open(p, 'w', encoding='utf-8').write(t)
 EOF
+  git add AUTOPILOT_INBOX.md && git commit -q -m "autopilot: inbox" -- AUTOPILOT_INBOX.md >/dev/null 2>&1 || true
 }
 
-run_claude() {  # run_claude <label> <prompt>
-  local label="$1" prompt="$2" ts out pid killer rc
-  ts=$(date '+%Y%m%d-%H%M%S'); out="$DATA/runs/$ts-$label.log"
-  log "RUN $label → $out"
-  state_set last_run_start "\"$(date '+%Y-%m-%dT%H:%M:%S')\""
-  local args=(-p "$prompt" --permission-mode "$PERMISSION_MODE" --output-format text)
-  [ -n "$MODEL" ] && args+=(--model "$MODEL")
-  claude "${args[@]}" < /dev/null > "$out" 2>&1 &
+run_claude() {  # run_claude <label> <prompt>  → sets KIND (ok|limit|blocked|failed), RESULT, OUT
+  local label="$1" prompt="$2" ts pid killer rc
+  ts=$(date '+%Y%m%d-%H%M%S'); OUT="$DATA/runs/$ts-$label.log"
+  log "RUN $label (model $MODEL) → $OUT"
+  sset last_run_start "\"$(date '+%Y-%m-%dT%H:%M:%S')\""
+  claude -p "$prompt" --model "$MODEL" --permission-mode "$PERMISSION_MODE" --output-format text < /dev/null > "$OUT" 2>&1 &
   pid=$!
-  command -v caffeinate >/dev/null 2>&1 && { caffeinate -i -s -w "$pid" & }   # keep the Mac awake while it runs
+  command -v caffeinate >/dev/null 2>&1 && { caffeinate -i -s -w "$pid" & }
   ( sleep $((MAX_RUN_HOURS * 3600)); kill "$pid" 2>/dev/null ) & killer=$!
   wait "$pid"; rc=$?
   kill "$killer" 2>/dev/null; wait "$killer" 2>/dev/null
-  state_set last_run_end "\"$(date '+%Y-%m-%dT%H:%M:%S')\""
-  RESULT=$(grep -E '^AUTOPILOT:' "$out" | tail -1)
-  [ -z "$RESULT" ] && RESULT="AUTOPILOT: exit $rc (no result line; see $out)"
-  log "END $label rc=$rc · $RESULT"
+  sset last_run_end "\"$(date '+%Y-%m-%dT%H:%M:%S')\""
+  local cls; cls=$($AP result "$OUT")
+  KIND=${cls%% *}
+  RESULT=$(grep -E '^AUTOPILOT:' "$OUT" | tail -1)
+  [ -z "$RESULT" ] && RESULT="exit $rc ($KIND)"
+  if [ "$KIND" = limit ]; then
+    sset wait_until "\"${cls#* }\""
+    log "usage limit reached: next try after ${cls#* } (not counted as a failure)"
+  fi
+  log "END $label rc=$rc · $KIND · $RESULT"
   find "$DATA/runs" -name '*.log' -mtime +60 -delete 2>/dev/null || true
 }
 
-publish() {  # push committed work; GitHub Pages rebuilds from docs/
+count_failure() {
+  local n; n=$(( $(sget consecutive_failures 0) + 1 )); sset consecutive_failures "$n"
+  [ "$n" -eq 2 ] && notify "Autopilot failed twice in a row: $1"
+  return 0
+}
+
+publish() {
   git fetch -q origin 2>>"$LOG" || { log "fetch failed (offline?)"; return; }
   if [ "$(git rev-list --count HEAD..origin/main 2>/dev/null || echo 0)" != 0 ]; then
-    git merge --ff-only -q origin/main 2>>"$LOG" || { notify "Local and GitHub history diverged: push skipped (resolve by hand)"; return; }
+    git merge --ff-only -q origin/main 2>>"$LOG" || { notify "Local and GitHub history diverged: push skipped"; return; }
   fi
+  local url; url=$(git remote get-url publish 2>/dev/null || git remote get-url origin)
   if [ "$(git rev-list --count origin/main..HEAD 2>/dev/null || echo 0)" != 0 ]; then
-    if git push -q origin main 2>>"$LOG" && git push -q origin --tags 2>>"$LOG"; then
-      log "pushed to origin/main ($(git rev-parse --short HEAD))"
+    if git push -q "$url" main 2>>"$LOG" && git push -q "$url" --tags 2>>"$LOG"; then
+      git fetch -q origin 2>>"$LOG"
+      log "pushed to GitHub ($(git rev-parse --short HEAD))"
     else
       notify "git push failed; will retry next hour"
+      return
     fi
+  fi
+  release_editions
+}
+
+release_editions() {  # WP-21: one GitHub release per published edition (Zenodo archives it if linked)
+  command -v gh >/dev/null 2>&1 || return 0
+  local tag nr dir
+  for tag in $(git tag -l 'edition-*' | sort); do
+    nr=${tag#edition-}
+    [ "$nr" -ge 2 ] 2>/dev/null || continue
+    [ -f "docs/briefs/edition-$nr.pdf" ] || continue
+    "$PY" -c "import json,sys;d=json.load(open('$DATA/state.json')) if __import__('os').path.exists('$DATA/state.json') else {};sys.exit(0 if '$tag' in d.get('released',[]) else 1)" && continue
+    dir=$(ls -d editions/*_edition-"$nr" 2>/dev/null | head -1)
+    if gh release view "$tag" >/dev/null 2>&1 || gh release create "$tag" "$dir/07_report.md" "docs/briefs/edition-$nr.pdf" \
+        --title "Edition $nr" --notes "Forecast edition $nr. Report and executive brief; forecasts frozen in this tag's history (registry/forecasts.csv)." >/dev/null 2>>"$LOG"; then
+      "$PY" - "$DATA/state.json" "$tag" <<'EOF'
+import json, os, sys
+p, t = sys.argv[1:]
+d = json.load(open(p)) if os.path.exists(p) else {}
+d['released'] = sorted(set(d.get('released', [])) | {t})
+json.dump(d, open(p, 'w'), indent=1)
+EOF
+      log "GitHub release $tag ready"
+    fi
+  done
+}
+
+backup() {  # WP-18: weekly archive of the harvest data (skipped if BACKUP_DIR is not set)
+  [ -n "$BACKUP_DIR" ] || return 0
+  [ -d "$BACKUP_DIR" ] || { log "backup: BACKUP_DIR $BACKUP_DIR not found"; return 0; }
+  local out recent
+  out="$BACKUP_DIR/worldstate-harvest-$(date '+%Y%m%d').tar.gz"
+  recent=$(find data/harvest/items -mindepth 1 -maxdepth 1 -type d -newermt "$(date -v-60d '+%Y-%m-%d' 2>/dev/null || date -d '-60 days' '+%Y-%m-%d')" 2>/dev/null)
+  if tar -czf "$out" data/harvest/datasets data/harvest/state $recent 2>>"$LOG"; then
+    log "backup written: $out ($(du -h "$out" | cut -f1))"
+    ls -1t "$BACKUP_DIR"/worldstate-harvest-*.tar.gz 2>/dev/null | tail -n +5 | xargs rm -f 2>/dev/null
+    sset backup_week "\"$(date '+%G-W%V')\""
+  else
+    notify "backup failed"
   fi
 }
 
-heartbeat() {  # docs/data/autopilot.json: committed when its content changes, or at least every 3 days
-  "$PY" - "$DATA/status.json" "$STATE" "$ROOT/docs/data/autopilot.json" "$ROOT/AUTOPILOT_INBOX.md" <<'EOF'
-import json, os, re, sys
-from datetime import datetime, timezone
-st = json.load(open(sys.argv[1])); state = json.load(open(sys.argv[2])) if os.path.exists(sys.argv[2]) else {}
-out, inbox = sys.argv[3], sys.argv[4]
-blockers = 0
-if os.path.exists(inbox):
-    m = re.search(r'## Blockers\n(.*?)(\n## |\Z)', open(inbox, encoding='utf-8').read(), re.S)
-    blockers = len([l for l in (m.group(1) if m else '').splitlines() if l.strip().startswith('-')])
-hb = {'edition': st.get('edition'), 'state_date': st.get('state_date'), 'edition_closed': st.get('edition_closed'),
-      'next_stage': None if st.get('edition_closed') else (st.get('next') or {}).get('cmd'),
-      'earliest_next_edition': st.get('earliest_state_date'), 'last_result': state.get('last_result'),
-      'consecutive_failures': state.get('consecutive_failures', 0), 'open_blockers': blockers,
-      'resolutions_disputed': len(st.get('verification_disputed') or []),
-      'harvester': st.get('harvester'), 'framework_version': st.get('framework_version')}
-old = json.load(open(out)) if os.path.exists(out) else {}
-age_h = 1e9
-if old.get('updated'):
-    age_h = (datetime.now(timezone.utc) - datetime.fromisoformat(old['updated'].replace('Z', '+00:00'))).total_seconds() / 3600
-same = {k: v for k, v in old.items() if k not in ('updated', 'harvester')} == {k: v for k, v in hb.items() if k != 'harvester'}
-if same and age_h < 72:
-    sys.exit(1)
-hb['updated'] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-os.makedirs(os.path.dirname(out), exist_ok=True)
-json.dump(hb, open(out, 'w'), indent=1)
-EOF
-  [ $? -eq 0 ] && git add docs/data/autopilot.json && git commit -q -m "autopilot: heartbeat" -- docs/data/autopilot.json >/dev/null 2>&1 && log "heartbeat committed"
-  return 0
+harvester_check() {
+  "$PY" -m tools.harvester status 2>/dev/null | grep -q 'LIVENESS: running' && return
+  if launchctl print "gui/$(id -u)/$HLABEL" >/dev/null 2>&1; then
+    log "harvester not running although its launchd job exists: kickstart"
+    launchctl kickstart -k "gui/$(id -u)/$HLABEL" 2>>"$LOG"
+  else
+    notify "Harvester not running and its launchd job is not installed: run scripts/autopilot.sh install"
+  fi
 }
+
+PROMPT_EDITION="Read CLAUDE.md and prompts/RUN_edition.md and act as the orchestrator described there, in AUTO mode. Arguments: --auto"
+PROMPT_LEARN="Read CLAUDE.md and prompts/RUN_learning.md and run the learning loop for the latest closed edition in AUTO mode (section 'AUTO mode' of that file). Arguments: latest --auto"
+PROMPT_INTERIM="Read CLAUDE.md and prompts/I_interim.md and carry out the interim resolutions in AUTO mode."
+PROMPT_REPAIR="Read CLAUDE.md and prompts/H_harvest.md and carry out MODE repair. Nobody is watching: do not ask questions; record anything that needs the user under '## Waiting for the user' in AUTOPILOT_INBOX.md. Never push. Last line of your final message: 'AUTOPILOT: complete repair' or 'AUTOPILOT: blocked repair <reason>'."
+PROMPT_QPREP="Read CLAUDE.md and prompts/Q_evidence.md and write the evidence file for the quarterly review in AUTO mode."
 
 tick() {
   [ -f "$DATA/PAUSED" ] && exit 0
   take_lock
   [ "$(git rev-parse --abbrev-ref HEAD)" = main ] || { notify "Repository not on branch main: autopilot idle"; exit 0; }
-  "$PY" -m tools.harvester status 2>/dev/null | grep -q 'LIVENESS: running' || { log "harvester not running: starting"; scripts/harvest.sh start >>"$LOG" 2>&1; }
+  harvester_check
   status_json || { notify "pipeline status failed"; exit 0; }
-  local decision action reason
-  decision=$(decide); action=${decision%% *}; reason=${decision#* }
-  RESULT=""
+  [ "$(sget backup_week)" != "$(date '+%G-W%V')" ] && [ "$(date '+%u')" = 7 ] && backup
+  local decision action reason before
+  decision=$($AP decide); action=${decision%% *}; reason=${decision#* }
   case "$action" in
     edition)
       log "edition: $reason"
-      local before; before=$(jget "$DATA/status.json" next)
-      run_claude edition "Read CLAUDE.md and prompts/RUN_edition.md and act as the orchestrator described there, in AUTO mode. Arguments: --auto"
+      before=$(next_stage)
+      run_claude edition "$PROMPT_EDITION"
       status_json
-      local after; after=$(jget "$DATA/status.json" next)
-      if [[ "$RESULT" == "AUTOPILOT: complete"* ]] || [[ "$RESULT" == "AUTOPILOT: not-due"* ]] || [ "$before" != "$after" ]; then
-        state_set consecutive_failures 0
-      else
-        local n; n=$(( $(jget "$STATE" consecutive_failures 0) + 1 )); state_set consecutive_failures "$n"
-        [ "$n" -eq 2 ] && notify "Edition stuck at the same stage twice: $RESULT"
+      case "$KIND" in
+        ok) sset consecutive_failures 0; sset wait_until null
+            [[ "$RESULT" == "AUTOPILOT: complete"* ]] && notify "Edition published: $RESULT" ;;
+        limit) [ "$before" != "$(next_stage)" ] && sset consecutive_failures 0 ;;
+        blocked) notify "$RESULT"; count_failure "$RESULT" ;;
+        *) if [ "$before" != "$(next_stage)" ]; then sset consecutive_failures 0; else count_failure "$RESULT"; fi ;;
+      esac
+      sset last_result "\"$(date '+%Y-%m-%d %H:%M') $KIND $RESULT\"" ;;
+    learn|interim|qprep|repair)
+      log "$action: $reason"
+      local prompt
+      case "$action" in learn) prompt=$PROMPT_LEARN;; interim) prompt=$PROMPT_INTERIM;; qprep) prompt=$PROMPT_QPREP;; repair) prompt=$PROMPT_REPAIR;; esac
+      run_claude "$action" "$prompt"
+      local ed; ed=$("$PY" -c "import json;print(json.load(open('$DATA/status.json')).get('edition'))")
+      if [ "$KIND" != limit ]; then   # one attempt per edition/week; a failure goes to the inbox, never loops
+        case "$action" in
+          learn) sset learn_done_for "\"$ed\"" ;;
+          interim) sset interim_done_for "\"$ed\"" ;;
+          qprep) sset qprep_done true ;;
+          repair) sset repair_week "\"$(date '+%G-W%V')\"" ;;
+        esac
+        sset wait_until null
+        [ "$KIND" = ok ] || inbox_add "Waiting for the user" "$(date '+%d.%m.%Y') autopilot $action did not complete ($KIND): see data/autopilot/runs/$(basename "$OUT")"
       fi
-      [[ "$RESULT" == "AUTOPILOT: complete"* ]] && notify "Edition published: $RESULT"
-      [[ "$RESULT" == "AUTOPILOT: blocked"* ]] && notify "$RESULT"
-      state_set last_result "\"$(date '+%Y-%m-%d %H:%M') $RESULT\""
-      ;;
-    repair)
-      state_set repair_week "\"$(date '+%G-W%V')\""
-      local failing; failing=$("$PY" -m tools.harvester status 2>/dev/null | grep -oE 'failing [0-9]+' | head -1 | grep -oE '[0-9]+' || echo 0)
-      if [ "${failing:-0}" -ge 3 ]; then
-        log "repair: $failing failing sources"
-        run_claude repair "Read CLAUDE.md and prompts/H_harvest.md and carry out MODE repair. Nobody is watching: do not ask questions; record anything that needs the user under '## Waiting for the user' in AUTOPILOT_INBOX.md. Never run git push. Last line of your final message: 'AUTOPILOT: complete repair' or 'AUTOPILOT: blocked repair <reason>'."
-        state_set last_result "\"$(date '+%Y-%m-%d %H:%M') $RESULT\""
-      else
-        log "repair: not needed ($failing failing)"
-      fi
-      ;;
-    *) : ;;
+      sset last_result "\"$(date '+%Y-%m-%d %H:%M') $action $KIND $RESULT\"" ;;
+    skip-repair) sset repair_week "\"$(date '+%G-W%V')\""; log "repair: $reason" ;;
+    *) case "$reason" in model\ mismatch*|publication*) [ "$(sget last_notice)" != "$reason" ] && { notify "$reason"; sset last_notice "\"$reason\""; } ;; esac ;;
   esac
   status_json
-  heartbeat
+  if $AP heartbeat; then
+    git add docs/data/autopilot.json && git commit -q -m "autopilot: heartbeat" -- docs/data/autopilot.json >/dev/null 2>&1 && log "heartbeat committed"
+  fi
   publish
 }
 
-install() {
-  [ "$(uname)" = Darwin ] || { echo "install is for macOS (launchd). Elsewhere run 'scripts/autopilot.sh tick' hourly from cron."; exit 1; }
-  mkdir -p "$(dirname "$PLIST")"
+write_plists() {
+  mkdir -p "$(dirname "$PLIST")" "$ROOT/data/harvest/logs"
+  cat > "$HPLIST" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>$HLABEL</string>
+  <key>ProgramArguments</key><array><string>/usr/bin/caffeinate</string><string>-i</string><string>-s</string><string>$(command -v "$PY")</string><string>-m</string><string>tools.harvester</string><string>watch</string></array>
+  <key>WorkingDirectory</key><string>$ROOT</string>
+  <key>KeepAlive</key><true/>
+  <key>RunAtLoad</key><true/>
+  <key>ThrottleInterval</key><integer>60</integer>
+  <key>StandardOutPath</key><string>$ROOT/data/harvest/logs/console.log</string>
+  <key>StandardErrorPath</key><string>$ROOT/data/harvest/logs/console.log</string>
+  <key>EnvironmentVariables</key><dict><key>HOME</key><string>$HOME</string><key>LANG</key><string>en_US.UTF-8</string></dict>
+</dict></plist>
+EOF
   cat > "$PLIST" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -232,6 +256,17 @@ install() {
   <key>EnvironmentVariables</key><dict><key>HOME</key><string>$HOME</string><key>LANG</key><string>en_US.UTF-8</string></dict>
 </dict></plist>
 EOF
+}
+
+install() {
+  [ "$(uname)" = Darwin ] || { echo "install is for macOS (launchd). Elsewhere run the harvester under systemd and 'scripts/autopilot.sh tick' hourly from cron."; exit 1; }
+  write_plists
+  # hand the harvester over to launchd: stop a copy started by hand (state is kept), then load the job
+  if ! launchctl print "gui/$(id -u)/$HLABEL" >/dev/null 2>&1; then
+    "$PY" -m tools.harvester status 2>/dev/null | grep -q 'LIVENESS: running' && "$PY" -m tools.harvester stop --wait >/dev/null 2>&1
+  fi
+  launchctl bootout "gui/$(id -u)/$HLABEL" 2>/dev/null || true
+  launchctl bootstrap "gui/$(id -u)" "$HPLIST" && echo "Installed $HLABEL (harvester kept alive by launchd)."
   launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
   launchctl bootstrap "gui/$(id -u)" "$PLIST" && echo "Installed $LABEL (hourly; first tick running now). Log: scripts/autopilot.sh tail"
 }
@@ -239,17 +274,22 @@ EOF
 case "${1:-status}" in
   tick) tick ;;
   install) install ;;
-  uninstall) launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null; rm -f "$PLIST"; echo "Removed $LABEL." ;;
-  pause) touch "$DATA/PAUSED"; echo "Paused (ticks exit at once). Undo: scripts/autopilot.sh resume" ;;
+  uninstall)
+    for l in "$LABEL" "$HLABEL"; do launchctl bootout "gui/$(id -u)/$l" 2>/dev/null; done
+    rm -f "$PLIST" "$HPLIST"; echo "Removed $LABEL and $HLABEL (the harvester has stopped)." ;;
+  pause) touch "$DATA/PAUSED"; echo "Paused (ticks exit at once; the harvester keeps running). Undo: scripts/autopilot.sh resume" ;;
   resume) rm -f "$DATA/PAUSED"; echo "Resumed." ;;
+  backup) BACKUP_DIR=${2:-$BACKUP_DIR}; [ -n "$BACKUP_DIR" ] || { echo "Set BACKUP_DIR in autopilot.conf or pass a folder."; exit 1; }; backup ;;
   tail) tail -n 40 -f "$LOG" ;;
   status)
-    status_json; echo "Next action: $(decide)"
+    status_json; echo "Next action: $($AP decide)"
+    echo "Model: $MODEL · permission mode: $PERMISSION_MODE"
     [ -f "$DATA/PAUSED" ] && echo "PAUSED"
     [ -d "$LOCK" ] && echo "Running now: pid $(cat "$LOCK/pid" 2>/dev/null)"
-    launchctl print "gui/$(id -u)/$LABEL" >/dev/null 2>&1 && echo "launchd job: installed" || echo "launchd job: NOT installed (scripts/autopilot.sh install)"
+    for l in "$LABEL" "$HLABEL"; do
+      launchctl print "gui/$(id -u)/$l" >/dev/null 2>&1 && echo "launchd job $l: installed" || echo "launchd job $l: NOT installed (scripts/autopilot.sh install)"
+    done
     echo "--- last log lines"; tail -n 8 "$LOG" 2>/dev/null
-    [ -f AUTOPILOT_INBOX.md ] && { echo "--- AUTOPILOT_INBOX.md"; cat AUTOPILOT_INBOX.md; }
-    ;;
-  *) sed -n '2,18p' "$0"; exit 1 ;;
+    [ -f AUTOPILOT_INBOX.md ] && { echo "--- AUTOPILOT_INBOX.md"; cat AUTOPILOT_INBOX.md; } ;;
+  *) sed -n '2,19p' "$0"; exit 1 ;;
 esac

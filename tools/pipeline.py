@@ -44,6 +44,9 @@ STAGES = {
     'Q': ('prompts/Q_quarterly_review.md', 'Quarterly review'),
     'S': ('prompts/S_social.md', 'Social drafts (X)'),
     'E': ('prompts/E_brief.md', 'Executive brief and social cards'),
+    'I': ('prompts/I_interim.md', 'Interim resolutions between editions (autopilot)'),
+    'R': ('prompts/R_replay.md', 'Replay of a lens prompt on a closed edition (evaluation only)'),
+    'QE': ('prompts/Q_evidence.md', 'Evidence file for the quarterly review (autopilot)'),
     'V': ('prompts/V_autoverify.md', 'Independent re-check of resolutions awaiting verification (autopilot)'),
     'L1': ('prompts/learning/L1_hindsight.md', 'Learning: hindsight audit of reports'),
     'L2': ('prompts/learning/L2_forecast_performance.md', 'Learning: forecast performance'),
@@ -119,7 +122,7 @@ def now():
 
 
 def prov_path(stage, cur):
-    if stage.startswith('L') or stage in ('M', 'Q'):
+    if stage.startswith('L') or stage in ('M', 'Q', 'QE', 'R'):
         return os.path.join(ROOT, 'reviews', 'learning', 'provenance.jsonl')
     if stage == 'S':
         return os.path.join(ROOT, 'social', 'provenance.jsonl')
@@ -221,6 +224,18 @@ def render_provenance(quiet=False):
         print('\n'.join(lines))
 
 
+def edition_framework(recs):
+    """Framework version (tuple) of the first provenance record of an edition; (0,) if unknown."""
+    for r in recs:
+        v = r.get('framework_version')
+        if v:
+            try:
+                return tuple(int(x) for x in v.split('.')[:3])
+            except ValueError:
+                return (0,)
+    return tuple(int(x) for x in framework_version().split('.')[:3]) if not recs else (0,)
+
+
 def edition_done_map(cur):
     """Which stages are complete in the current edition (provenance first, files as fallback)."""
     d = os.path.join(ROOT, cur.get('DIRECTORY', ''))
@@ -249,6 +264,8 @@ def edition_done_map(cur):
     steps.append(('03', None, '/g03', done('03', None, ['03_analysis.md'])))
     for lens in ('A', 'B', 'C'):
         steps.append(('04', lens, f'/g04 {lens}', done('04', lens, [f'04_forecasts_{lens}.md'])))
+    if edition_framework(recs) >= (1, 9, 0):  # shadow run B2 (framework 1.9, WP-11): editions started on 1.9+
+        steps.append(('04', 'B2', '/g04 B2', done('04', 'B2', ['04_forecasts_B2.md'])))
     steps += [
         ('05', None, '/g05', done('05', None, ['05_red_team.md'])),
         ('06', None, '/g06', done('06', None, ['06_aggregation.md', '06_benchmarks.md'])),
@@ -320,6 +337,7 @@ def compute_state():
         # autopilot (framework 1.8): the public page rebuilt for this edition, and resolutions still awaiting a check
         st['site_done'] = bool(sh('git', 'log', '-1', '--format=%h', '--extended-regexp',
                                   f'--grep=^edition-{nr_} site'))
+        st['publish_blocked'] = critical_open(os.path.join(ROOT, cur['DIRECTORY'], '08_quality_control.md'))
         st['brief_done'] = all(os.path.exists(os.path.join(ROOT, 'docs', 'briefs', f'edition-{nr_}.{x}')) for x in ('html', 'pdf')) \
             and os.path.isdir(os.path.join(ROOT, 'social', 'cards', f'edition-{nr_}'))
         prev = datetime.strptime(cur['STATE_DATE'], '%Y-%m-%d').date()
@@ -340,6 +358,16 @@ def compute_state():
             and cur.get('STATE_DATE', '9999') > today.isoformat():
         st['waiting_reason'] = f"the state date {cur['STATE_DATE']} is in the future; keep harvesting until then"
     return st
+
+
+def critical_open(path):
+    """Stage 08 (framework 1.9) writes 'Critical discrepancies open: N'. True if N > 0 (publication gate)."""
+    try:
+        with open(path, encoding='utf-8') as f:
+            m = re.search(r'Critical discrepancies open:\s*\**\s*(\d+)', f.read(), re.I)
+    except OSError:
+        return False
+    return bool(m and int(m.group(1)) > 0)
 
 
 def pending_verification():
@@ -434,6 +462,75 @@ def cmd_register(a):
     print('registered:', row)
 
 
+FORECAST_RUNS_APPENDABLE = {'A', 'B', 'C', 'B2', 'AGG', 'AGG_RT', 'QNT'}
+
+
+def cmd_lens_rows(a):
+    """Header and the rows of one run only (a lens sees its own earlier forecasts, nothing else; rule 3.8)."""
+    p = os.path.join(ROOT, 'registry', 'forecasts.csv')
+    with open(p, encoding='utf-8-sig', newline='') as f:
+        rows = list(csv.reader(f, delimiter=';'))
+    i = rows[0].index('run')
+    w = csv.writer(sys.stdout, delimiter=';', quoting=csv.QUOTE_NONNUMERIC, lineterminator='\n')
+    w.writerow(rows[0])
+    for r in rows[1:]:
+        if len(r) > i and r[i] == a.run:
+            w.writerow(r)
+
+
+def cmd_append_forecasts(a):
+    """Validate a CSV of forecast rows (registry header, optional) and append it to registry/forecasts.csv."""
+    p = os.path.join(ROOT, 'registry', 'forecasts.csv')
+    with open(p, encoding='utf-8-sig', newline='') as f:
+        header = next(csv.reader(f, delimiter=';'))
+    with open(a.file, encoding='utf-8-sig', newline='') as f:
+        rows = [r for r in csv.reader(f, delimiter=';') if r]
+    if rows and rows[0] == header:
+        rows = rows[1:]
+    qids = set()
+    with open(os.path.join(ROOT, 'registry', 'questions.csv'), encoding='utf-8-sig', newline='') as f:
+        qids = {q['id'] for q in csv.DictReader(f, delimiter=';')}
+    errors = []
+    idx = {k: header.index(k) for k in ('question_id', 'edition', 'date', 'run', 'p')}
+    for n, r in enumerate(rows, 1):
+        if len(r) != len(header):
+            errors.append(f'row {n}: {len(r)} fields, expected {len(header)}')
+            continue
+        if r[idx['question_id']] not in qids:
+            errors.append(f"row {n}: unknown question {r[idx['question_id']]}")
+        if r[idx['run']] not in FORECAST_RUNS_APPENDABLE or (a.run and r[idx['run']] != a.run):
+            errors.append(f"row {n}: run {r[idx['run']]!r} not allowed here")
+        try:
+            pv = float(r[idx['p']])
+            if not 0.01 <= pv <= 0.99:
+                errors.append(f'row {n}: p {pv} outside 0.01-0.99')
+        except ValueError:
+            errors.append(f"row {n}: p {r[idx['p']]!r} is not a number")
+        if not re.match(r'^\d{4}-\d{2}-\d{2}$', r[idx['date']]):
+            errors.append(f"row {n}: date {r[idx['date']]!r} is not YYYY-MM-DD")
+    if errors:
+        sys.exit('append-forecasts refused:\n  ' + '\n  '.join(errors[:30]))
+    with open(p, 'a', encoding='utf-8', newline='') as f:
+        w = csv.writer(f, delimiter=';', quoting=csv.QUOTE_ALL, lineterminator='\n')
+        for r in rows:
+            w.writerow(r)
+    print(f'appended {len(rows)} rows to registry/forecasts.csv')
+
+
+def cmd_cutoff(a):
+    """INFO_CUTOFF of the current edition as YYYY-MM-DD (first line of 03_analysis.md), for stages that may not open it."""
+    cur = current()
+    try:
+        with open(os.path.join(ROOT, cur['DIRECTORY'], '03_analysis.md'), encoding='utf-8') as f:
+            first = f.readline()
+    except (OSError, KeyError):
+        sys.exit('no 03_analysis.md in the current edition yet')
+    m = re.search(r'(\d{2})\.(\d{2})\.(\d{4})', first)
+    if not m:
+        sys.exit('INFO_CUTOFF line not found')
+    print(f'{m.group(3)}-{m.group(2)}-{m.group(1)}')
+
+
 def cmd_versions(a):
     cur = current()
     print(json.dumps({'framework_version': framework_version(), 'methodology_version': methodology_version(cur),
@@ -461,6 +558,14 @@ def main():
     r.add_argument('--notes')
     r.set_defaults(fn=cmd_register)
     sub.add_parser('versions').set_defaults(fn=cmd_versions)
+    sub.add_parser('cutoff', help='INFO_CUTOFF date of the current edition').set_defaults(fn=cmd_cutoff)
+    lr = sub.add_parser('lens-rows', help='header + rows of one run of registry/forecasts.csv (rule 3.8)')
+    lr.add_argument('run')
+    lr.set_defaults(fn=cmd_lens_rows)
+    af = sub.add_parser('append-forecasts', help='validate and append forecast rows from a CSV file')
+    af.add_argument('file')
+    af.add_argument('--run', help='require every row to have this run')
+    af.set_defaults(fn=cmd_append_forecasts)
     a = p.parse_args()
     a.fn(a)
 

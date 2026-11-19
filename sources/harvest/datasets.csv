@@ -25,3 +25,5 @@ ofac_sdn;1;csv_diff;OFAC SDN list (additions/removals);https://www.treasury.gov/
 # --- independent physical signals ---
 firms_ru_west;1;firms;NASA FIRMS fires — western Russia;https://firms.modaps.eosdis.nasa.gov/api/area/csv/{key:FIRMS_MAP_KEY}/VIIRS_SNPP_NRT/30,43,58,62/{days};;fires_ru_west;detections;FIRMS_MAP_KEY;24;G1|G2;counts near refineries/ports in sites.csv, free key: firms.modaps.eosdis.nasa.gov/api
 firms_gulf;1;firms;NASA FIRMS fires — Arabian Peninsula;https://firms.modaps.eosdis.nasa.gov/api/area/csv/{key:FIRMS_MAP_KEY}/VIIRS_SNPP_NRT/34,12,60,32/{days};;fires_gulf;detections;FIRMS_MAP_KEY;24;G1|G2;gas flares are permanent: compare with the site baseline, not zero
+# --- history for computed forecasts (framework 1.9, WP-10; tools/quant.py) ---
+ecb_eurpln_hist;1;sdmx_csv;ECB reference rate EUR/PLN (history for computed forecasts);https://data-api.ecb.europa.eu/service/data/EXR/D.PLN.EUR.SP00.A?startPeriod={start}&format=csvdata;backfill_days=760;EUR/PLN_ecb;PLN;;24;G3;two-year history of daily changes for tools/quant.py; NBP stays the deciding source

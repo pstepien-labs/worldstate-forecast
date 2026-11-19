@@ -32,7 +32,10 @@ Write the first line of `03_analysis.md` as `INFO_CUTOFF: dd.mm.yyyy hh:mm` (loc
   
   "Source X or Y; in case of discrepancy Z decides" is allowed only if Z is readable. A source that needs a missing API key, a login or a paywall cannot be the deciding source. Edition 02: 10 of 27 resolutions were flagged ambiguous or unreadable, mostly ICE settlements and AGSI+.
 - **Horizon proportions (§3.3)** and vector coverage. "By the next edition" means a deadline on or before STATE_DATE + 14 days. "By the end of the quarter" means a later deadline up to the last day of the current calendar quarter. Anything later counts as "longer".
+- **Candidates from the previous edition (framework 1.9, WP-13).** Read `<PREVIOUS>/next_question_candidates.md` if it exists. Treat its candidates like any others: they mirror questions also asked elsewhere, which makes EXACT benchmark matches possible. They carry no probabilities, by design.
 - Append the questions to `registry/questions.csv` (status ACTIVE; sequential IDs: Q-0001, Q-0002…).
+- **Computed forecasts (framework 1.9, WP-10).** For every new question decided by a harvested numeric series (`sources/harvest/datasets.csv`, e.g. Brent, EUR/PLN, EUR/USD), append a row to `registry/quant_map.csv`: indicator, optional history indicator, condition (`last_above`, `last_below`, `any_above`, `any_below`), threshold, window start and end. Name any proxy in `notes` (e.g. Brent spot for the ICE settlement).
+- **Relations (framework 1.9, WP-12).** For pairs of active questions where one logically implies the other (same event with a later deadline, a higher threshold, a narrower event), or which are mutually exclusive, append a row to `registry/relations.csv` (`implies`, `same_event_later_deadline`, `higher_threshold`, `exclusive`; a = the narrower question).
 
 ## Output
 

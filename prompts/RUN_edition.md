@@ -4,7 +4,7 @@ You are the **orchestrator**. You produce a complete edition — from the start 
 
 Optional argument `STATE_DATE` (YYYY-MM-DD). The run is resumable: if it stops for any reason, the user types `/edition` again and you continue from the first unfinished stage.
 
-## 0. AUTO mode (framework 1.8, autopilot)
+## 0. AUTO mode (framework 1.8–1.9, autopilot)
 
 If the arguments contain `--auto`, nobody is watching: the run was started by `scripts/autopilot.sh`, which resumes it every hour until it is done and then pushes it to GitHub. In AUTO mode the rules below change, and everything else stays as written.
 - **Never ask the user anything**, and never wait for an answer. Item 1.4 is answered "Continue, I'll review later". Skip item 1.5.
@@ -14,6 +14,7 @@ If the arguments contain `--auto`, nobody is watching: the run was started by `s
   - If the stage prompt or the question names a default or conservative option, choose it. Record the question and your choice in the edition's `log.md` and under `## Decisions taken without the user` in `AUTOPILOT_INBOX.md` (repository root; create it if it is missing). Then rerun the stage with the answer.
   - If there is no safe default, treat it as `STATUS: blocked`.
 - **Item 2.5:** after stage 01, if `pending_verification` in `status --json` is not empty, run one stage-runner for stage `V` (prompt file `prompts/V_autoverify.md`). It re-checks the flagged resolutions independently. Nothing is asked of the user.
+- **Publication gate (framework 1.9):** after stage 08, if `publish_blocked` in `status --json` is true, do not run section 3. Add `<date> edition-NN: critical quality-control items open (08_quality_control.md)` under `## Blockers` in `AUTOPILOT_INBOX.md`, commit `autopilot: blocker`, and end with `AUTOPILOT: blocked 08 critical quality-control items open`.
 - **Section 3 item 3 (X drafts):** skip it. X is not automated yet.
 - **Blocked:** stop as in item 2.3. Add the blocker, with date and stage, under `## Blockers` in `AUTOPILOT_INBOX.md` and commit `autopilot: blocker`.
 - **Never run `git push`.** The autopilot script publishes.

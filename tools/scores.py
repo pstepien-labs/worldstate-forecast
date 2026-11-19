@@ -36,6 +36,11 @@ def read(name):
         return []
 
 
+def read_path(path):
+    with open(path, encoding='utf-8-sig', newline='') as f:
+        return list(csv.DictReader(f, delimiter=';'))
+
+
 def d(s):
     return date.fromisoformat(s.strip()[:10])
 
@@ -131,6 +136,161 @@ def diagnostics(pr, official, forecasts, questions, res, outcome, in_scope):
     pr('')
 
 
+# ---------------------------------------------------------------- framework 1.9 diagnostics (WP-06)
+
+def horizon_band(days):
+    return '<=14' if days <= 14 else ('<=100' if days <= 100 else '>100')
+
+
+def cluster_boot(items, stat, n=2000, seed=20261117, level=0.90):
+    """Bootstrap interval of stat(list of items), resampling whole clusters. items: (cluster, value)."""
+    groups = defaultdict(list)
+    for c, v in items:
+        groups[c].append(v)
+    keys = sorted(groups)
+    if len(keys) < 2:
+        return float('nan'), float('nan')
+    rnd = random.Random(seed)
+    out = []
+    for _ in range(n):
+        sample = [v for k in (rnd.choice(keys) for _ in keys) for v in groups[k]]
+        out.append(stat(sample))
+    out.sort()
+    lo = out[int((1 - level) / 2 * n)]
+    hi = out[int((1 + level) / 2 * n) - 1]
+    return lo, hi
+
+
+def derived_runs(rows_all):
+    """Aggregates computed at scoring time from A, B, C of the same (question, edition). No registry rows."""
+    import math
+    by = defaultdict(dict)
+    meta = {}
+    for w in rows_all:
+        if w[2] in ('A', 'B', 'C'):
+            by[(w[0], w[1])][w[2]] = w[3]
+            meta[(w[0], w[1])] = w
+    lo = lambda p: math.log(p / (1 - p))
+    inv = lambda x: 1 / (1 + math.exp(-x))
+    out = []
+    for k, v in by.items():
+        if len(v) != 3:
+            continue
+        w = meta[k]
+        ps = sorted(v.values())
+        m = sum(lo(min(max(p, 0.01), 0.99)) for p in ps) / 3
+        for name, p in (('derived:median', ps[1]), ('derived:logodds', inv(m)), ('derived:logodds^1.5', inv(1.5 * m))):
+            out.append((w[0], w[1], name, p, w[4], w[5]))
+    return out
+
+
+def diagnostics_19(pr, rows_all, questions, res, outcome, pending, as_of):
+    """Closed cohort, intervals, paired differences, derived aggregates, bias. Not the official measure."""
+    clus = lambda q: questions[q].get('cluster', '') or q
+    sq = lambda q: float(questions[q]['p_status_quo'])
+    all_rows = rows_all + derived_runs(rows_all)
+    runs = list(RUNS) + sorted({w[2] for w in all_rows} - set(RUNS))
+
+    # Closed cohort
+    pr('### Closed cohort (questions whose deadline has passed)\n')
+    pr(f'A YES resolves on the day the event happens and a NO only at the deadline, so the set of resolved '
+       f'questions over-represents YES while many deadlines are still open. The closed cohort counts only '
+       f'questions with a deadline before {as_of.strftime("%d.%m.%Y")}.\n')
+    closed = {q for q in outcome if d(questions[q]['deadline']) < as_of}
+    overdue = [q for q, x in questions.items() if x.get('status') == 'ACTIVE' and d(x['deadline']) < as_of]
+    pr('| Set | N questions | YES rate | Brier AGG_RT | Brier SQ | BSS vs SQ |')
+    pr('|---|---|---|---|---|---|')
+    for name, qs in (('all resolved', set(outcome)), ('closed cohort', closed)):
+        ws = [w for w in rows_all if w[2] == 'AGG_RT' and w[0] in qs]
+        if not ws:
+            pr(f'| {name} | 0 | n/a | n/a | n/a | n/a |')
+            continue
+        b, bs = mean([(w[3] - w[4]) ** 2 for w in ws]), mean([(sq(w[0]) - w[4]) ** 2 for w in ws])
+        pr(f'| {name} | {len({w[0] for w in ws})} | {fmt(mean([outcome[q] for q in {w[0] for w in ws}]), 2)} | '
+           f'{fmt(b)} | {fmt(bs)} | {fmt(1 - b / bs if bs > 0 else float("nan"))} |')
+    pr(f'\nActive questions past their deadline and not yet resolved: {len(overdue)} · awaiting verification: {len(pending)}\n')
+
+    # Intervals per run
+    pr('### Runs with 90% intervals (cluster bootstrap, 2000 resamples, fixed seed)\n')
+    pr('| Run | N | Brier | 90% interval | BSS vs SQ | 90% interval |')
+    pr('|---|---|---|---|---|---|')
+    for run in runs:
+        ws = [w for w in all_rows if w[2] == run]
+        if not ws:
+            continue
+        items = [(clus(w[0]), ((w[3] - w[4]) ** 2, (sq(w[0]) - w[4]) ** 2)) for w in ws]
+        brier = lambda xs: mean([x[0] for x in xs])
+        bss = lambda xs: 1 - mean([x[0] for x in xs]) / mean([x[1] for x in xs]) if mean([x[1] for x in xs]) > 0 else float('nan')
+        vals = [x for _, x in items]
+        b_lo, b_hi = cluster_boot(items, brier)
+        s_lo, s_hi = cluster_boot(items, bss)
+        pr(f'| {run} | {len(ws)} | {fmt(brier(vals))} | [{fmt(b_lo)}, {fmt(b_hi)}] | {fmt(bss(vals))} | [{fmt(s_lo)}, {fmt(s_hi)}] |')
+    pr('')
+
+    # Paired differences against AGG_RT
+    pr('### Paired difference against AGG_RT (same question and edition)\n')
+    pr('Negative = the run was more accurate than the official forecast. An interval containing 0 = no evidence of a difference.\n')
+    pr('| Run | N pairs | Mean Brier difference | 90% interval | closer than AGG_RT / further |')
+    pr('|---|---|---|---|---|')
+    off = {(w[0], w[1]): (w[3] - w[4]) ** 2 for w in rows_all if w[2] == 'AGG_RT'}
+    for run in runs:
+        if run == 'AGG_RT':
+            continue
+        diffs = [(clus(w[0]), (w[3] - w[4]) ** 2 - off[(w[0], w[1])]) for w in all_rows
+                 if w[2] == run and (w[0], w[1]) in off]
+        if not diffs:
+            continue
+        lo_, hi_ = cluster_boot(diffs, mean)
+        better = sum(1 for _, x in diffs if x < -1e-12)
+        worse = sum(1 for _, x in diffs if x > 1e-12)
+        pr(f'| {run} | {len(diffs)} | {fmt(mean([x for _, x in diffs]))} | [{fmt(lo_)}, {fmt(hi_)}] | {better} / {worse} |')
+    pr('')
+
+    # Bias
+    pr('### Mean forecast against YES rate (AGG_RT)\n')
+    pr('| Group | N | Mean p | YES rate | Difference |')
+    pr('|---|---|---|---|---|')
+    off_rows = [w for w in rows_all if w[2] == 'AGG_RT']
+
+    def bias_line(name, ws):
+        if ws:
+            mp, yr = mean([w[3] for w in ws]), mean([w[4] for w in ws])
+            pr(f'| {name} | {len(ws)} | {fmt(mp, 2)} | {fmt(yr, 2)} | {fmt(mp - yr, 2)} |')
+    bias_line('all', off_rows)
+    bias_line('closed cohort', [w for w in off_rows if w[0] in closed])
+    for band in ('<=14', '<=100', '>100'):
+        bias_line(f'horizon {band} days', [w for w in off_rows
+                                            if horizon_band((d(questions[w[0]]['deadline']) - d(w[5])).days) == band])
+    for v in sorted({questions[w[0]].get('vector', '') for w in off_rows}):
+        bias_line(f'vector {v}', [w for w in off_rows if questions[w[0]].get('vector', '') == v])
+    pr('')
+
+
+def write_base_rates(path, questions, res, outcome, as_of):
+    """YES rate by question family from the closed cohort (framework 1.9, WP-11). Laplace-smoothed.
+    Levels: vector x horizon band x p_status_quo -> horizon band x p_status_quo -> p_status_quo -> all."""
+    fam = defaultdict(list)
+    for q, o in outcome.items():
+        x = questions.get(q)
+        if not x or d(x['deadline']) >= as_of:
+            continue
+        try:
+            band = horizon_band((d(x['deadline']) - d(x['created'])).days)
+        except ValueError:
+            continue
+        keys = [('family', x.get('vector', ''), band, x['p_status_quo']), ('band_sq', '', band, x['p_status_quo']),
+                ('sq', '', '', x['p_status_quo']), ('all', '', '', '')]
+        for k in keys:
+            fam[k].append(o)
+    with open(path, 'w', encoding='utf-8-sig', newline='') as f:
+        w = csv.writer(f, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
+        w.writerow(['level', 'vector', 'horizon_band', 'p_status_quo', 'n', 'yes', 'yes_rate_smoothed', 'as_of'])
+        for k in sorted(fam):
+            n, y = len(fam[k]), sum(fam[k])
+            w.writerow([k[0], k[1], k[2], k[3], n, y, round((y + 1) / (n + 2), 3), as_of.isoformat()])
+    print(f'base rates: {len(fam)} rows from {sum(len(v) for k, v in fam.items() if k[0] == "all")} closed questions -> {path}')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--to-edition', default=None, help='include forecasts up to and including this edition (e.g. 03)')
@@ -139,12 +299,17 @@ def main():
     ap.add_argument('--n-boot', type=int, default=2000)
     ap.add_argument('--editions', default=None, help='comma-separated editions to include (e.g. 02,03)')
     ap.add_argument('--framework', default=None, help='include only editions produced with this framework version')
+    ap.add_argument('--add-forecasts', default=None, help='add the rows of this file (e.g. a replay, framework 1.9) to '
+                    'the registry forecasts; their runs appear in the diagnostics, not in the official tables')
+    ap.add_argument('--as-of', default=None, help='date for the closed cohort (default: today)')
+    ap.add_argument('--base-rates', default=None, metavar='OUT',
+                    help='write YES rates by question family from the closed cohort to OUT (CSV) and stop')
     a = ap.parse_args()
     fw_of = {r['edition']: r.get('framework_version', '') for r in read('editions.csv')}
     only_editions = {e.strip().zfill(2) for e in a.editions.split(',')} if a.editions else None
 
     questions = {q['id']: q for q in read('questions.csv')}
-    forecasts = read('forecasts.csv')
+    forecasts = read('forecasts.csv') + (read_path(a.add_forecasts) if a.add_forecasts else [])
     res = final_resolutions(read('resolutions.csv'))
     bench = read('benchmarks.csv')
 
@@ -183,6 +348,11 @@ def main():
             latest[k] = max(latest.get(k, d(p['date'])), d(p['date']))
         except ValueError:
             pass
+
+    as_of = d(a.as_of) if a.as_of else date.today()
+    if a.base_rates:
+        write_base_rates(a.base_rates, questions, res, outcome, as_of)
+        return
 
     rows_all = []  # (qid, edition, run, p, o, date)
     known = set()  # (qid, edition) forecast on or after the resolution date
@@ -306,6 +476,7 @@ def main():
         pr(', '.join(f'{q} (edition {e})' for q, e in sorted(known)) + '\n')
 
     diagnostics(pr, official, forecasts, questions, res, outcome, in_scope)
+    diagnostics_19(pr, rows_all, questions, res, outcome, pending, as_of)
 
     # Cluster bootstrap for the Brier difference between two runs.
     if a.bootstrap:

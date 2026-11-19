@@ -8,7 +8,7 @@ You type only a handful of commands. Everything else runs by itself, and anythin
 | `/edition` | every two weeks, on or after the date `/next` shows | The whole edition runs, about 15 stages and 10–20 hours unattended, and ends with the report |
 | `/next` | whenever you are unsure | Tells you what is running, what is finished, and what to type next |
 | `/learn` | optional, between editions | Reviews past editions and proposes improvements for you to approve |
-| `scripts/autopilot.sh install` | once (framework 1.8) | **Autopilot:** from now on editions run, are verified and are published without you (section 5) |
+| `scripts/autopilot.sh install` | once (framework 1.9) | **Autopilot (the normal way):** editions run, are verified and are published without you (section 5) |
 
 ---
 
@@ -167,37 +167,67 @@ Run it when questions have resolved: after edition 03 at the earliest, ideally w
 
 ---
 
-## 5. Autopilot (framework 1.8): the cycle without you
+## 5. Autopilot (framework 1.9): the normal way to run the project
 
 ```bash
-scripts/autopilot.sh install     # once: an hourly macOS launchd job, starting with one run now
+scripts/autopilot.sh install     # once: two launchd jobs (harvester kept alive + hourly tick), first tick now
 ```
 
-From then on, every hour the job does at most one of these, then publishes:
-- **An edition is open, or its brief or site is missing:** it continues `/edition --auto` in headless Claude Code (`claude -p`, permission mode `auto`). An interrupted stage, a usage limit or a sleeping Mac only delays it.
-- **The next edition is due:** it starts on the Sunday from 20:00, or at once if it is 7 or more days late. Editions stay two weeks apart.
-- **Sunday of an off-week:** if 3 or more sources fail, it runs a harvest source repair.
-- **Publishing:** after every run it pushes `main` and the tags to GitHub, and GitHub Pages updates the site. Claude never pushes; only this script does.
-- **Flagged resolutions:** stage V re-checks them blind. If it agrees, the resolution is scored and labelled "auto-verified". If it disagrees, it goes to `AUTOPILOT_INBOX.md` for you.
-- **Failed runs:** it waits 1, 2, 4… up to 24 hours before trying again. You get a macOS notification, and the cloud watchdog reads `docs/data/autopilot.json` and alerts your phone.
+This is the main path. The manual commands in sections 2–4 remain for repairs and experiments.
 
-What you may do (all optional):
+**What runs, and when.** Every hour the tick does at most one of these, in this order:
+
+| When | What |
+|---|---|
+| an edition is open, or its brief or site is missing | continue `/edition --auto` in headless Claude Code, with the model pinned in `autopilot.conf` |
+| the next edition is due (state date of the previous one + 14 days), from 20:00 | start it |
+| once after each edition | learning reports L1–L5. Proposals go to `AUTOPILOT_INBOX.md`; nothing is applied |
+| 7 days after the state date | interim resolutions: score what came due and rebuild the site |
+| Sundays | a source repair if 3 or more sources fail, and the weekly backup if `BACKUP_DIR` is set |
+| from 19.12.2026 | the evidence file for the quarterly review |
+
+After every tick, `scripts/autopilot.sh` (never an agent) does three things:
+1. pushes to GitHub, and GitHub Pages updates the site;
+2. creates a GitHub release per edition (report and brief), which Zenodo archives if it is linked;
+3. updates the heartbeat `docs/data/autopilot.json`.
+
+A cloud watchdog reads the heartbeat every morning and sends a one-line report to your phone.
+
+**What protects the record.**
+- The hook `tools/blindness_guard.py` blocks forbidden reads during forecasting. It also blocks secrets, credentials and pushing for every agent.
+- CI runs the tests and `tools/registry_guard.py` on every push. The guard fails if any past forecast or resolution changes.
+- A critical quality-control item stops publication.
+- A usage-limit stop is not a failure: the autopilot waits for the reset time.
+
+**Commands (all optional).**
 
 | Command | Effect |
 |---|---|
-| `scripts/autopilot.sh status` | next action, last runs, inbox |
+| `scripts/autopilot.sh status` | next action, model, jobs, last log lines, inbox |
 | `scripts/autopilot.sh tail` | live log |
-| `scripts/autopilot.sh pause` / `resume` | stop and restart acting (the harvester keeps running) |
-| `scripts/autopilot.sh uninstall` | remove the job |
-| read `AUTOPILOT_INBOX.md` | blockers, disputed resolutions, defaults it took |
+| `scripts/autopilot.sh pause` / `resume` | stop and restart acting; the harvester keeps running |
+| `scripts/autopilot.sh backup [folder]` | archive the harvest data now |
+| `scripts/autopilot.sh uninstall` | remove both jobs; the harvester stops |
+| `scripts/replay.sh 02 B label` | re-run a lens prompt on a closed edition, offline, to test a prompt change |
+| `python3 -m unittest discover -s tests -t .` | the test suite |
+| read `AUTOPILOT_INBOX.md` | blockers, disputed resolutions, learning proposals, defaults it took |
 
-Settings (environment variables in the launchd plist, or when running `tick` by hand):
-- `AUTOPILOT_START_DOW` (7 = Sunday) and `AUTOPILOT_START_HOUR` (20);
-- `AUTOPILOT_MODEL` (empty = the Claude Code default);
-- `AUTOPILOT_PERMISSION_MODE` (`auto`);
-- `AUTOPILOT_MAX_RUN_HOURS` (12).
+**Settings** are in `autopilot.conf`:
+- `AUTOPILOT_MODEL`: a change is a patch proposal, and the autopilot never switches models inside an open edition;
+- the start hour, the interim delay, the repair day;
+- `BACKUP_DIR`.
 
-Logs and runs: `data/autopilot/` (not in git). The Mac must stay on, as it already must for harvesting.
+**One-time actions only you can do** (recommended before travelling):
+1. `sudo pmset -a autorestart 1`, so the Mac restarts after a power cut.
+2. System Settings → General → Software Update → Automatic Updates: turn off "Install macOS updates". With FileVault on, an update restart waits for your password, and nothing runs until you enter it.
+3. A backup folder (an external disk or a synced folder): set `BACKUP_DIR=` in `autopilot.conf`.
+4. Optional remote access: Tailscale with Remote Login, or Claude Remote Control.
+5. A GitHub token limited to this repository, used only for publishing:
+   - On github.com go to Settings → Developer settings → Fine-grained tokens. Choose repository `worldstate-forecast` and permission **Contents: read and write**.
+   - Run `git remote add publish https://autopilot@github.com/pstepien-labs/worldstate-forecast.git`, then push once by hand with `git push publish main` and paste the token as the password. The keychain keeps it for the user `autopilot`.
+6. zenodo.org → GitHub → switch the repository on. Each edition release then gets a DOI.
+
+**X is parked.** `social/STRATEGY.md` and the social stage stay as they are, but nothing posts and no X routine runs. Automating X needs X API keys and a separate decision.
 
 ## 6. Troubleshooting
 
