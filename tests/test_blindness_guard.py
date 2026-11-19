@@ -60,6 +60,11 @@ class GuardTest(unittest.TestCase):
             self.assertTrue(self.blocked(R('registry/resolutions.csv'), 'R'))
             self.assertTrue(self.blocked(R('editions/2026-10-07_edition-02/07_report.md'), 'R'))
             self.assertFalse(self.blocked(R('reviews/replay/x/questions.csv'), 'R'))
+            self.assertFalse(self.blocked(R('prompts/04_forecasts.md'), 'R'))
+            self.assertFalse(self.blocked(R('editions/2026-10-07_edition-02/03_analysis.md'), 'R'))
+            self.assertTrue(self.blocked(R('editions/2026-10-07_edition-02/04_forecasts_B.md'), 'R'))
+            self.assertTrue(self.blocked(R('editions/2026-10-07_edition-02/01_resolutions.md'), 'R'))
+            self.assertTrue(self.blocked(R('editions/2026-10-07_edition-02/log.md'), 'R'))
         finally:
             del os.environ['BLINDNESS_REPLAY_DIR'], os.environ['BLINDNESS_REPLAY_OUT']
 

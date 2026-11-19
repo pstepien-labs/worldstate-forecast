@@ -100,9 +100,11 @@ def decide(tool, inp, stage, arg):
             return 'a replay uses no web access (its validity depends on it)'
         rdir = os.environ.get('BLINDNESS_REPLAY_DIR', '')
         odir = os.environ.get('BLINDNESS_REPLAY_OUT', '')
-        if re.search(r'registry/|docs/|social/|reviews/learning|data/harvest|(^|/)0[4-8]_|07_report|01_scores|01_resolutions', text) \
+        if re.search(r'registry/|docs/|social/|reviews/learning|data/harvest', text) \
                 and not (odir and odir in text and 'registry/' not in text):
             return 'a replay may read only the replayed edition\'s 02_facts and 03_analysis and its replay folder'
+        if rdir and re.search(re.escape(rdir) + r'/(0[014-8]_|E_|V_|provenance|log\.md)', text):
+            return 'a replay may read only the replayed edition\'s 02_facts and 03_analysis (no later stages, outcomes or logs)'
         for m in re.finditer(r'editions/[^\s"\']+', text):
             if not (rdir and m.group(0).startswith(rdir)):
                 return 'a replay may not open another edition'
