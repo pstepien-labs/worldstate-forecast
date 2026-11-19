@@ -10,6 +10,11 @@ What the unattended cycle (`scripts/autopilot.sh`, framework 1.8) could not sett
 ## Waiting for the user
 
 - 17.11.2026 · Q-0079 · stage V (edition 03) could not re-read IMF PortWatch (HTTP 429 quota exceeded), so the stage 01 YES (13.10.2026 = 17 transits) is unconfirmed for 08, 09 and 12–15.10; re-check the PortWatch series and approve or correct (see `editions/2026-11-16_edition-03/V_autoverify.md`).
+- 20.11.2026 · P-0036 · Stage 04: three checks before each probability (smallest resolving event, error band, statement type) · minor · approve via `/learn`; go live only after the out-of-sample replay on edition 03 (`reviews/learning/2026-11-19_latest/L5_proposals.md`).
+- 20.11.2026 · P-0037 · Harvester: each page change gets its own item ID (fixes 12 watched pages stuck at one item) · patch.
+- 20.11.2026 · P-0038 · Harvester configuration: route missed topics into the digests, retire failing sources, notes for 4 sources · patch.
+- 20.11.2026 · P-0039 · Harvested series for data-threshold questions (TTF, storage fallback, HICP, GUS CPI, FAO, PortWatch interval) · patch. Owner action: `AGSI_API_KEY`, `EIA_API_KEY`, `FIRMS_MAP_KEY` in `.env` are still missing (since 05.10.2026).
+- 20.11.2026 · P-0040 · Stage 02: actor-language reads, fixed "Incomplete key events" table, standing gaps · minor.
 
 ## Decisions taken without the user
 
