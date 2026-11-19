@@ -8,9 +8,9 @@
  "consecutive_failures": 0,
  "open_blockers": 0,
  "waiting_for_user": 1,
- "resolutions_disputed": 1,
+ "resolutions_disputed": 0,
  "publish_blocked": false,
- "harvester": "Harvester: RUNNING · state sleeping · heartbeat 2026-11-19T06:17:34Z · sources ok 161/203 · failing 3 · items 216992",
- "framework_version": "1.9.1",
- "updated": "2026-11-19T06:17:36Z"
+ "harvester": "Harvester: RUNNING · state sleeping · heartbeat 2026-11-19T17:21:35Z · sources ok 165/203 · failing 3 · items 219878",
+ "framework_version": "1.9.2",
+ "updated": "2026-11-19T17:21:40Z"
 }
