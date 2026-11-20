@@ -12,6 +12,6 @@ Argument `SCOPE`: editions, e.g. `01-03`, `latest` (default) or `all`. Read `pro
 
 If the arguments contain `--auto`, the autopilot started you after an edition closed, and nobody is watching.
 - Run steps 1–3 as written.
-- **Step 4:** run L5 yourself, but stop after its task 4. Append each proposal to `reviews/learning/proposals.csv` with status `PROPOSED`. Add one line per proposal under `## Waiting for the user` in `AUTOPILOT_INBOX.md`: date, proposal ID, title, level. **Apply nothing**: no change to prompts, tools, `CLAUDE.md`, the methodology or `VERSION`. Approval and implementation wait for the user (`/learn` in a normal session, or the quarterly review).
+- **Step 4:** run L5 yourself, but stop after its task 4. Append each proposal to `reviews/learning/proposals.csv` with status `PROPOSED`. Add one line per proposal under `## Waiting for the user` in `AUTOPILOT_INBOX.md`: date, proposal ID, title, level. **Apply nothing**: no change to prompts, tools, `CLAUDE.md`, the methodology or `VERSION`. From framework 1.10 the autopilot's improve step (`prompts/P_apply_proposals.md`) applies them by policy, gated (CLAUDE.md rule 18); `/learn` in a normal session still lets the user decide first.
 - Never ask the user anything and never push. Commit `learning <scope> auto`.
 - The last line of your final message is `AUTOPILOT: complete learning <scope>` or `AUTOPILOT: blocked learning <reason>`.

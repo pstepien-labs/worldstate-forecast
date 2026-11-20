@@ -7,6 +7,9 @@
   python3 tools/autopilot.py state-set KEY VALUE  (VALUE as JSON, else a string)
   python3 tools/autopilot.py result FILE         classify a headless run log: ok | limit <iso> | blocked | failed
   python3 tools/autopilot.py conf KEY [DEFAULT]  a value from autopilot.conf (environment variables win)
+  python3 tools/autopilot.py classify-paths      (paths on stdin) protected | not-auto | replay | ok  (framework 1.10)
+  python3 tools/autopilot.py replay-edition      latest closed edition with >= 30 questions resolved after it
+  python3 tools/autopilot.py replay-score NN F   n and Brier of a replay file on that edition
 
 Actions, in priority order:
   none (backing off / blocked / model mismatch), edition (resume, finish brief/site, or start when due),
@@ -36,7 +39,20 @@ DEFAULTS = {
     'AUTOPILOT_INTERIM_AFTER_DAYS': '7',
     'AUTOPILOT_QPREP_FROM': '2026-12-19',
     'AUTOPILOT_REPAIR_MIN_FAILING': '3',
+    'AUTOPILOT_IMPROVE_MIN_DAYS_BEFORE_DUE': '2',
+    'AUTOPILOT_NOISE_FLOOR': '0.011',
+    'AUTOPILOT_REPLAY_MIN_RESOLVED': '30',
 }
+
+# Files an automatic improvement may never change (framework 1.10, user decision 20.11.2026).
+PROTECTED = ('CLAUDE.md', 'methodology/methodology_v1.0.md', 'registry/', 'tools/blindness_guard.py',
+             'tools/registry_guard.py', 'tools/autopilot.py', 'scripts/autopilot.sh', '.claude/', '.github/',
+             'editions/', 'docs/', 'autopilot.conf', 'AUTOPILOT_INBOX.md')
+# Changes to these need the replay gate (they change how forecasts are made and can be replayed).
+REPLAY_GATED = ('prompts/04_forecasts.md',)
+# Changes to these change forecasting but cannot be replayed: they wait for the user / quarterly review.
+NOT_AUTO = ('prompts/03_analysis.md', 'prompts/05_red_team.md', 'prompts/06_aggregation_and_benchmarks.md',
+            'tools/scores.py', 'tools/quant.py', 'tools/coherence.py', 'methodology/')
 
 
 # ---------- configuration and state ----------
@@ -138,6 +154,14 @@ def decide(st, state, conf, now, root=ROOT):
     # 5. learning reports once per closed edition
     if state.get('learn_done_for') != ed and now.hour >= start_hour:
         return 'learn', f'learning reports L1-L5 for edition {ed}'
+    # 5b. apply the learning proposals by policy, once per edition, not too close to the next edition
+    try:
+        to_due = (date.fromisoformat(st['earliest_state_date']) - now.date()).days
+    except (KeyError, TypeError, ValueError):
+        to_due = 0
+    if state.get('learn_done_for') == ed and state.get('improve_done_for') != ed and now.hour >= start_hour \
+            and to_due >= int(conf['AUTOPILOT_IMPROVE_MIN_DAYS_BEFORE_DUE']):
+        return 'improve', f'apply learning proposals of edition {ed} by policy ({to_due} days before the next edition)'
     # 6. interim resolutions in the off-week
     try:
         days = (now.date() - date.fromisoformat(st['state_date'])).days
@@ -188,6 +212,78 @@ def classify(text, now):
     if re.search(r"hit your .*limit", text, re.I):
         return 'limit', (now + timedelta(hours=1)).isoformat(timespec='minutes')
     return 'failed', None
+
+
+# ---------- improvement gate (framework 1.10) ----------
+
+def classify_paths(paths):
+    """'protected' | 'not-auto' | 'replay' | 'ok' for the files one commit changes (worst wins)."""
+    kinds = set()
+    for p in paths:
+        if p.startswith('methodology/methodology_changes.md') or p.startswith('reviews/'):
+            kinds.add('ok')
+        elif any(p == x or p.startswith(x) for x in PROTECTED):
+            kinds.add('protected')
+        elif p == 'methodology/methodology_changes.md':
+            kinds.add('ok')
+        elif any(p == x or p.startswith(x) for x in NOT_AUTO):
+            kinds.add('not-auto')
+        elif any(p == x for x in REPLAY_GATED):
+            kinds.add('replay')
+        else:
+            kinds.add('ok')
+    for k in ('protected', 'not-auto', 'replay'):
+        if k in kinds:
+            return k
+    return 'ok'
+
+
+def _registry(root):
+    import csv
+    R = lambda f: list(csv.DictReader(open(os.path.join(root, 'registry', f), encoding='utf-8-sig'), delimiter=';'))
+    res = {}
+    for r in R('resolutions.csv'):
+        if r['question_id'] not in res or int(r['version']) > int(res[r['question_id']]['version']):
+            res[r['question_id']] = r
+    out = {q: int(r['outcome']) for q, r in res.items() if r['outcome'] in ('0', '1')
+           and not (r.get('verify') == 'Y' and r.get('user_approved') not in ('Y', 'A'))}
+    return R, res, out
+
+
+def replay_edition(root=ROOT, min_resolved=30):
+    """Latest closed edition with at least `min_resolved` AGG_RT questions resolved after its state date."""
+    R, res, out = _registry(root)
+    eds = {e['edition']: e['state_date'] for e in R('editions.csv') if e['edition'] not in ('00',)}
+    fc = R('forecasts.csv')
+    best = None
+    for ed, sd in sorted(eds.items()):
+        qs = {f['question_id'] for f in fc if f['edition'] == ed and f['run'] == 'AGG_RT'}
+        n = sum(1 for q in qs if q in out and res[q]['resolution_date'] > sd)
+        if n >= min_resolved:
+            best = ed
+    return best
+
+
+def replay_score(edition, path, root=ROOT):
+    """Brier of a replay file on the edition's questions resolved after its state date: (n, brier)."""
+    import csv
+    R, res, out = _registry(root)
+    sd = {e['edition']: e['state_date'] for e in R('editions.csv')}[edition]
+    rows = list(csv.DictReader(open(path, encoding='utf-8-sig'), delimiter=';'))
+    sq = []
+    for r in rows:
+        q = r['question_id']
+        if q in out and res[q]['resolution_date'] > sd:
+            try:
+                sq.append((float(r['p']) - out[q]) ** 2)
+            except ValueError:
+                pass
+    return len(sq), (sum(sq) / len(sq) if sq else float('nan'))
+
+
+def replay_gate(candidate, baseline, noise):
+    """Accept if the candidate is no worse than the best baseline so far plus the noise floor."""
+    return candidate <= baseline + noise
 
 
 # ---------- heartbeat ----------
@@ -252,6 +348,16 @@ def main(argv):
         with open(args[0], encoding='utf-8', errors='replace') as f:
             kind, until = classify(f.read(), datetime.now())
         print(kind if until is None else f'{kind} {until}')
+        return 0
+    if cmd == 'classify-paths':
+        print(classify_paths([x for x in sys.stdin.read().split() if x]))
+        return 0
+    if cmd == 'replay-edition':
+        print(replay_edition(min_resolved=int(load_conf()['AUTOPILOT_REPLAY_MIN_RESOLVED'])) or '')
+        return 0
+    if cmd == 'replay-score':
+        n, b = replay_score(args[0], args[1])
+        print(f'{n} {b:.4f}')
         return 0
     if cmd == 'conf':
         print(load_conf().get(args[0], args[1] if len(args) > 1 else ''))

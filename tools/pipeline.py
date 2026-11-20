@@ -46,6 +46,7 @@ STAGES = {
     'E': ('prompts/E_brief.md', 'Executive brief and social cards'),
     'I': ('prompts/I_interim.md', 'Interim resolutions between editions (autopilot)'),
     'R': ('prompts/R_replay.md', 'Replay of a lens prompt on a closed edition (evaluation only)'),
+    'P': ('prompts/P_apply_proposals.md', 'Apply learning proposals by policy (autopilot, gated)'),
     'QE': ('prompts/Q_evidence.md', 'Evidence file for the quarterly review (autopilot)'),
     'V': ('prompts/V_autoverify.md', 'Independent re-check of resolutions awaiting verification (autopilot)'),
     'L1': ('prompts/learning/L1_hindsight.md', 'Learning: hindsight audit of reports'),
@@ -122,7 +123,7 @@ def now():
 
 
 def prov_path(stage, cur):
-    if stage.startswith('L') or stage in ('M', 'Q', 'QE', 'R'):
+    if stage.startswith('L') or stage in ('M', 'Q', 'QE', 'R', 'P'):
         return os.path.join(ROOT, 'reviews', 'learning', 'provenance.jsonl')
     if stage == 'S':
         return os.path.join(ROOT, 'social', 'provenance.jsonl')

@@ -8,7 +8,7 @@ CONF = dict(ap.DEFAULTS)
 CLOSED = {'edition': '03', 'edition_closed': True, 'brief_done': True, 'site_done': True, 'state_date': '2026-11-16',
           'earliest_state_date': '2026-11-30', 'can_start_next_edition': False, 'next_edition': '04',
           'harvester': 'Harvester: RUNNING · failing 1 · items 1'}
-DONE = {'learn_done_for': '03', 'interim_done_for': '03', 'qprep_done': True}
+DONE = {'learn_done_for': '03', 'improve_done_for': '03', 'interim_done_for': '03', 'qprep_done': True}
 
 
 def st(**kw):
@@ -68,9 +68,13 @@ class DecideTest(unittest.TestCase):
     def test_learn_interim_repair_qprep_order(self):
         now = datetime(2026, 11, 23, 21, 0)  # Monday, 7 days after the state date
         self.assertEqual(ap.decide(st(), {}, CONF, now)[0], 'learn')
-        self.assertEqual(ap.decide(st(), {'learn_done_for': '03'}, CONF, now)[0], 'interim')
+        self.assertEqual(ap.decide(st(), {'learn_done_for': '03'}, CONF, now)[0], 'improve')
+        self.assertEqual(ap.decide(st(), {'learn_done_for': '03', 'improve_done_for': '03'}, CONF, now)[0], 'interim')
+        # never close to the next edition: 29.11 is 1 day before the due date 30.11
+        late = datetime(2026, 11, 29, 21, 0)
+        self.assertNotEqual(ap.decide(st(), {'learn_done_for': '03', 'interim_done_for': '03'}, CONF, late)[0], 'improve')
         sun = datetime(2026, 11, 22, 21, 0)
-        state = {'learn_done_for': '03', 'interim_done_for': '03'}
+        state = {'learn_done_for': '03', 'improve_done_for': '03', 'interim_done_for': '03'}
         self.assertEqual(ap.decide(st(harvester='failing 5'), state, CONF, sun)[0], 'repair')
         self.assertEqual(ap.decide(st(), state, CONF, sun)[0], 'skip-repair')
         state['repair_week'] = sun.strftime('%G-W%V')
@@ -121,3 +125,21 @@ class ConfTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class GateTest(unittest.TestCase):
+    def test_classify_paths(self):
+        c = ap.classify_paths
+        self.assertEqual(c(['sources/harvest/feeds.csv', 'methodology/methodology_changes.md', 'reviews/learning/proposals.csv', 'VERSION']), 'ok')
+        self.assertEqual(c(['prompts/02_collection.md', 'tools/harvester/adapters.py']), 'ok')
+        self.assertEqual(c(['prompts/04_forecasts.md', 'VERSION']), 'replay')
+        self.assertEqual(c(['prompts/05_red_team.md']), 'not-auto')
+        self.assertEqual(c(['tools/scores.py']), 'not-auto')
+        self.assertEqual(c(['methodology/methodology_v1.0.md']), 'protected')
+        for p in ('CLAUDE.md', 'registry/forecasts.csv', 'tools/blindness_guard.py', 'scripts/autopilot.sh', '.claude/settings.json',
+                  '.github/workflows/ci.yml', 'editions/2026-11-16_edition-03/07_report.md', 'docs/index.html', 'autopilot.conf'):
+            self.assertEqual(c([p, 'sources/harvest/feeds.csv']), 'protected', p)
+
+    def test_replay_gate_ratchet(self):
+        self.assertTrue(ap.replay_gate(0.180, 0.171, 0.011))
+        self.assertFalse(ap.replay_gate(0.183, 0.171, 0.011))

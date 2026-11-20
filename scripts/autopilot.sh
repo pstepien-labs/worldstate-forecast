@@ -14,6 +14,7 @@
 #   scripts/autopilot.sh status      next action, jobs, last runs, inbox
 #   scripts/autopilot.sh pause       stop acting (ticks exit at once) · resume: undo
 #   scripts/autopilot.sh backup      archive the harvest data to BACKUP_DIR now
+#   scripts/autopilot.sh improve NN  apply the learning proposals of edition NN by policy now (gated)
 #   scripts/autopilot.sh tail        follow the autopilot log
 # Settings: autopilot.conf (KEY=value); environment variables of the same name win.
 set -uo pipefail
@@ -187,6 +188,7 @@ PROMPT_EDITION="Read CLAUDE.md and prompts/RUN_edition.md and act as the orchest
 PROMPT_LEARN="Read CLAUDE.md and prompts/RUN_learning.md and run the learning loop for the latest closed edition in AUTO mode (section 'AUTO mode' of that file). Arguments: latest --auto"
 PROMPT_INTERIM="Read CLAUDE.md and prompts/I_interim.md and carry out the interim resolutions in AUTO mode."
 PROMPT_REPAIR="Read CLAUDE.md and prompts/H_harvest.md and carry out MODE repair. Nobody is watching: do not ask questions; record anything that needs the user under '## Waiting for the user' in AUTOPILOT_INBOX.md. Never push. Last line of your final message: 'AUTOPILOT: complete repair' or 'AUTOPILOT: blocked repair <reason>'."
+PROMPT_IMPROVE="Read CLAUDE.md and prompts/P_apply_proposals.md and apply the learning proposals by policy. You are in a separate worktree on its own branch; the autopilot checks every commit before anything reaches main."
 PROMPT_QPREP="Read CLAUDE.md and prompts/Q_evidence.md and write the evidence file for the quarterly review in AUTO mode."
 
 tick() {
@@ -212,6 +214,12 @@ tick() {
         *) if [ "$before" != "$(next_stage)" ]; then sset consecutive_failures 0; else count_failure "$RESULT"; fi ;;
       esac
       sset last_result "\"$(date '+%Y-%m-%d %H:%M') $KIND $RESULT\"" ;;
+    improve)
+      log "improve: $reason"
+      local ed_i; ed_i=$("$PY" -c "import json;print(json.load(open('$DATA/status.json')).get('edition'))")
+      improve "$ed_i"
+      [ "$KIND" != limit ] && sset improve_done_for "\"$ed_i\""
+      sset last_result "\"$(date '+%Y-%m-%d %H:%M') improve $KIND $RESULT\"" ;;
     learn|interim|qprep|repair)
       log "$action: $reason"
       local prompt
@@ -238,6 +246,83 @@ tick() {
     git add docs/data/autopilot.json && git commit -q -m "autopilot: heartbeat" -- docs/data/autopilot.json >/dev/null 2>&1 && log "heartbeat committed"
   fi
   publish
+}
+
+improve() {  # framework 1.10: proposals applied in a worktree; only commits that pass every gate reach main
+  local ed="$1" wt="$ROOT/../wf-auto-improve" br="auto-improve-$1" base rejected
+  base=$(git rev-parse HEAD)
+  git worktree remove --force "$wt" 2>/dev/null; git branch -D "$br" 2>/dev/null
+  git worktree add -q -b "$br" "$wt" "$base" || { inbox_add "Blockers" "$(date '+%d.%m.%Y') improve: could not create the worktree"; return 1; }
+  rejected=$(sget gate_rejected "")
+  if [ -n "${IMPROVE_TEST_COMMITS_FROM:-}" ]; then   # test mode: prepared commits instead of a Claude run
+    git -C "$wt" cherry-pick $(git rev-list --reverse "$base..$IMPROVE_TEST_COMMITS_FROM") >/dev/null 2>&1; KIND=ok; RESULT=test
+  else
+    pushd "$wt" >/dev/null; run_claude improve "$PROMPT_IMPROVE Proposals rejected earlier by the gate (do not apply again): ${rejected:-none}."; popd >/dev/null
+  fi
+  local accepted="$base" c kind files why n b nb bfile cand ed_r noise reject_msg=""
+  noise=$(conf AUTOPILOT_NOISE_FLOOR 0.011)
+  for c in $(git -C "$wt" rev-list --reverse "$base..$br"); do
+    why=""
+    files=$(git -C "$wt" diff --name-only "$c^" "$c")
+    kind=$(echo "$files" | $AP classify-paths)
+    [ "$kind" = protected ] && why="changes a protected file"
+    [ "$kind" = not-auto ] && why="changes forecasting in a way that cannot be replayed"
+    if [ -z "$why" ]; then
+      git -C "$wt" checkout -q "$c"
+      ( cd "$wt" && "$PY" -m unittest discover -s tests -t . >/dev/null 2>&1 ) || why="unit tests fail"
+      [ -z "$why" ] && { ( cd "$wt" && "$PY" -m tools.harvester selftest >/dev/null 2>&1 ) || why="harvester selftest fails"; }
+      [ -z "$why" ] && { ( cd "$wt" && "$PY" tools/registry_guard.py "$base" "$c" >/dev/null 2>&1 ) || why="registry guard fails"; }
+    fi
+    if [ -z "$why" ] && [ "$kind" = replay ]; then
+      ed_r=$($AP replay-edition)
+      if [ -z "$ed_r" ]; then why="no edition with enough resolved questions for a replay"
+      else
+        bfile=$(sget "replay_baseline_$ed_r" "")
+        if [ -z "$bfile" ] || [ ! -f "$ROOT/$bfile" ]; then   # baseline: the current main prompt on that edition
+          mkdir -p reviews/replay/prompts; git show "$base:prompts/04_forecasts.md" > "reviews/replay/prompts/04_forecasts_$(git rev-parse --short "$base").md"
+          scripts/replay.sh "$ed_r" B "baseline-$(git rev-parse --short "$base")" "reviews/replay/prompts/04_forecasts_$(git rev-parse --short "$base").md" >>"$LOG" 2>&1
+          bfile=$(ls -dt reviews/replay/*_baseline-"$(git rev-parse --short "$base")"/forecasts.csv 2>/dev/null | head -1)
+          [ -n "$bfile" ] && sset "replay_baseline_$ed_r" "\"$bfile\""
+        fi
+        ( cd "$wt" && scripts/replay.sh "$ed_r" B "gate-$(git -C "$wt" rev-parse --short "$c")" prompts/04_forecasts.md >>"$LOG" 2>&1 )
+        cand=$(ls -dt "$wt"/reviews/replay/*_gate-"$(git -C "$wt" rev-parse --short "$c")"/forecasts.csv 2>/dev/null | head -1)
+        if [ -z "$bfile" ] || [ -z "$cand" ]; then why="replay did not complete"
+        else
+          read -r n b < <($AP replay-score "$ed_r" "$ROOT/$bfile"); read -r nb nb2 < <($AP replay-score "$ed_r" "$cand")
+          log "replay gate on edition $ed_r: candidate $nb2 (n=$nb) vs best $b (n=$n) + $noise"
+          "$PY" -c "import sys; sys.exit(0 if float('$nb2') <= float('$b') + float('$noise') else 1)" || why="replay worse than the best so far ($nb2 > $b + $noise)"
+          if [ -z "$why" ]; then
+            mkdir -p "$(dirname "$ROOT/${cand#$wt/}")"; cp -r "$(dirname "$cand")" "$ROOT/reviews/replay/" 2>/dev/null
+            "$PY" -c "import sys; sys.exit(0 if float('$nb2') < float('$b') else 1)" && sset "replay_baseline_$ed_r" "\"${cand#$wt/}\""
+          fi
+        fi
+      fi
+    fi
+    if [ -n "$why" ]; then
+      local pid; pid=$(git -C "$wt" log -1 --format=%s "$c" | grep -oE 'P-[0-9]{4}' | head -1)
+      reject_msg="$(date '+%d.%m.%Y') improve: ${pid:-commit $(git -C "$wt" rev-parse --short "$c")} not applied: $why (branch $br kept for review)"
+      sset gate_rejected "\"$(sget gate_rejected "") ${pid:-}\""
+      log "improve: stopped at $(git -C "$wt" rev-parse --short "$c"): $why"
+      break
+    fi
+    accepted="$c"
+  done
+  # merge first (main must not move during the check), then write the inbox
+  if [ "$accepted" != "$base" ]; then
+    if git merge -q --ff-only "$accepted"; then
+      log "improve: main advanced to $(git rev-parse --short HEAD) ($(git rev-list --count "$base..HEAD") commit(s) applied by policy)"
+      inbox_add "Decisions taken without the user" "$(date '+%d.%m.%Y') improvements applied by policy: $(git log --format='%s' "$base..HEAD" | grep -oE 'P-[0-9]{4}' | sort -u | tr '\n' ' ')(undo one with: git revert <commit>)"
+    else
+      notify "improve: main moved during the check; nothing applied (branch $br kept)"
+    fi
+  fi
+  [ -n "${reject_msg:-}" ] && inbox_add "Waiting for the user" "$reject_msg"
+  if [ -n "$(git status --porcelain reviews/replay 2>/dev/null)" ]; then
+    git add reviews/replay && git commit -q -m "improve: replay gate evidence" -- reviews/replay >/dev/null 2>&1
+  fi
+  git worktree remove --force "$wt" 2>/dev/null
+  [ "$accepted" = "$(git -C "$ROOT" rev-parse "$br" 2>/dev/null)" ] && git branch -D "$br" >/dev/null 2>&1
+  return 0
 }
 
 write_plists() {
@@ -294,6 +379,7 @@ case "${1:-status}" in
     rm -f "$PLIST" "$HPLIST"; echo "Removed $LABEL and $HLABEL (the harvester has stopped)." ;;
   pause) touch "$DATA/PAUSED"; echo "Paused (ticks exit at once; the harvester keeps running). Undo: scripts/autopilot.sh resume" ;;
   resume) rm -f "$DATA/PAUSED"; echo "Resumed." ;;
+  improve) take_lock; improve "${2:?edition}" ;;   # manual run of the gated improvement step (normally from tick)
   backup) BACKUP_DIR=${2:-$BACKUP_DIR}; [ -n "$BACKUP_DIR" ] || { echo "Set BACKUP_DIR in autopilot.conf or pass a folder."; exit 1; }; backup ;;
   tail) tail -n 40 -f "$LOG" ;;
   status)

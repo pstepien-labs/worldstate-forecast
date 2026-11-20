@@ -181,7 +181,7 @@ This is the main path. The manual commands in sections 2–4 remain for repairs 
 |---|---|
 | an edition is open, or its brief or site is missing | continue `/edition --auto` in headless Claude Code, with the model pinned in `autopilot.conf` |
 | the next edition is due (state date of the previous one + 14 days), from 20:00 | start it |
-| once after each edition | learning reports L1–L5. Proposals go to `AUTOPILOT_INBOX.md`; nothing is applied |
+| once after each edition | learning reports L1–L5, then the **improve step**: proposals are applied by policy in a separate worktree, and only commits that pass the tests, the guards, the protected-file check and (for the lens prompt) the replay gate reach `main`. Each applied change is listed in `AUTOPILOT_INBOX.md` with `git revert` as the undo |
 | 7 days after the state date | interim resolutions: score what came due and rebuild the site |
 | Sundays | a source repair if 3 or more sources fail, and the weekly backup if `BACKUP_DIR` is set |
 | from 19.12.2026 | the evidence file for the quarterly review |
