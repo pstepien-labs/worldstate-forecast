@@ -20,7 +20,8 @@ running_pid() {
   [ -f "$lock" ] || return 1
   local pid
   pid=$("$PY" -c "import json,sys; print(json.load(open(sys.argv[1]))['pid'])" "$lock" 2>/dev/null) || return 1
-  kill -0 "$pid" 2>/dev/null && echo "$pid"
+  # alive AND a harvester: after a power cut the stale lock's pid may belong to another program
+  kill -0 "$pid" 2>/dev/null && ps -p "$pid" -o command= 2>/dev/null | grep -q harvester && echo "$pid"
 }
 
 case "${1:-status}" in

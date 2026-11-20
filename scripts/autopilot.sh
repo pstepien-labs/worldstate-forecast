@@ -46,13 +46,22 @@ notify() {
 sset() { $AP state-set "$1" "$2"; }
 sget() { $AP state-get "$1" "${2:-}"; }
 
+# The lock is held only by a live autopilot.sh process of THIS boot. After a power cut the lock survives and its pid
+# can be reused by another program; a plain `kill -0` would then block every later tick (seen with the harvester, 20.11.2026).
+boot_id() { sysctl -n kern.boottime 2>/dev/null | sed -E 's/^\{ sec = ([0-9]+),.*/\1/'; }
+lock_held() {
+  local pid boot; pid=$(cat "$LOCK/pid" 2>/dev/null || echo 0); boot=$(cat "$LOCK/boot" 2>/dev/null || true)
+  [ "$pid" != 0 ] && kill -0 "$pid" 2>/dev/null || return 1
+  [ -n "$boot" ] && [ "$boot" != "$(boot_id)" ] && return 1
+  ps -p "$pid" -o command= 2>/dev/null | grep -q 'autopilot\.sh'
+}
 take_lock() {
   if ! mkdir "$LOCK" 2>/dev/null; then
-    local pid; pid=$(cat "$LOCK/pid" 2>/dev/null || echo 0)
-    if [ "$pid" != 0 ] && kill -0 "$pid" 2>/dev/null; then exit 0; fi
+    if lock_held; then exit 0; fi
+    log "stale lock removed (pid $(cat "$LOCK/pid" 2>/dev/null || echo ?))"
     rm -rf "$LOCK"; mkdir "$LOCK" || exit 0
   fi
-  echo $$ > "$LOCK/pid"
+  echo $$ > "$LOCK/pid"; boot_id > "$LOCK/boot"
   trap 'rm -rf "$LOCK"' EXIT
 }
 
