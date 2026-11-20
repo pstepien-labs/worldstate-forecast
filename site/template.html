@@ -63,6 +63,8 @@ p { margin: 0; max-width: var(--measure); }
 .hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
 .hero .lead { font-size: var(--step-1); color: var(--muted); margin-top: 20px; max-width: 46ch; }
 .hero .eyebrow { margin-bottom: 18px; }
+.hero .latest { margin-top: 22px; padding: 10px 14px; border-left: 3px solid var(--accent); font-size: var(--step--1); color: var(--muted); max-width: 60ch; }
+.hero .latest b { color: var(--ink); font-weight: 600; }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .btn { display: inline-block; padding: 11px 18px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
 .btn.primary { background: var(--ink); color: var(--paper); }
@@ -177,6 +179,7 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
         <p class="label eyebrow">Open research experiment · since 21.09.2026</p>
         <h1>Every forecast is frozen <em>before</em> the outcome. Then we score ourselves.</h1>
         <p class="lead">An AI-assisted, fully documented process that forecasts the moves of the great powers every two weeks, with sources from all sides of each conflict, and measures whether it beats simple baselines.</p>
+        {{LATEST}}
         <div class="ctas">
           <a class="btn primary" href="{{LATEST_REPORT_URL}}">Read the latest report</a>
           <a class="btn" href="#forecasts">See the forecasts</a>

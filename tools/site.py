@@ -18,6 +18,7 @@ import html
 import json
 import os
 import shutil
+import subprocess
 from collections import defaultdict
 from datetime import date, datetime, timedelta, timezone
 
@@ -173,10 +174,22 @@ def build():
         </dl>
       </aside>'''
 
+    # when the latest edition went public: its `edition-NN site` commit; while that commit is being made, today
+    try:
+        pub = subprocess.run(['git', 'log', '-1', '--format=%cs', '--extended-regexp', f'--grep=^edition-{latest_ed} site'],
+                             cwd=ROOT, capture_output=True, text=True, timeout=10).stdout.strip()
+    except Exception:
+        pub = ''
+    published = pub or today
+    built = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+    latest_line = (f'<p class="latest"><b>Latest report: edition {e(latest_ed)}</b>, published {e(ddmmyyyy(published))} '
+                   f'(state of the world as of {e(ddmmyyyy(ed_row.get("state_date")))}) · next edition from {e(ddmmyyyy(next_date))} · '
+                   f'page updated {e(ddmmyyyy(built))}</p>')
+
     # status strip
     n_editions = len([r for r in editions if r.get('methodology_version', '').startswith('v')])
     active = sum(1 for q in questions.values() if q.get('status') == 'ACTIVE')
-    stats = [(n_editions, 'edition published' if n_editions == 1 else 'editions published'), (active, 'open questions'), (len(outcomes), 'resolved and scored'),
+    stats = [(ddmmyyyy(published), f'edition {latest_ed} published'), (n_editions, 'edition published' if n_editions == 1 else 'editions published'), (active, 'open questions'), (len(outcomes), 'resolved and scored'),
              (ddmmyyyy(next_date), 'next edition (earliest)'), (f"{cfg.get('harvest_languages', '')}", 'languages harvested')]
     stats_html = ''.join(f'<div><b>{e(v)}</b><span>{e(t)}</span></div>' for v, t in stats)
 
@@ -258,7 +271,7 @@ def build():
               f'(state {e(ddmmyyyy(ed_row.get("state_date")))}) · page built {datetime.now(timezone.utc):%d.%m.%Y}')
 
     tpl = read_text('site/template.html')
-    for k, v in {'NAME': e(cfg['name']), 'REPO': e(repo), 'LATEST_REPORT_URL': e(latest_report_url), 'FEATURED': featured,
+    for k, v in {'NAME': e(cfg['name']), 'REPO': e(repo), 'LATEST_REPORT_URL': e(latest_report_url), 'LATEST': latest_line, 'FEATURED': featured,
                  'STATS': stats_html, 'LEDGER': '\n        '.join(rows), 'LEDGER_NOTE': ledger_note, 'TRACK': track,
                  'DATA_ROWS': data_html, 'SUPPORT': support, 'CONTACT': contact, 'FOOTER_META': footer,
                  'SOURCES': e(cfg.get('harvest_sources', '')), 'LANGUAGES': e(cfg.get('harvest_languages', ''))}.items():

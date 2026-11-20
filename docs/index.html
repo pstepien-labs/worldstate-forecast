@@ -74,6 +74,8 @@ p { margin: 0; max-width: var(--measure); }
 .hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
 .hero .lead { font-size: var(--step-1); color: var(--muted); margin-top: 20px; max-width: 46ch; }
 .hero .eyebrow { margin-bottom: 18px; }
+.hero .latest { margin-top: 22px; padding: 10px 14px; border-left: 3px solid var(--accent); font-size: var(--step--1); color: var(--muted); max-width: 60ch; }
+.hero .latest b { color: var(--ink); font-weight: 600; }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .btn { display: inline-block; padding: 11px 18px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
 .btn.primary { background: var(--ink); color: var(--paper); }
@@ -190,6 +192,7 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
         <p class="label eyebrow">Open research experiment · since 21.09.2026</p>
         <h1>Every forecast is frozen <em>before</em> the outcome. Then we score ourselves.</h1>
         <p class="lead">An AI-assisted, fully documented process that forecasts the moves of the great powers every two weeks, with sources from all sides of each conflict, and measures whether it beats simple baselines.</p>
+        <p class="latest"><b>Latest report: edition 03</b>, published 19.11.2026 (state of the world as of 16.11.2026) · next edition from 30.11.2026 · page updated 20.11.2026</p>
         <div class="ctas">
           <a class="btn primary" href="https://github.com/pstepien-labs/worldstate-forecast/blob/main/editions/2026-11-16_edition-03/07_report.md">Read the latest report</a>
           <a class="btn" href="#forecasts">See the forecasts</a>
@@ -214,7 +217,7 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
       </aside>
     </div>
 
-    <div class="status"><div><b>3</b><span>editions published</span></div><div><b>83</b><span>open questions</span></div><div><b>66</b><span>resolved and scored</span></div><div><b>30.11.2026</b><span>next edition (earliest)</span></div><div><b>18</b><span>languages harvested</span></div></div>
+    <div class="status"><div><b>19.11.2026</b><span>edition 03 published</span></div><div><b>3</b><span>editions published</span></div><div><b>83</b><span>open questions</span></div><div><b>66</b><span>resolved and scored</span></div><div><b>30.11.2026</b><span>next edition (earliest)</span></div><div><b>18</b><span>languages harvested</span></div></div>
 
     <section id="method">
       <div class="sec-head">
@@ -254,7 +257,7 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
       </div>
       <div class="ledger" role="table" aria-label="Open forecasts">
         <div class="row head" role="row"><span role="columnheader">ID</span><span role="columnheader">Question</span><span role="columnheader">Resolves</span><span role="columnheader">Official forecast</span><span role="columnheader">Vector</span></div>
-        <div class="row" role="row"><span class="id" role="cell">Q-0029</span><span class="qt" role="cell">Will Donald Trump personally attend the APEC leaders&#x27; meeting in Shenzhen (18–19.11.2026)?</span><span class="date" role="cell">19.11.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:88.7%"></i></span><b>89%</b></span><span class="vec" role="cell">DIP</span></div>
+        <div class="row" role="row"><span class="id" role="cell">Q-0132</span><span class="qt" role="cell">Will a joint statement of the leaders of the USA, China and Russia be published between 18.11 and 22.11.2026?</span><span class="date" role="cell">22.11.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:31.0%"></i></span><b>31%</b></span><span class="vec" role="cell">DIP</span></div>
         <div class="row" role="row"><span class="id" role="cell">Q-0022</span><span class="qt" role="cell">Will the PRC announce by 27.11.2026 an extension or repeal of the suspension of the ban on exports of gallium, germanium, antimony and superhard materials to the USA?</span><span class="date" role="cell">27.11.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:74.0%"></i></span><b>74%</b></span><span class="vec" role="cell">TEC</span></div>
         <div class="row" role="row"><span class="id" role="cell">Q-0104</span><span class="qt" role="cell">Will the EU Council adopt by 30.11.2026 a Russia sanctions act containing at least one new import or export prohibition?</span><span class="date" role="cell">30.11.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:3.7%"></i></span><b>4%</b></span><span class="vec" role="cell">FIN</span></div>
         <div class="row" role="row"><span class="id" role="cell">Q-0124</span><span class="qt" role="cell">Will IMF PortWatch record at least 10 transits through the Strait of Hormuz on any single day between 18.11 and 30.11.2026?</span><span class="date" role="cell">30.11.2026</span><span class="prob" role="cell"><span class="bar"><i style="width:11.3%"></i></span><b>11%</b></span><span class="vec" role="cell">INF</span></div>
@@ -330,7 +333,7 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
   </main>
 
   <footer>
-    <span>Framework 1.8.0 · methodology v1.0 · latest edition 03 (state 16.11.2026) · page built 19.11.2026</span>
+    <span>Framework 1.10.4 · methodology v1.0 · latest edition 03 (state 16.11.2026) · page built 20.11.2026</span>
     <span><a href="legal.html">Legal notice</a> · Code MIT · content CC BY 4.0 · <a href="https://github.com/pstepien-labs/worldstate-forecast">source</a></span>
   </footer>
 </div>
