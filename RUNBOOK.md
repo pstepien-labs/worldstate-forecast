@@ -218,16 +218,15 @@ A cloud watchdog reads the heartbeat every morning and sends a one-line report t
 - the start hour, the interim delay, the repair day;
 - `BACKUP_DIR`.
 
-**One-time actions only you can do** (recommended before travelling):
-1. `sudo scripts/owner_setup.sh --backup <folder>` (items 1–3 in one command, password once):
-   1. restart after a power cut (`pmset autorestart 1`);
-   2. no automatic installation of macOS updates (with FileVault on, an update restart would wait for your password);
-   3. `BACKUP_DIR` for the weekly harvest backup. Use an external disk or a synced folder; without `--backup` there is no backup.
-2. Optional remote access: Tailscale with Remote Login, or Claude Remote Control.
-3. A GitHub token limited to this repository, used only for publishing:
+**Machine setup is outside this repository.** Power, restart after a power cut, Remote Control and the kill switch for all jobs are in `../infra/` (its own README, apply and revert scripts, and the power-cut test). The repository installs only its own two jobs (`scripts/autopilot.sh install`).
+
+**Optional, needs your login:**
+1. A GitHub token limited to this repository, used only for publishing:
    - On github.com go to Settings → Developer settings → Fine-grained tokens. Choose repository `worldstate-forecast` and permission **Contents: read and write**.
-   - Run `git remote add publish https://autopilot@github.com/pstepien-labs/worldstate-forecast.git`, then push once by hand with `git push publish main` and paste the token as the password. The keychain keeps it for the user `autopilot`.
-4. zenodo.org → GitHub → switch the repository on. Each edition release then gets a DOI.
+   - Run `git remote add publish https://autopilot@github.com/pstepien-labs/worldstate-forecast.git`, then push once by hand with `git push publish main` and paste the token as the password.
+2. zenodo.org → GitHub → switch the repository on. Each edition release then gets a DOI.
+
+The harvest corpus has a weekly backup only if you set `BACKUP_DIR` in `autopilot.conf`. Leave it empty if you back up the whole Mac.
 
 **X is parked.** `social/STRATEGY.md` and the social stage stay as they are, but nothing posts and no X routine runs. Automating X needs X API keys and a separate decision.
 
