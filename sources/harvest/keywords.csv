@@ -77,9 +77,9 @@ oil;;G2;;;;zh;原油|石油|布伦特|欧佩克
 oil;;G2;;;;pl;ropa|ropy|brent|opec|diesel|olej napędowy
 oil;;G2;;;;es;petróleo|brent|opep
 oil;;G2;;;;pt;petróleo|opep
-gas_lng;Gas and LNG: prices, storage, supply;G2;ENE;PIR-3;QA,RU,NO,US;en;lng|liquefied natural gas|natural gas|gas storage|gas price|ttf|ras laffan|yamal|gas supply
+gas_lng;Gas and LNG: prices, storage, supply;G2;ENE;PIR-3;QA,RU,NO,US;en;lng|liquefied natural gas|natural gas|gas storage|gas price|ttf|ras laffan|yamal|gas supply|qatarenergy|force majeure|lng contract|long-term contract
 gas_lng;;G2;;;;ru;спг|сжиженн газ|природн газ|газохранилищ|ямал|газпром
-gas_lng;;G2;;;;pl;lng|gaz ziemny|magazyny gazu|ceny gazu|gazoport
+gas_lng;;G2;;;;pl;lng|gaz ziemny|magazyny gazu|ceny gazu|gazoport|kontrakt lng|umowa na dostawy lng|katar$|kataru$|katarem$|katarze$|katarsk
 gas_lng;;G2;;;;de;flüssiggas|lng|gasspeicher|gaspreis
 gas_lng;;G2;;;;ar;الغاز الطبيعي المسال|الغاز المسال|راس لفان
 gas_lng;;G2;;;;zh;液化天然气|天然气
@@ -122,8 +122,8 @@ budgets_debt;Budgets, deficits, ratings, debt;G3;FIN;PIR-6;RU,US,CN,PL,UA;en;bud
 budgets_debt;;G3;;;;ru;дефицит бюджет|федеральн бюджет|проект бюджет|минфин|фнб|фонд национального благосостояния|силуанов
 budgets_debt;;G3;;;;pl;deficyt|budżet|dług publiczny|rating|obniżk ratingu|moody's|fitch|potrzeby pożyczkowe
 budgets_debt;;G3;;;;uk;бюджет|дефіцит
-currencies_payments;Currencies and payment systems;G3;FIN;PIR-6;US,CN,RU,PL;en;yuan|renminbi|dollar index|de-dollar|swift|spfs|brics pay|cips|zloty|exchange rate
-currencies_payments;;G3;;;;ru;юан|курс рубл|курс доллар|спфс|swift|дедоллариз
+currencies_payments;Currencies and payment systems;G3;FIN;PIR-6;US,CN,RU,PL;en;yuan|renminbi|dollar index|de-dollar|swift system|swift network|swift messag|swift payment|from swift$|to swift$|spfs|brics pay|cips|zloty|exchange rate
+currencies_payments;;G3;;;;ru;юан|курс рубл|курс доллар|спфс|от swift$|системы swift|системе swift|дедоллариз
 currencies_payments;;G3;;;;zh;人民币|美元|跨境支付|cips
 currencies_payments;;G3;;;;pl;złot|kurs euro|kurs dolara
 summits_talks;Summits, talks, ceasefires, agreements;G4;DIP;PIR-2,PIR-4,PIR-5,PIR-7;US,RU,CN,UA,EU;en;summit|peace talks|ceasefire|truce|negotiation|state visit|bilateral talks|trilateral|peace deal|peace plan|memorandum
@@ -134,16 +134,21 @@ summits_talks;;G4;;;;ar;قمة|مفاوضات|وقف إطلاق النار|هد�
 summits_talks;;G4;;;;fa;مذاکرات|آتش‌بس|نشست
 summits_talks;;G4;;;;tr;zirve|müzakere|ateşkes
 summits_talks;;G4;;;;pl;szczyt|rozmowy pokojowe|zawieszenie broni|rozejm|negocjacj
-elections;Elections and changes of government;G4;DOM;PIR-7;;en;election|referendum|parliamentary vote|runoff|coalition government|prime minister resign|snap poll|midterm
+elections;Elections and changes of government;G4;DOM;PIR-7;;en;election|referendum|parliamentary vote|runoff|coalition government|prime minister resign|snap poll|midterm|president resign|resigns as president|snap election|early election|caretaker government
 elections;;G4;;;;ru;выбор|референдум|дума|отставк правительств
-elections;;G4;;;;pt;eleição|eleições|segundo turno|lula|bolsonaro|tse
+elections;;G4;;;;pt;eleição|eleições|segundo turno|tse
 elections;;G4;;;;es;elecciones|referéndum|cne
 elections;;G4;;;;pl;wybory|referendum|dymisj|koalicj
 elections;;G4;;;;de;wahl|koalition|regierungskrise
 elections;;G4;;;;fr;élection|référendum|premier ministre
 elections;;G4;;;;tr;seçim|referandum
-russia_domestic;Russia: domestic politics, mobilisation, repression;G4;DOM;PIR-1,PIR-7;RU;en;kremlin|putin|state duma|mobilization|mobilisation|conscription|peskov|lavrov|medvedev
-russia_domestic;;G4;;;;ru;кремл|путин|госдум|мобилизац|призывн|осенний призыв|весенний призыв|песков|лавров|медведев|совбез
+elections;;G4;;;;he;בחירות|סקר|מנדטים
+elections;;G4;;;;ar;انتخابات
+elections;;G4;;;;fa;انتخابات
+elections;;G4;;;;uk;вибор
+elections;;G4;;;;zh;选举
+russia_domestic;Russia: domestic politics, mobilisation, repression;G4;DOM;PIR-1,PIR-7;RU;en;kremlin|putin|state duma|mobilization|mobilisation|conscription|peskov|lavrov|medvedev|repression|foreign agent|treason case|duma election|regional election
+russia_domestic;;G4;;;;ru;кремл|путин|госдум|мобилизац|призывн|осенний призыв|весенний призыв|песков|лавров|медведев|совбез|иноагент|госизмен|арестован|губернатор
 china_domestic;China: domestic politics and economy;G4;DOM;PIR-4,PIR-7;CN;en;xi jinping|politburo|plenum|communist party of china|cpc central committee|state council|li qiang
 china_domestic;;G4;;;;zh;习近平|政治局|全会|中共中央|国务院|李强
 iran_domestic;Iran: domestic politics;G4;DOM;PIR-5,PIR-7;IR;en;khamenei|irgc|revolutionary guard|pezeshkian|majlis|supreme leader|supreme national security council
@@ -169,3 +174,14 @@ eu_politics;;G3,G4;;;;de;europäischer rat|eu-kommission|sanktionspaket
 eu_politics;;G3,G4;;;;fr;conseil européen|commission européenne|paquet de sanctions
 poland_security;Poland: security, defence, politics;G1,G4;MIL,DOM;PIR-1,PIR-2;PL;pl;ministerstwo obrony|ministra obrony|kosiniak-kamysz|sikorski|nawrocki|tusk|bbn|wojsko polskie|siły zbrojne|granica z białorusią|tarcza wschód
 poland_security;;G1,G4;;;;en;poland|polish|warsaw|nawrocki|tusk|sikorski
+pl_rule_of_law;Poland: rule of law, courts, presidential vetoes;G3,G4;DOM,FIN;PIR-6,PIR-7;PL;pl;trybunał konstytucyjny|trybunał|krs$|sąd najwyższy|praworządn|weto|zawetow|wotum nieufności
+pl_rule_of_law;;G3,G4;;;;en;constitutional tribunal|constitutional court|rule of law|presidential veto
+western_balkans;Western Balkans: Serbia, Bosnia, Kosovo;G4;DOM,DIP;PIR-7;RS,BA,XK,ME,MK,AL;en;serbia|serbian|vučić|vucic|bosnia|republika srpska|dodik|kosovo|montenegro|north macedonia|albania
+western_balkans;;G4;;;;ru;серби|вучич|босни|косово
+western_balkans;;G4;;;;sr;srbij|vučić|izbor|ostavk
+sabotage_espionage;Sabotage, espionage and treason in Europe;G1,G4;MIL,DOM;PIR-1,PIR-2;RU,PL,DE,EE,LT,LV;en;espionage|spying for|sabotage|arson attack|treason|gru$|fsb$
+sabotage_espionage;;G1,G4;;;;de;spionage|landesverrat|sabotage|brandanschlag
+sabotage_espionage;;G1,G4;;;;pl;szpieg|dywersj|sabotaż|podpaleni
+sabotage_espionage;;G1,G4;;;;ru;шпионаж|диверси|госизмен|поджог
+sabotage_espionage;;G1,G4;;;;et;spionaaž|sabotaaž|riigireet|süütami
+sabotage_espionage;;G1,G4;;;;lv;spiegošan|sabotāž|valsts nodevīb|dedzināšan

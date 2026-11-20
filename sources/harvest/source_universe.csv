@@ -9,19 +9,19 @@ IR;Iran;1;official,state_loyal,independent_exile;MFA track vs IRGC track (Tasnim
 EU;European Union;1;official,western;
 PL;Poland;1;official,independent_exile;
 NATO;NATO;1;official;
-SA;Saudi Arabia;2;official,state_loyal;
+SA;Saudi Arabia;2;official,state_loyal;official: no harvestable source (spa.gov.sa JavaScript-only, mofa.gov.sa TLS fails), stage 02 reads by hand. The cell stays required so the gap stays visible (P-0038, 20.11.2026)
 AE;United Arab Emirates;2;state_loyal;
 QA;Qatar;2;third;Al Jazeera EN vs AR
 IL;Israel;2;independent_exile;
 TR;Turkey;2;state_loyal,western;
 IN;India;2;official,independent_exile;
 TW;Taiwan;2;official,independent_exile;
-JP;Japan;2;official,independent_exile;
+JP;Japan;2;official,independent_exile;official: no harvestable source (mod.go.jp and mofa.go.jp return 403, kantei 404), stage 02 reads by hand. The cell stays required so the gap stays visible (P-0038, 20.11.2026)
 KR;South Korea;2;state_loyal;Yonhap (semi-public agency)
 KP;North Korea;3;third;via KCNA Watch
 YE;Yemen (Houthis);2;state_loyal;Saba (Houthi-run)
 LV;Latvia;3;independent_exile;
-EE;Estonia;3;independent_exile;
+EE;Estonia;3;official,independent_exile;official added 20.11.2026 (P-0038, U1): Baltic incidents. No official source configured yet, see CHANGELOG "Proposed sources"
 LT;Lithuania;3;independent_exile;
 BY;Belarus;3;independent_exile;
 AM;Armenia;3;independent_exile;
@@ -35,3 +35,6 @@ ML;Mali;3;independent_exile;
 ET;Ethiopia;3;independent_exile;
 PK;Pakistan;3;independent_exile;
 GL;Greenland;3;independent_exile;
+RS;Serbia;3;independent_exile,third;added 20.11.2026 (P-0038, U1). independent: n1_rs. third: no source yet (Balkan Insight disallows crawlers in robots.txt)
+RO;Romania;3;official;added 20.11.2026 (P-0038, U1): Black Sea incidents. No official source configured yet, see CHANGELOG "Proposed sources" (rna.ro, mapn.ro)
+BG;Bulgaria;3;official;added 20.11.2026 (P-0038, U1): Black Sea incidents. No official source configured yet, see CHANGELOG "Proposed sources" (gov.bg)

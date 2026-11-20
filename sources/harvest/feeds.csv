@@ -151,7 +151,7 @@ irna_en;0;rss;IRNA (EN);https://en.irna.ir/rss;en;IR;IR;state;C;G1|G4;4;disabled
 tasnim_en;1;rss;Tasnim (EN);https://www.tasnimnews.ir/en/rss/feed/0/0/0/0/AllStories;en;IR;IR;loyal;C;G1|G4;4;IRGC-affiliated, moved from tasnimnews.com (DNS gone) to tasnimnews.ir (repair 05.10.2026)
 tasnim_fa;1;rss;Tasnim (FA);https://www.tasnimnews.ir/fa/rss/feed/0/0/0/0/AllStories;fa;IR;IR;loyal;C;G1|G4;4;IRGC-affiliated, moved from tasnimnews.com (DNS gone) to tasnimnews.ir (repair 05.10.2026)
 mehr_en;1;rss;Mehr (EN);https://en.mehrnews.com/rss;en;IR;IR;state;C;G1|G4;6;
-presstv;1;rss;Press TV;https://www.presstv.ir/rss.xml;en;IR;IR;state;D;G1|G4;6;messaging for foreign audiences, old /RSS is an HTML page (repair 05.10.2026)
+presstv;1;rss;Press TV;https://www.presstv.co.uk/rss.xml;en;IR;IR;state;D;G1|G4;6;messaging for foreign audiences, old /RSS is an HTML page (repair 05.10.2026),moved to presstv.co.uk: presstv.ir TLS hostname mismatch since 10.11, .co.uk feed read and no robots.txt restriction 20.11.2026 (P-0038)
 tehrantimes;1;rss;Tehran Times;https://www.tehrantimes.com/rss;en;IR;IR;loyal;C;G2|G4;6;
 bbc_persian;1;rss;BBC Persian;https://feeds.bbci.co.uk/persian/rss.xml;fa;GB;IR;exile;B;G1|G4;6;
 iranintl_en;1;rss;Iran International (EN);https://www.iranintl.com/en/feed;en;GB;IR;exile;C;G1|G4;6;opposition-leaning, verify URL
@@ -171,6 +171,9 @@ azertac;0;rss;AZERTAC;https://azertag.az/en/rss;en;AZ;AZ;state;C;G4;12;disabled:
 kunuz_en;0;rss;Kun.uz (EN);https://kun.uz/en/news/rss;en;UZ;UZ;independent;C;G4;24;disabled: feed 404 (repair 05.10.2026)
 trend_az;1;rss;Trend (Azerbaijan);https://en.trend.az/feeds/index.rss;en;AZ;AZ;loyal;C;G4;12;pro-government, replaces azertac
 timesca;1;rss;Times of Central Asia;https://timesca.com/feed/;en;KZ;KZ;independent;C;G4;24;replaces eurasianet
+# --- Western Balkans ---
+n1_rs;1;rss;N1 Serbia;https://n1info.rs/feed/;sr;RS;RS;independent;B;G4;12;independent Serbian broadcaster, robots.txt allows /feed/, feed read 20.11.2026 (P-0038). Balkan Insight disallows all crawlers in robots.txt, not added
+n1_ba;1;rss;N1 Bosnia and Herzegovina;https://n1info.ba/feed/;bs;BA;BA;independent;B;G4;24;independent, robots.txt allows /feed/, feed read 20.11.2026 (P-0038)
 # --- Africa ---
 jeuneafrique;1;rss;Jeune Afrique;https://www.jeuneafrique.com/feed/;fr;FR;AF;independent;B;G4;12;
 rfi_afrique;1;rss;RFI Afrique;https://www.rfi.fr/fr/afrique/rss;fr;FR;FR;western;B;G4;12;
@@ -184,45 +187,45 @@ addisfortune;1;rss;Addis Fortune;https://addisfortune.news/feed/;en;ET;ET;indepe
 # --- Latin America ---
 folha_mundo;1;rss;Folha Mundo;https://feeds.folha.uol.com.br/mundo/rss091.xml;pt;BR;BR;independent;B;G4;12;
 folha_poder;1;rss;Folha Poder;https://feeds.folha.uol.com.br/poder/rss091.xml;pt;BR;BR;independent;B;G4;6;
-g1;1;rss;G1 Globo;https://g1.globo.com/rss/g1/;pt;BR;BR;independent;B;G4;6;
+g1;1;rss;G1 Globo;https://g1.globo.com/rss/g1/;pt;BR;BR;independent;B;G4;24;volume lowered: interval 6 to 24 h, 15,466 items and 1 fact URL in editions 02-03 (P-0038, 20.11.2026)
 mercopress;1;rss;MercoPress;https://en.mercopress.com/rss;en;UY;LATAM;third;C;G4;12;
 efectococuyo;0;rss;Efecto Cocuyo (Venezuela);https://efectococuyo.com/feed/;es;VE;VE;independent;C;G4;12;disabled: HTTP 403 to identified harvester, replaced by talcual (repair 05.10.2026)
 telesur;0;rss;teleSUR;https://www.telesurtv.net/rss/RssPortada.xml;es;VE;VE;state;D;G4;12;disabled: robots.txt disallows, replaced by telesur_en (repair 05.10.2026)
 granma;1;rss;Granma (Cuba);https://www.granma.cu/feed;es;CU;CU;state;D;G4;24;
-telesur_en;1;rss;teleSUR English;https://www.telesurenglish.net/feed/;en;VE;VE;state;D;G4;12;voice of Caracas, replaces telesur (robots)
+telesur_en;0;rss;teleSUR English;https://www.telesurenglish.net/feed/;en;VE;VE;state;D;G4;12;voice of Caracas, replaces telesur (robots), disabled: skipped by robots.txt in editions 02 and 03, VE:state_loyal is a recorded gap (P-0038, 20.11.2026)
 talcual;1;rss;TalCual (Venezuela);https://talcualdigital.com/feed/;es;VE;VE;independent;C;G4;12;replaces efectococuyo
 # --- shipping security advisories ---
 ukmto;0;page;UKMTO recent incidents;https://www.ukmto.org/recent-incidents;en;GB;GB;official;A;G1;6;disabled: HTTP 403 to identified harvester (repair 05.10.2026)
 marad_msci;0;page;MARAD maritime advisories;https://www.maritime.dot.gov/msci-advisories;en;US;US;official;A;G1;24;disabled: HTTP 403 to identified harvester (repair 05.10.2026)
 # --- multilingual discovery via GDELT DOC 2.0 (English queries match translated text; sourcelang/sourcecountry filters) ---
-gd_hormuz;1;gdelt;GDELT: Hormuz;(hormuz OR "persian gulf" tanker);;;;discovered;;G1|G2;12;
-gd_hormuz_fa;1;gdelt;GDELT: Hormuz (Persian sources);hormuz sourcelang:persian;fa;IR;IR;discovered;;G1|G2;12;
-gd_hormuz_ar;1;gdelt;GDELT: Hormuz (Arabic sources);(hormuz OR houthi OR yanbu) sourcelang:arabic;ar;;;discovered;;G1|G2;12;
-gd_redsea;1;gdelt;GDELT: Red Sea / Houthis;(houthi OR "red sea" OR "bab el-mandeb" OR "bab al-mandab");;;;discovered;;G1;12;
-gd_ukraine_ru;1;gdelt;GDELT: Ukraine war (Russian sources);(ukraine OR donbas OR zaporizhzhia OR kharkiv) sourcelang:russian;ru;RU;RU;discovered;;G1;12;
-gd_ukraine_uk;1;gdelt;GDELT: Ukraine war (Ukrainian sources);(russia OR front OR drone) sourcelang:ukrainian;uk;UA;UA;discovered;;G1;12;
-gd_nato_flank;1;gdelt;GDELT: NATO eastern flank;nato (baltic OR poland OR lithuania OR latvia OR estonia OR romania) (drone OR airspace OR incursion OR exercise);;;;discovered;;G1;12;query fixed: GDELT allows parentheses only around OR (repair 05.10.2026)
-gd_taiwan_zh;1;gdelt;GDELT: Taiwan (Chinese sources);(taiwan OR "south china sea" OR philippines) sourcelang:chinese;zh;;;discovered;;G1;12;
-gd_korea;1;gdelt;GDELT: Korean Peninsula;("north korea" OR pyongyang) (missile OR launch OR nuclear);;;;discovered;;G1;12;
-gd_oil;1;gdelt;GDELT: oil market;(brent OR opec OR "oil price" OR "crude oil");;;;discovered;;G2;12;
-gd_lng;1;gdelt;GDELT: gas and LNG;(lng OR "gas storage" OR ttf OR "natural gas price");;;;discovered;;G2;12;
-gd_rare_earths_zh;1;gdelt;GDELT: rare earths (Chinese sources);("rare earth" OR gallium OR germanium OR antimony OR "export control") sourcelang:chinese;zh;CN;CN;discovered;;G2;12;
-gd_chips;1;gdelt;GDELT: semiconductors and export controls;(semiconductor OR nvidia OR "export controls" OR "entity list");;;;discovered;;G2;12;
-gd_sanctions;1;gdelt;GDELT: sanctions;sanctions (russia OR iran OR china OR "shadow fleet");;;;discovered;;G3;12;query fixed: GDELT allows parentheses only around OR (repair 05.10.2026)
-gd_tariffs;1;gdelt;GDELT: tariffs and trade;(tariff OR "trade deal" OR "trade truce");;;;discovered;;G3;12;
-gd_russia_economy_ru;1;gdelt;GDELT: Russian economy (Russian sources);(budget OR deficit OR "key rate" OR inflation) sourcecountry:russia;ru;RU;RU;discovered;;G3;12;
-gd_china_economy_zh;1;gdelt;GDELT: Chinese economy (Chinese sources);(economy OR yuan OR exports OR "central bank") sourcelang:chinese;zh;CN;CN;discovered;;G3;12;
-gd_iran_domestic_fa;1;gdelt;GDELT: Iran domestic (Persian sources);(khamenei OR irgc OR pezeshkian OR araghchi OR parliament) sourcelang:persian;fa;IR;IR;discovered;;G4;12;
-gd_talks;1;gdelt;GDELT: summits and peace talks;(summit OR "peace talks" OR ceasefire OR negotiations) (russia OR ukraine OR iran OR china);;;;discovered;;G4;12;
-gd_turkey_tr;1;gdelt;GDELT: Turkish sources on region;(russia OR iran OR ukraine OR nato OR syria) sourcelang:turkish;tr;TR;TR;discovered;;G4;12;
-gd_india;1;gdelt;GDELT: India foreign policy;india (russia OR china OR oil OR tariff OR pakistan) sourcecountry:india;en;IN;IN;discovered;;G4;12;query fixed: GDELT allows parentheses only around OR (repair 05.10.2026)
-gd_sahel_fr;1;gdelt;GDELT: Sahel and Sudan (French sources);(mali OR sahel OR burkina OR niger OR soudan) sourcelang:french;fr;;;discovered;;G4;12;
-gd_sudan_horn;1;gdelt;GDELT: Sudan and Horn of Africa;(sudan OR "rapid support forces" OR ethiopia OR eritrea OR somalia);;;;discovered;;G4;12;
-gd_latam_es;1;gdelt;GDELT: Venezuela and Cuba (Spanish sources);(venezuela OR cuba OR maduro OR "delcy rodriguez") sourcelang:spanish;es;;;discovered;;G4;12;
-gd_brazil_pt;1;gdelt;GDELT: Brazil politics (Portuguese sources);(lula OR bolsonaro OR eleicao OR eleição) sourcelang:portuguese;pt;BR;BR;discovered;;G4;12;
-gd_caucasus;1;gdelt;GDELT: Caucasus and Central Asia;(armenia OR azerbaijan OR georgia OR kazakhstan OR uzbekistan OR kyrgyzstan OR tajikistan);;;;discovered;;G4;12;
-gd_arctic;1;gdelt;GDELT: Arctic and Greenland;(greenland OR arctic OR "northern sea route");;;;discovered;;G4;24;
-gd_japan_ja;1;gdelt;GDELT: Japanese sources on China/Russia/Korea;(china OR russia OR "north korea" OR taiwan) sourcelang:japanese;ja;JP;JP;discovered;;G1|G4;12;
-gd_korea_ko;1;gdelt;GDELT: Korean sources;("north korea" OR missile OR china OR russia) sourcelang:korean;ko;KR;KR;discovered;;G1|G4;12;
-gd_hebrew;1;gdelt;GDELT: Israeli sources on Iran/Lebanon;(iran OR hezbollah OR lebanon OR houthi) sourcelang:hebrew;he;IL;IL;discovered;;G1|G4;12;
-gd_poland_pl;1;gdelt;GDELT: Polish sources on security/economy;(nato OR russia OR drone OR "us troops" OR inflation OR budget) sourcecountry:poland;pl;PL;PL;discovered;;G1|G3;12;
+gd_hormuz;1;gdelt;GDELT: Hormuz;(hormuz OR "persian gulf" tanker);;;;discovered;;G1|G2;24;interval 12 to 24 h for the shared GDELT host budget (P-0038, 20.11.2026)
+gd_hormuz_fa;1;gdelt;GDELT: Hormuz (Persian sources);hormuz sourcelang:persian;fa;IR;IR;discovered;;G1|G2;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_hormuz_ar;1;gdelt;GDELT: Hormuz (Arabic sources);(hormuz OR houthi OR yanbu) sourcelang:arabic;ar;;;discovered;;G1|G2;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_redsea;1;gdelt;GDELT: Red Sea / Houthis;(houthi OR "red sea" OR "bab el-mandeb" OR "bab al-mandab");;;;discovered;;G1;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_ukraine_ru;1;gdelt;GDELT: Ukraine war (Russian sources);(ukraine OR donbas OR zaporizhzhia OR kharkiv) sourcelang:russian;ru;RU;RU;discovered;;G1;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_ukraine_uk;1;gdelt;GDELT: Ukraine war (Ukrainian sources);(russia OR front OR drone) sourcelang:ukrainian;uk;UA;UA;discovered;;G1;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_nato_flank;1;gdelt;GDELT: NATO eastern flank;nato (baltic OR poland OR lithuania OR latvia OR estonia OR romania) (drone OR airspace OR incursion OR exercise);;;;discovered;;G1;24;query fixed: GDELT allows parentheses only around OR (repair 05.10.2026),interval 12 to 24 h (P-0038, 20.11.2026)
+gd_taiwan_zh;1;gdelt;GDELT: Taiwan (Chinese sources);(taiwan OR "south china sea" OR philippines) sourcelang:chinese;zh;;;discovered;;G1;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_korea;1;gdelt;GDELT: Korean Peninsula;("north korea" OR pyongyang) (missile OR launch OR nuclear);;;;discovered;;G1;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_oil;1;gdelt;GDELT: oil market;(brent OR opec OR "oil price" OR "crude oil");;;;discovered;;G2;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_lng;1;gdelt;GDELT: gas and LNG;(lng OR "gas storage" OR ttf OR "natural gas price");;;;discovered;;G2;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_rare_earths_zh;1;gdelt;GDELT: rare earths (Chinese sources);("rare earth" OR gallium OR germanium OR antimony OR "export control") sourcelang:chinese;zh;CN;CN;discovered;;G2;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_chips;0;gdelt;GDELT: semiconductors and export controls;(semiconductor OR nvidia OR "export controls" OR "entity list");;;;discovered;;G2;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_sanctions;0;gdelt;GDELT: sanctions;sanctions (russia OR iran OR china OR "shadow fleet");;;;discovered;;G3;12;query fixed: GDELT allows parentheses only around OR (repair 05.10.2026),disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_tariffs;0;gdelt;GDELT: tariffs and trade;(tariff OR "trade deal" OR "trade truce");;;;discovered;;G3;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_russia_economy_ru;1;gdelt;GDELT: Russian economy (Russian sources);(budget OR deficit OR "key rate" OR inflation) sourcecountry:russia;ru;RU;RU;discovered;;G3;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_china_economy_zh;1;gdelt;GDELT: Chinese economy (Chinese sources);(economy OR yuan OR exports OR "central bank") sourcelang:chinese;zh;CN;CN;discovered;;G3;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_iran_domestic_fa;1;gdelt;GDELT: Iran domestic (Persian sources);(khamenei OR irgc OR pezeshkian OR araghchi OR parliament) sourcelang:persian;fa;IR;IR;discovered;;G4;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_talks;0;gdelt;GDELT: summits and peace talks;(summit OR "peace talks" OR ceasefire OR negotiations) (russia OR ukraine OR iran OR china);;;;discovered;;G4;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_turkey_tr;0;gdelt;GDELT: Turkish sources on region;(russia OR iran OR ukraine OR nato OR syria) sourcelang:turkish;tr;TR;TR;discovered;;G4;12;disabled: 0 items ever in editions 02-03,Turkish covered by aa_tr and bbc_turkce RSS (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_india;1;gdelt;GDELT: India foreign policy;india (russia OR china OR oil OR tariff OR pakistan) sourcecountry:india;en;IN;IN;discovered;;G4;24;query fixed: GDELT allows parentheses only around OR (repair 05.10.2026),interval 12 to 24 h (P-0038, 20.11.2026)
+gd_sahel_fr;0;gdelt;GDELT: Sahel and Sudan (French sources);(mali OR sahel OR burkina OR niger OR soudan) sourcelang:french;fr;;;discovered;;G4;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_sudan_horn;0;gdelt;GDELT: Sudan and Horn of Africa;(sudan OR "rapid support forces" OR ethiopia OR eritrea OR somalia);;;;discovered;;G4;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_latam_es;0;gdelt;GDELT: Venezuela and Cuba (Spanish sources);(venezuela OR cuba OR maduro OR "delcy rodriguez") sourcelang:spanish;es;;;discovered;;G4;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_brazil_pt;1;gdelt;GDELT: Brazil politics (Portuguese sources);(lula OR bolsonaro OR eleicao OR eleição) sourcelang:portuguese;pt;BR;BR;discovered;;G4;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_caucasus;1;gdelt;GDELT: Caucasus and Central Asia;(armenia OR azerbaijan OR georgia OR kazakhstan OR uzbekistan OR kyrgyzstan OR tajikistan);;;;discovered;;G4;24;interval 12 to 24 h (P-0038, 20.11.2026)
+gd_arctic;0;gdelt;GDELT: Arctic and Greenland;(greenland OR arctic OR "northern sea route");;;;discovered;;G4;24;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_japan_ja;0;gdelt;GDELT: Japanese sources on China/Russia/Korea;(china OR russia OR "north korea" OR taiwan) sourcelang:japanese;ja;JP;JP;discovered;;G1|G4;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_korea_ko;0;gdelt;GDELT: Korean sources;("north korea" OR missile OR china OR russia) sourcelang:korean;ko;KR;KR;discovered;;G1|G4;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_hebrew;0;gdelt;GDELT: Israeli sources on Iran/Lebanon;(iran OR hezbollah OR lebanon OR houthi) sourcelang:hebrew;he;IL;IL;discovered;;G1|G4;12;disabled: 0 items ever in editions 02-03,Hebrew covered by ynet_he RSS (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+gd_poland_pl;0;gdelt;GDELT: Polish sources on security/economy;(nato OR russia OR drone OR "us troops" OR inflation OR budget) sourcecountry:poland;pl;PL;PL;discovered;;G1|G3;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
