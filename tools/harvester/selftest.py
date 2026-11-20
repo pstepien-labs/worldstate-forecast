@@ -139,6 +139,16 @@ def main():
     # 3) nothing due now
     r = hv('run')
     ok('second run finds nothing due', 'due=0' in r.stdout, r.stdout[-200:])
+    # 3b) power cut: the lock's pid now belongs to an unrelated live process -> must be taken over too
+    other = subprocess.Popen(['sleep', '60'])
+    try:
+        with open(os.path.join(data, 'state', 'harvester.lock'), 'w') as f:
+            json.dump({'pid': other.pid, 'started': '2000-01-01T00:00:00Z'}, f)
+        r = hv('run')
+        ok('lock held by a reused pid (other program) taken over',
+           r.returncode == 0 and 'stale_lock_removed' in r.stdout, f'rc={r.returncode} {r.stderr[-200:]}')
+    finally:
+        other.kill()
     # 4) page change detection
     shutil.copy(os.path.join(web, 'page2.html'), os.path.join(web, 'page.html'))
     r = hv('check', '--only', 't_page')

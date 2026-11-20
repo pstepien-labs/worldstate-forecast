@@ -93,10 +93,10 @@ def cmd_stop(a):
     with open(p, 'w') as f:
         f.write(datetime.now(timezone.utc).isoformat())
     lock = store.read_json(store.path('state', 'harvester.lock'), None)
-    if lock and store.pid_alive(int(lock['pid'])):
+    if lock and store.harvester_alive(int(lock['pid'])):
         print(f"Stop requested; harvester pid {lock['pid']} will stop after the current source.")
         if a.wait:
-            while store.pid_alive(int(lock['pid'])):
+            while store.harvester_alive(int(lock['pid'])):
                 time.sleep(2)
             print('Stopped.')
     else:
@@ -110,7 +110,7 @@ def cmd_status(a):
         print('No harvest has run yet in', data_dir())
         return 1
     lock = store.read_json(store.path('state', 'harvester.lock'), None)
-    alive = bool(lock and store.pid_alive(int(lock['pid'])))
+    alive = bool(lock and store.harvester_alive(int(lock['pid'])))
     hb = parse_iso(st.get('heartbeat'))
     age = (datetime.now(timezone.utc) - hb).total_seconds() / 60 if hb else None
     md = open(store.path('STATUS.md'), encoding='utf-8').read() if os.path.exists(store.path('STATUS.md')) else ''

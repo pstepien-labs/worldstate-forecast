@@ -16,6 +16,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import tempfile
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
@@ -134,8 +135,20 @@ def pid_alive(pid):
     return True
 
 
+def harvester_alive(pid):
+    """True only if pid is alive AND runs the harvester. After a power cut the pid in a stale lock can be
+    reused by an unrelated process, which pid_alive alone would mistake for a running harvester."""
+    if not pid_alive(pid):
+        return False
+    try:
+        cmd = subprocess.run(['ps', '-p', str(pid), '-o', 'command='], capture_output=True, text=True, timeout=5).stdout
+    except Exception:
+        return True  # cannot tell: keep the conservative answer
+    return 'harvester' in cmd
+
+
 class Lock:
-    """One harvester process at a time. A stale lock (dead pid) is taken over."""
+    """One harvester process at a time. A stale lock (dead pid, or a pid reused by another program) is taken over."""
 
     def __init__(self, log):
         self.p = path('state', 'harvester.lock')
@@ -143,7 +156,7 @@ class Lock:
 
     def acquire(self):
         info = read_json(self.p, None)
-        if info and pid_alive(int(info.get('pid', 0))) and int(info['pid']) != os.getpid():
+        if info and harvester_alive(int(info.get('pid', 0))) and int(info['pid']) != os.getpid():
             raise SystemExit(f"Another harvester is running (pid {info['pid']}, since {info.get('started')}). "
                              f"Use `python3 -m tools.harvester status`, or stop it with `python3 -m tools.harvester stop`.")
         if info:
