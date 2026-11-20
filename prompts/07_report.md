@@ -24,6 +24,7 @@
 - Outlets in `sources/harvest/no_republish.txt`: paraphrase only ("according to state agency X"), no quotations, no headlines; the report is published.
 
 - Carry facts over from the previous edition only if stage 02 confirmed them; mark them "confirmed unchanged, dd.mm.yyyy". List removed facts in section J with the reason.
+- Section J.3 (missing perspectives): copy the "Incomplete key events" tables of G1–G4 (`02_facts/`, Coverage section); add events only, never drop one.
 - All rules of CLAUDE.md item 3: distinction between fact / assessment / forecast, publisher and date with every fact, two interpretations for disputes, numbers instead of adjectives.
 - Verbal text about probabilities — according to the scale in methodology §10.
 - Length: main text 15–25 A4 pages; the forecast list as an annex.

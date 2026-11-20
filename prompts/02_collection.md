@@ -26,6 +26,7 @@ If `02_harvest/` does not exist (harvester not used): record this in `log.md` as
 1. Start from the previous edition's facts: look for changes; do not copy the old picture.
 2. Areas in `00_plan.md` and PIR-linked events have priority. Walk through the digest concepts of your group. For each key story: open the original item(s), then the primary document where one exists (statement, decree, dataset), and write a fact record. A digest item is a lead, never a fact on its own.
 3. Key events: three perspectives (W, A, T). The digest tag `[lang·country·role]` helps, but you decide the perspective for the specific event (a Russian outlet is A for a Russian action and T for an Iranian one). Search in the actor's language (RU, ZH, AR, FA, TR, …) where the digest has no actor-side item, using `sources/source_map.md`. Record a missing perspective as a gap. Write the records in English; translate quotes.
+   **Actor-language read.** For every PIR-linked key event whose actor's language has at least 500 harvested items in the window (`02_harvest/coverage.md`), open at least one item in that language before you record an A-side gap. For PIR-5 key events this always includes Persian and Turkish.
 4. Record facts in a table according to methodology §9. Every record has at least one URL, and every named publisher has its own URL. For a negative check ("no statement found", "no violation found"), give the URL of the place searched (release list, search page) and the date it was checked. Outlets in `sources/harvest/no_republish.txt` (Russian state media and outlets under EU/US sanctions) may be used as the actor's perspective: record them as "statement by <outlet>", paraphrased, never quoted; keep the URL in the record for verification only. Separate declarations (DECL) from actions carried out (DONE). **Independence:** two outlets repeating the same wire story or the same official statement are one source — cite the origin. Prefer the primary dataset from `indicators.md` over a report about it (e.g. PortWatch instead of an article citing PortWatch).
 5. Values of the section L indicators that belong to the group — each with a date and source (from `indicators.md` where available, otherwise web):
    - G1: transits through Hormuz (IMF PortWatch), status of Bab el-Mandeb and Suez, front line, US carriers in the Indo-Pacific, US troops in Poland, most recent Article 4;
@@ -36,13 +37,15 @@ If `02_harvest/` does not exist (harvester not used): record this in `log.md` as
 7. Section **"Gaps and contradictions"** (material for section J of the report), including every mandatory search from `harvest_notes.md` that did not produce an actor-side or third-party source.
 8. Section **"Question candidates"**: 5–15 proposals for open questions with a resolution criterion, source and deadline. Prefer resolution sources that the harvester collects directly (`sources/harvest/datasets.csv`). For each candidate, give the value or item you actually read from the deciding source and its date. A candidate whose source needs a login, a missing API key or a paywall is not proposed (stage 03 rule, framework 1.5). No probabilities.
 9. Section **"Coverage"** (new in framework 1.1): number of records by perspective (W / A / T), number of languages of the sources used, share of records resting on a primary source, digest concepts of the group that produced no record and why.
+   End the Coverage section with a table **"Incomplete key events"**: event · missing perspective(s) · places searched (URL and date). Stage 07 copies these tables into J.3 unchanged.
+   **Standing gaps.** A gap recorded in the same form in each of the two previous editions (for example the third-party front assessment) is listed once under "Standing gaps", with the date first recorded. Search for it only in the sources listed in `sources/source_map.md`; spend no further budget on it.
 10. Append new sources to `registry/sources.csv`. If a valuable source is missing from the harvester, add a line to `sources/harvest/CHANGELOG.md` under "Proposed sources" (the next `/gH repair` adds it).
 
 ## Checkpoints
 
 Save the file `02_facts/<GROUP>.md` after each area. When the budget runs out: save state, append to `log.md` the line "<GROUP> incomplete: missing …" and stop. Re-running the same group continues from the gaps.
 
-**Indicative budget:** 40–80 searches and fetches per group, spent on verification, primary documents and the mandatory gap searches — not on rediscovering what the digest already lists.
+**Indicative budget:** 40–80 searches and fetches per group, spent on verification, primary documents and the mandatory gap searches — not on rediscovering what the digest already lists. The budget is for a 14-day window. If the window is longer, scale it by window length / 14, at most double.
 
 ## Prohibitions
 
