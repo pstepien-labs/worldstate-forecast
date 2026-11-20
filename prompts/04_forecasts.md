@@ -46,10 +46,13 @@ Do not mix lenses. If your lens says nothing about a question, note that and giv
 
 Edition 02 gave each lens about 12 minutes for 88 questions. That is too little to think. Work like this:
 1. **Batches.** Take the questions in batches of 10–15, grouped by cluster, so that related questions are judged together and consistently. Save the file after each batch.
-2. **Before each probability**, write three short lines into the edition file (not the registry):
+2. **Before each probability**, write these short lines into the edition file (not the registry):
    - the two strongest reasons for YES;
    - the two strongest reasons for NO;
-   - **"by now we would expect to see …"**: what should already be visible if YES were coming, and whether it is.
+   - **"by now we would expect to see …"**: what should already be visible if YES were coming, and whether it is;
+   - **the smallest event that resolves YES**: re-read the criterion and name the least dramatic event that would meet it (for example one confirmed strike, one listing, one outlook change). Judge the probability of that event, not of the event the title suggests;
+   - **for a numeric or price threshold**: give a central estimate, a typical error for this series over the time left, and the p that this band gives. Take the error from the series' own recent history. For "on any day" questions, use the touch probability implied by recent volatility. Move away from that p only for a mechanism you name;
+   - **when a party's statement carries the forecast** (a refusal, a pledge, a declared deployment, a claim about control or damage): say which kind it is: procedural follow-through of a decision already taken, declared own action, negotiating stance, or claim about contested facts. Then say how often statements of that kind hold over a horizon like this one. A stance or a contested-fact claim alone never keeps p near 0 or 1.
 
    Then give p. Watch for a known error: in editions 01–02 events that happened were forecast too low (mean forecast 0.42 against a YES rate of 0.58). Do not assume the status quo just because it is the default; judge the evidence.
 3. **Searches:** up to 2 per question due within 28 days of the state date and 1 per other question, about 120 in all. Spend them on what would change your p most.
