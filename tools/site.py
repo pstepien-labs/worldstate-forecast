@@ -127,7 +127,14 @@ def page_head(cfg, desc):
             f'<meta name="description" content="{desc}">\n<meta property="og:title" content="{e(cfg["name"])}">\n'
             f'<meta property="og:description" content="{desc}">\n<meta property="og:type" content="website">\n'
             f'<meta property="og:url" content="{e(cfg.get("site_url", ""))}">\n'
-            '<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>\n')
+            f'<meta property="og:site_name" content="{e(cfg["name"])}">\n'
+            + (f'<meta property="og:image" content="{e(cfg.get("site_url", ""))}og.png">\n'
+               f'<meta property="og:image:width" content="1600">\n<meta property="og:image:height" content="900">\n'
+               f'<meta property="og:image:alt" content="{e(cfg["name"])}: the latest edition at a glance">\n'
+               '<meta name="twitter:card" content="summary_large_image">\n'
+               if os.path.exists(os.path.join(ROOT, 'docs', 'og.png')) else '<meta name="twitter:card" content="summary">\n')
+            + '<link rel="icon" href="favicon.svg" type="image/svg+xml">\n'
+            + '<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>\n')
 
 
 def build():
@@ -146,6 +153,14 @@ def build():
     # executive brief of the latest edition (stage E, tools/brief.py), linked when published
     brief_rel = f'briefs/edition-{latest_ed}.pdf'
     has_brief = os.path.exists(os.path.join(ROOT, 'docs', brief_rel))
+    # static assets first: page_head() links og.png only if it exists
+    docs = os.path.join(ROOT, 'docs')
+    os.makedirs(docs, exist_ok=True)
+    shutil.copytree(os.path.join(ROOT, 'site', 'fonts'), os.path.join(docs, 'fonts'), dirs_exist_ok=True)
+    shutil.copyfile(os.path.join(ROOT, 'site', 'favicon.svg'), os.path.join(docs, 'favicon.svg'))
+    card = os.path.join(ROOT, 'social', 'cards', f'edition-{latest_ed}', 'edition.png')
+    if os.path.exists(card):  # share preview: the edition card (official values only, CLAUDE.md rule 3.1)
+        shutil.copyfile(card, os.path.join(docs, 'og.png'))
 
     # featured ticket
     fq = cfg.get('featured_question')
@@ -222,8 +237,11 @@ def build():
         track = (f'<div class="track-box"><p class="big">{sc["n_questions"]} questions resolved. Brier score of the official forecast: '
                  f'<span class="mono">{sc["brier"]:.3f}</span> against <span class="mono">{bsq}</span> for "nothing changes" '
                  f'(skill {bss}, {label}).</p><div><p>Lower is better. A positive skill score means the forecasts beat the status-quo baseline. '
-                 f'Full breakdown by lens, vector and horizon: the latest <code class="mono">01_scores.md</code>.</p>'
-                 f'<p>Below 30 resolved questions the numbers are indicative only.</p></div></div>')
+                 f'Full breakdown by lens, vector and horizon: <a href="{e(repo)}/blob/main/{e(report_dir)}/01_scores.md">'
+                 f'01_scores.md of edition {e(latest_ed)}</a>.</p>'
+                 + ('<p>Below 30 resolved questions the numbers are indicative only.</p>' if label == 'indicative' else
+                    '<p>With 30 or more resolved questions the scores count as measured; they are still one experiment, not proof.</p>')
+                 + '</div></div>')
 
     # data & access
     data_rows = ([('Executive brief', f'Edition {latest_ed} in about 11 pages, by region: key facts, key forecasts, scenarios, dates to watch', 'PDF, HTML',
@@ -244,7 +262,8 @@ def build():
         ('For organisations', 'Custom questions on your topic, a structured data feed, briefings', 'on request',
          '<span class="pill">planned</span> register interest via the contact below'),
     ]
-    data_html = '\n            '.join(f'<tr><td class="k">{e(a)}</td><td>{e(b)}</td><td class="mono">{e(c)}</td><td>{d}</td></tr>' for a, b, c, d in data_rows)
+    data_html = '\n            '.join(f'<tr><td class="k">{e(a)}</td><td>{e(b)}</td><td class="mono" data-label="Format">{e(c)}</td>'
+                                       f'<td data-label="Access">{d}</td></tr>' for a, b, c, d in data_rows)
 
     # support + contact
     names = {'github_sponsors': 'GitHub Sponsors', 'open_collective': 'Open Collective', 'kofi': 'Ko-fi'}
