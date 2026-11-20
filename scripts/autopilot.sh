@@ -191,9 +191,18 @@ PROMPT_REPAIR="Read CLAUDE.md and prompts/H_harvest.md and carry out MODE repair
 PROMPT_IMPROVE="Read CLAUDE.md and prompts/P_apply_proposals.md and apply the learning proposals by policy. You are in a separate worktree on its own branch; the autopilot checks every commit before anything reaches main."
 PROMPT_QPREP="Read CLAUDE.md and prompts/Q_evidence.md and write the evidence file for the quarterly review in AUTO mode."
 
+clear_stale_git_locks() {  # 1.10.1: a power cut during a commit leaves .git/*.lock behind and blocks every git step
+  pgrep -x git >/dev/null && return 0
+  local f
+  for f in $(find .git -maxdepth 4 -name '*.lock' -mmin +10 2>/dev/null); do
+    rm -f "$f" && log "removed stale git lock $f (left by an interrupted git command, e.g. a power cut)"
+  done
+}
+
 tick() {
   [ -f "$DATA/PAUSED" ] && exit 0
   take_lock
+  clear_stale_git_locks
   [ "$(git rev-parse --abbrev-ref HEAD)" = main ] || { notify "Repository not on branch main: autopilot idle"; exit 0; }
   harvester_check
   status_json || { notify "pipeline status failed"; exit 0; }
