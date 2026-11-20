@@ -17,6 +17,7 @@ What the unattended cycle (`scripts/autopilot.sh`, framework 1.8) could not sett
 - 20.11.2026 · P-0040 · Stage 02: actor-language reads, fixed "Incomplete key events" table, standing gaps · minor.
 
 ## Decisions taken without the user
+- 20.11.2026 improvements applied by policy: P-0036 P-0037 P-0038 P-0039 P-0040 (undo one with: git revert <commit>)
 
 - 17.11.2026 · stage 03 (edition 03) · Q-0143 (US shutdown 12–31.12): p_status_quo set to 0.90, because with no new decision the continuing resolution expires on 11.12 and appropriations lapse (literal §3.5); a first use of this reading. Review in `editions/2026-11-16_edition-03/03_question_bank_changes.md` §1.
 - 17.11.2026 · stage 03 (edition 03) · Panel replacements outside the original cluster, whose outcome was exhausted: Q-0033 (BRAZIL_ELECTIONS) → Q-0123 (DOM, RS_GOVERNMENT, Serbian government); Q-0031 (US_ELECTIONS) → Q-0122 (Hegseth leaving office, cluster kept as the midterms' consequences); Q-0004 (DeepState territory, no readable source) → Q-0116 (Russian MoD drone count, UA_FRONT). Review in §3 of the same file.
