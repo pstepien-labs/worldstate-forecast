@@ -72,8 +72,16 @@ def canonical_url(url):
         return url.strip()
 
 
+# Fragments that mark a distinct observation of the same URL (a watched page's change,
+# rows added to a snapshot list). canonical_url drops fragments, so item_id keeps these.
+_CHANGE_FRAGMENT = ('change-', 'added-')
+
+
 def item_id(url, fallback=''):
     key = canonical_url(url) if url else fallback
+    frag = urlparse(url.strip()).fragment if url else ''
+    if frag.startswith(_CHANGE_FRAGMENT):
+        key += '#' + frag
     return hashlib.sha1(key.encode('utf-8')).hexdigest()[:16]
 
 
