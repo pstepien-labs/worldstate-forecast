@@ -2,7 +2,8 @@
 
   python3 -m tools.harvester doctor            environment check (Python, disk, keys, config)
   python3 -m tools.harvester selftest          offline end-to-end test (local fake server), incl. crash + resume
-  python3 -m tools.harvester check             fetch every enabled source once now (writes data/harvest/CHECK.md)
+  python3 -m tools.harvester check             fetch every enabled source once now (writes data/harvest/CHECK.md);
+                                               if a harvester is running, probes instead (fetch + parse, nothing stored)
   python3 -m tools.harvester run               one sweep over sources that are due, then exit
   python3 -m tools.harvester watch             run sweeps continuously until stopped (resumable)
   python3 -m tools.harvester stop              ask a running harvester to stop after the current source
@@ -53,10 +54,48 @@ def cmd_doctor(a):
     return 0 if ok else 1
 
 
+def _running_harvester_pid():
+    info = store.read_json(store.path('state', 'harvester.lock'), None)
+    try:
+        pid = int((info or {}).get('pid', 0))
+    except (TypeError, ValueError):
+        return None
+    return pid if pid and pid != os.getpid() and store.harvester_alive(pid) else None
+
+
+def cmd_probe(only):
+    """Check sources while another harvester runs (framework 2.0, harvester 1.5.1): fetch and parse each selected
+    source once, report what it returned, store nothing and leave the running harvester and its state untouched.
+    This lets `/gH repair` verify rows without stopping a harvester that launchd supervises."""
+    from . import adapters
+    from .sweep import Harvester
+    h = Harvester(echo=False)
+    tasks = [t for t in load_sources() if truthy(t.get('enabled', '1'))]
+    if only:
+        tasks = [t for t in tasks if t['id'] in only or t.get('kind') in only or t.get('adapter') in only]
+    lines = ['# Source check (probe)', '', f'{datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC · another harvester is running, '
+             'so results were fetched and parsed but not stored', '',
+             '| Source | Kind | Status | HTTP | Items/obs returned | Error |', '|---|---|---|---|---|---|']
+    bad = 0
+    for t in tasks:
+        res = adapters.run_task(t, h.fetcher, dict(h.state.get(t['id'], {})), h.ctx)
+        st = 'skipped' if res.skipped else ('failing' if res.error else 'ok')
+        bad += st != 'ok'
+        n = len(res.items) or len(res.observations)
+        lines.append(f"| {t['id']} | {t.get('kind')} | {st} | {res.http_status or ''} | {n} | "
+                     f"{(res.error or res.skipped or res.note or '')[:120]} |")
+        print(f"{t['id']}: {st} ({n})")
+    store.write_atomic(store.path('CHECK.md'), '\n'.join(lines) + '\n')
+    print(f'\n{len(tasks) - bad}/{len(tasks)} sources OK (probe, nothing stored). Details: {store.path("CHECK.md")}')
+    return 0
+
+
 def cmd_check(a):
     from .sweep import Harvester
-    h = Harvester()
     only = split_list(a.only, ',') if a.only else None
+    if _running_harvester_pid():
+        return cmd_probe(only)
+    h = Harvester()
     h.run(force=True, only=only)
     state = store.read_json(store.path('state', 'sources.json'), {})
     tasks = [t for t in load_sources() if truthy(t.get('enabled', '1'))]

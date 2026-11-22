@@ -109,3 +109,13 @@ class AdapterTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class ProbeCheckTest(unittest.TestCase):
+    def test_check_probes_when_a_harvester_runs(self):
+        from tools.harvester import __main__ as hm
+        args = mock.Mock(only='x')
+        with mock.patch.object(hm, '_running_harvester_pid', return_value=12345), \
+                mock.patch.object(hm, 'cmd_probe', return_value=0) as probe:
+            self.assertEqual(hm.cmd_check(args), 0)
+        probe.assert_called_once_with(['x'])

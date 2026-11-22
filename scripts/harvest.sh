@@ -50,7 +50,16 @@ case "${1:-status}" in
     ;;
   stop)
     if launchctl print "gui/$(id -u)/com.worldstate-forecast.harvester" >/dev/null 2>&1; then
-      echo "The harvester is kept alive by launchd; stopping it removes the job until 'scripts/autopilot.sh install'."
+      # framework 2.0.1: a stop under launchd removed the job and left the harvester unsupervised after reboots
+      # (repair of 22.11.2026). Checks no longer need a stop: 'python3 -m tools.harvester check' probes while it runs.
+      if [ "${2:-}" != "--force" ]; then
+        echo "The harvester is supervised by launchd; not stopping it."
+        echo "  To check sources while it runs: python3 -m tools.harvester check --only <ids> (probe, nothing stored)."
+        echo "  To stop it for good (owner): ../infra/ctl.sh stop harvester · to restart: ../infra/ctl.sh stop harvester && ../infra/ctl.sh start harvester"
+        echo "  To remove the launchd job anyway: scripts/harvest.sh stop --force (then scripts/autopilot.sh install to restore)."
+        exit 1
+      fi
+      echo "Removing the launchd job (until 'scripts/autopilot.sh install')."
       launchctl bootout "gui/$(id -u)/com.worldstate-forecast.harvester"
     else
       "$PY" -m tools.harvester stop --wait

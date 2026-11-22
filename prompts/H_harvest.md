@@ -17,7 +17,7 @@ Provenance: at the start of modes `repair` and `digest` run `python3 tools/pipel
 ## MODE status
 
 1. `scripts/harvest.sh status`. Interpret it for the user: running or not, last heartbeat, sources OK / failing, recent errors.
-2. If not running: start it again (`scripts/harvest.sh start`) — it resumes from its checkpoint. If the heartbeat is older than 30 minutes while the process exists: `scripts/harvest.sh stop`, then `start`.
+2. If not running: start it again (`scripts/harvest.sh start`) — it resumes from its checkpoint. If the heartbeat is older than 30 minutes while the process exists: when launchd supervises it (`scripts/harvest.sh start` says so), do not stop it; add a line under `## Blockers` in `AUTOPILOT_INBOX.md` (the owner restarts it with `../infra/ctl.sh`). Otherwise `scripts/harvest.sh stop`, then `start`.
 3. If failing sources exceed 20% or a priority-1 actor in `sources/harvest/source_universe.csv` has no working official or state/loyal source: propose MODE `repair`.
 
 ## MODE check
@@ -32,7 +32,7 @@ Goal: keep the source universe working and balanced. You may edit only `sources/
 2. For each: find the current official feed or page with web search (the publisher's own "RSS" page first). Fix the URL; if the publisher has no feed, switch the row to `kind=page` on its news listing page; if the site forbids automated access in robots.txt, set `enabled=0` and note it — **never circumvent robots.txt, logins or paywalls**. For a Telegram channel that is gone, set `enabled=0`.
 3. For every silent required cell in the last `coverage.md` (actor × role with no items), propose and add one source that fills it (official site, state/loyal outlet, independent or exile outlet, as needed), in the actor's language where possible.
 3a. **Framework 2.0 (methodology v1.1 §10):** for every actor flagged `⚠ under` in the "Source balance by power" table of the last `coverage.md`, add at least one working source from that actor's side, starting with the actor of the largest weight. Do not add sources for actors flagged `⚠ over`.
-4. Verify the changed rows: `python3 -m tools.harvester check --only <ids>`.
+4. Verify the changed rows: `python3 -m tools.harvester check --only <ids>`. **Never stop the harvester for this.** While it runs, `check` probes: it fetches and parses each row and stores nothing. Under launchd, `scripts/harvest.sh stop` refuses (framework 2.0.1), because stopping removed the launchd job on 22.11.2026.
 5. Append a dated entry to `sources/harvest/CHANGELOG.md`: added / fixed / disabled sources with reasons. Never add domains from CLAUDE.md item 9 (`sources/harvest/forbidden_domains.txt`).
 6. Commit: `harvest config: repair <date>`. Source configuration changes are process changes of patch level (see `methodology/methodology_changes.md`, versioning).
 
