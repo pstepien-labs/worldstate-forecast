@@ -1,4 +1,4 @@
-actor;name;priority;required_roles;notes
+﻿actor;name;priority;required_roles;notes
 # Required roles per actor: official, state_loyal, independent_exile, western (Western reporting ABOUT the actor comes via western feeds), third.
 # Coverage report (02_harvest/coverage.md) flags required roles with no items in the window. Priority 1 = PIR actors.
 US;United States;1;official,western;statements = facts about statements
@@ -19,7 +19,7 @@ TW;Taiwan;2;official,independent_exile;
 JP;Japan;2;official,independent_exile;official: no harvestable source (mod.go.jp and mofa.go.jp return 403, kantei 404), stage 02 reads by hand. The cell stays required so the gap stays visible (P-0038, 20.11.2026)
 KR;South Korea;2;state_loyal;Yonhap (semi-public agency)
 KP;North Korea;3;third;via KCNA Watch
-YE;Yemen (Houthis);2;state_loyal;Saba (Houthi-run) disabled 22.11.2026 (HTTP 403 since 05.10.2026); no source until the owner decides on a Houthi-run replacement (AUTOPILOT_INBOX.md)
+YE;Yemen (Houthis);2;state_loyal;Saba (Houthi-run) disabled 22.11.2026 (HTTP 403 since 05.10.2026); replaced by ypa_ye (owner decision 22.11.2026; no_republish)
 LV;Latvia;3;independent_exile;
 EE;Estonia;3;official,independent_exile;official added 20.11.2026 (P-0038, U1): Baltic incidents. No official source yet: valitsus.ee, vm.ee and kaitseministeerium.ee news listings answer the harvester with HTTP 404 (repair 22.11.2026); stage 02 reads by hand
 LT;Lithuania;3;independent_exile;
