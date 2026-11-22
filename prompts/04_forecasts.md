@@ -4,7 +4,7 @@ Parameter: `LENS` = A, B or C (from the command argument). Run each lens in a **
 
 ## Permitted input
 
-- `CLAUDE.md`, `methodology/methodology_v1.0.md` (especially §4),
+- `CLAUDE.md`, the methodology file named in `editions/CURRENT.md` (especially §4 of v1.0 / §5 of v1.1),
 - `02_facts/*.md`, `03_analysis.md` of the current edition (including its INFO_CUTOFF line and the post-state-date records LT-01…),
 - `registry/questions.csv` (ACTIVE questions),
 - your own earlier forecasts only, through `python3 tools/pipeline.py lens-rows <LENS>`. Never open `registry/forecasts.csv` directly. From framework 1.9 a hook (`tools/blindness_guard.py`) blocks any file or command that rule 3.8 forbids for your stage.

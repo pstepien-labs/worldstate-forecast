@@ -4,7 +4,8 @@
   python3 tools/registry_guard.py <base-ref> [<head-ref>]     head defaults to the working tree
 
 Fails (exit 1) if, between base and head:
-  - any existing line of registry/forecasts.csv, benchmarks.csv or resolutions.csv changed, moved or disappeared
+  - any existing line of registry/forecasts.csv, benchmarks.csv, resolutions.csv, question_meta.csv (methodology v1.1 §4.6)
+    or relations.csv changed, moved or disappeared
     (new lines may only be appended at the end);
   - the header of any registry CSV changed;
   - any field of an existing row of registry/questions.csv other than `status` and `notes` changed, or a row disappeared.
@@ -17,7 +18,7 @@ import subprocess
 import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-APPEND_ONLY = ('forecasts.csv', 'benchmarks.csv', 'resolutions.csv')
+APPEND_ONLY = ('forecasts.csv', 'benchmarks.csv', 'resolutions.csv', 'question_meta.csv', 'relations.csv')
 MUTABLE_QUESTION_FIELDS = {'status', 'notes'}
 
 

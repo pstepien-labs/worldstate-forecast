@@ -109,10 +109,10 @@ def decide(tool, inp, stage, arg):
             if not (rdir and m.group(0).startswith(rdir)):
                 return 'a replay may not open another edition'
         return None
-    if stage not in ('03', '04', '05'):
+    if stage not in ('03', 'W', '04', '05'):
         return None
     if tool == 'WebSearch' and ODDS_WORDS.search(text):
-        return 'searches for odds, betting or prediction markets are forbidden in stages 03-05 (rule 3.8)'
+        return 'searches for odds, betting or prediction markets are forbidden in stages 03-05 and W (rule 3.8)'
     if stage == '04' and arg == 'B2':
         if tool in ('WebFetch', 'WebSearch'):
             return 'stage 04 B2 (outside view from base rates) uses no web access'

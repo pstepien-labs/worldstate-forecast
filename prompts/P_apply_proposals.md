@@ -17,7 +17,7 @@ Rows of `reviews/learning/proposals.csv` with status `PROPOSED` or `APPROVED`, e
 | a proposal that needs something only the owner can do (an API key, a login) | apply the part that needs no owner. Name the owner action in the commit message and in your output file |
 
 **Never change:**
-- `CLAUDE.md`, `methodology/methodology_v1.0.md`, `registry/`;
+- `CLAUDE.md`, every file in `methodology/`, `registry/`, `world_model/drivers.csv`;
 - `tools/blindness_guard.py`, `tools/registry_guard.py`, `tools/autopilot.py`, `scripts/autopilot.sh`;
 - `.claude/`, `.github/`, `editions/`, `docs/`, `autopilot.conf`, `AUTOPILOT_INBOX.md`;
 - existing files in `tests/`. You may add new test files.

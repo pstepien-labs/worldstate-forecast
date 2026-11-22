@@ -48,6 +48,24 @@ class PipelineTest(unittest.TestCase):
         finally:
             pipeline.ROOT = old
 
+    def test_world_model_stage_only_from_framework_2(self):
+        import json
+        for fw, expect in (('1.12.0', False), ('2.0.0', True)):
+            root = tempfile.mkdtemp()
+            d = os.path.join(root, 'editions', 'e')
+            os.makedirs(d)
+            with open(os.path.join(d, 'provenance.jsonl'), 'w') as fh:
+                fh.write(json.dumps({'event': 'start', 'stage': '00', 'framework_version': fw}) + '\n')
+            old = pipeline.ROOT
+            pipeline.ROOT = root
+            try:
+                order = [s for s, a, c, ok in pipeline.edition_done_map({'DIRECTORY': 'editions/e', 'NR': '04'})]
+            finally:
+                pipeline.ROOT = old
+            self.assertEqual('W' in order, expect, fw)
+            if expect:
+                self.assertEqual(order.index('W'), order.index('03') - 1)
+
     def test_edition_framework(self):
         self.assertEqual(pipeline.edition_framework([{'framework_version': '1.8.0'}]), (1, 8, 0))
         self.assertGreaterEqual(pipeline.edition_framework([{'framework_version': '1.9.0'}]), (1, 9, 0))

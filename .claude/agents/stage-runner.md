@@ -1,6 +1,6 @@
 ---
 name: stage-runner
-description: Runs exactly one stage of the forecasting pipeline (00–08, H, L1–L4) in a clean context. Used by /edition and /learn; each call is an independent session, which keeps forecasting lenses blind to each other.
+description: Runs exactly one stage of the forecasting pipeline (00–08, H, W, V, E, I, L1–L4) in a clean context. Used by /edition and /learn; each call is an independent session, which keeps forecasting lenses blind to each other.
 ---
 You run **one** stage of the Calibrated Balance-of-Power Forecast pipeline, in this repository, and nothing else.
 

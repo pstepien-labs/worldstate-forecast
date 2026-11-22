@@ -34,6 +34,7 @@ STAGES = {
     'H': ('prompts/H_harvest.md', 'Harvest digest'),
     '01': ('prompts/01_resolutions.md', 'Resolutions and scores'),
     '02': ('prompts/02_collection.md', 'Fact collection'),
+    'W': ('prompts/W_world_model.md', 'World model update (methodology v1.1)'),
     '03': ('prompts/03_analysis.md', 'Analysis and question bank'),
     '04': ('prompts/04_forecasts.md', 'Forecasts of one lens'),
     '05': ('prompts/05_red_team.md', 'Red team'),
@@ -115,7 +116,7 @@ def dirty_paths():
     return [x[3:] for x in out.splitlines() if x.strip()]
 
 
-SEQUENCE_STAGES = {'00', 'H', '01', '02', '03', '04', '05', '06', '07', '08'}
+SEQUENCE_STAGES = {'00', 'H', '01', '02', 'W', '03', '04', '05', '06', '07', '08'}
 
 
 def now():
@@ -262,6 +263,8 @@ def edition_done_map(cur):
     ]
     for g in ('G1', 'G2', 'G3', 'G4'):
         steps.append(('02', g, f'/g02 {g}', done('02', g, [f'02_facts/{g}.md'])))
+    if edition_framework(recs) >= (2, 0, 0):  # world model stage (methodology v1.1 §3): editions started on 2.0+
+        steps.append(('W', None, '/gW', done('W', None, ['03W_world_model.md'])))
     steps.append(('03', None, '/g03', done('03', None, ['03_analysis.md'])))
     for lens in ('A', 'B', 'C'):
         steps.append(('04', lens, f'/g04 {lens}', done('04', lens, [f'04_forecasts_{lens}.md'])))
@@ -304,6 +307,7 @@ STAGE_TEXT = {
     'H': 'Build the harvest digest for the edition window',
     '01': 'Resolve questions whose deadline has passed and compute accuracy scores',
     '02': 'Collect and verify facts for one group of topics',
+    'W': 'Update the world model: power ledger, chains, actor models, model question candidates',
     '03': 'Analysis and question bank',
     '04': 'Blind forecast by one lens',
     '05': 'Red team: challenge the analysis and the forecasts',

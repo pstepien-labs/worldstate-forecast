@@ -136,6 +136,10 @@ class GateTest(unittest.TestCase):
         self.assertEqual(c(['prompts/05_red_team.md']), 'not-auto')
         self.assertEqual(c(['tools/scores.py']), 'not-auto')
         self.assertEqual(c(['methodology/methodology_v1.0.md']), 'protected')
+        self.assertEqual(c(['methodology/methodology_v1.1.md']), 'protected')
+        self.assertEqual(c(['world_model/drivers.csv']), 'protected')
+        self.assertEqual(c(['prompts/W_world_model.md']), 'not-auto')
+        self.assertEqual(c(['world_model/ledger.csv']), 'ok')
         for p in ('CLAUDE.md', 'registry/forecasts.csv', 'tools/blindness_guard.py', 'scripts/autopilot.sh', '.claude/settings.json',
                   '.github/workflows/ci.yml', 'editions/2026-11-16_edition-03/07_report.md', 'docs/index.html', 'autopilot.conf'):
             self.assertEqual(c([p, 'sources/harvest/feeds.csv']), 'protected', p)

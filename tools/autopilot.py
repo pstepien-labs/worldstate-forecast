@@ -44,14 +44,15 @@ DEFAULTS = {
     'AUTOPILOT_REPLAY_MIN_RESOLVED': '30',
 }
 
-# Files an automatic improvement may never change (framework 1.10, user decision 20.11.2026).
-PROTECTED = ('CLAUDE.md', 'methodology/methodology_v1.0.md', 'registry/', 'tools/blindness_guard.py',
+# Files an automatic improvement may never change (framework 1.10, user decision 20.11.2026;
+# framework 2.0: every methodology version file and the driver list of methodology v1.1).
+PROTECTED = ('CLAUDE.md', 'methodology/methodology_v', 'registry/', 'world_model/drivers.csv', 'tools/blindness_guard.py',
              'tools/registry_guard.py', 'tools/autopilot.py', 'scripts/autopilot.sh', '.claude/', '.github/',
              'editions/', 'docs/', 'autopilot.conf', 'AUTOPILOT_INBOX.md')
 # Changes to these need the replay gate (they change how forecasts are made and can be replayed).
 REPLAY_GATED = ('prompts/04_forecasts.md',)
 # Changes to these change forecasting but cannot be replayed: they wait for the user / quarterly review.
-NOT_AUTO = ('prompts/03_analysis.md', 'prompts/05_red_team.md', 'prompts/06_aggregation_and_benchmarks.md',
+NOT_AUTO = ('prompts/03_analysis.md', 'prompts/W_world_model.md', 'prompts/05_red_team.md', 'prompts/06_aggregation_and_benchmarks.md',
             'tools/scores.py', 'tools/quant.py', 'tools/coherence.py', 'methodology/')
 
 
