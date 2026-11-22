@@ -105,3 +105,13 @@
 - Harvester: stopped for the checks with `scripts/harvest.sh stop`, which also removed its launchd job; restarted by hand (`scripts/harvest.sh start`). Re-installing launchd is off limits to agents (blindness guard blocked a read of the launchd configuration, as designed) — owner action recorded in `AUTOPILOT_INBOX.md`.
 - Four items for the owner in `AUTOPILOT_INBOX.md` (launchd, YE replacement, no_republish for DPRK media, TR western vs `⚠ over`).
 - Searches: 5 web searches on official feed addresses (NATO, European Commission, MOFCOM, setkab.go.id, valitsus.ee). No forbidden domain opened. Fetched page text was treated as data; no instructions found in the content viewed.
+
+## User decisions on the autopilot inbox (22.11.2026)
+
+- Q-0079: YES approved (`registry/resolutions.csv` version 3, `user_approved = Y`). The PortWatch layer was re-read on 22.11.2026: 13.10 = 17 transits, identical to stage 01 and to the harvested series. Scores recomputed in `01_scores.md`.
+- Stage 04 A blindness incident: lens A accepted as written. The rows seen were two frozen edition-02 aggregate rows, seen after all 83 lens-A forecasts were written. Since framework 1.9.1 the guard blocks this command in stage 04 (`tests/test_blindness_guard.py`).
+- Q-0143 `p_status_quo = 0.90`: accepted. The rule reading goes to the quarterly review as P-0043.
+- Panel replacements outside the original cluster (Q-0123, Q-0122, Q-0116): accepted. The panel is rebuilt from the model in edition 04 (methodology v1.1).
+- Aggregate BSS against the crowd in section 0: kept. It is the primary measure of methodology §1(b); individual benchmark values stay in the annex.
+- No report PDF: accepted. The executive brief PDF covers readers.
+- P-0036, P-0039, P-0040: statuses corrected to IMPLEMENTED (versions 1.12.0, 1.10.8, 1.11.0). The P-0036 replay on edition 03 is a follow-up for the quarterly review.
