@@ -9,7 +9,15 @@ Only the report and its annexes may be corrected. **Forecasts and the registry a
 3. **Forecast completeness.** Every active question has A, B, C, AGG and AGG_RT rows in this edition. All of them carry `date` = the date of INFO_CUTOFF (first line of `03_analysis.md`). No fact record of stages 03–05 is dated after INFO_CUTOFF, and the "post-cutoff facts seen" counts are in the log.
 4. **Append-only registry.** Compare with `REGISTRY_BASELINE` from `CURRENT.md`: `git diff <REGISTRY_BASELINE> -- registry/forecasts.csv registry/benchmarks.csv registry/resolutions.csv` may contain only added lines; in `questions.csv` only the `status` and `notes` fields may change.
 5. **Blindness.** Check the session history or files 04 and 05 for references to benchmarks or forbidden domains. Check `next_question_candidates.md` (framework 1.9): no number between 0 and 1, no percentage, no forecasting-site name or URL. Report every `BLOCKED by tools/blindness_guard.py` line in the log: a block is a prevented breach, so it is minor, not critical.
-6. **Question bank.** Horizon proportions (§3.3, with "by the next edition" = deadline ≤ STATE_DATE + 14 days), share of trivial questions (§3.8), coverage of the 8 vectors, panel completeness (40), open questions 20–30 and active questions about 90 or fewer. Every new question:
+6. **Question bank.** Methodology v1.0 editions: horizon proportions (§3.3, with "by the next edition" = deadline ≤ STATE_DATE + 14 days), share of trivial questions (§3.8), coverage of the 8 vectors, panel completeness (40), open questions 20–30 and active questions about 90 or fewer. **Methodology v1.1 editions** (§4), using `python3 tools/scores.py --bank` for the counts:
+   - panel: 40, 5 per vector, every driver ≥ 2 and ≤ 6, ≤ 3 per cluster, about 12 Q / 16 Y / 12 M, 3–4 tail questions;
+   - open questions: 20–30, at most 50% Q, at least 25% Y, at least 15% M (signposts excluded), at least 20% LEVEL, at least 60% with an origin from the model, at least 3 CONDITIONAL pairs when active chains exist, and at least 2 signposts per M question;
+   - ACTIVE ≤ 100, and the panel's mean `impact` ≥ 3.5;
+   - every new question has exactly one `registry/question_meta.csv` row, written in stage 03 (its git commit precedes the freeze commit of stage 06);
+   - every CONDITIONAL question has its trigger question and a `conditional_on` relation;
+   - LEVEL rungs have `higher_threshold` relations.
+   
+   Every new question:
    - has a window starting after INFO_CUTOFF;
    - names one readable deciding source and a fallback;
    - has a recorded source read in `03_question_bank_changes.md`.
@@ -29,6 +37,7 @@ Mark every discrepancy **critical** or **minor**. Critical:
 - a registry change that is not an append (item 4);
 - a blindness breach (item 5);
 - a forecast row dated after INFO_CUTOFF (item 3).
+- methodology v1.1: a `question_meta.csv` row of this edition's questions changed, or written after the forecasts were frozen (item 6).
 
 Everything else is minor. Correct what you can in the report, then count the critical items still open. Write the count as a line of its own near the top of the file, exactly in this form:
 

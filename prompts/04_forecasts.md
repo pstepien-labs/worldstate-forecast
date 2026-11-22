@@ -7,6 +7,7 @@ Parameter: `LENS` = A, B or C (from the command argument). Run each lens in a **
 - `CLAUDE.md`, the methodology file named in `editions/CURRENT.md` (especially §4 of v1.0 / §5 of v1.1),
 - `02_facts/*.md`, `03_analysis.md` of the current edition (including its INFO_CUTOFF line and the post-state-date records LT-01…),
 - `registry/questions.csv` (ACTIVE questions),
+- **methodology v1.1 (lenses A, B and C; not the B2 shadow run):** `world_model/ledger.csv`, `world_model/chains.csv`, `world_model/actor_models.md`, `03W_world_model.md` of the current edition, and `registry/question_meta.csv` (form, driver, chain and actor of each question; no forecasts in it),
 - your own earlier forecasts only, through `python3 tools/pipeline.py lens-rows <LENS>`. Never open `registry/forecasts.csv` directly. From framework 1.9 a hook (`tools/blindness_guard.py`) blocks any file or command that rule 3.8 forbids for your stage.
 
 ## Forbidden
@@ -16,6 +17,13 @@ Parameter: `LENS` = A, B or C (from the command argument). Run each lens in a **
 - domains from CLAUDE.md item 9 and searches for phrases like "odds", "prediction market", "market-implied probability",
 - other lenses' stage 04 entries in `log.md` — append your own entry at the end of the file without displaying its contents,
 - facts dated after INFO_CUTOFF (first line of `03_analysis.md`). If a search shows one, do not use it in a forecast or a rationale and do not record it; count it in your log entry as "post-cutoff facts seen: N". This keeps all three lenses on the same information set.
+
+## Question forms (methodology v1.1 §4.2, §5)
+
+- **CONDITIONAL** (`form` in `question_meta.csv`, relation `conditional_on`): p is the probability of the response **given that the trigger occurs**, not the joint probability. Lens A names the actor-model claim (`actor_models.md`) and chain it relies on; lens B uses the base rate of that actor's responses to comparable triggers; lens C uses the responding actor's domestic constraints.
+- **LEVEL ladders** (relation `higher_threshold`): give the rungs together. A higher threshold never gets a higher p for "above". Check the whole ladder against one central estimate and its error band (see "Before each probability").
+- **SIGNPOST**: keep it consistent with your forecast of the long question it signposts (`signpost_of`); say in one line how its outcome would move the long question.
+- **Tail questions** (`tail = Y`): use the outside view of rare events. Do not round to the floor of 0.01 without a reference class.
 
 ## Lens instructions
 

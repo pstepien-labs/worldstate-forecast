@@ -4,7 +4,11 @@
 
 ## Outputs
 
-1. **`07_report.md`** — report following the structure in methodology §11.
+1. **`07_report.md`** — report following the structure in the methodology (v1.0 §11; v1.1 §12). From methodology v1.1:
+   - **Section B** ends with the table of active chains: chain, last move, expected next move, linked questions (from `03W_world_model.md`).
+   - **Section G** is written from the power-ledger changes since the previous edition: actor, factor, old → new value, source, trend.
+   - **Section J** gains "J.6 Driver coverage": questions per driver (active and panel), the panel's mean `impact`, ledger cells marked NO DATA, and the unmatched share and source balance by power from `02_harvest/coverage.md`.
+   - **Section 0** adds, labelled "methodology v1.1, indicative below 30", one line each: scores by driver (best and worst), importance-weighted Brier, and actor-model scores, with the v1.0 and v1.1 cohorts kept apart.
    - **Provenance line** directly under the title (from framework 1.1): `Framework <VERSION> · methodology <METHODOLOGY> · commit <short hash at stage 07 start> · models: <from provenance.md> · harvest: <items in window>, <languages>, <countries>, Western share <x>% (02_harvest/manifest.json)`. Run `python3 tools/pipeline.py provenance` first. The same values go into section J.5 (process quality).
    - Section **0 (Accuracy scores)**, from edition 02: the key numbers from `01_scores.md` — number of resolved questions, Brier and BSS for AGG_RT vs status quo, best and worst lens (marked "indicative" below 30 questions), directional bias. From framework 1.5 also give, labelled "diagnostic, not the official measure", one line each from the diagnostics section:
      - BSS vs the other reference baselines, and the YES rate by `p_status_quo` value;

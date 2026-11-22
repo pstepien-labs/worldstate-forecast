@@ -2,7 +2,7 @@
 
 Run in a new session. Your role: to refute, not to confirm.
 
-**Input:** `03_analysis.md`, `04_forecasts_A.md`, `04_forecasts_B.md`, `04_forecasts_C.md`, `05_coherence.md` (you create it in task 0), `02_facts/*.md`, `registry/questions.csv`, `registry/relations.csv`.
+**Input:** `03_analysis.md`, `04_forecasts_A.md`, `04_forecasts_B.md`, `04_forecasts_C.md`, `05_coherence.md` (you create it in task 0), `02_facts/*.md`, `registry/questions.csv`, `registry/relations.csv`; from methodology v1.1 also `registry/question_meta.csv`, `03W_world_model.md` and `world_model/` (chains, actor models, ledger).
 
 **Forbidden:** `06_*` files, `07_annex_benchmarks.md`, `registry/benchmarks.csv`, domains from CLAUDE.md item 9.
 
@@ -26,6 +26,11 @@ Run in a new session. Your role: to refute, not to confirm.
 3. **Proposed AGG adjustments.** Every adjustment must rest on specific evidence or an identified logical error. Limit: ±0.15 per question. No adjustments "to be safe" and no pulling towards 0.5 without a reason.
 4. **Directional bias test.** Compare mean AGG with `p_status_quo` within `who_benefits` groups. Do the forecasts systematically favour one side? Identify the questions responsible.
 5. **Consistency with scenarios.** Are the question forecasts consistent with the scenario probabilities the analysis anticipates?
+5a. **Model consistency (methodology v1.1 §6).**
+   - LEVEL ladders are monotonic (the coherence check covers `higher_threshold`).
+   - Every CONDITIONAL forecast is consistent with the actor model and chain it relies on. A lens that contradicts `actor_models.md` without new evidence is a weak point; so is an actor model that the facts of this edition contradict (report it to stage W of the next edition through `05_red_team.md`).
+   - Each SIGNPOST is consistent with its long question.
+   - Name any active chain whose `expected_next` move has no question, and any driver whose questions all point one way without evidence.
 6. **Determined before the cutoff.** List active questions whose YES criterion was already met by an event dated on or before INFO_CUTOFF but which stage 03 did not resolve. Give the evidence. Do not adjust them: `tools/scores.py` leaves a forecast out of the scores when the question resolved on or before the forecast date, and the next stage 01 resolves them with that event date.
 
 ## Output

@@ -131,7 +131,7 @@ This replaces v1.0 §3.3, which required about 40% of new questions to fall due 
 | `decision` | 0–2 | relevance to a named decision of a PIR user. 0: none. 1: informs. 2: would change a named decision within 12 months; name the user and the decision in `notes` |
 | `form` | EVENT / LEVEL / CONDITIONAL / SIGNPOST | §4.2 |
 | `horizon` | Q / Y / M | §4.4 |
-| `origin` | LEDGER / CHAIN / DRIVER_GAP / QUIET / TAIL / NEWS | §4.3 |
+| `origin` | LEDGER / CHAIN / DRIVER_GAP / QUIET / TAIL / NEWS; `V1.0` for retro rows of questions created under v1.0 | §4.3 |
 | `chain_id`, `actor`, `signpost_of`, `panel`, `tail` | as applicable | links |
 | `rating` | NEW / RETRO | RETRO: rated after forecasts existed (v1.0 questions); excluded from importance weighting |
 
