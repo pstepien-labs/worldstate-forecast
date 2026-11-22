@@ -12,7 +12,7 @@ The project works in English.
 ## Rules
 
 1. **Append-only registry.** Pull requests that edit or delete existing rows in `registry/forecasts.csv`, `benchmarks.csv` or `resolutions.csv` will not be merged. A correction to a resolution = a new row with a higher `version`.
-2. **Methodology v1.0 is frozen** until the quarterly review (`methodology/methodology_changes.md`).
+2. **The methodology in force is frozen** until the next quarterly review: v1.1 from edition 04, v1.0 for editions 01–03 (`methodology/methodology_changes.md`). Proposals for new structural drivers, ledger factors or quiet-but-important developments are especially welcome (`world_model/`).
 3. **No git history rewrites** (rebase, force-push) on the main branch.
 4. Formats per `CLAUDE.md` §5: CSV with `;` as separator, UTF-8 with BOM, probabilities 0.01–0.99.
 5. Software is limited to `tools/scores.py`, `tools/pipeline.py`, `tools/harvester/` and `scripts/harvest.sh` — Python standard library only, no databases. Run `python3 -m tools.harvester selftest` before proposing a harvester change.

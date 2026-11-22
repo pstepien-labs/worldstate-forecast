@@ -2,7 +2,7 @@
 
 **Mission:** forecast the moves of the great powers more accurately than simple baselines — and prove it by measurement.
 
-*Calibrated Balance-of-Power Forecast* is an open, auditable process for forecasting great-power moves (USA, EU, Russia, China, Iran, Ukraine) with an AI agent (Claude Code) and **measuring** whether it beats simple baselines. Each two-weekly edition runs 9 stages: fact collection with three-perspective sourcing (Western / actor / third party), analysis, three blind forecasting "lenses", a red team, aggregation, freezing forecasts in an append-only CSV registry, benchmarking, and a report. Accuracy is scored with the Brier score, Brier skill score, calibration and bootstrap intervals (`tools/scores.py`, Python standard library only). The git history of the registry is the evidence that forecasts were not edited after the fact. Nothing here is investment advice.
+*Calibrated Balance-of-Power Forecast* is an open, auditable process for forecasting great-power moves (USA, EU, Russia, China, Iran, Ukraine) with an AI agent (Claude Code) and **measuring** whether it beats simple baselines. Each two-weekly edition runs 10 stages: fact collection with three-perspective sourcing (Western / actor / third party), a world-model update (power ledger, move → counter-move chains, actor models; methodology v1.1), analysis, three blind forecasting "lenses", a red team, aggregation, freezing forecasts in an append-only CSV registry, benchmarking, and a report. Accuracy is scored with the Brier score, Brier skill score, calibration and bootstrap intervals (`tools/scores.py`, Python standard library only). The git history of the registry is the evidence that forecasts were not edited after the fact. Nothing here is investment advice.
 
 The kit is a set of files for Claude Code plus three small tools (Python standard library only):
 
@@ -47,8 +47,9 @@ Full procedure: **[RUNBOOK.md](RUNBOOK.md)**. Public site, contributions, suppor
 | `RUNBOOK.md` | Step-by-step guide: setup, harvest, edition, learning loop, troubleshooting |
 | `CLAUDE.md` | Standing rules; Claude Code loads them automatically in every session in this directory |
 | `VERSION` | Framework version (semantic versioning; scheme in `methodology/methodology_changes.md`) |
-| `methodology/methodology_v1.0.md` | The method, frozen until the quarterly review |
-| `prompts/00–08, H, M, Q` | Stage instructions: edition stages, harvest, mini-retrospective, quarterly review |
+| `methodology/methodology_v1.1.md` | The method in force from edition 04 (approved 22.11.2026): questions come from a model of power, not from the headlines. `methodology_v1.0.md` (editions 01–03) stays unchanged |
+| `world_model/` | Structural drivers D1–D13, power ledger (13 actors × 9 factors), move → counter-move chains, actor models, quiet-but-important list |
+| `prompts/00–08, W, H, M, Q` | Stage instructions: edition stages, world model (W, between 02 and 03), harvest, mini-retrospective, quarterly review |
 | `prompts/learning/L1–L5` | Learning loop: hindsight audit, performance by version, reasoning trace, sources, framework proposals |
 | `.claude/commands/`, `.claude/agents/` | `/edition`, `/learn`, `/next`, `/gH`; single stages `/g00` … `/g08`, `/gL1` … `/gL5`, `/gM`, `/gQ`; the `stage-runner` sub-agent |
 | `registry/*.csv` | Questions, forecasts, benchmarks, resolutions, sources, **editions** (append-only) |
@@ -63,7 +64,7 @@ Full procedure: **[RUNBOOK.md](RUNBOOK.md)**. Public site, contributions, suppor
 
 ## How one edition runs
 
-Harvest continuously between editions. Then `/edition` runs the stages 00–08, each as a separate sub-agent with a clean context. Stages pass results through files. Stage 00 builds the harvest digest, stage 02 verifies its leads and fills the flagged gaps with web search, and stages 03–06 reason and forecast blind. Stage 07 writes the report with a provenance line, and stage 08 checks everything and registers the edition. Details, times and recovery: [RUNBOOK.md](RUNBOOK.md).
+Harvest continuously between editions. Then `/edition` runs the stages 00–08, each as a separate sub-agent with a clean context. Stages pass results through files. Stage 00 builds the harvest digest, stage 02 verifies its leads and fills the flagged gaps with web search, stage W (from methodology v1.1) updates the world model and proposes questions from it, and stages 03–06 reason and forecast blind. Stage 07 writes the report with a provenance line, and stage 08 checks everything and registers the edition. Details, times and recovery: [RUNBOOK.md](RUNBOOK.md).
 
 ## Schedule
 
@@ -96,7 +97,7 @@ Then editions 04–06 (every two weeks) without changes to the method and the qu
 
 1. **Append-only registry.** The forecast history is the evidence; git confirms it.
 2. **Forecast blindness.** The lenses and the red team see neither the benchmarks nor each other.
-3. **Method frozen for a quarter.** Otherwise it is impossible to tell what helped.
+3. **Method frozen for a quarter.** Otherwise it is impossible to tell what helped. Every methodology version is scored as its own cohort.
 
 ## Disclaimer
 
@@ -104,7 +105,7 @@ The forecasts are probabilistic and for research purposes. This is not investmen
 
 ## Contributing
 
-Issues and change proposals are welcome — details in [CONTRIBUTING.md](CONTRIBUTING.md). Two things are not negotiable: we do not edit existing registry rows and we do not change methodology v1.0 outside the quarterly review.
+Issues and change proposals are welcome — details in [CONTRIBUTING.md](CONTRIBUTING.md). Two things are not negotiable: we do not edit existing registry rows, and we do not change the methodology in force outside the quarterly review. The one exception so far, methodology v1.1 on 22.11.2026, was approved by the owner and is scored as a separate cohort.
 
 ## License
 

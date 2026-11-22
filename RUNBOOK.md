@@ -137,12 +137,13 @@ A single prompt cannot do this well:
 - **Collecting** about 200 facts with three perspectives each needs more context than one session has.
 - The three **forecasts** must not see each other, or they stop being independent.
 - The **red team** must not see the benchmarks.
+- From methodology v1.1 (edition 04), the **world model** (stage W) is its own stage. It updates the power ledger, the chains of moves and counter-moves, and the actor models from the facts. Stage 03 then builds the questions from it, so new questions are no longer chosen by news volume.
 
 So `/edition` runs each stage in its own clean context and passes results only through files. You still type one command.
 
 ### Manual mode (optional)
 
-You can run single stages yourself: `/g00 <date> <NN>`, `/g01`, `/g02 G1`…`G4`, `/g03`, `/g04 A`/`B`/`C`, `/g05`, `/g06`, `/g07`, `/g08`. Use one stage per session and type `/clear` between them. `/next` shows which stage is next. This is useful for re-running one stage or for debugging; normally `/edition` is simpler.
+You can run single stages yourself: `/g00 <date> <NN>`, `/g01`, `/g02 G1`…`G4`, `/gW` (from edition 04), `/g03`, `/g04 A`/`B`/`C`, `/g05`, `/g06`, `/g07`, `/g08`. Use one stage per session and type `/clear` between them. `/next` shows which stage is next. This is useful for re-running one stage or for debugging; normally `/edition` is simpler.
 
 ---
 
@@ -164,6 +165,22 @@ It runs four reviews and then works with you on proposals:
 It then presents at most 5 improvement proposals and asks you to approve, reject or postpone each one. Approved process changes are applied with a new framework version. Changes to the method itself wait for the quarterly review (`/gQ`, around 21.12.2026).
 
 Run it when questions have resolved: after edition 03 at the earliest, ideally with 30 or more resolved questions.
+
+---
+
+### Methodology v1.1 at a glance (from edition 04)
+
+| What | Where | How to check it |
+|---|---|---|
+| Structural drivers D1–D13 | `world_model/drivers.csv` | public page, "How questions are chosen" |
+| Power ledger, chains, actor models | `world_model/` (updated by stage W) | `git log -p world_model/` |
+| Importance metadata per question | `registry/question_meta.csv` (append-only, written before forecasts) | `python3 tools/scores.py --bank` |
+| Panel and bank rules (drivers, horizons, forms) | methodology v1.1 §4 | `python3 tools/scores.py --bank`, stage 08 item 6 |
+| v1.1 accuracy tables (cohorts, drivers, actor models, importance-weighted) | `01_scores.md` of each edition | `python3 tools/scores.py` |
+| Collection breadth (unmatched share, source balance by power, emerging terms) | `02_harvest/coverage.md` of each edition | `harvest_notes.md` |
+| Expert input for the quarterly review | `reviews/2026-Q4_expert_packet.md`, answers in `reviews/experts/` | quarterly review task 5b |
+
+**Rollback.** Everything that methodology v1.1 changed lands after git tag `pre-v1.1`. To return to v1.0 for the next edition, revert the framework 2.0.0 commits (`git log --oneline pre-v1.1..`). Registry rows written since then stay: the registry is append-only. Questions created under v1.1 keep running to their deadlines, and are reported as their own cohort.
 
 ---
 
