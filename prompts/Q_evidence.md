@@ -26,5 +26,12 @@ Provenance: `python3 tools/pipeline.py stage-start QE --model "<your model id>"`
    - Three options: stay at 14 days; a weekly re-forecast of questions due within 21 days; full weekly editions.
 7. **Recalibration.** If the closed cohort has N ≥ 60: fit one log-odds shift with leave-one-cluster-out, and report the Brier it would have given. Otherwise write "not enough data".
 8. **Shadow runs against the judging rule.** For each shadow run, give its paired N and interval against the run it would replace. The rule: 30 paired resolved questions, and an interval that excludes zero.
+9. **Methodology v1.1 (framework 2.0).**
+   - **The bank:** `python3 tools/scores.py --bank`.
+   - **v1.1 measures** from `scores.py`: cohorts, drivers, forms, horizon classes, origins, importance-weighted Brier and actor models.
+   - **Errors by layer:** for the ten largest AGG_RT errors, whether the deciding fact was in the corpus (`tools.harvester search`) and whether it was in the digest. Record the evidence only; the review classifies.
+   - **Attention against importance:** items per concept over the last 30 days against `impact`, with the rank correlation.
+   - **Model state:** NO DATA cells in `world_model/ledger.csv`, and chains by status.
+   - **Coverage trend by edition:** unmatched share, source balance by power, emerging concepts added and expired.
 
 The last line of your final message is `AUTOPILOT: complete qprep` or `AUTOPILOT: blocked qprep <reason>`. Never push.

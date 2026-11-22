@@ -14,7 +14,8 @@ Run for editions whose state date is at least 14 days in the past; the further b
 6. **Surprises (misses).** The 10 most consequential developments since each state date that the report did not mention or anticipate (no question, no signal, no assumption). For each:
    - was it foreseeable at the state date (precursors in the news)? Search the harvest corpus for the window before the state date: `python3 -m tools.harvester search "<keyword>" --from <YYYY-MM-DD> --to <state date>` and the digest files `02_harvest/*`;
    - if precursors existed: were they in the digest, in the facts, or nowhere (not collected)?
-   - classify: *not collectable* (no public precursor) / *not collected* (outside sources or keywords) / *collected but not used* / *used but misjudged*.
+   - classify: *not collectable* (no public precursor) / *not collected* (outside sources or keywords) / *collected but not used* / *used but misjudged*;
+   - framework 2.0 (methodology v1.1): name the structural driver (D1–D13), and say whether the world model had it. Was it a ledger cell, a chain with that expected move, or nothing? Was its `NO DATA` or `DORMANT` status the reason it was missed?
 7. **Summary table** — per edition: facts checked, % refuted or corrected, assessments held/failed, surprises by class. End with the three most important lessons, each tied to a class from item 6 or a type of fact failure from item 2.
 
 **Log and provenance:** `python3 tools/pipeline.py stage-start L1 --arg <scope> --model "<model id>"` … `stage-end L1 --arg <scope>`. Commit: `learning <scope> L1`.

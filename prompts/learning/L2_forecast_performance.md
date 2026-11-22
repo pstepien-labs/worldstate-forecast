@@ -15,6 +15,7 @@ Parameter `SCOPE` (editions). Read `prompts/learning/README.md` first. Output: `
 5. **Calibration.** 10-point bins: over- or under-confidence; extremes (p ≤ 0.10 or ≥ 0.90) — how often wrong.
 6. **Version comparison.** If the scope spans framework versions: compare only overlapping question types/horizons and report whether the newer version is better, worse or indistinguishable. Never attribute a difference to a version change when the bootstrap interval includes zero.
 7. **Ten largest errors** (highest AGG_RT Brier) and **ten best calls** (lowest Brier among questions with p far from the status quo, |p − p_status_quo| ≥ 0.20) — the input list for L3.
+7a. **Methodology v1.1 (framework 2.0).** From the "Methodology v1.1 measures" sections of `scores.py`: drivers, forms, horizon classes, origins, importance-weighted Brier against unweighted, and actor models (CONDITIONAL questions by responding actor). Compare the v1.0 and v1.1 cohorts only within the same horizon class.
 8. **Findings** — at most 5, each with numbers, N and interval; mark "no evidence of a difference" explicitly where applicable.
 
 **Log and provenance:** `stage-start L2 --arg <scope>` … `stage-end L2 --arg <scope>`. Commit: `learning <scope> L2`.
