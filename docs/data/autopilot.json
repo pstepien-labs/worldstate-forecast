@@ -10,7 +10,7 @@
  "waiting_for_user": 6,
  "resolutions_disputed": 0,
  "publish_blocked": false,
- "harvester": "Harvester: RUNNING · state sleeping · heartbeat 2026-11-20T20:10:08Z · sources ok 163/203 · failing 3 · items 225334",
- "framework_version": "1.12.0",
- "updated": "2026-11-20T20:10:09Z"
+ "harvester": "Harvester: RUNNING · state sleeping · heartbeat 2026-11-22T12:10:54Z · sources ok 182/219 · failing 3 · items 231690",
+ "framework_version": "2.0.0",
+ "updated": "2026-11-22T12:10:56Z"
 }
