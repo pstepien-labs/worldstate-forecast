@@ -19,9 +19,9 @@ TW;Taiwan;2;official,independent_exile;
 JP;Japan;2;official,independent_exile;official: no harvestable source (mod.go.jp and mofa.go.jp return 403, kantei 404), stage 02 reads by hand. The cell stays required so the gap stays visible (P-0038, 20.11.2026)
 KR;South Korea;2;state_loyal;Yonhap (semi-public agency)
 KP;North Korea;3;third;via KCNA Watch
-YE;Yemen (Houthis);2;state_loyal;Saba (Houthi-run)
+YE;Yemen (Houthis);2;state_loyal;Saba (Houthi-run) disabled 22.11.2026 (HTTP 403 since 05.10.2026); no source until the owner decides on a Houthi-run replacement (AUTOPILOT_INBOX.md)
 LV;Latvia;3;independent_exile;
-EE;Estonia;3;official,independent_exile;official added 20.11.2026 (P-0038, U1): Baltic incidents. No official source configured yet, see CHANGELOG "Proposed sources"
+EE;Estonia;3;official,independent_exile;official added 20.11.2026 (P-0038, U1): Baltic incidents. No official source yet: valitsus.ee, vm.ee and kaitseministeerium.ee news listings answer the harvester with HTTP 404 (repair 22.11.2026); stage 02 reads by hand
 LT;Lithuania;3;independent_exile;
 BY;Belarus;3;independent_exile;
 AM;Armenia;3;independent_exile;
@@ -35,7 +35,7 @@ ML;Mali;3;independent_exile;
 ET;Ethiopia;3;independent_exile;
 PK;Pakistan;3;independent_exile;
 GL;Greenland;3;independent_exile;
-RS;Serbia;3;independent_exile,third;added 20.11.2026 (P-0038, U1). independent: n1_rs. third: no source yet (Balkan Insight disallows crawlers in robots.txt)
-RO;Romania;3;official;added 20.11.2026 (P-0038, U1): Black Sea incidents. No official source configured yet, see CHANGELOG "Proposed sources" (rna.ro, mapn.ro)
-BG;Bulgaria;3;official;added 20.11.2026 (P-0038, U1): Black Sea incidents. No official source configured yet, see CHANGELOG "Proposed sources" (gov.bg)
+RS;Serbia;3;independent_exile,third;added 20.11.2026 (P-0038, U1). independent: n1_rs. third: aa_ba_balkan (Anadolu Balkans service, added 22.11.2026; Balkan Insight disallows crawlers in robots.txt)
+RO;Romania;3;official;added 20.11.2026 (P-0038, U1): Black Sea incidents. official: ro_mapn (MApN press page, added 22.11.2026)
+BG;Bulgaria;3;official;added 20.11.2026 (P-0038, U1): Black Sea incidents. official: bg_gov (Council of Ministers news page, added 22.11.2026)
 ID;Indonesia;2;official,state_loyal;framework 2.0 (methodology v1.1 PIR-8): swing state

@@ -35,7 +35,7 @@ mining_tech;1;rss;Mining Technology;https://www.mining-technology.com/feed/;en;G
 # --- think tanks (W and others) ---
 atlantic_council;1;rss;Atlantic Council;https://www.atlanticcouncil.org/feed/;en;US;US;think_tank;B;G1|G3|G4;24;
 csis;1;rss;CSIS Analysis;https://www.csis.org/rss.xml;en;US;US;think_tank;B;G1|G2|G4;24;old URL 404 (repair 05.10.2026)
-isw;1;page;ISW;https://understandingwar.org/research/;en;US;US;think_tank;B;G1;12;no RSS after site redesign, research listing watched as page (repair 05.10.2026)
+isw;0;page;ISW;https://understandingwar.org/research/;en;US;US;think_tank;B;G1;12;no RSS after site redesign, research listing watched as page (repair 05.10.2026). Disabled 22.11.2026: HTTP 403 to the identified harvester since 23.10.2026 (33 failures), /feed/ also 403 — bot block, not circumvented
 crisisgroup;1;rss;International Crisis Group;https://www.crisisgroup.org/rss.xml;en;BE;BE;third;B;G4;24;verify URL
 bruegel;1;rss;Bruegel;https://www.bruegel.org/rss.xml;en;BE;EU;think_tank;B;G3;24;verify URL
 osw;1;rss;OSW Centre for Eastern Studies;https://www.osw.waw.pl/en/rss.xml;en;PL;PL;think_tank;B;G1|G4;24;verify URL
@@ -146,7 +146,7 @@ thenational;1;rss;The National (UAE);https://www.thenationalnews.com/arc/outboun
 almonitor;1;rss;Al-Monitor;https://www.al-monitor.com/rss;en;US;US;independent;B;G1|G4;12;
 mee;1;rss;Middle East Eye;https://www.middleeasteye.net/rss;en;GB;GB;independent;C;G1|G4;6;
 bbc_arabic;1;rss;BBC Arabic;https://feeds.bbci.co.uk/arabic/rss.xml;ar;GB;GB;western;B;G1|G4;6;
-saba_ye;1;rss;Saba (Houthi-run, EN);https://www.saba.ye/en/rsscatfeed14.htm;en;YE;YE;state;D;G1;6;Houthi claims, political/military category feed from saba.ye/en/showrss, old rss.php 500 (repair 05.10.2026)
+saba_ye;0;rss;Saba (Houthi-run, EN);https://www.saba.ye/en/rsscatfeed14.htm;en;YE;YE;state;D;G1;6;Houthi claims, political/military category feed from saba.ye/en/showrss, old rss.php 500 (repair 05.10.2026). Disabled 22.11.2026: HTTP 403 since 05.10.2026 — block, not circumvented; replacement needs owner decision (AUTOPILOT_INBOX.md)
 irna_en;0;rss;IRNA (EN);https://en.irna.ir/rss;en;IR;IR;state;C;G1|G4;4;disabled: TLS protocol version refused by en.irna.ir (repair 05.10.2026)
 tasnim_en;1;rss;Tasnim (EN);https://www.tasnimnews.ir/en/rss/feed/0/0/0/0/AllStories;en;IR;IR;loyal;C;G1|G4;4;IRGC-affiliated, moved from tasnimnews.com (DNS gone) to tasnimnews.ir (repair 05.10.2026)
 tasnim_fa;1;rss;Tasnim (FA);https://www.tasnimnews.ir/fa/rss/feed/0/0/0/0/AllStories;fa;IR;IR;loyal;C;G1|G4;4;IRGC-affiliated, moved from tasnimnews.com (DNS gone) to tasnimnews.ir (repair 05.10.2026)
@@ -166,7 +166,7 @@ leader_ir;1;rss;Office of the Supreme Leader (EN);https://www.leader.ir/en/rss;e
 # --- Caucasus, Central Asia ---
 eurasianet;0;rss;Eurasianet;https://eurasianet.org/feed;en;US;US;independent;B;G4;12;disabled: HTTP 403 to identified harvester, replaced by timesca (repair 05.10.2026)
 ocmedia;1;rss;OC Media;https://oc-media.org/feed/;en;GE;GE;independent;B;G4;12;
-newsam_en;1;rss;News.am (EN);https://news.am/eng/rss/;en;AM;AM;independent;C;G4;12;verify URL
+newsam_en;0;rss;News.am (EN);https://news.am/eng/rss/;en;AM;AM;independent;C;G4;12;Disabled 22.11.2026: HTTP 403 to the identified harvester since 20.11.2026 — block, not circumvented; replaced by hetq_en
 azertac;0;rss;AZERTAC;https://azertag.az/en/rss;en;AZ;AZ;state;C;G4;12;disabled: HTTP 403 to identified harvester, replaced by trend_az (repair 05.10.2026)
 kunuz_en;0;rss;Kun.uz (EN);https://kun.uz/en/news/rss;en;UZ;UZ;independent;C;G4;24;disabled: feed 404 (repair 05.10.2026)
 trend_az;1;rss;Trend (Azerbaijan);https://en.trend.az/feeds/index.rss;en;AZ;AZ;loyal;C;G4;12;pro-government, replaces azertac
@@ -240,3 +240,18 @@ dailysabah_pol;1;rss;Daily Sabah: Politics;https://www.dailysabah.com/rssFeed/po
 antara_en;1;rss;Antara (English);https://en.antaranews.com/rss/news.xml;en;ID;ID;state;B;G4;6;framework 2.0: Indonesia as an actor (D10)
 armscontrolwonk;1;rss;Arms Control Wonk;https://www.armscontrolwonk.com/feed/;en;US;;third;C;G1;12;framework 2.0: nuclear and arms control (D4)
 carbonbrief;1;rss;Carbon Brief;https://www.carbonbrief.org/feed;en;GB;;third;C;G2;12;framework 2.0: climate shocks (D12)
+fedreg_presdocs;1;rss;Federal Register: presidential documents;https://www.federalregister.gov/api/v1/documents.rss?conditions%5Btype%5D%5B%5D=PRESDOCU;en;US;US;official;A;G1|G3;6;proclamations and executive orders (tariffs, sanctions); US under-covered in source balance; check OK 22.11.2026 (repair)
+cn_gov_en;1;page;PRC State Council news (EN);https://english.www.gov.cn/news/;en;CN;CN;official;A;G1|G3;12;CN official cell silent and CN under-covered (ratio 0.09); statements = facts about statements; check OK 22.11.2026 (repair)
+cn_mod_en;1;page;PRC Ministry of National Defense (EN);http://eng.mod.gov.cn/;en;CN;CN;official;A;G1;12;MND press conferences; CN official cell silent and CN under-covered; check OK 22.11.2026 (repair)
+ep_press;1;rss;European Parliament press releases;https://www.europarl.europa.eu/rss/doc/press-releases/en.xml;en;BE;EU;official;A;G3|G4;12;EU under-covered in source balance (ratio 0.21); check OK 22.11.2026 (repair)
+eeas_press;1;page;EEAS press material;https://www.eeas.europa.eu/eeas/press-material_en;en;BE;EU;official;A;G1|G4;12;EU foreign-policy statements; EU under-covered; check OK 22.11.2026 (repair)
+thehindu_national;1;rss;The Hindu National;https://www.thehindu.com/news/national/feeder/default.rss;en;IN;IN;independent;B;G4;12;IN under-covered (ratio 0.49); check OK 22.11.2026 (repair). newsonair.gov.in timed out, pib still 403
+nhk_politics;1;rss;NHK Politics (JA);https://www3.nhk.or.jp/rss/news/cat4.xml;ja;JP;JP;independent;A;G1|G4;6;JP under-covered (ratio 0.30), Japanese-language politics; check OK 22.11.2026 (repair). kantei .rdf feed 404
+setkab_en;1;rss;Cabinet Secretariat of Indonesia (EN);https://setkab.go.id/en/feed/;en;ID;ID;official;A;G4;12;ID official cell silent and ID under-covered (ratio 0.08); check OK 22.11.2026 (repair)
+rodong_en;1;page;Rodong Sinmun (EN);http://rodong.rep.kp/en/;en;KP;KP;state;D;G1;12;KP under-covered (ratio 0.10); WPK organ, claims = facts about statements; check OK 22.11.2026 (repair)
+kprm_pl;1;page;Chancellery of the Prime Minister of Poland news;https://www.gov.pl/web/premier/wiadomosci;pl;PL;PL;official;A;G1|G4;12;PL official cell silent; page carries the latest KPRM headlines; check OK 22.11.2026 (repair)
+ro_mapn;1;page;Romanian Ministry of National Defence press;https://www.mapn.ro/cpresa/;ro;RO;RO;official;A;G1;12;RO official cell silent (Black Sea incidents); check OK 22.11.2026 (repair)
+bg_gov;1;page;Government of Bulgaria news;https://www.gov.bg/en/press-center/news;en;BG;BG;official;A;G1;12;BG official cell silent (Black Sea incidents); check OK 22.11.2026 (repair)
+knr_kl;1;rss;KNR (Kalaallisut);https://knr.gl/kl/rss.xml;kl;GL;GL;independent;B;G4;24;GL independent cell silent, second KNR feed in Kalaallisut; check OK 22.11.2026 (repair). sermitsiaq.ag/rss.xml 404
+aa_ba_balkan;1;rss;Anadolu Agency Balkans (BS);https://www.aa.com.tr/ba/rss/default?cat=balkan;bs;TR;RS;third;B;G4;24;RS third cell silent; Turkish state agency, Western Balkans service (mostly BA, also RS), counted as third party for Serbia; check OK 22.11.2026 (repair)
+hetq_en;1;rss;Hetq (EN);https://hetq.am/en/rss;en;AM;AM;independent;B;G4;12;replaces newsam_en (HTTP 403 since 20.11.2026); check OK 22.11.2026 (repair). civilnet.am and armenpress.am 403
