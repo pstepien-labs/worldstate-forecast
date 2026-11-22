@@ -185,3 +185,51 @@ sabotage_espionage;;G1,G4;;;;pl;szpieg|dywersj|sabotaż|podpaleni
 sabotage_espionage;;G1,G4;;;;ru;шпионаж|диверси|госизмен|поджог
 sabotage_espionage;;G1,G4;;;;et;spionaaž|sabotaaž|riigireet|süütami
 sabotage_espionage;;G1,G4;;;;lv;spiegošan|sabotāž|valsts nodevīb|dedzināšan
+india_south_asia;India and South Asia as actors (alignment, energy, arms);G4;DIP,ECO,ENE;PIR-8;IN,PK;en;india$|indian government|new delhi|modi$|jaishankar|rupee|islamabad|bangladesh|sri lanka|quad summit
+india_south_asia;;G4;;;;ru;индия|индии|нью-дели|моди$
+india_south_asia;;G4;;;;zh;印度|莫迪|新德里
+japan;Japan as an actor (defence build-up, alliance, economy);G1,G4;MIL,DIP,ECO;PIR-8;JP;en;japan|tokyo|self-defense forces|self-defence forces|jsdf$|yen$
+japan;;G1,G4;;;;ja;日本政府|自衛隊|防衛省|首相
+japan;;G1,G4;;;;zh;日本
+japan;;G1,G4;;;;ru;япони|токио
+japan;;G1,G4;;;;ko;일본
+turkey;Türkiye as an actor (straits, NATO, Russia, Middle East);G4;DIP,MIL;PIR-8;TR;en;türkiye|turkiye|ankara|erdogan|erdoğan|turkish government|turkish foreign|turkish defence|turkish defense|turkish lira
+turkey;;G4;;;;ru;турци|эрдоган|анкар
+turkey;;G4;;;;ar;تركيا|أردوغان|أنقرة
+turkey;;G4;;;;fa;ترکیه|اردوغان
+turkey;;G4;;;;tr;erdoğan|dışişleri bakan|milli savunma bakan
+gulf_states;Gulf states as actors (Saudi Arabia, UAE, Qatar, Kuwait, Bahrain, Oman);G1,G4;DIP,ENE,FIN;PIR-8;SA,AE,QA;en;saudi|riyadh|bin salman|uae$|emirati|abu dhabi|qatar|doha|kuwait|bahrain|gulf cooperation council|gcc$
+gulf_states;;G1,G4;;;;ar;السعودية|الرياض|الإمارات|أبوظبي|قطر|الدوحة|الكويت|البحرين|مجلس التعاون
+gulf_states;;G1,G4;;;;ru;саудовск|эмират|катар
+arms_control;Nuclear weapons, doctrine, testing and arms control;G1;MIL,DIP;PIR-1,PIR-8;US,RU,CN,KP,IR;en;arms control|new start$|nuclear test|nuclear doctrine|nuclear weapon|nuclear arsenal|warhead|non-proliferation|nonproliferation|ctbt$|icbm|hypersonic|missile defense|missile defence|golden dome
+arms_control;;G1;;;;ru;ядерн|договор снв|снв-3|боеголов|межконтинентальн
+arms_control;;G1;;;;zh;核武器|核试验|军控|洲际导弹
+arms_control;;G1;;;;de;atomwaffe|rüstungskontrolle
+arms_control;;G1;;;;fr;arme nucléaire|armes nucléaires|dissuasion nucléaire
+arms_control;;G1;;;;pl;broń jądrow|broni jądrowej|kontrola zbrojeń
+defence_industry;Defence industry, munitions output and military spending;G1,G3;MIL,ECO,FIN;PIR-1,PIR-2,PIR-8;US,RU,CN,EU,PL;en;defence spending|defense spending|defence budget|defense budget|military spending|military budget|arms production|ammunition production|shell production|artillery shells|munitions|defence industry|defense industry|defense contract|arms deal|arms sale|rheinmetall|lockheed|northrop|bae systems|hanwha|rostec|interceptor
+defence_industry;;G1,G3;;;;ru;оборонн|гособоронзаказ|военный бюджет|ростех|боеприпас
+defence_industry;;G1,G3;;;;de;rüstung|verteidigungshaushalt|munition
+defence_industry;;G1,G3;;;;pl;wydatki na obronność|zbrojeni|amunicj|przemysł obronny|przemysłu obronnego
+defence_industry;;G1,G3;;;;fr;industrie de défense|budget de la défense
+defence_industry;;G1,G3;;;;zh;国防预算|军费|军工
+defence_industry;;G1,G3;;;;ja;防衛費|防衛産業
+defence_industry;;G1,G3;;;;ko;방산|국방비
+defence_industry;;G1,G3;;;;tr;savunma sanayi|savunma bütçesi
+climate_shocks;Climate shocks with security or market effects;G2;ENE,ECO,DOM;PIR-3,PIR-8;;en;drought|heatwave|heat wave|flood|wildfire|cyclone|typhoon|hurricane|monsoon|el niño|el nino|la niña|crop failure|climate change|cop31$
+climate_shocks;;G2;;;;ru;засух|наводнен|лесные пожар
+climate_shocks;;G2;;;;es;sequía|inundación|inundaciones|huracán
+climate_shocks;;G2;;;;pt;enchente|queimada|estiagem
+climate_shocks;;G2;;;;zh;干旱|洪水|台风
+climate_shocks;;G2;;;;fr;sécheresse|inondation|canicule
+climate_shocks;;G2;;;;ar;جفاف|فيضان
+demography_migration;Demography and migration;G4;DOM,ECO;PIR-7,PIR-8;;en;migrant|migration|refugee|asylum|birth rate|fertility rate|population decline|ageing population|aging population|demograph|deportation
+demography_migration;;G4;;;;ru;мигрант|миграц|беженц|рождаемост|демограф
+demography_migration;;G4;;;;pl;migrant|imigra|uchodźc|demograf|dzietnoś
+demography_migration;;G4;;;;de;flüchtling|asyl|geburtenrate|demograf
+demography_migration;;G4;;;;zh;人口|移民|难民|出生率
+demography_migration;;G4;;;;ja;少子化|人口減少|移民
+demography_migration;;G4;;;;ko;저출산|인구
+demography_migration;;G4;;;;tr;göçmen|mülteci|nüfus
+demography_migration;;G4;;;;ar;مهاجر|لاجئ
+demography_migration;;G4;;;;fr;migrant|réfugié|natalité|démograph

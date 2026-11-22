@@ -14,7 +14,7 @@ import math
 import os
 import re
 import xml.etree.ElementTree as ET
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from urllib.parse import quote, urlencode
 
 from . import store
@@ -638,10 +638,113 @@ def ds_snapshot(task, fetcher, entry, ctx):
     return res
 
 
+GDELT_EVENTS_URL = 'https://data.gdeltproject.org/events/{day}.export.CSV.zip'
+
+
+def ds_gdelt_events(task, fetcher, entry, ctx):
+    """GDELT 1.0 daily event file -> directed dyad counts between named countries (framework 2.0, methodology v1.1 §10).
+
+    For each pair (actor1 country -> actor2 country) in `countries`, root events only, events dated within 7 days of
+    the file day: count by QuadClass (q1 verbal cooperation, q2 material cooperation, q3 verbal conflict,
+    q4 material conflict) and the mean Goldstein score. A signal of cooperation and conflict, never proof of one event.
+    Params (separated by |): countries=USA,CHN,...  min_events=5  max_mb=40  catch_up_days=3."""
+    import zipfile
+    res = Result()
+    pr = params(task)
+    countries = set(x.strip().upper() for x in pr.get('countries', '').split(',') if x.strip())
+    min_events = int(pr.get('min_events', '5'))
+    catch_up = int(pr.get('catch_up_days', '3'))
+    yesterday = now().date() - timedelta(days=1)
+    last = entry.get('gdelt_last_day')
+    try:
+        start = max(date.fromisoformat(last) + timedelta(days=1), yesterday - timedelta(days=catch_up - 1)) if last else yesterday
+    except ValueError:
+        start = yesterday
+    old_max = fetcher.max_bytes
+    fetcher.max_bytes = int(float(pr.get('max_mb', '40')) * 1_000_000)
+    done = []
+    try:
+        day = start
+        while day <= yesterday:
+            url = GDELT_EVENTS_URL.format(day=day.strftime('%Y%m%d'))
+            r = fetch(fetcher, url, {}, res, conditional=False)
+            if not r:
+                if res.http_status == 404 and not done:  # the day's file is not published yet: try at the next run
+                    res.error, res.note = None, f'GDELT events {day}: not published yet'
+                break
+            try:
+                z = zipfile.ZipFile(io.BytesIO(r.body))
+            except zipfile.BadZipFile:
+                res.error = f'GDELT events {day}: not a zip file ({len(r.body)} bytes)'
+                break
+            counts, gold = {}, {}
+            floor = int((day - timedelta(days=7)).strftime('%Y%m%d'))
+            with z.open(z.namelist()[0]) as fh:
+                for line in io.TextIOWrapper(fh, encoding='utf-8', errors='replace'):
+                    c = line.rstrip('\n').split('\t')
+                    if len(c) < 31 or c[25] != '1':
+                        continue
+                    a1, a2 = c[7], c[17]
+                    if a1 == a2 or a1 not in countries or a2 not in countries:
+                        continue
+                    try:
+                        if int(c[1]) < floor:
+                            continue
+                        g = float(c[30])
+                    except ValueError:
+                        continue
+                    k = (a1, a2)
+                    counts[(a1, a2, c[29])] = counts.get((a1, a2, c[29]), 0) + 1
+                    t = gold.setdefault(k, [0.0, 0])
+                    t[0] += g
+                    t[1] += 1
+            for (a1, a2), (tot, n) in gold.items():
+                if n < min_events:
+                    continue
+                for qc in ('1', '2', '3', '4'):
+                    o = obs(task, f'gdelt:{a1}>{a2}:q{qc}', day, counts.get((a1, a2, qc), 0), 'events')
+                    if o:
+                        res.observations.append(o)
+                o = obs(task, f'gdelt:{a1}>{a2}:goldstein', day, round(tot / n, 3), 'goldstein mean')
+                if o:
+                    res.observations.append(o)
+            done.append(day.isoformat())
+            day += timedelta(days=1)
+    finally:
+        fetcher.max_bytes = old_max
+    if done:
+        res.state['gdelt_last_day'] = done[-1]
+        res.note = f'days {done[0]}..{done[-1]}'
+    return res
+
+
+def ds_worldbank(task, fetcher, entry, ctx):
+    """World Bank API v2 (JSON): one observation per country and year, indicator `<indicator>:<ISO3>`, dated 31.12."""
+    res = Result()
+    r = _get_dataset(task, fetcher, entry, ctx, res)
+    if not r:
+        return res
+    data = json.loads(r.text())
+    if not isinstance(data, list) or len(data) < 2 or not isinstance(data[1], list):
+        res.error = 'unexpected World Bank answer: ' + r.text()[:150]
+        return res
+    _save_raw(task, r.body, 'json', res)
+    for row in data[1]:
+        iso3 = row.get('countryiso3code') or (row.get('country') or {}).get('id', '')
+        year = str(row.get('date', ''))[:4]
+        if row.get('value') is None or not year.isdigit() or not iso3:
+            continue
+        o = obs(task, f"{task['indicator']}:{iso3}", f'{year}-12-31', row['value'], task.get('unit', ''))
+        if o:
+            res.observations.append(o)
+    return res
+
+
 TEXT_ADAPTERS = {'rss': run_rss, 'telegram': run_telegram, 'page': run_page, 'gdelt': run_gdelt}
 DATASET_ADAPTERS = {'nbp': ds_nbp, 'sdmx_csv': ds_sdmx_csv, 'fred_csv': ds_fred_csv, 'cbr_xml': ds_cbr_xml,
                     'arcgis': ds_arcgis, 'agsi': ds_agsi, 'eia': ds_eia, 'firms': ds_firms,
-                    'csv_diff': ds_csv_diff, 'snapshot': ds_snapshot}
+                    'csv_diff': ds_csv_diff, 'snapshot': ds_snapshot, 'gdelt_events': ds_gdelt_events,
+                    'worldbank': ds_worldbank}
 
 
 def run_task(task, fetcher, entry, ctx):

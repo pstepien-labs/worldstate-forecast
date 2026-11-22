@@ -1,0 +1,25 @@
+actor;weight;basis
+# ASSESSMENT (framework 2.0, methodology v1.1 §10): relative weight of each actor in the global balance of power plus the project's PIR focus, used only to judge source balance in coverage.md. Reviewed at each quarterly review.
+US;20;largest military, economy and alliance network
+CN;18;second economy, largest industrial base, PLA build-up
+EU;12;economy, sanctions and trade power, Ukraine support (member states counted here)
+RU;8;nuclear power, war against Ukraine, energy (PIR-1)
+IN;6;swing state, third-largest economy by PPP
+JP;5;economy, defence build-up, US ally in Asia
+UA;4;war, PIR-1 and PIR-2
+IR;4;war and sea lanes, PIR-5
+PL;4;the owner's PIR focus
+SA;3;oil, Gulf diplomacy
+TR;3;straits, NATO, regional power
+BR;2;largest Latin American power
+GB;2;nuclear power, finance, NATO
+DE;2;largest EU economy (also within EU)
+FR;2;nuclear power, EU defence (also within EU)
+AE;1.5;finance and logistics hub, Gulf diplomacy
+QA;1;LNG, mediation
+IL;2;regional war, PIR-5
+TW;2;semiconductors, flashpoint
+KR;1.5;industrial base, Korean Peninsula
+KP;1;nuclear, Korean Peninsula
+ID;1.5;swing state in Southeast Asia
+PK;1;nuclear, South Asia

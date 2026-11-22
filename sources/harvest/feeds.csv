@@ -1,4 +1,4 @@
-id;enabled;kind;name;url;lang;country;actor;role;tier;groups;interval_h;notes
+﻿id;enabled;kind;name;url;lang;country;actor;role;tier;groups;interval_h;notes
 # --- Western wires, broadcasters, papers (W) ---
 bbc_world;1;rss;BBC World;https://feeds.bbci.co.uk/news/world/rss.xml;en;GB;GB;western;B;G1|G2|G3|G4;4;
 guardian_world;1;rss;The Guardian World;https://www.theguardian.com/world/rss;en;GB;GB;western;B;G1|G4;4;
@@ -229,3 +229,14 @@ gd_japan_ja;0;gdelt;GDELT: Japanese sources on China/Russia/Korea;(china OR russ
 gd_korea_ko;0;gdelt;GDELT: Korean sources;("north korea" OR missile OR china OR russia) sourcelang:korean;ko;KR;KR;discovered;;G1|G4;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
 gd_hebrew;0;gdelt;GDELT: Israeli sources on Iran/Lebanon;(iran OR hezbollah OR lebanon OR houthi) sourcelang:hebrew;he;IL;IL;discovered;;G1|G4;12;disabled: 0 items ever in editions 02-03,Hebrew covered by ynet_he RSS (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
 gd_poland_pl;0;gdelt;GDELT: Polish sources on security/economy;(nato OR russia OR drone OR "us troops" OR inflation OR budget) sourcecountry:poland;pl;PL;PL;discovered;;G1|G3;12;disabled: 0 items ever in editions 02-03 (L4 19.11.2026 §4.1, P-0038, 20.11.2026)
+# --- framework 2.0 (methodology v1.1 §10): power-weighted breadth; China first (465 items by actor 15-21.11.2026 vs 8798 for Russia) ---
+scmp_world;1;rss;South China Morning Post: World;https://www.scmp.com/rss/91/feed;en;HK;;third;B;G1|G4;6;framework 2.0: Asian third-party view
+chinadigitaltimes;1;rss;China Digital Times;https://chinadigitaltimes.net/feed/;en;US;CN;independent_exile;B;G4;12;framework 2.0: China domestic (D9)
+thediplomat;1;rss;The Diplomat;https://thediplomat.com/feed/;en;JP;;third;B;G1|G4;6;framework 2.0: Asia-Pacific swing states (D10) and Taiwan Strait (D11)
+ht_world;1;rss;Hindustan Times: World;https://www.hindustantimes.com/feeds/rss/world-news/rssfeed.xml;en;IN;IN;independent;B;G4;6;framework 2.0: India as an actor (D10)
+mainichi_en;1;rss;Mainichi (English);https://mainichi.jp/rss/etc/english_latest.rss;en;JP;JP;independent;B;G1|G4;6;framework 2.0: Japan as an actor (D2, D10)
+gulfnews;1;rss;Gulf News;https://gulfnews.com/feed;en;AE;AE;loyal;B;G1|G2|G4;6;framework 2.0: Gulf states as actors (D10)
+dailysabah_pol;1;rss;Daily Sabah: Politics;https://www.dailysabah.com/rssFeed/politics;en;TR;TR;loyal;B;G4;6;framework 2.0: Turkey as an actor (D10)
+antara_en;1;rss;Antara (English);https://en.antaranews.com/rss/news.xml;en;ID;ID;state;B;G4;6;framework 2.0: Indonesia as an actor (D10)
+armscontrolwonk;1;rss;Arms Control Wonk;https://www.armscontrolwonk.com/feed/;en;US;;third;C;G1;12;framework 2.0: nuclear and arms control (D4)
+carbonbrief;1;rss;Carbon Brief;https://www.carbonbrief.org/feed;en;GB;;third;C;G2;12;framework 2.0: climate shocks (D12)

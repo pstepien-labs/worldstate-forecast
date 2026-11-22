@@ -44,7 +44,9 @@ class Matcher:
         self.concepts = {}
         self.term_concepts = defaultdict(set)
         word_terms, sub_terms = set(), set()
-        for r in read_csv('keywords.csv'):
+        today = date.today().isoformat()
+        emerging = [r for r in read_csv('keywords_emerging.csv') if (r.get('expires') or '') >= today]
+        for r in read_csv('keywords.csv') + emerging:
             c = r['concept']
             meta = self.concepts.setdefault(c, {'label': r.get('label') or c, 'groups': set(), 'pir': r.get('pir', ''),
                                                 'actors': set(), 'langs': set()})
@@ -256,7 +258,8 @@ def build(d_from, d_to, out_dir, echo=print):
         'harvester_version': HARVESTER_VERSION,
         'framework_version': _read(os.path.join(ROOT, 'VERSION')).strip(),
         'generated': iso(now()), 'window': [d_from.isoformat(), d_to.isoformat()],
-        'config_hashes': {n: file_hash(n) for n in ('feeds.csv', 'datasets.csv', 'keywords.csv', 'countries.csv', 'sites.csv', 'forbidden_domains.txt')},
+        'config_hashes': {n: file_hash(n) for n in ('feeds.csv', 'datasets.csv', 'keywords.csv', 'keywords_emerging.csv',
+                                                    'power_weights.csv', 'countries.csv', 'sites.csv', 'forbidden_domains.txt')},
         'items_in_window': len(items), 'items_matched': len(items) - unmatched,
         'concepts': {c: len(v) for c, v in sorted(per_concept.items())},
         'languages': dict(Counter(i.get('lang') or '?' for i in items).most_common()),
@@ -347,7 +350,110 @@ def coverage(items, per_concept, matcher, tasks, d_from, d_to, unmatched):
             lines.append(f"| {u.get('name', a)} ({a}) | {u.get('priority', '')} | " + ' | '.join(cells) + ' |')
         lines += ['', f'Silent required cells: {len(silent)} — ' + (', '.join(silent) if silent else 'none'), '',
                   'Stage 02 must close silent cells for key events with targeted web search, or record them as gaps (section J).']
+    lines += breadth_md(items, matcher, d_from, d_to)
     return {'md': '\n'.join(lines) + '\n', 'silent': silent}
+
+
+# ---------- breadth (framework 2.0, methodology v1.1 §10) ----------
+
+STOP = set('''the and for with from that this have has had will would about after over into than more their they them
+were been being which while where when what who whom whose why how also says said say amid against under between during
+before since until upon onto off out its it's not but are was his her our your new news live update updates latest video
+photos watch read report reports today year years week weeks day days time first last two three one man woman people
+could should may might must can just still even back down make made take takes taken get gets got one's government
+minister president country countries world state states official officials city police court plan plans talks deal
+для что как это его она они при над под без или так уже был была были будет также после между которые который
+которая против about де la le les des du et en un une est pour par sur dans au aux avec qui que der die das und mit
+von den dem ein eine ist auf für im zu sich nicht del los las por con para una que el al se no em do da dos das na
+com uma pelo pela na w z i na do się nie że od za po jak oraz jest są dla'''.split())
+
+
+def _terms(title):
+    t = (title or '').lower()
+    if CJK.search(t) or SUBSTRING_SCRIPTS.search(t):
+        return set()
+    words = [w for w in re.findall(r"[^\W\d_][\w'-]{3,}", t) if w not in STOP]
+    out = set(words)
+    out.update(f'{x} {y}' for x, y in zip(words, words[1:]))
+    return out
+
+
+def emerging_terms(items, matcher, d_from, d_to, baseline_days=90, top=25, min_count=20, min_sources=3):
+    """Terms that surge in the window against the baseline before it and that no concept covers."""
+    win_days = max(1, (d_to - d_from).days + 1)
+    base = load_items(d_from - timedelta(days=baseline_days), d_from - timedelta(days=1))
+    if not base:
+        return [], 0
+    bdays = len({(i.get('published') or i.get('fetched') or '')[:10] for i in base}) or 1
+    bc = Counter()
+    for it in base:
+        bc.update(_terms(it.get('title')))
+    wc, srcs, langs = Counter(), defaultdict(set), defaultdict(set)
+    for it in items:
+        for t in _terms(it.get('title')):
+            wc[t] += 1
+            srcs[t].add(it.get('source_id'))
+            langs[t].add(it.get('lang') or '?')
+    rows = []
+    for t, n in wc.items():
+        if n < min_count or len(srcs[t]) < min_sources or matcher.match(t):
+            continue
+        expected = bc.get(t, 0) * win_days / bdays
+        rows.append((round((n + 1) / (expected + 1), 1), t, n, round(expected, 1), len(srcs[t]), len(langs[t])))
+    rows.sort(key=lambda r: (-r[0], -r[2]))
+    # drop a single word when a bigram containing it ranks above it
+    kept = []
+    for r in rows:
+        if ' ' not in r[1] and any(r[1] in k[1].split() for k in kept):
+            continue
+        kept.append(r)
+    return kept[:top], bdays
+
+
+def breadth_md(items, matcher, d_from, d_to):
+    lines = ['', '## Unmatched share (methodology v1.1 §10)', '',
+             'Items that match no concept never reach the digest. A high share for a country or language means the concept '
+             'lens is narrower than what was collected there.', '']
+    um = [i for i in items if not matcher.match(i.get('title', '') + ' ' + i.get('summary', ''))]
+    for label, key, k in (('country', 'country', 20), ('language', 'lang', 15)):
+        tot = Counter(i.get(key) or '?' for i in items)
+        un = Counter(i.get(key) or '?' for i in um)
+        lines.append(f'By {label}: ' + ' · '.join(f'{c} {n} ({round(100 * un[c] / n)}% unmatched)' for c, n in tot.most_common(k)))
+        lines.append('')
+    lines.append(f'Overall: {len(um)} of {len(items)} items unmatched ({round(100 * len(um) / max(1, len(items)))}%).')
+    weights = {r['actor'].upper(): float(r['weight']) for r in read_csv('power_weights.csv') if r.get('weight')}
+    if weights:
+        by_actor = Counter((i.get('actor') or '').upper() for i in items)
+        got = sum(by_actor[a] for a in weights)
+        wsum = sum(weights.values())
+        lines += ['', '## Source balance by power (methodology v1.1 §10)', '',
+                  'Items attributed to each actor (configured sources) against the actor\'s weight in '
+                  '`sources/harvest/power_weights.csv`. Ratio = observed share / expected share. '
+                  '⚠ under 0.5 = under-covered (add sources), ⚠ over 2 = over-covered (volume, not importance).', '',
+                  '| Actor | Weight | Items | Observed share % | Expected share % | Ratio | Flag |', '|---|---|---|---|---|---|---|']
+        for a, wt in sorted(weights.items(), key=lambda x: -x[1]):
+            obs_ = 100 * by_actor[a] / max(1, got)
+            exp_ = 100 * wt / wsum
+            ratio = obs_ / exp_ if exp_ else 0
+            flag = '⚠ under' if ratio < 0.5 else ('⚠ over' if ratio > 2 else 'ok')
+            lines.append(f'| {a} | {wt:g} | {by_actor[a]} | {obs_:.1f} | {exp_:.1f} | {ratio:.2f} | {flag} |')
+    rows, bdays = emerging_terms(items, matcher, d_from, d_to)
+    lines += ['', '## Emerging terms (methodology v1.1 §10)', '',
+              f'Terms (words and two-word phrases from titles, Latin and Cyrillic scripts) that no concept covers, ranked by '
+              f'surge against the {bdays} harvested days before the window. Stage W turns the relevant ones into temporary '
+              'concepts (`sources/harvest/keywords_emerging.csv`, 30 days). Headlines are not reproduced.', '']
+    if rows:
+        lines += ['| Term | Surge × | Items in window | Expected | Sources | Languages |', '|---|---|---|---|---|---|']
+        lines += [f'| {t} | {sg} | {n} | {ex} | {ns} | {nl} |' for sg, t, n, ex, ns, nl in rows]
+    else:
+        lines.append('_No baseline yet or no term above the thresholds._')
+    em = [r for r in read_csv('keywords_emerging.csv')]
+    if em:
+        today = date.today().isoformat()
+        lines += ['', 'Temporary concepts: ' + ', '.join(f"{r['concept']} (until {r.get('expires', '?')}"
+                                                         f"{', expired' if (r.get('expires') or '') < today else ''})" for r in em
+                                                         if r.get('label'))]
+    return lines
 
 
 def load_observations():

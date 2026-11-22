@@ -31,6 +31,7 @@ Goal: keep the source universe working and balanced. You may edit only `sources/
 1. List sources with status `failing` or `skipped` (robots) from `data/harvest/STATUS.md` / `CHECK.md`.
 2. For each: find the current official feed or page with web search (the publisher's own "RSS" page first). Fix the URL; if the publisher has no feed, switch the row to `kind=page` on its news listing page; if the site forbids automated access in robots.txt, set `enabled=0` and note it — **never circumvent robots.txt, logins or paywalls**. For a Telegram channel that is gone, set `enabled=0`.
 3. For every silent required cell in the last `coverage.md` (actor × role with no items), propose and add one source that fills it (official site, state/loyal outlet, independent or exile outlet, as needed), in the actor's language where possible.
+3a. **Framework 2.0 (methodology v1.1 §10):** for every actor flagged `⚠ under` in the "Source balance by power" table of the last `coverage.md`, add at least one working source from that actor's side, starting with the actor of the largest weight. Do not add sources for actors flagged `⚠ over`.
 4. Verify the changed rows: `python3 -m tools.harvester check --only <ids>`.
 5. Append a dated entry to `sources/harvest/CHANGELOG.md`: added / fixed / disabled sources with reasons. Never add domains from CLAUDE.md item 9 (`sources/harvest/forbidden_domains.txt`).
 6. Commit: `harvest config: repair <date>`. Source configuration changes are process changes of patch level (see `methodology/methodology_changes.md`, versioning).
@@ -46,7 +47,8 @@ Goal: keep the source universe working and balanced. You may edit only `sources/
    - concepts flagged ⚠W>80%, ⚠no actor, ⚠<3 lang — these become **mandatory targeted searches** for the stage 02 group that owns the concept (list them per group G1–G4);
    - silent required cells of the source universe, per group;
    - failing sources that matter for resolution of registry questions (e.g. PortWatch, NBP, AGSI);
-   - primary-data values available for block L (from `indicators.md`), each with its date.
+   - primary-data values available for block L (from `indicators.md`), each with its date;
+   - framework 2.0 (methodology v1.1 §10): the overall unmatched share and the three countries with the highest share; actors flagged `⚠ under` or `⚠ over` in "Source balance by power"; the ten strongest "Emerging terms" that name a development (not a person in entertainment or sport). Stage W decides which become temporary concepts.
 4. Commit: `edition-NN stage-H`. The `G*_digest.md` files contain other publishers' headlines and snippets: they are git-ignored and stay on this machine. Committed are only `coverage.md`, `indicators.md`, `sources_health.md`, `manifest.json` and `harvest_notes.md`.
 
 ## Rules
