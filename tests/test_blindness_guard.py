@@ -30,6 +30,13 @@ class GuardTest(unittest.TestCase):
             self.assertTrue(self.blocked(R(path), '03'), path)
             self.assertFalse(self.blocked(R(path), '07'), path)
 
+    def test_world_model_stage_is_blind_like_03(self):
+        for path in ('/r/registry/benchmarks.csv', '/r/editions/e/06_aggregation.md', '/r/docs/data/forecasts.json',
+                     '/r/reviews/learning/x.md', '/r/editions/e/07_annex_benchmarks.md'):
+            self.assertTrue(self.blocked(R(path), 'W'), path)
+        self.assertFalse(self.blocked(R('/r/world_model/ledger.csv'), 'W'))
+        self.assertTrue(self.blocked(('WebSearch', {'query': 'Taiwan blockade odds'}), 'W'))
+
     def test_web_rules(self):
         self.assertTrue(self.blocked(('WebFetch', {'url': 'https://polymarket.com/event/x'}), '02', 'G1'))
         self.assertFalse(self.blocked(('WebFetch', {'url': 'https://polymarket.com/event/x'}), '06'))
