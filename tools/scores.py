@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Forecast accuracy scoring (methodology v1.0, §8).
+"""Forecast accuracy scoring (methodology v1.0 §8; v1.1 §1 and §9).
 
 The only script in the project. Reads the CSV registry (separator ';', UTF-8
 with BOM) and prints the scores as Markdown.
@@ -11,6 +11,11 @@ Usage:
   python3 tools/scores.py --editions 02,03,04         # only forecasts made in these editions
   python3 tools/scores.py --framework 1.1.0           # only editions produced with this framework version
                                                       # (mapping edition -> version: registry/editions.csv)
+  python3 tools/scores.py --bank [--bank-edition 04]  # methodology v1.1 question-bank counts (no forecasts read)
+
+Methodology v1.1 (framework 2.0) adds auxiliary tables, never the official measure: v1.0 and v1.1 cohorts,
+drivers (registry/question_meta.csv, else the cluster mapping in world_model/drivers.csv), forms, horizon
+classes, origins, importance-weighted Brier, actor models (CONDITIONAL questions) and the tail group.
 
 Forecasts of an edition made on or after the question's resolution date are left out
 (the outcome was already known; framework 1.5). The "Diagnostics" section is not the
@@ -291,6 +296,220 @@ def write_base_rates(path, questions, res, outcome, as_of):
     print(f'base rates: {len(fam)} rows from {sum(len(v) for k, v in fam.items() if k[0] == "all")} closed questions -> {path}')
 
 
+
+# ---------- methodology v1.1 (framework 2.0): drivers, importance, forms, actor models ----------
+
+DRIVERS = ['D%d' % i for i in range(1, 14)]
+
+
+def read_csv_path(path):
+    try:
+        with open(path, encoding='utf-8-sig', newline='') as f:
+            return list(csv.DictReader(f, delimiter=';'))
+    except FileNotFoundError:
+        return []
+
+
+def load_meta():
+    """question_meta.csv: the first row per question counts (the file is append-only; metadata is frozen)."""
+    meta = {}
+    for r in read('question_meta.csv'):
+        meta.setdefault(r.get('id', ''), r)
+    return meta
+
+
+def cluster_drivers(path='world_model/drivers.csv'):
+    m = {}
+    for r in read_csv_path(path):
+        for c in (r.get('clusters') or '').split('|'):
+            if c.strip():
+                m[c.strip()] = r['code']
+    return m
+
+
+def horizon_class(q):
+    try:
+        days = (d(q['deadline']) - d(q['created'])).days
+    except (KeyError, ValueError):
+        return 'unknown'
+    return 'Q' if days <= 90 else ('Y' if days <= 365 else 'M')
+
+
+class Bank:
+    """Per-question v1.1 attributes, with fallbacks for questions that have no metadata row."""
+
+    def __init__(self, questions, meta=None, cmap=None):
+        self.q = questions
+        self.meta = load_meta() if meta is None else meta
+        self.cmap = cluster_drivers() if cmap is None else cmap
+
+    def m(self, qid):
+        return self.meta.get(qid, {})
+
+    def driver(self, qid):
+        return self.m(qid).get('driver') or self.cmap.get(self.q.get(qid, {}).get('cluster', ''), 'unmapped')
+
+    def form(self, qid):
+        return self.m(qid).get('form') or 'EVENT (no metadata)'
+
+    def horizon(self, qid):
+        return self.m(qid).get('horizon') or horizon_class(self.q.get(qid, {}))
+
+    def origin(self, qid):
+        return self.m(qid).get('origin') or 'V1.0'
+
+    def cohort(self, qid):
+        return 'v1.1' if self.m(qid).get('rating', '').upper() == 'NEW' else 'v1.0'
+
+    def impact(self, qid, new_only=True):
+        r = self.m(qid)
+        if new_only and r.get('rating', '').upper() != 'NEW':
+            return None
+        try:
+            return int(r.get('impact', ''))
+        except ValueError:
+            return None
+
+    def panel(self, qid):
+        return self.m(qid).get('panel', '')
+
+    def tail(self, qid):
+        return self.m(qid).get('tail', '').upper() == 'Y'
+
+
+def v11_measures(pr, official, questions, bank):
+    """Auxiliary measures of methodology v1.1 §1. Never the official measure."""
+    pr('## Methodology v1.1 measures (auxiliary, §1)\n')
+    pr('Indicative below about 30 resolved questions per group. Cohort v1.1 = questions with a NEW metadata row; v1.0 = the rest.\n')
+    for cohort in ('v1.0', 'v1.1'):
+        ws = [w for w in official if bank.cohort(w[0]) == cohort]
+        if not ws:
+            pr(f'Cohort {cohort}: no resolved questions yet.\n')
+            continue
+        b = mean([(w[3] - w[4]) ** 2 for w in ws])
+        bsq = mean([(float(questions[w[0]]['p_status_quo']) - w[4]) ** 2 for w in ws])
+        nt = [w for w in ws if not bank.tail(w[0])]
+        bnt = mean([(w[3] - w[4]) ** 2 for w in nt])
+        bsqnt = mean([(float(questions[w[0]]['p_status_quo']) - w[4]) ** 2 for w in nt])
+        pr(f'Cohort {cohort}: N {len(ws)} · Brier AGG_RT {fmt(b)} · BSS vs SQ {fmt(1 - b / bsq if bsq > 0 else float("nan"))}'
+           f' · without the tail group: N {len(nt)}, BSS vs SQ {fmt(1 - bnt / bsqnt if bsqnt > 0 else float("nan"))}\n')
+
+    def table(title, key):
+        groups = defaultdict(lambda: defaultdict(list))
+        for w in official:
+            groups[key(w[0])][bank.cohort(w[0])].append((w[3] - w[4]) ** 2)
+        pr(f'## {title}\n')
+        pr('| Group | N v1.0 | Brier v1.0 | N v1.1 | Brier v1.1 |')
+        pr('|---|---|---|---|---|')
+        for g in sorted(groups, key=lambda x: (len(x), x)):
+            a_, b_ = groups[g]['v1.0'], groups[g]['v1.1']
+            pr(f'| {g} | {len(a_)} | {fmt(mean(a_))} | {len(b_)} | {fmt(mean(b_))} |')
+        pr('')
+
+    table('Drivers', bank.driver)
+    table('Forms', bank.form)
+    table('Horizon classes (creation to deadline: Q ≤90 days, Y 91–365, M >365)', bank.horizon)
+    table('Origins', bank.origin)
+
+    pr('## Importance-weighted Brier (AGG_RT; NEW metadata only; weight = impact)\n')
+    wts = [(bank.impact(w[0]), (w[3] - w[4]) ** 2) for w in official]
+    wts = [(i, x) for i, x in wts if i]
+    if wts:
+        pr(f'N {len(wts)} · weighted Brier {fmt(sum(i * x for i, x in wts) / sum(i for i, _ in wts))} · unweighted on the same set {fmt(mean([x for _, x in wts]))}\n')
+    else:
+        pr('No resolved questions with a NEW importance rating yet.\n')
+
+    pr('## Actor models (CONDITIONAL questions by responding actor, AGG_RT)\n')
+    groups = defaultdict(list)
+    for w in official:
+        if bank.form(w[0]) == 'CONDITIONAL':
+            groups[bank.m(w[0]).get('actor') or 'unknown'].append((w[3] - w[4]) ** 2)
+    if groups:
+        pr('| Actor | N | Brier AGG_RT |')
+        pr('|---|---|---|')
+        for g in sorted(groups):
+            pr(f'| {g} | {len(groups[g])} | {fmt(mean(groups[g]))} |')
+        pr('')
+    else:
+        pr('No resolved CONDITIONAL questions yet.\n')
+
+
+def bank_report(questions, bank, relations, edition=None):
+    """Question-bank counts for stage W, stage 08 and the site (methodology v1.1 §4). No forecasts are read."""
+    out = []
+    pr = out.append
+    active = [k for k, q in questions.items() if q.get('status', '').upper() == 'ACTIVE']
+    pr('# Question bank (methodology v1.1 §4)\n')
+    pr(f'ACTIVE questions: **{len(active)}** (cap 100)\n')
+    panel_sets = sorted({bank.panel(k) for k in questions if bank.panel(k)})
+    cur_panel = panel_sets[-1] if panel_sets else ''
+    panel = [k for k in active if cur_panel and bank.panel(k) == cur_panel]
+    pr(f'Current panel set: {cur_panel or "none yet"} · panel questions active: {len(panel)} (target 40)\n')
+    pr('## Driver coverage\n')
+    pr('| Driver | Active | Panel (floor 2, cap 6) | Mean impact of active (NEW and RETRO ratings) |')
+    pr('|---|---|---|---|')
+    for dr in DRIVERS + ['unmapped']:
+        a_ = [k for k in active if bank.driver(k) == dr]
+        p_ = [k for k in panel if bank.driver(k) == dr]
+        imps = [bank.impact(k, new_only=False) for k in a_]
+        imps = [i for i in imps if i]
+        flag = '' if not cur_panel or 2 <= len(p_) <= 6 else ' ⚠'
+        if dr == 'unmapped' and not a_:
+            continue
+        pr(f'| {dr} | {len(a_)} | {len(p_)}{flag} | {fmt(mean(imps), 1) if imps else "n/a"} |')
+    pr('')
+    pimps = [bank.impact(k, new_only=False) for k in panel]
+    pimps = [i for i in pimps if i]
+    if pimps:
+        pr(f'Panel mean impact: **{fmt(mean(pimps), 2)}** (floor 3.5){" ⚠" if mean(pimps) < 3.5 else ""}\n')
+    for title, key in (('Panel by vector (target 5 each)', lambda k: questions[k].get('vector', '')),
+                       ('Panel by horizon class (target about 12 Q / 16 Y / 12 M)', bank.horizon)):
+        c = defaultdict(int)
+        for k in panel:
+            c[key(k)] += 1
+        pr(f'{title}: ' + (' · '.join(f'{g} {c[g]}' for g in sorted(c)) or 'n/a') + '\n')
+    pr(f'Panel tail questions: {sum(1 for k in panel if bank.tail(k))} (target 3–4)\n')
+    clusters = defaultdict(int)
+    for k in panel:
+        clusters[questions[k].get('cluster', '')] += 1
+    over = [c for c, n in clusters.items() if n > 3]
+    pr(f'Panel clusters above 3: {", ".join(over) if over else "none"}\n')
+    eds = sorted({bank.m(k).get('edition', '') for k in questions if bank.m(k).get('rating', '').upper() == 'NEW'})
+    ed = edition or (eds[-1] if eds else None)
+    if ed:
+        new = [k for k in questions if bank.m(k).get('rating', '').upper() == 'NEW' and bank.m(k).get('edition', '') == ed
+               and not bank.panel(k)]
+        pr(f'## New open questions of edition {ed}: {len(new)} (target 20–30)\n')
+        nos = [k for k in new if bank.form(k) != 'SIGNPOST']
+        n = len(nos) or 1
+        hz = defaultdict(int)
+        for k in nos:
+            hz[bank.horizon(k)] += 1
+        pr(f'Horizons (signposts excluded): Q {hz["Q"]} ({100 * hz["Q"] // n}%, max 50) · Y {hz["Y"]} ({100 * hz["Y"] // n}%, min 25) · M {hz["M"]} ({100 * hz["M"] // n}%, min 15)\n')
+        fm = defaultdict(int)
+        og = defaultdict(int)
+        for k in new:
+            fm[bank.form(k)] += 1
+            og[bank.origin(k)] += 1
+        m_ = len(new) or 1
+        pr('Forms: ' + ' · '.join(f'{g} {fm[g]}' for g in sorted(fm)) + f' (LEVEL {100 * fm["LEVEL"] // m_}%, min 20)\n')
+        model = sum(v for g, v in og.items() if g in ('LEDGER', 'CHAIN', 'DRIVER_GAP', 'QUIET', 'TAIL'))
+        pr('Origins: ' + ' · '.join(f'{g} {og[g]}' for g in sorted(og)) + f' (from the model {100 * model // m_}%, min 60)\n')
+        conds = [k for k in new if bank.form(k) == 'CONDITIONAL']
+        linked = {r['question_a'] for r in relations if r.get('relation', '').strip() == 'conditional_on'}
+        pr(f'CONDITIONAL questions: {len(conds)} (min 3 pairs when chains are active) · without a conditional_on relation: '
+           f'{", ".join(sorted(set(conds) - linked)) or "none"}\n')
+        longq = [k for k in active if bank.horizon(k) == 'M' and bank.cohort(k) == 'v1.1']
+        sp = defaultdict(int)
+        for k in questions:
+            if bank.m(k).get('signpost_of'):
+                sp[bank.m(k)['signpost_of']] += 1
+        short = [k for k in longq if sp[k] < 2]
+        pr(f'M questions with fewer than 2 signposts: {", ".join(sorted(short)) or "none"}\n')
+    missing = [k for k in active if k not in bank.meta]
+    pr(f'ACTIVE questions without a metadata row: {len(missing)}\n')
+    return '\n'.join(out)
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--to-edition', default=None, help='include forecasts up to and including this edition (e.g. 03)')
@@ -302,6 +521,9 @@ def main():
     ap.add_argument('--add-forecasts', default=None, help='add the rows of this file (e.g. a replay, framework 1.9) to '
                     'the registry forecasts; their runs appear in the diagnostics, not in the official tables')
     ap.add_argument('--as-of', default=None, help='date for the closed cohort (default: today)')
+    ap.add_argument('--bank', action='store_true', help='methodology v1.1: question-bank counts (drivers, panel, horizons, '
+                    'forms, origins) and stop; reads no forecasts')
+    ap.add_argument('--bank-edition', default=None, help='with --bank: the edition whose new questions are counted')
     ap.add_argument('--base-rates', default=None, metavar='OUT',
                     help='write YES rates by question family from the closed cohort to OUT (CSV) and stop')
     a = ap.parse_args()
@@ -309,6 +531,14 @@ def main():
     only_editions = {e.strip().zfill(2) for e in a.editions.split(',')} if a.editions else None
 
     questions = {q['id']: q for q in read('questions.csv')}
+    bank = Bank(questions)
+    if a.bank:
+        text = bank_report(questions, bank, read('relations.csv'), a.bank_edition)
+        if a.out:
+            with open(a.out, 'w', encoding='utf-8') as f:
+                f.write(text)
+        print(text)
+        return
     forecasts = read('forecasts.csv') + (read_path(a.add_forecasts) if a.add_forecasts else [])
     res = final_resolutions(read('resolutions.csv'))
     bench = read('benchmarks.csv')
@@ -477,6 +707,7 @@ def main():
 
     diagnostics(pr, official, forecasts, questions, res, outcome, in_scope)
     diagnostics_19(pr, rows_all, questions, res, outcome, pending, as_of)
+    v11_measures(pr, official, questions, bank)
 
     # Cluster bootstrap for the Brier difference between two runs.
     if a.bootstrap:

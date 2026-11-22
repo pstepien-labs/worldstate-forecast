@@ -68,5 +68,48 @@ class ScoresTest(unittest.TestCase):
         self.assertIn('"all";"";"";"";4;3;0.667', text)
 
 
+class ScoresV11Test(unittest.TestCase):
+    """Methodology v1.1 auxiliary measures and the --bank counts (framework 2.0)."""
+
+    def setUp(self):
+        from tests.helpers import write
+        qs = [q(1, '2026-12-01', created='2026-11-30', cluster='HORMUZ'), q(2, '2026-12-01', created='2026-11-30'),
+              q(3, '2026-12-01', created='2026-11-30'), q(4, '2027-06-01', created='2026-11-30', status='ACTIVE'),
+              q(5, '2028-01-31', created='2026-11-30', status='ACTIVE')]
+        fc = [f(1, '04', 'AGG_RT', 0.8, date='2026-11-30'), f(2, '04', 'AGG_RT', 0.4, date='2026-11-30'),
+              f(3, '04', 'AGG_RT', 0.3, date='2026-11-30')]
+        rs = [r(1, 1, '2026-12-01'), r(2, 0, '2026-12-01'), r(3, 1, '2026-12-01')]
+        self.root = registry(qs, fc, rs)
+        mh = ['id', 'rated_on', 'edition', 'driver', 'impact', 'decision', 'form', 'horizon', 'origin', 'chain_id', 'actor',
+              'signpost_of', 'panel', 'tail', 'rating', 'notes']
+        meta = [{'id': 'Q-0002', 'edition': '04', 'driver': 'D6', 'impact': '4', 'form': 'CONDITIONAL', 'horizon': 'Q',
+                 'origin': 'CHAIN', 'actor': 'CN', 'rating': 'NEW'},
+                {'id': 'Q-0003', 'edition': '04', 'driver': 'D2', 'impact': '2', 'form': 'LEVEL', 'horizon': 'Q',
+                 'origin': 'LEDGER', 'rating': 'NEW'},
+                {'id': 'Q-0004', 'edition': '04', 'driver': 'D2', 'impact': '5', 'form': 'SIGNPOST', 'horizon': 'Y',
+                 'origin': 'LEDGER', 'signpost_of': 'Q-0005', 'rating': 'NEW', 'panel': 'v1.1-2026Q4'},
+                {'id': 'Q-0005', 'edition': '04', 'driver': 'D4', 'impact': '5', 'form': 'EVENT', 'horizon': 'M',
+                 'origin': 'TAIL', 'tail': 'Y', 'rating': 'NEW', 'panel': 'v1.1-2026Q4'}]
+        write(os.path.join(self.root, 'registry', 'question_meta.csv'), mh, meta)
+        write(os.path.join(self.root, 'world_model', 'drivers.csv'), ['code', 'clusters'], [{'code': 'D5', 'clusters': 'HORMUZ|OIL_PRICE'}])
+
+    def test_cohorts_drivers_weighting_actor_models(self):
+        out = run(self.root)
+        self.assertIn('Cohort v1.0: N 1', out)       # Q-0001 has no metadata row
+        self.assertIn('Cohort v1.1: N 2', out)
+        self.assertIn('| D5 | 1 | 0.040 | 0 | n/a |', out)  # driver from the cluster mapping
+        # weighted: Q2 (0.4-0)^2=0.16 w4; Q3 (0.3-1)^2=0.49 w2 -> (0.64+0.98)/6 = 0.270; unweighted 0.325
+        self.assertIn('weighted Brier 0.270 · unweighted on the same set 0.325', out)
+        self.assertIn('| CN | 1 | 0.160 |', out)
+
+    def test_bank_counts(self):
+        out = run(self.root, '--bank')
+        self.assertIn('ACTIVE questions: **2**', out)
+        self.assertIn('panel questions active: 2', out)
+        self.assertIn('Panel tail questions: 1', out)
+        self.assertIn('| D2 | 1 | 1 ⚠ |', out)
+        self.assertIn('M questions with fewer than 2 signposts: Q-0005', out)
+
+
 if __name__ == '__main__':
     unittest.main()
