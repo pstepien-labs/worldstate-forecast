@@ -7,10 +7,10 @@
  "last_result": "2026-11-22 20:23 repair ok AUTOPILOT: complete repair",
  "consecutive_failures": 0,
  "open_blockers": 0,
- "waiting_for_user": 10,
+ "waiting_for_user": 0,
  "resolutions_disputed": 0,
  "publish_blocked": false,
- "harvester": "Harvester: RUNNING · state sleeping · heartbeat 2026-11-22T19:23:56Z · sources ok 206/231 · failing 0 · items 233085",
- "framework_version": "2.0.0",
- "updated": "2026-11-22T19:23:57Z"
+ "harvester": "Harvester: RUNNING · state sleeping · heartbeat 2026-11-22T20:24:00Z · sources ok 208/233 · failing 0 · items 233310",
+ "framework_version": "2.0.1",
+ "updated": "2026-11-22T20:24:02Z"
 }
