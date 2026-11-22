@@ -17,6 +17,7 @@ import csv
 import html
 import json
 import os
+import re
 import shutil
 import subprocess
 from collections import defaultdict
@@ -137,6 +138,45 @@ def page_head(cfg, desc):
             + '<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>\n')
 
 
+
+def newest_methodology():
+    """Newest methodology file (the one in force for the next edition), e.g. 'methodology/methodology_v1.1.md'."""
+    best = (1, 0)
+    for n in os.listdir(os.path.join(ROOT, 'methodology')):
+        m = re.match(r'methodology_v(\d+)\.(\d+)\.md$', n)
+        if m:
+            best = max(best, (int(m.group(1)), int(m.group(2))))
+    return f'methodology/methodology_v{best[0]}.{best[1]}.md', f'v{best[0]}.{best[1]}'
+
+
+def driver_coverage(questions):
+    """Methodology v1.1: active questions and panel questions per structural driver. Counts only, never probabilities."""
+    p = os.path.join(ROOT, 'world_model', 'drivers.csv')
+    if not os.path.exists(p):
+        return ''
+    with open(p, encoding='utf-8-sig', newline='') as f:
+        drivers = list(csv.DictReader(f, delimiter=';'))
+    cmap = {c: d['code'] for d in drivers for c in (d.get('clusters') or '').split('|') if c}
+    meta = {}
+    for r in read_csv('question_meta.csv'):
+        meta.setdefault(r['id'], r)
+    sets = sorted({r.get('panel') for r in meta.values() if r.get('panel')})
+    cur = sets[-1] if sets else ''
+    act, pan = {}, {}
+    for q in questions.values():
+        if q.get('status', '').upper() != 'ACTIVE':
+            continue
+        dr = (meta.get(q['id']) or {}).get('driver') or cmap.get(q.get('cluster', ''), '')
+        act[dr] = act.get(dr, 0) + 1
+        if cur and (meta.get(q['id']) or {}).get('panel') == cur:
+            pan[dr] = pan.get(dr, 0) + 1
+    rows = ''.join(f'<tr><td class="k">{e(d["code"])}</td><td>{e(d["name"])}</td><td class="mono" data-label="Open questions">{act.get(d["code"], 0)}</td>'
+                   f'<td class="mono" data-label="Panel">{pan.get(d["code"], 0) if cur else "from edition 04"}</td></tr>' for d in drivers)
+    return ('<div class="tablewrap" style="margin-top:26px"><table><thead><tr><th>Driver</th><th>What it covers</th>'
+            '<th>Open questions</th><th>Panel</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
+            '<p class="ledger-note">Coverage of the structural drivers among open questions today. A driver with few questions is a known gap, '
+            'not a sign that nothing is happening there.</p>')
+
 def build():
     cfg = json.load(open(os.path.join(ROOT, 'site', 'config.json'), encoding='utf-8'))
     repo = cfg['repo_url'].rstrip('/')
@@ -252,7 +292,7 @@ def build():
         ('Forecast registry', 'Questions with resolution criteria, every forecast by lens and official, resolutions, edition versions', 'CSV, JSON',
          f'<span class="pill free">free · CC BY 4.0</span> <a href="data/forecasts.json">JSON</a> · <a href="{e(repo)}/tree/main/registry">CSV</a>'),
         ('Methodology and prompts', 'The method, every stage instruction, the source map and harvester configuration', 'Markdown, CSV',
-         f'<span class="pill free">free · CC BY 4.0</span> <a href="{e(repo)}/blob/main/methodology/methodology_v1.0.md">method</a> · <a href="{e(repo)}/tree/main/prompts">prompts</a>'),
+         f'<span class="pill free">free · CC BY 4.0</span> <a href="{e(repo)}/blob/main/{e(newest_methodology()[0])}">method</a> · <a href="{e(repo)}/tree/main/prompts">prompts</a> · <a href="{e(repo)}/tree/main/world_model">world model</a>'),
         ('For AI assistants', 'A guide that lets any AI assistant read and query the forecasts and reports', 'llms.txt, JSON',
          '<span class="pill free">free</span> <a href="llms.txt">llms.txt</a>'),
         ('Software', 'Harvester, scoring, pipeline: run your own independent forecast series', 'Python',
@@ -293,7 +333,8 @@ def build():
     for k, v in {'NAME': e(cfg['name']), 'REPO': e(repo), 'LATEST_REPORT_URL': e(latest_report_url), 'LATEST': latest_line, 'FEATURED': featured,
                  'STATS': stats_html, 'LEDGER': '\n        '.join(rows), 'LEDGER_NOTE': ledger_note, 'TRACK': track,
                  'DATA_ROWS': data_html, 'SUPPORT': support, 'CONTACT': contact, 'FOOTER_META': footer,
-                 'SOURCES': e(cfg.get('harvest_sources', '')), 'LANGUAGES': e(cfg.get('harvest_languages', ''))}.items():
+                 'SOURCES': e(cfg.get('harvest_sources', '')), 'LANGUAGES': e(cfg.get('harvest_languages', '')),
+                 'DRIVERS': driver_coverage(questions)}.items():
         tpl = tpl.replace('{{' + k + '}}', v)
     assert '{{' not in tpl, 'unfilled placeholder in site/template.html'
 
@@ -378,7 +419,8 @@ Current: framework {framework}, methodology {cur.get('METHODOLOGY', 'v1.0')}, la
 {f"- [Latest executive brief, PDF]({site}/{brief_rel}): the report in about 11 pages by region; derived from the report, adds nothing to it" + chr(10) if has_brief else ""}- [All editions]({repo}/tree/main/editions)
 
 ## Method
-- [Methodology]({repo}/blob/main/methodology/methodology_v1.0.md)
+- [Methodology {newest_methodology()[1]}]({repo}/blob/main/{newest_methodology()[0]}) (earlier versions stay in the same folder)
+- [World model: drivers, power ledger, chains]({repo}/tree/main/world_model)
 - [Stage prompts]({repo}/tree/main/prompts)
 - [Rules]({repo}/blob/main/CLAUDE.md)
 

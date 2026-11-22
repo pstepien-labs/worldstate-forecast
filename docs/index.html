@@ -205,7 +205,7 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
   <main id="top">
     <div class="hero">
       <div>
-        <p class="latest"><b>Latest report: edition 03</b>, published 19.11.2026 (state of the world as of 16.11.2026) · next edition from 30.11.2026 · page updated 20.11.2026</p>
+        <p class="latest"><b>Latest report: edition 03</b>, published 19.11.2026 (state of the world as of 16.11.2026) · next edition from 30.11.2026 · page updated 22.11.2026</p>
         <p class="label eyebrow">Open research experiment · since 21.09.2026</p>
         <h1>Every forecast is frozen <em>before</em> the outcome. Then we score ourselves.</h1>
         <p class="lead">An AI-assisted, fully documented process that forecasts the moves of the great powers every two weeks, with sources from all sides of each conflict, and measures whether it beats simple baselines.</p>
@@ -243,12 +243,27 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
       <ol class="steps">
         <li><h3>Harvest</h3><p>About 200 sources in 18 languages are collected continuously: news agencies, ministries, state and exile media, GDELT and primary data such as IMF PortWatch transits.</p></li>
         <li><h3>Facts from three sides</h3><p>Every key event is sourced from a Western outlet, the actor's own side and a third party. Missing perspectives are recorded as gaps, not filled in.</p></li>
+        <li><h3>World model</h3><p>A power ledger, chains of moves and counter-moves, and a model of how each power reacts are updated from the facts. New questions are drawn from this model, not from the headlines.</p></li>
         <li><h3>Analysis</h3><p>Key assumptions, competing hypotheses and warning indicators. Facts, assessments and forecasts are kept apart.</p></li>
         <li><h3>Three blind lenses</h3><p>Great-power strategy, base rates and domestic constraints each forecast every question in a separate session, without seeing each other.</p></li>
         <li><h3>Red team</h3><p>A fourth session attacks the analysis and may adjust a forecast by at most 15 points, only with evidence.</p></li>
         <li><h3>Freeze</h3><p>The official forecast is committed to an append-only registry. Git history is the proof that nothing was edited later. Only then are prediction markets consulted for comparison.</p></li>
         <li><h3>Score</h3><p>When questions resolve, Brier scores are computed against a status-quo baseline and the crowd, including the misses.</p></li>
       </ol>
+    </section>
+
+    <section id="questions">
+      <div class="sec-head">
+        <h2>How questions are chosen</h2>
+        <p>From methodology v1.1, questions come from a model of power rather than from the headlines. Thirteen structural drivers, a ledger of what each power holds, and chains of moves and counter-moves decide what is asked. News becomes a question only when it moves a driver or a chain.</p>
+      </div>
+      <div class="principles">
+        <div><h3>Structural drivers</h3><p>Military capacity, the defence-industrial base, alliances, nuclear deterrence, energy, technology, economic coercion, money and debt, domestic stability, swing states, regional wars, slow stressors and great-power talks. Every driver keeps at least two panel questions, however quiet it is in the news.</p></div>
+        <div><h3>Power ledger</h3><p>Thirteen actors, from the US and China to India, Türkiye and Poland, are tracked on nine factors with dated, sourced values. A missing value is shown as a gap, never filled in from memory.</p></div>
+        <div><h3>Moves and counter-moves</h3><p>Conditional questions ask how a power responds if another acts first. They score each actor model on its own, so the project learns whose reactions it reads well.</p></div>
+        <div><h3>Longer horizons</h3><p>About a third of the panel looks more than a year ahead. Shorter checkpoint questions resolve along the way, so long questions still give feedback.</p></div>
+      </div>
+      <div class="tablewrap" style="margin-top:26px"><table><thead><tr><th>Driver</th><th>What it covers</th><th>Open questions</th><th>Panel</th></tr></thead><tbody><tr><td class="k">D1</td><td>War-fighting capacity</td><td class="mono" data-label="Open questions">4</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D2</td><td>Defence-industrial base and military spending</td><td class="mono" data-label="Open questions">0</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D3</td><td>Alliance cohesion</td><td class="mono" data-label="Open questions">8</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D4</td><td>Escalation, deterrence, nuclear and arms control</td><td class="mono" data-label="Open questions">6</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D5</td><td>Energy flows and chokepoints</td><td class="mono" data-label="Open questions">18</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D6</td><td>Technology, compute, critical minerals</td><td class="mono" data-label="Open questions">6</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D7</td><td>Trade and economic coercion</td><td class="mono" data-label="Open questions">8</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D8</td><td>Fiscal-monetary capacity, debt, dollar system</td><td class="mono" data-label="Open questions">9</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D9</td><td>Domestic stability and leadership</td><td class="mono" data-label="Open questions">6</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D10</td><td>Swing states and realignment</td><td class="mono" data-label="Open questions">4</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D11</td><td>Regional wars outside Europe</td><td class="mono" data-label="Open questions">5</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D12</td><td>Slow stressors</td><td class="mono" data-label="Open questions">1</td><td class="mono" data-label="Panel">from edition 04</td></tr><tr><td class="k">D13</td><td>Great-power negotiation channels</td><td class="mono" data-label="Open questions">8</td><td class="mono" data-label="Panel">from edition 04</td></tr></tbody></table></div><p class="ledger-note">Coverage of the structural drivers among open questions today. A driver with few questions is a known gap, not a sign that nothing is happening there.</p>
     </section>
 
     <section>
@@ -309,7 +324,7 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
             <tr><td class="k">Executive brief</td><td>Edition 03 in about 11 pages, by region: key facts, key forecasts, scenarios, dates to watch</td><td class="mono" data-label="Format">PDF, HTML</td><td data-label="Access"><span class="pill free">free · CC BY 4.0</span> <a href="briefs/edition-03.pdf">PDF</a> · <a href="briefs/edition-03.html">web</a></td></tr>
             <tr><td class="k">Reports</td><td>Every edition: facts with sources, analysis, scenarios, forecasts, quality control</td><td class="mono" data-label="Format">Markdown</td><td data-label="Access"><span class="pill free">free · CC BY 4.0</span> <a href="https://github.com/pstepien-labs/worldstate-forecast/blob/main/editions/2026-11-16_edition-03/07_report.md">latest</a> · <a href="https://github.com/pstepien-labs/worldstate-forecast/tree/main/editions">all</a></td></tr>
             <tr><td class="k">Forecast registry</td><td>Questions with resolution criteria, every forecast by lens and official, resolutions, edition versions</td><td class="mono" data-label="Format">CSV, JSON</td><td data-label="Access"><span class="pill free">free · CC BY 4.0</span> <a href="data/forecasts.json">JSON</a> · <a href="https://github.com/pstepien-labs/worldstate-forecast/tree/main/registry">CSV</a></td></tr>
-            <tr><td class="k">Methodology and prompts</td><td>The method, every stage instruction, the source map and harvester configuration</td><td class="mono" data-label="Format">Markdown, CSV</td><td data-label="Access"><span class="pill free">free · CC BY 4.0</span> <a href="https://github.com/pstepien-labs/worldstate-forecast/blob/main/methodology/methodology_v1.0.md">method</a> · <a href="https://github.com/pstepien-labs/worldstate-forecast/tree/main/prompts">prompts</a></td></tr>
+            <tr><td class="k">Methodology and prompts</td><td>The method, every stage instruction, the source map and harvester configuration</td><td class="mono" data-label="Format">Markdown, CSV</td><td data-label="Access"><span class="pill free">free · CC BY 4.0</span> <a href="https://github.com/pstepien-labs/worldstate-forecast/blob/main/methodology/methodology_v1.1.md">method</a> · <a href="https://github.com/pstepien-labs/worldstate-forecast/tree/main/prompts">prompts</a> · <a href="https://github.com/pstepien-labs/worldstate-forecast/tree/main/world_model">world model</a></td></tr>
             <tr><td class="k">For AI assistants</td><td>A guide that lets any AI assistant read and query the forecasts and reports</td><td class="mono" data-label="Format">llms.txt, JSON</td><td data-label="Access"><span class="pill free">free</span> <a href="llms.txt">llms.txt</a></td></tr>
             <tr><td class="k">Software</td><td>Harvester, scoring, pipeline: run your own independent forecast series</td><td class="mono" data-label="Format">Python</td><td data-label="Access"><span class="pill free">free · MIT</span> <a href="https://github.com/pstepien-labs/worldstate-forecast">repository</a></td></tr>
             <tr><td class="k">Harvested news</td><td>Headlines and snippets collected from about 200 publishers</td><td class="mono" data-label="Format">—</td><td data-label="Access"><span class="pill">not redistributed</span> copyright stays with the publishers; coverage statistics are published in each edition</td></tr>
@@ -349,7 +364,7 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
   </main>
 
   <footer>
-    <span>Framework 1.10.5 · methodology v1.0 · latest edition 03 (state 16.11.2026) · page built 20.11.2026</span>
+    <span>Framework 1.12.0 · methodology v1.0 · latest edition 03 (state 16.11.2026) · page built 22.11.2026</span>
     <span><a href="legal.html">Legal notice</a> · Code MIT · content CC BY 4.0 · <a href="https://github.com/pstepien-labs/worldstate-forecast">source</a></span>
   </footer>
 </div>

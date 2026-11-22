@@ -208,12 +208,27 @@ footer { padding-block: 18px 40px; font-size: var(--step--1); color: var(--muted
       <ol class="steps">
         <li><h3>Harvest</h3><p>About {{SOURCES}} sources in {{LANGUAGES}} languages are collected continuously: news agencies, ministries, state and exile media, GDELT and primary data such as IMF PortWatch transits.</p></li>
         <li><h3>Facts from three sides</h3><p>Every key event is sourced from a Western outlet, the actor's own side and a third party. Missing perspectives are recorded as gaps, not filled in.</p></li>
+        <li><h3>World model</h3><p>A power ledger, chains of moves and counter-moves, and a model of how each power reacts are updated from the facts. New questions are drawn from this model, not from the headlines.</p></li>
         <li><h3>Analysis</h3><p>Key assumptions, competing hypotheses and warning indicators. Facts, assessments and forecasts are kept apart.</p></li>
         <li><h3>Three blind lenses</h3><p>Great-power strategy, base rates and domestic constraints each forecast every question in a separate session, without seeing each other.</p></li>
         <li><h3>Red team</h3><p>A fourth session attacks the analysis and may adjust a forecast by at most 15 points, only with evidence.</p></li>
         <li><h3>Freeze</h3><p>The official forecast is committed to an append-only registry. Git history is the proof that nothing was edited later. Only then are prediction markets consulted for comparison.</p></li>
         <li><h3>Score</h3><p>When questions resolve, Brier scores are computed against a status-quo baseline and the crowd, including the misses.</p></li>
       </ol>
+    </section>
+
+    <section id="questions">
+      <div class="sec-head">
+        <h2>How questions are chosen</h2>
+        <p>From methodology v1.1, questions come from a model of power rather than from the headlines. Thirteen structural drivers, a ledger of what each power holds, and chains of moves and counter-moves decide what is asked. News becomes a question only when it moves a driver or a chain.</p>
+      </div>
+      <div class="principles">
+        <div><h3>Structural drivers</h3><p>Military capacity, the defence-industrial base, alliances, nuclear deterrence, energy, technology, economic coercion, money and debt, domestic stability, swing states, regional wars, slow stressors and great-power talks. Every driver keeps at least two panel questions, however quiet it is in the news.</p></div>
+        <div><h3>Power ledger</h3><p>Thirteen actors, from the US and China to India, Türkiye and Poland, are tracked on nine factors with dated, sourced values. A missing value is shown as a gap, never filled in from memory.</p></div>
+        <div><h3>Moves and counter-moves</h3><p>Conditional questions ask how a power responds if another acts first. They score each actor model on its own, so the project learns whose reactions it reads well.</p></div>
+        <div><h3>Longer horizons</h3><p>About a third of the panel looks more than a year ahead. Shorter checkpoint questions resolve along the way, so long questions still give feedback.</p></div>
+      </div>
+      {{DRIVERS}}
     </section>
 
     <section>
