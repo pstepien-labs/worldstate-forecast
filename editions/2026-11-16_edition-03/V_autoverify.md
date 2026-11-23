@@ -142,3 +142,31 @@ Remarks after comparison (not used to change any verdict):
 Scores: `tools/scores.py --out editions/2026-11-16_edition-03/01_scores.md` re-run on 17.11.2026 (stage 07 not started).
 
 Rule notes: one web search returned a polymarket.com result (forbidden domain, CLAUDE.md rule 3.9); it was not opened or used.
+
+---
+
+## Stage V — re-check after interim stage I (23.11.2026, AUTO mode, model claude-opus-5-5)
+
+Input: `pending_verification` = Q-0029 (random draw of interim stage I, seed 323); `verification_retry` empty.
+
+Independence caveat: this re-check runs in the same session as interim stage I, as `prompts/I_interim.md` step 4 prescribes, so the analyst already knew the stage I reading. To limit that, the re-check uses evidence that stage I did not cite (a fresh web search; Korea Times and the Kremlin's own trilateral record instead of Anadolu, TASS and the White House declaration).
+
+### Blind re-check
+
+**Q-0029** — Trump physically present at the APEC leaders' meeting in Shenzhen (18–19.11.2026); confirmation by the White House or at least two news agencies.
+- Outcome: **1 (YES)**, resolution date 19.11.2026.
+- Evidence: The Korea Times, 19.11.2026: Trump spoke in Shenzhen at the APEC leaders' plenary session on Thursday 19.11 — https://www.koreatimes.co.kr/foreignaffairs/20261119/trump-stresses-caution-in-managing-ai-risks-at-apec-summit
+- Second source: Kremlin, 19.11.2026, "Meeting with President of China and President of the United States" (in-person trilateral in Shenzhen on the summit's sidelines; harvested kremlin feed) — http://en.kremlin.ru/events/president/news/81303 ; CBS News coverage of the Shenzhen summit — https://cbsnews.com/news/trump-xi-putin-china-apec-summit
+- Confidence: high. No report of remote participation.
+
+<!-- blind section complete: 1/1, 23.11.2026 -->
+
+### Comparison with stage I
+
+| ID | Stage I outcome | Re-check outcome | Re-check confidence | Result | Evidence (re-check) |
+|---|---|---|---|---|---|
+| Q-0029 | 1 (19.11.2026) | 1 | high | AGREE | https://www.koreatimes.co.kr/foreignaffairs/20261119/trump-stresses-caution-in-managing-ai-risks-at-apec-summit |
+
+Summary: 1 AGREE (`user_approved` = A, `registry/resolutions.csv` version 2). Nothing added to `AUTOPILOT_INBOX.md`.
+
+Scores: stage 07 of edition 03 is done, so `01_scores.md` is left alone (V step 3); the interim stage writes `01_scores_interim.md`.

@@ -115,3 +115,14 @@
 - Aggregate BSS against the crowd in section 0: kept. It is the primary measure of methodology §1(b); individual benchmark values stay in the annex.
 - No report PDF: accepted. The executive brief PDF covers readers.
 - P-0036, P-0039, P-0040: statuses corrected to IMPLEMENTED (versions 1.12.0, 1.10.8, 1.11.0). The P-0036 replay on edition 03 is a follow-up for the quarterly review.
+
+## Stage I — interim resolutions (AUTO mode, model claude-opus-5-5)
+
+- Start 23.11.2026 20:24 CET (provenance `stage-start I`); end recorded by `stage-end I` before the commit. Edition 03 closed (`edition_closed: true`), `verification_retry` empty.
+- List: 3 ACTIVE questions past their deadline (Q-0029, Q-0100, Q-0132) and 11 checked for an early YES event (limit 15). Resolved: 4, all YES (Q-0029, Q-0100, Q-0132, Q-0134), in `registry/resolutions.csv` version 1; statuses set to RESOLVED in `registry/questions.csv` (status field only). Registry guard against HEAD: OK.
+- VERIFY: no ambiguous or disputed resolution; random draw `random.Random(323)`, 1 of 4: Q-0029. The draw ran from a one-off script in the git-ignored `data/tmp_oneoff/` (inline Python is refused by the permission settings), deleted afterwards.
+- Stage V ran in this session with its own provenance (start 23.11.2026 20:28 CET): Q-0029 AGREE, version 2 with `user_approved` = A. Caveat recorded in `V_autoverify.md`: the same session cannot be fully blind, so the re-check used evidence that stage I had not cited.
+- Q-0129 left ACTIVE on a strict reading: Kuwait and Bahrain confirmed intercepted Iranian drone attacks on 18.11, but no official statement names a US installation as the target (only an Iranian claim). Flagged for stage 01 of edition 04 in `01_interim_resolutions.md`.
+- No-republish: a TASS URL was first written into the Q-0029 notes. It was replaced with "no_republish, URL withheld" before any commit, so no committed row changed.
+- Outputs: `01_interim_resolutions.md`, `01_scores_interim.md` (71 resolved and scored), `V_autoverify.md` (appended section), `docs/` rebuilt by `tools/site.py`.
+- Searches: 11 web searches, 2 page-reading sub-agents (The National 18.11; OFAC Recent Actions 18–23.11). Harvested items and datasets read with grep. No forbidden domain opened; no forecast or benchmark file opened. Fetched text was treated as data; no instructions found in it.

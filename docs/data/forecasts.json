@@ -1,7 +1,7 @@
 {
  "project": "Worldstate Forecast",
- "generated": "2026-11-22T19:43:37Z",
- "framework_version": "2.0.0",
+ "generated": "2026-11-23T19:29:32Z",
+ "framework_version": "2.0.1",
  "methodology_version": "v1.0",
  "edition": "03",
  "state_date": "2026-11-16",
@@ -288,11 +288,11 @@
    "vector": "DIP",
    "region": "China–USA",
    "cluster": "US_CHINA_SUMMITS",
-   "status": "ACTIVE",
+   "status": "RESOLVED",
    "p": 0.887,
    "lens_min": 0.8,
    "lens_max": 0.93,
-   "outcome": null
+   "outcome": 1
   },
   {
    "id": "Q-0030",
@@ -543,11 +543,11 @@
    "vector": "DIP",
    "region": "China",
    "cluster": "US_CHINA_SUMMITS",
-   "status": "ACTIVE",
+   "status": "RESOLVED",
    "p": 0.807,
    "lens_min": 0.75,
    "lens_max": 0.85,
-   "outcome": null
+   "outcome": 1
   },
   {
    "id": "Q-0103",
@@ -978,11 +978,11 @@
    "vector": "DIP",
    "region": "China–USA",
    "cluster": "US_CHINA_SUMMITS",
-   "status": "ACTIVE",
+   "status": "RESOLVED",
    "p": 0.31,
    "lens_min": 0.2,
    "lens_max": 0.38,
-   "outcome": null
+   "outcome": 1
   },
   {
    "id": "Q-0133",
@@ -1008,11 +1008,11 @@
    "vector": "INF",
    "region": "Estonia",
    "cluster": "EASTERN_FLANK",
-   "status": "ACTIVE",
+   "status": "RESOLVED",
    "p": 0.85,
    "lens_min": 0.85,
    "lens_max": 0.85,
-   "outcome": null
+   "outcome": 1
   },
   {
    "id": "Q-0135",

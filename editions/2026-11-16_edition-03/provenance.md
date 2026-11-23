@@ -1,6 +1,6 @@
 # Provenance — edition 03
 
-Framework version(s): 1.8.0, 2.0.0 · methodology: v1.0 · models: claude-opus-5-5
+Framework version(s): 1.8.0, 2.0.0, 2.0.1 · methodology: v1.0 · models: claude-opus-5-5
 
 **Warning:** more than one framework or methodology version was used within this edition. Learning analyses must treat this edition as mixed.
 
@@ -24,3 +24,5 @@ Framework version(s): 1.8.0, 2.0.0 · methodology: v1.0 · models: claude-opus-5
 | 08 |  | 2026-11-18T16:01:35Z | — | 2026-11-18T16:12:23Z | claude-opus-5-5 | 1.8.0 | 2909de7cf6f3 | 2c6190f0dd34d180 | 0 |
 | E |  | 2026-11-18T16:12:50Z | 2026-11-19T00:14:11Z | 2026-11-19T00:23:11Z | claude-opus-5-5 | 1.8.0 | 184b8426c8a6 | 5705ee6d0dfc762a | 0 |
 | H | repair | 2026-11-22T19:11:12Z | — | 2026-11-22T19:23:39Z | claude-opus-5-5 | 2.0.0 | f8646530bd26 | 55defbde2b3ea39f | 0 |
+| V |  | 2026-11-23T19:28:34Z | — | 2026-11-23T19:28:52Z | claude-opus-5-5 | 2.0.1 | 4cc0d9ccc11c | 5087023dac3700c6 | 3: editions/2026-11-16_edition-03/provenance.jsonl, registry/questions.csv, registry/resolutions.csv |
+| I |  | 2026-11-23T19:24:41Z | — | 2026-11-23T19:29:47Z | claude-opus-5-5 | 2.0.1 | 4cc0d9ccc11c | 36a893b4deb37a41 | 0 |
